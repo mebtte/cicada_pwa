@@ -23,9 +23,9 @@ jobs:
           npm install
           npm run build
 
-      - name: styleguide build
-        run: |
-          npm run styleguide:build
+      # - name: styleguide build
+      #   run: |
+      #     npm run styleguide:build
 
       - name: create cname file
         run: |
