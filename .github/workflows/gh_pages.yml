@@ -16,7 +16,7 @@ jobs:
 
       - name: create config.json
         run: |
-          echo "{ "api_origin": "${{secrets.API_ORIGIN}}", "web_origin": "${{secrets.WEB_ORIGIN}}" }" > config.json
+          echo '{ "api_origin": "${{secrets.API_ORIGIN}}", "web_origin": "${{secrets.WEB_ORIGIN}}" }' > config.json
 
       - name: build
         run: |
