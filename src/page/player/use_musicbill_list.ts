@@ -44,7 +44,7 @@ export default () => {
 
     eventemitter.on(EventType.RELOAD_MUSICBILL_LIST, getMusicbillList);
     return () =>
-      eventemitter.off(EventType.RELOAD_MUSICBILL_LIST, getMusicbillList);
+      void eventemitter.off(EventType.RELOAD_MUSICBILL_LIST, getMusicbillList);
   }, [getMusicbillList]);
 
   useEffect(() => {

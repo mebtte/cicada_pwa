@@ -47,7 +47,7 @@ const Progress = () => {
     const timeUpdateListener = (time: number) => setCurrentTime(time);
     eventemitter.on(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
     return () =>
-      eventemitter.off(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
+      void eventemitter.off(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
   }, []);
 
   const percent = audioDuration ? currentTime / audioDuration : 0;

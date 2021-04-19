@@ -9,7 +9,8 @@ export default (topContent: TopContent) => {
   useEffect(() => {
     const keywordListener = (k) => setKeyword(k);
     eventemitter.on(EventType.KEYWORD_CHANGE, keywordListener);
-    return () => eventemitter.off(EventType.KEYWORD_CHANGE, keywordListener);
+    return () =>
+      void eventemitter.off(EventType.KEYWORD_CHANGE, keywordListener);
   }, []);
   useEffect(() => {
     if (topContent !== TopContent.SEARCH) {

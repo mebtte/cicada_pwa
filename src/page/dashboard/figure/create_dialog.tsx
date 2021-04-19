@@ -45,7 +45,8 @@ const CreateDialog = () => {
   useEffect(() => {
     const openListener = () => setOpen(true);
     eventemitter.on(EventType.OPEN_CREATE_DIALOG, openListener);
-    return () => eventemitter.off(EventType.OPEN_CREATE_DIALOG, openListener);
+    return () =>
+      void eventemitter.off(EventType.OPEN_CREATE_DIALOG, openListener);
   }, []);
 
   return (

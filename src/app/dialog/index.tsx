@@ -58,7 +58,7 @@ const DialogList = () => {
         },
       ]);
     eventemitter.on(EVENT_TYPE, dialogListener);
-    return () => eventemitter.off(EVENT_TYPE, dialogListener);
+    return () => void eventemitter.off(EVENT_TYPE, dialogListener);
   }, []);
 
   return (

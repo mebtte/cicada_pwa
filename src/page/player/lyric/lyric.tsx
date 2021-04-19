@@ -25,7 +25,7 @@ const Lyric = ({ lrc, ...props }: { lrc: string; [key: string]: any }) => {
     const timeUpdateListener = (ct) => setCurrentTime(ct * 1000);
     eventemitter.on(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
     return () =>
-      eventemitter.off(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
+      void eventemitter.off(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
   }, []);
 
   return (

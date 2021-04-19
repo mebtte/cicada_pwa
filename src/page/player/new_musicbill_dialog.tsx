@@ -75,7 +75,7 @@ const NewMusicbillDialog = () => {
     };
     eventemitter.on(EventType.OPEN_CREATE_MUSICBILL_DIALOG, listener);
     return () =>
-      eventemitter.off(EventType.OPEN_CREATE_MUSICBILL_DIALOG, listener);
+      void eventemitter.off(EventType.OPEN_CREATE_MUSICBILL_DIALOG, listener);
   }, []);
 
   return (

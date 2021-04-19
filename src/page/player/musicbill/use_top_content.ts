@@ -13,7 +13,10 @@ export default (): TopContent => {
       );
     eventemitter.on(EventType.TOP_CONTENT_CHANGE, topContentChangeListener);
     return () =>
-      eventemitter.off(EventType.TOP_CONTENT_CHANGE, topContentChangeListener);
+      void eventemitter.off(
+        EventType.TOP_CONTENT_CHANGE,
+        topContentChangeListener,
+      );
   }, []);
 
   return topContent;

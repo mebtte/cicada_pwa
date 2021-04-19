@@ -79,7 +79,10 @@ const MusicbillOrderDrawer = () => {
     const openListener = () => setOpen(true);
     eventemitter.on(EventType.OPEN_MUSICBILL_ORDER_DRAWER, openListener);
     return () =>
-      eventemitter.off(EventType.OPEN_MUSICBILL_ORDER_DRAWER, openListener);
+      void eventemitter.off(
+        EventType.OPEN_MUSICBILL_ORDER_DRAWER,
+        openListener,
+      );
   }, []);
 
   return (

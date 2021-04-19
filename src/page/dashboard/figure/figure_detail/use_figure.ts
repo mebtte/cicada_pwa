@@ -88,7 +88,8 @@ export default () => {
       });
     };
     eventemitter.on(EventType.FIGURE_UPDATED, updateListener);
-    return () => eventemitter.off(EventType.FIGURE_UPDATED, updateListener);
+    return () =>
+      void eventemitter.off(EventType.FIGURE_UPDATED, updateListener);
   }, [figure]);
 
   useEffect(() => {
@@ -99,7 +100,8 @@ export default () => {
         }`,
       );
     eventemitter.on(EventType.FIGURE_REMOVED, removeListener);
-    return () => eventemitter.off(EventType.FIGURE_REMOVED, removeListener);
+    return () =>
+      void eventemitter.off(EventType.FIGURE_REMOVED, removeListener);
   }, [keyword, history]);
 
   return {

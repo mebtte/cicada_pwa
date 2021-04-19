@@ -28,7 +28,7 @@ const OriginalMusicDialog = () => {
     };
     eventemitter.on(EventType.OPEN_ORIGINAL_MUSIC_DIALOG, openListener);
     return () =>
-      eventemitter.off(EventType.OPEN_ORIGINAL_MUSIC_DIALOG, openListener);
+      void eventemitter.off(EventType.OPEN_ORIGINAL_MUSIC_DIALOG, openListener);
   }, []);
   useEffect(() => {
     let canceled = false;

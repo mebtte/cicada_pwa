@@ -29,7 +29,8 @@ export default () => {
       saveVolume(v);
     };
     eventemitter.on(Type.ACTION_UPDATE_VOLUME, updateListener);
-    return () => eventemitter.off(Type.ACTION_UPDATE_VOLUME, updateListener);
+    return () =>
+      void eventemitter.off(Type.ACTION_UPDATE_VOLUME, updateListener);
   }, []);
 
   return volume;

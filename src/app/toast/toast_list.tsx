@@ -5,7 +5,6 @@ import { ZIndex } from '../../constant/style';
 import { eventemitter, EVENT_TYPE } from '../../platform/toast';
 import getRandomString from '../../util/get_random_string';
 import { Toast as ToastType, TOAST_ANIMATION_DURATION } from './constant';
-
 import Toast from './toast';
 
 const TOAST_SPACE = 20;
@@ -100,7 +99,7 @@ const ToastList = () => {
         });
       }, 1);
     eventemitter.on(EVENT_TYPE, toastListener);
-    return () => eventemitter.off(EVENT_TYPE, toastListener);
+    return () => void eventemitter.off(EVENT_TYPE, toastListener);
   }, [removeToast]);
 
   return (

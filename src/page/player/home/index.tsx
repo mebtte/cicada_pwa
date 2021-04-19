@@ -43,7 +43,8 @@ const Home = () => {
     const scrollToTopListener = () =>
       rootRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     eventemitter.on(EventType.SCROLL_TO_TOP, scrollToTopListener);
-    return () => eventemitter.off(EventType.SCROLL_TO_TOP, scrollToTopListener);
+    return () =>
+      void eventemitter.off(EventType.SCROLL_TO_TOP, scrollToTopListener);
   }, []);
 
   return (
