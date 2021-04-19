@@ -1,0 +1,17 @@
+# node & npm & yarn
+node_modules/
+package-lock.json
+yarn.lock
+
+# config
+config.json
+
+# build
+build/
+release.sh
+
+# log
+*.log
+
+# other
+.DS_Store

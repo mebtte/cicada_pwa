@@ -1,0 +1,59 @@
+import React, { useMemo } from 'react';
+import styled, { css } from 'styled-components';
+import { useTransition, animated } from 'react-spring';
+
+import { BORDER_RADIUS, Shape, CommonProps, TRANSITION_LIST } from './constant';
+import getRandomInteger from '../../util/get_random_integer';
+
+const Style = styled.div<{
+  shape: Shape;
+}>`
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+  ${({ shape }) => css`
+    border-radius: ${shape === Shape.CIRCLE ? '50%' : `${BORDER_RADIUS}px`};
+  `}
+`;
+const Img = styled(animated.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+`;
+
+const AnimatedAvatar = ({ src, size, shape, style, ...props }: CommonProps) => {
+  const transtion = useMemo(
+    () => TRANSITION_LIST[getRandomInteger(0, TRANSITION_LIST.length)],
+    [],
+  );
+  // @ts-ignore
+  const transitions = useTransition(src, (s) => s, transtion);
+  return (
+    <Style
+      {...props}
+      shape={shape}
+      style={{
+        ...style,
+        width: size,
+        height: size,
+      }}
+    >
+      {transitions.map(({ item: s, key, props: imgStyle }) => (
+        <Img
+          key={key}
+          style={{
+            ...imgStyle,
+            backgroundImage: `url("${s}")`,
+          }}
+        />
+      ))}
+    </Style>
+  );
+};
+
+export default AnimatedAvatar;

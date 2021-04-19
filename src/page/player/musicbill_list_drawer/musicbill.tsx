@@ -1,0 +1,67 @@
+import React, { useCallback } from 'react';
+
+import { RequestStatus } from '@/constant';
+import toast from '@/platform/toast';
+import { Music as MusicType } from '@/constant/music';
+import { LocalMusicbill } from '@/constant/musicbill';
+import Avatar from '@/component/avatar';
+import Checkbox from '@/component/checkbox';
+import CircularLoader from '@/component/circular_loader';
+import Icon, { Name } from '@/component/icon';
+import playerEventemitter, { Type as PlayerEventType } from '../eventemitter';
+import MusicbillContainer from './musicbill_container';
+import { COVER_SIZE, COVER_STYLE, ICON_SIZE, ICON_STYLE } from './constant';
+
+const Musicbill = ({
+  music,
+  musicbill,
+}: {
+  music?: MusicType;
+  musicbill: LocalMusicbill;
+}) => {
+  const onToggleMusicbill = useCallback(() => {
+    const { status } = musicbill;
+    if (status === RequestStatus.LOADING) {
+      return toast.info('请等待歌单加载完毕...');
+    }
+    if (status === RequestStatus.NOT_START || status === RequestStatus.ERROR) {
+      return playerEventemitter.emit(
+        PlayerEventType.FETCH_MUSICBILL,
+        musicbill,
+      );
+    }
+    const checked = !!musicbill.musicList.find((m) => m.id === music.id);
+    if (checked) {
+      return playerEventemitter.emit(
+        PlayerEventType.REMOVE_MUSIC_FROM_MUSICBILL,
+        { musicbill, music },
+      );
+    }
+    return playerEventemitter.emit(PlayerEventType.ADD_MUSIC_TO_MUSICBILL, {
+      musicbill,
+      music,
+    });
+  }, [musicbill, music]);
+  const { cover, name, musicList, status } = musicbill;
+
+  let icon = null;
+  if (status === RequestStatus.SUCCESS) {
+    const checked = music && !!musicList.find((m) => m.id === music.id);
+    icon = <Checkbox checked={checked} size={ICON_SIZE} />;
+  } else if (status === RequestStatus.LOADING) {
+    icon = <CircularLoader size={ICON_SIZE} style={ICON_STYLE} />;
+  } else {
+    icon = (
+      <Icon name={Name.QUESTION_FILL} size={ICON_SIZE} style={ICON_STYLE} />
+    );
+  }
+  return (
+    <MusicbillContainer onClick={onToggleMusicbill}>
+      {icon}
+      <Avatar src={cover} size={COVER_SIZE} style={COVER_STYLE} />
+      <div className="name">{name}</div>
+    </MusicbillContainer>
+  );
+};
+
+export default Musicbill;

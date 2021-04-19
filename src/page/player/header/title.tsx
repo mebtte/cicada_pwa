@@ -1,0 +1,42 @@
+import React from 'react';
+import styled from 'styled-components';
+import { useTransition, animated } from 'react-spring';
+
+import ellipsis from '@/style/ellipsis';
+
+const Style = styled.div`
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  margin: 0 20px;
+`;
+const AnimatedDiv = styled(animated.div)`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  font-size: 20px;
+  font-weight: 550;
+  user-select: none;
+  color: rgb(55 55 55);
+  ${ellipsis}
+`;
+
+const Title = ({ title }: { title: string }) => {
+  const transitions = useTransition(title, (t) => t, {
+    from: { opacity: 0, transform: 'translateY(-215%)' },
+    enter: { opacity: 1, transform: 'translateY(-115%)' },
+    leave: { opacity: 0, transform: 'translateY(-15%)' },
+  });
+  return (
+    <Style>
+      {transitions.map(({ item: t, key, props: style }) => (
+        <AnimatedDiv key={key} style={style}>
+          {t}
+        </AnimatedDiv>
+      ))}
+    </Style>
+  );
+};
+
+export default Title;

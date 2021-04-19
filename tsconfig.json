@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "jsx": "react",
+    "sourceMap": true,
+    "allowJs": true,
+
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+
+    "lib": ["dom", "esnext"],
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ],
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "build"]
+}

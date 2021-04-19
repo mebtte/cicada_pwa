@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="rgb(49, 194, 124)" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="知了, 私人云音乐播放器" />
+    <meta name="author" content="Mebtte Pan" />
+
+    <!-- open graph -->
+    <meta property="og:title" content="知了" />
+    <meta property="og:type" content="audio" />
+    <meta property="og:url" content="<%= WEB_ORIGIN %>" />
+    <meta property="og:image" content="<%= WEB_ORIGIN %>/logo.png" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/logo.png" />
+    <title>知了</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script id="loading-script">
+      // 添加初始loading
+      (function addLoading() {
+        const style = document.createElement('style');
+        style.innerHTML = `
+          @keyframes fade {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes flex {
+            0% {
+              transform: scaleY(1);
+            }
+            50% {
+              transform: scaleY(0.2);
+            }
+            100% {
+              transform: scaleY(1);
+            }
+          }
+        `;
+        document.head.appendChild(style);
+        setTimeout(() => style.remove(), 1000 * 60);
+
+        const root = document.querySelector('#root');
+        const loader = document.createElement('div');
+        loader.style.cssText = `
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 48px;
+          height: 48px;
+          display: flex;
+          justify-content: space-between;
+          animation: fade 1s ease-in-out;
+        `;
+        for (let i = 0; i < 5; i += 1) {
+          const item = document.createElement('div');
+          const delay = Math.random() * 1.2 * 2;
+          item.style.cssText = `
+            width: 6%;
+            height: 100%;
+            background-color: rgb(49, 194, 124);
+            animation-name: flex;
+            animation-duration: 1.2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+          `;
+          // help(mebtte): 如果将delay放入模板字符串将会报错，原因未知
+          item.style.animationDelay = delay + 's';
+          loader.appendChild(item);
+        }
+        return root.appendChild(loader);
+      })();
+    </script>
+  </body>
+</html>
