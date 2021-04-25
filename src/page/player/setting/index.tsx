@@ -9,6 +9,7 @@ import PlayMode from './play_mode';
 import Logout from './logout';
 import GlobalShortcut from './global_shortcut';
 import Volume from './volume';
+import Feedback from './feedback';
 
 const Style = styled.div`
   ${routeContainerStyle}
@@ -23,6 +24,7 @@ const Setting = () => {
       <PlayMode playMode={playMode} />
       <Volume volume={volume} />
       {electron ? <GlobalShortcut /> : null}
+      <Feedback />
       <Logout />
     </Style>
   );

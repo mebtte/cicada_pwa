@@ -16,10 +16,12 @@ interface Config {
   lastCommitMessage: string;
   dependencies: string[];
   buildTime: string;
-  apiOrigin: string;
-  webOrigin: string;
   emptyImageList: string[];
   coverList: string[];
+
+  apiOrigin: string;
+  webOrigin: string;
+  githubRepository: string;
 }
 
 declare global {

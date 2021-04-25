@@ -82,8 +82,6 @@ module.exports = {
           .replace(/\s/, ': '),
         dependencies: Object.keys(pkg.devDependencies).sort(),
         buildTime: new Date(),
-        apiOrigin: config.api_origin,
-        webOrigin: config.web_origin,
         emptyImageList: fs
           .readdirSync(`${STATIC_DIR}/empty`)
           .filter((f) => !INVALID_FILES.includes(f))
@@ -92,6 +90,9 @@ module.exports = {
           .readdirSync(`${STATIC_DIR}/cover`)
           .filter((f) => !INVALID_FILES.includes(f))
           .map((f) => `/cover/${f}`),
+        apiOrigin: config.api_origin,
+        webOrigin: config.web_origin,
+        githubRepository: config.github_repository,
       }),
     }),
     new CopyPlugin({
