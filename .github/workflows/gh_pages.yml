@@ -16,7 +16,7 @@ jobs:
 
       - name: create config.json
         run: |
-          echo '{ "api_origin": "${{secrets.API_ORIGIN}}", "web_origin": "https://cicada.mebtte.com", "github_repository": "https://github.com/mebtte/cicada_pwa" }' > config.json
+          echo '{ "api_origin": "${{secrets.API_ORIGIN}}", "web_origin": "${{secrets.WEB_ORIGIN}}", "github_repository": "https://github.com/mebtte/cicada_pwa" }' > config.json
 
       - name: build
         run: |
@@ -29,7 +29,7 @@ jobs:
 
       - name: create cname file
         run: |
-          echo cicada.mebtte.com > build/CNAME
+          echo ${{secrets.API_ORIGIN}} > build/CNAME
 
       - name: deploy gh-pages
         run: |
