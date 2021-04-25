@@ -29,7 +29,7 @@ jobs:
 
       - name: create cname file
         run: |
-          echo ${{secrets.API_ORIGIN}} > build/CNAME
+          echo ${{secrets.WEB_ORIGIN}} > build/CNAME
 
       - name: deploy gh-pages
         run: |
