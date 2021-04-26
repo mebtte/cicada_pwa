@@ -32,8 +32,6 @@ const Lyric = ({ lrc, ...props }: { lrc: string; [key: string]: any }) => {
         lrc={lrc}
         currentMillisecond={currentTime}
         lineRenderer={lineRenderer}
-        topBlank
-        bottomBlank
       />
     </Style>
   );
