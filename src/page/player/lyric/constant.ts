@@ -1,4 +1,4 @@
-import { Lrc } from '@mebtte/react-lrc';
+import { Lrc } from 'react-lrc';
 import styled, { css } from 'styled-components';
 
 import scrollbar from '@/style/scrollbar';

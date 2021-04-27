@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
-import { LrcLine } from '@mebtte/react-lrc';
+import { LyricLine } from 'react-lrc';
 
 import { container, StyledLrc, Line } from './constant';
 import eventemitter, { Type as EventType } from '../eventemitter';
@@ -13,10 +13,8 @@ const Style = styled(animated.div)`
 const Lyric = ({ lrc, ...props }: { lrc: string; [key: string]: any }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const lineRenderer = useCallback(
-    ({ lrcLine, active }: { lrcLine: LrcLine; active: boolean }) => (
-      <Line key={lrcLine.id} active={active}>
-        {lrcLine.content}
-      </Line>
+    ({ line, active }: { line: LyricLine; active: boolean }) => (
+      <Line active={active}>{line.content}</Line>
     ),
     [],
   );
@@ -32,7 +30,7 @@ const Lyric = ({ lrc, ...props }: { lrc: string; [key: string]: any }) => {
     <Style {...props}>
       <StyledLrc
         lrc={lrc}
-        currentTime={currentTime}
+        currentMillisecond={currentTime}
         lineRenderer={lineRenderer}
       />
     </Style>
