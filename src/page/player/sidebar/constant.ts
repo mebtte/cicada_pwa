@@ -46,7 +46,7 @@ const NAVIGATORS: Navigator[] = [
       dialog.confirm({
         title: '即将打开新的页面, 是否继续?',
         onConfirm: () =>
-          void openLink(`${window.location.origin}${ROOT_PATH.ABOUT}`),
+          void openLink(`${window.location.origin}#${ROOT_PATH.ABOUT}`),
       }),
   },
 ];
