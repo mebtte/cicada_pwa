@@ -27,7 +27,17 @@ interface Config {
 declare global {
   const __CONFIG__: Config;
 
-  type valueOf<T> = T[keyof T];
+  type ValueOf<T> = T[keyof T];
+
+  type AsyncReturnType<T extends (...args: any) => any> = T extends (
+    ...args: any
+  ) => Promise<infer U>
+    ? U
+    : T extends (...args: any) => infer U
+    ? U
+    : any;
+
+  type PromiseType<T> = T extends PromiseLike<infer U> ? U : T;
 
   interface Window {
     __CONFIG__?: Config;

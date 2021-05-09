@@ -51,6 +51,9 @@ module.exports = {
     'import/extensions': 'off',
   },
   globals: {
-    __CONFIG__: true,
+    __CONFIG__: 'readonly',
+    ValueOf: 'readonly',
+    AsyncReturnType: 'readonly',
+    PromiseType: 'readonly',
   },
 };

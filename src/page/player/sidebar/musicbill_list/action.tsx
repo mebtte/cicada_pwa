@@ -34,7 +34,7 @@ const Action = ({
   status,
   musicbillCount,
 }: {
-  status: valueOf<typeof STATUS>;
+  status: ValueOf<typeof STATUS>;
   musicbillCount: number;
 }) => (
   <Style>

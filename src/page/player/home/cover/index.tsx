@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { HTMLAttributes, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 import { Waypoint } from 'react-waypoint';
 
-import imageQueue from '@/platform/image_queue';
+import loadImage from '@/util/load_image';
 import logger from '@/platform/logger';
 import PngDefaultCover from './default_cover.jpeg';
+import coverQueue, { AbortError } from './cover_queue';
 
 const TRANSITION = {
   initial: { opacity: 1 },
@@ -31,14 +32,28 @@ const Cover = styled(animated.div)`
   background-position: center;
 `;
 
-const Wrapper = ({ src, ...props }: { src?: string; [key: string]: any }) => {
+const Wrapper = ({
+  src,
+  ...props
+}: HTMLAttributes<HTMLDivElement> & { src?: string }) => {
+  const abortLoadCoverRef = useRef<() => void | null>();
+
   const [currentSrc, setCurrentSrc] = useState(PngDefaultCover);
   const onEnter = () => {
     if (src && currentSrc !== src) {
-      imageQueue
-        .load(src)
+      const { promise, finished, abort } = coverQueue.run(() => loadImage(src));
+      abortLoadCoverRef.current = () => {
+        if (finished()) {
+          return;
+        }
+        return abort();
+      };
+      promise
         .then(() => setCurrentSrc(src))
         .catch((e) => {
+          if (e instanceof AbortError) {
+            return;
+          }
           logger.error(e, {
             description: '加载音乐封面失败',
             report: true,
@@ -48,7 +63,13 @@ const Wrapper = ({ src, ...props }: { src?: string; [key: string]: any }) => {
     }
   };
 
-  useEffect(() => () => imageQueue.remove(src), [src]);
+  useEffect(
+    () => () => {
+      // eslint-disable-next-line no-unused-expressions
+      abortLoadCoverRef.current && abortLoadCoverRef.current();
+    },
+    [],
+  );
 
   // @ts-ignore
   const transitions = useTransition(currentSrc, null, TRANSITION);

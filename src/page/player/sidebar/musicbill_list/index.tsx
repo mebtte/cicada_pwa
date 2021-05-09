@@ -49,7 +49,7 @@ const MusicbillList = () => {
 
   useKeyboard(musicbillList);
 
-  const status: valueOf<typeof STATUS> =
+  const status: ValueOf<typeof STATUS> =
     getMusicbillListStatus === RequestStatus.SUCCESS && !musicbillList.length
       ? STATUS.EMPTY
       : getMusicbillListStatus;

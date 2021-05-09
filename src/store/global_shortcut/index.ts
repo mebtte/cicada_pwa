@@ -14,7 +14,7 @@ export const registerAll = () => ({ type: GLOBAL_SHORTCUT_REGISTER_ALL });
 export const unregisterAll = () => ({ type: GLOBAL_SHORTCUT_UNREGISTER_ALL });
 
 export const setShortcutKeys = (
-  shortcut: valueOf<typeof GLOBAL_SHORTCUT>,
+  shortcut: ValueOf<typeof GLOBAL_SHORTCUT>,
   keys: string[],
 ) => (dispatch) => {
   localStorage.setItem(
