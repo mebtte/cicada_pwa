@@ -8,7 +8,7 @@ import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
 import {
   relaunch,
-  setUIOrigin as setUIOriginRequest,
+  setPWAOrigin as setPWAOriginRequest,
 } from '@/platform/electron_new';
 import RouteContainer from '../route_container';
 import Header from './header';
@@ -42,11 +42,11 @@ const Style = styled(RouteContainer)`
   }
 `;
 
-const Content = ({ uiOrigin: initialUiOrigin }: { uiOrigin: string }) => {
-  const [uiOrigin, setUiOrigin] = useState(initialUiOrigin);
-  const onUiOriginChange = useCallback(
+const Content = ({ pwaOrigin: initialPwaOrigin }: { pwaOrigin: string }) => {
+  const [pwaOrigin, setPwaOrigin] = useState(initialPwaOrigin);
+  const onPwaOriginChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) =>
-      setUiOrigin(event.target.value),
+      setPwaOrigin(event.target.value),
     [],
   );
 
@@ -58,11 +58,11 @@ const Content = ({ uiOrigin: initialUiOrigin }: { uiOrigin: string }) => {
       onConfirm: async () => {
         setLoading(true);
         try {
-          if (uiOrigin !== initialUiOrigin) {
-            if (!ORIGIN.test(uiOrigin)) {
+          if (pwaOrigin !== initialPwaOrigin) {
+            if (!ORIGIN.test(pwaOrigin)) {
               throw new Error('UI Origin 校验失败');
             } else {
-              await setUIOriginRequest({ uiOrigin });
+              await setPWAOriginRequest({ pwaOrigin });
             }
           }
           setTimeout(() => relaunch(), 0);
@@ -88,8 +88,8 @@ const Content = ({ uiOrigin: initialUiOrigin }: { uiOrigin: string }) => {
         <div className="value-wrapper">
           <Input
             className="value"
-            value={uiOrigin}
-            onChange={onUiOriginChange}
+            value={pwaOrigin}
+            onChange={onPwaOriginChange}
             disabled={loading}
           />
         </div>

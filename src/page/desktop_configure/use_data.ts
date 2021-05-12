@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 
 import { RequestStatus } from '@/constant';
-import { getUIOrigin } from '@/platform/electron_new';
+import { getPWAOrigin } from '@/platform/electron_new';
 import logger from '@/platform/logger';
 
 export default () => {
@@ -9,12 +9,12 @@ export default () => {
   const [error, setError] = useState<Error | null>(
     new Error('TypeError: sdfhkas, dskhfk, sdjfhksdh,sdhfjk'),
   );
-  const [uiOrigin, setUIOrigin] = useState('');
+  const [pwaOrigin, setPwaOrigin] = useState('');
   const getData = useCallback(async () => {
     setStatus(RequestStatus.LOADING);
     try {
-      const [uo] = await Promise.all([getUIOrigin()]);
-      setUIOrigin(uo);
+      const [po] = await Promise.all([getPWAOrigin()]);
+      setPwaOrigin(po);
       setStatus(RequestStatus.SUCCESS);
     } catch (e) {
       logger.error(e, {
@@ -30,5 +30,5 @@ export default () => {
     getData();
   }, [getData]);
 
-  return { status, error, retry: getData, uiOrigin };
+  return { status, error, retry: getData, pwaOrigin };
 };

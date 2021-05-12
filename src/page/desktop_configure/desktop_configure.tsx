@@ -8,11 +8,11 @@ import ErrorDisplay from './error_display';
 import Content from './content';
 
 const DesktopConfigure = () => {
-  const { status, error, retry, uiOrigin } = useData();
+  const { status, error, retry, pwaOrigin } = useData();
 
   let content: ReactNode;
   if (status === RequestStatus.SUCCESS) {
-    content = <Content uiOrigin={uiOrigin} />;
+    content = <Content pwaOrigin={pwaOrigin} />;
   } else if (status === RequestStatus.LOADING) {
     content = <Loading />;
   } else {
