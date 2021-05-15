@@ -111,7 +111,7 @@ const About = ({ onlyContent = false }: { onlyContent?: boolean }) => {
               </span>
             </div>
             <div className="item">
-              <span className="link" data-url={config.webOrigin}>
+              <span className="link" data-url={config.pwaOrigin}>
                 Web
               </span>
               <span className="symbol">@</span>

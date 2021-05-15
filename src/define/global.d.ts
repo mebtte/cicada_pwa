@@ -20,7 +20,7 @@ interface Config {
   coverList: string[];
 
   apiOrigin: string;
-  webOrigin: string;
+  pwaOrigin: string;
   githubRepository: string;
 }
 

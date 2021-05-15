@@ -91,7 +91,7 @@ module.exports = {
           .filter((f) => !INVALID_FILES.includes(f))
           .map((f) => `/cover/${f}`),
         apiOrigin: config.api_origin,
-        webOrigin: config.web_origin,
+        pwaOrigin: config.pwa_origin,
         githubRepository: config.github_repository,
       }),
     }),
@@ -106,7 +106,7 @@ module.exports = {
     new HtmlPlugin({
       template: path.join(__dirname, '../src/index.html'),
       templateParameters: {
-        WEB_ORIGIN: config.web_origin,
+        PWA_ORIGIN: config.pwa_origin,
       },
     }),
   ],
