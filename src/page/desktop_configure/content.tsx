@@ -60,7 +60,7 @@ const Content = ({ pwaOrigin: initialPwaOrigin }: { pwaOrigin: string }) => {
         try {
           if (pwaOrigin !== initialPwaOrigin) {
             if (!ORIGIN.test(pwaOrigin)) {
-              throw new Error('UI Origin 校验失败');
+              throw new Error('PWA Origin 校验失败');
             } else {
               await setPWAOriginRequest({ pwaOrigin });
             }
@@ -84,7 +84,7 @@ const Content = ({ pwaOrigin: initialPwaOrigin }: { pwaOrigin: string }) => {
     <Style>
       <Header />
       <div className="part">
-        <div className="label">UI Origin</div>
+        <div className="label">PWA Origin</div>
         <div className="value-wrapper">
           <Input
             className="value"
