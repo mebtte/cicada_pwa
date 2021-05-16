@@ -25,7 +25,7 @@ async function getProfile(): Promise<User> {
     nickname: string;
     status: string;
     cms: number;
-  }>('/1/user/profile', {
+  }>('/user/profile', {
     withToken: true,
   });
   return {

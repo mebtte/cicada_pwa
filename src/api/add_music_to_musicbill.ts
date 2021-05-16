@@ -11,7 +11,7 @@ function addMusicToMusicbill({
   musicbillId: string;
   musicId: string;
 }) {
-  return api.post<void>('/1/musicbill/music', {
+  return api.post<void>('/musicbill/music', {
     data: {
       musicbill_id: musicbillId,
       music_id: musicId,

@@ -22,7 +22,7 @@ async function getMusicbill(id: string) {
       }[];
       mv: boolean | string;
     }[];
-  }>('/1/musicbill', {
+  }>('/musicbill', {
     params: { id },
     withToken: true,
   });

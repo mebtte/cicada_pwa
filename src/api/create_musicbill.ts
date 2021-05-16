@@ -14,7 +14,7 @@ async function createMusic(name: string) {
     order: number;
     description: string;
     create_time: string;
-  }>('/1/musicbill', { withToken: true, data: { name } });
+  }>('/musicbill', { withToken: true, data: { name } });
   return {
     cover: getRandomCover(),
     id,

@@ -5,7 +5,7 @@ import api from '.';
  * @author mebtte<hi@mebtte.com>
  */
 function getLrc(id) {
-  return api.get<string>('/1/music/lrc', {
+  return api.get<string>('/music/lrc', {
     params: { id },
     withToken: true,
   });

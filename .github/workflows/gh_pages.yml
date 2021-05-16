@@ -16,7 +16,7 @@ jobs:
 
       - name: create config.json
         run: |
-          echo '{ "api_origin": "${{secrets.API_ORIGIN}}", "pwa_origin": "${{secrets.PWA_ORIGIN}}", "github_repository": "https://github.com/mebtte/cicada_pwa" }' > config.json
+          echo '{ "server_origin": "${{secrets.SERVER_ORIGIN}}", "pwa_origin": "${{secrets.PWA_ORIGIN}}", "github_repository": "https://github.com/mebtte/cicada_pwa" }' > config.json
 
       - name: build
         run: |

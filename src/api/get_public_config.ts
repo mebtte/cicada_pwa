@@ -7,7 +7,7 @@ import { Key } from '../constant/public_config';
  * @param key 公共配置 key
  */
 function getPublicConfig(key: Key) {
-  return api.get<string>('/1/public_config', {
+  return api.get<string>('/public_config', {
     withToken: true,
     params: { key },
   });

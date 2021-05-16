@@ -27,7 +27,7 @@ async function getMusicList({
       singers: { alias: string; avatar?: string; id: string; name: string }[];
       mv: boolean | string;
     }[]
-  >('/1/music/list', {
+  >('/music/list', {
     params: { key, value },
     withToken: true,
   });

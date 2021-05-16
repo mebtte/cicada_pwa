@@ -14,7 +14,7 @@ async function getMusicbillList() {
       order: number;
       create_time: string;
     }[]
-  >('/1/musicbill/list', { withToken: true });
+  >('/musicbill/list', { withToken: true });
   return data.map(
     ({ cover, id, name, order, description, create_time: createTime }) => ({
       cover: cover || getRandomCover(),

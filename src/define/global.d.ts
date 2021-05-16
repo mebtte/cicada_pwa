@@ -19,7 +19,7 @@ interface Config {
   emptyImageList: string[];
   coverList: string[];
 
-  apiOrigin: string;
+  serverOrigin: string;
   pwaOrigin: string;
   githubRepository: string;
 }

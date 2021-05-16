@@ -90,7 +90,7 @@ module.exports = {
           .readdirSync(`${STATIC_DIR}/cover`)
           .filter((f) => !INVALID_FILES.includes(f))
           .map((f) => `/cover/${f}`),
-        apiOrigin: config.api_origin,
+        serverOrigin: config.server_origin,
         pwaOrigin: config.pwa_origin,
         githubRepository: config.github_repository,
       }),
