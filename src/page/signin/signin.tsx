@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import getRandomCover from '../../util/get_random_cover';
 import { IS_ELECTRON, IS_WINDOWS } from '../../constant';
-import RouteContainer from '../route_container';
+import PageContainer from '../page_container';
 import Content from './content';
 import AppRegion from './app_region';
 import WindowsAction from './windows_action';
 
-const Style = styled(RouteContainer)`
+const Style = styled(PageContainer)`
   display: flex;
   align-items: center;
   justify-content: center;

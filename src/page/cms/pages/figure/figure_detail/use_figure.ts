@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 
 import useQuery from '@/util/use_query';
 import { CMS_PATH } from '@/constant/route';
-import { RequestStatus } from '../../../../constant';
-import { Figure, SearchKey } from '../../../../constant/figure';
+import { RequestStatus } from '../../../../../constant';
+import { Figure, SearchKey } from '../../../../../constant/figure';
 import eventemitter, { Type as EventType } from '../eventemitter';
-import getFigureList from '../../../../api/get_figure_list';
-import logger from '../../../../platform/logger';
+import getFigureList from '../../../../../api/get_figure_list';
+import logger from '../../../../../platform/logger';
 
 export default () => {
   const history = useHistory();

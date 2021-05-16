@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import useQuery from '@/util/use_query';
-import { RequestStatus } from '../../../../constant';
-import getFigureListRequest from '../../../../api/get_figure_list';
-import { SearchKey, Figure } from '../../../../constant/figure';
-import logger from '../../../../platform/logger';
+import { RequestStatus } from '../../../../../constant';
+import getFigureListRequest from '../../../../../api/get_figure_list';
+import { SearchKey, Figure } from '../../../../../constant/figure';
+import logger from '../../../../../platform/logger';
 import eventemitter, { Type as EventType } from '../eventemitter';
 
 export default () => {

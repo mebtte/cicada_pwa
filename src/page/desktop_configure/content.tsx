@@ -10,12 +10,12 @@ import {
   relaunch,
   setPWAOrigin as setPWAOriginRequest,
 } from '@/platform/electron_new';
-import RouteContainer from '../route_container';
+import PageContainer from '../page_container';
 import Header from './header';
 import Action from './action';
 import { HEADER_HEIGHT, ACTION_HEIGHT } from './constant';
 
-const Style = styled(RouteContainer)`
+const Style = styled(PageContainer)`
   ${scrollbar}
   overflow: auto;
   box-sizing: border-box;

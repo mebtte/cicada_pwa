@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { route } from '../style';
+import { cmsPage } from '../../style';
 
 const Style = styled.div`
-  ${route};
+  ${cmsPage};
 `;
 
 const Music = () => <Style>music</Style>;

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { NAME_MAX_LENGTH } from '../../../constant/figure';
-import logger from '../../../platform/logger';
-import toast from '../../../platform/toast';
-import createFigure from '../../../api/create_figure';
+import { NAME_MAX_LENGTH } from '../../../../constant/figure';
+import logger from '../../../../platform/logger';
+import toast from '../../../../platform/toast';
+import createFigure from '../../../../api/create_figure';
 import eventemitter, { Type as EventType } from './eventemitter';
-import Dialog, { Title, Content, Action } from '../../../component/dialog';
-import Button, { Type } from '../../../component/button';
-import Input from '../../../component/input';
+import Dialog, { Title, Content, Action } from '../../../../component/dialog';
+import Button, { Type } from '../../../../component/button';
+import Input from '../../../../component/input';
 
 const inputStyle = {
   display: 'block',

@@ -2,16 +2,16 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import eventemitter, { Type as EventType } from '../eventemitter';
-import toast from '../../../../platform/toast';
-import updateFigure from '../../../../api/update_figure';
+import toast from '../../../../../platform/toast';
+import updateFigure from '../../../../../api/update_figure';
 import {
   AVATAR_MAX_SIZE,
   UpdateKey,
   Figure,
-} from '../../../../constant/figure';
-import Avatar, { Shape } from '../../../../component/avatar';
-import Button, { Type } from '../../../../component/button';
-import ImageCutterDialog from '../../../../component/image_cutter_dialog';
+} from '../../../../../constant/figure';
+import Avatar, { Shape } from '../../../../../component/avatar';
+import Button, { Type } from '../../../../../component/button';
+import ImageCutterDialog from '../../../../../component/image_cutter_dialog';
 
 const AVATAR_SIZE = 100;
 const IMAGE_SIZE = {

@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import CircularLoader from '@/component/circular_loader';
-import RouteContainer from '../route_container';
+import PageContainer from '../page_container';
 
-const Style = styled(RouteContainer)`
+const Style = styled(PageContainer)`
   display: flex;
   align-items: center;
   justify-content: center;

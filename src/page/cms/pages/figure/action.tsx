@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 import eventemitter, { Type as EventType } from './eventemitter';
-import IconButton, { Name } from '../../../component/icon_button';
-import Tooltip, { Placement } from '../../../component/tooltip';
+import IconButton, { Name } from '../../../../component/icon_button';
+import Tooltip, { Placement } from '../../../../component/tooltip';
 
 const Style = styled.div`
   width: 60px;

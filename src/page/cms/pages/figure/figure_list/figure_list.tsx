@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { RequestStatus } from '../../../../constant';
+import { RequestStatus } from '../../../../../constant';
 import useFigureList from './use_figure_list';
 
 import FigureItem from './figure_item';
-import ErrorCard from '../../../../component/error_card';
-import LoadingCard from '../../../../component/loading_card';
-import Empty from '../../../../component/empty';
+import ErrorCard from '../../../../../component/error_card';
+import LoadingCard from '../../../../../component/loading_card';
+import Empty from '../../../../../component/empty';
 
 const cardStyle = {
   flex: 1,

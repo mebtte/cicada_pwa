@@ -6,12 +6,12 @@ import config from '@/config';
 import scrollbar from '@/style/scrollbar';
 import openLink from '../../util/open_link';
 import { CICADA_START_YEAR } from '../../constant';
-import RouteContainer from '../route_container';
+import PageContainer from '../page_container';
 import Avatar from '../../component/avatar';
 import Tooltip from '../../component/tooltip';
 import Header from './header';
 
-const Style = styled(RouteContainer)`
+const Style = styled(PageContainer)`
   ${scrollbar}
   overflow: auto;
   > .content {

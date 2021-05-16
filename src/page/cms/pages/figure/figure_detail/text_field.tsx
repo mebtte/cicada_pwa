@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Input from '../../../../component/input';
+import Input from '../../../../../component/input';
 
 const Style = styled.div`
   margin: 20px 30px;

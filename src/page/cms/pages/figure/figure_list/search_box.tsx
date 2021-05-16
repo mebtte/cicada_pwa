@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 import useQuery from '@/util/use_query';
-import toast from '../../../../platform/toast';
-import { CMS_PATH } from '../../../../constant/route';
-import Input from '../../../../component/input';
-import IconButton, { Name } from '../../../../component/icon_button';
+import toast from '../../../../../platform/toast';
+import { CMS_PATH } from '../../../../../constant/route';
+import Input from '../../../../../component/input';
+import IconButton, { Name } from '../../../../../component/icon_button';
 
 const Style = styled.div`
   display: flex;

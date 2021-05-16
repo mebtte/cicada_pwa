@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { RequestStatus } from '../../../../constant';
+import { RequestStatus } from '../../../../../constant';
 import useFigure from './use_figure';
-import Empty from '../../../../component/empty';
-import LoadingCard from '../../../../component/loading_card';
-import ErrorCard from '../../../../component/error_card';
+import Empty from '../../../../../component/empty';
+import LoadingCard from '../../../../../component/loading_card';
+import ErrorCard from '../../../../../component/error_card';
 import Detail from './detail';
 
 const cardStyle = {

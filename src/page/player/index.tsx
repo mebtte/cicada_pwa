@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import scrollbar from '@/style/scrollbar';
 import withSignin from '@/platform/with_signin';
 import electron from '@/platform/electron';
-import RouteContainer from '../route_container';
+import PageContainer from '../page_container';
 import Sidebar from './sidebar';
 import Header from './header';
 import Controller from './controller';
@@ -31,7 +31,7 @@ import NewMusicbillDialog from './new_musicbill_dialog';
 import OriginalMusicDialog from './original_music_dialog';
 import MvDialog from './mv_dialog';
 
-const Scrollable = styled(RouteContainer)`
+const Scrollable = styled(PageContainer)`
   overflow: auto;
   ${scrollbar};
 `;

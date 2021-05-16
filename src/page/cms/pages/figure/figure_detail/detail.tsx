@@ -2,18 +2,18 @@ import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 
 import eventemitter, { Type as EventType } from '../eventemitter';
-import dialog from '../../../../platform/dialog';
-import logger from '../../../../platform/logger';
-import toast from '../../../../platform/toast';
-import removeFigure from '../../../../api/remove_figure';
+import dialog from '../../../../../platform/dialog';
+import logger from '../../../../../platform/logger';
+import toast from '../../../../../platform/toast';
+import removeFigure from '../../../../../api/remove_figure';
 import {
   Figure,
   NAME_MAX_LENGTH,
   ALIAS_MAX_LENGTH,
   UpdateKey,
-} from '../../../../constant/figure';
-import updateFigure from '../../../../api/update_figure';
-import Button, { Type } from '../../../../component/button';
+} from '../../../../../constant/figure';
+import updateFigure from '../../../../../api/update_figure';
+import Button, { Type } from '../../../../../component/button';
 import Avatar from './avatar';
 import TextField from './text_field';
 
