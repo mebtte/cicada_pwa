@@ -1,7 +1,5 @@
 import getOriginalScrollbarWidth from '@/util/get_original_scrollbar_width';
 
-export const CONTENT_MAX_WIDTH = 960;
-
 export const CICADA_START_YEAR = 2016;
 
 export const IS_ELECTRON = !!window.require;

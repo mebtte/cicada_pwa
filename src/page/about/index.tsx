@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import format from 'date-fns/format';
 
 import config from '@/config';
 import scrollbar from '@/style/scrollbar';
-import openLink from '../util/open_link';
-import { CICADA_START_YEAR } from '../constant';
-import RouteContainer from './route_container';
-import Avatar from '../component/avatar';
-import CommonHeader from '../component/common_header';
-import Tooltip from '../component/tooltip';
+import openLink from '../../util/open_link';
+import { CICADA_START_YEAR } from '../../constant';
+import RouteContainer from '../route_container';
+import Avatar from '../../component/avatar';
+import Tooltip from '../../component/tooltip';
+import Header from './header';
 
 const Style = styled(RouteContainer)`
   ${scrollbar}
@@ -56,7 +55,7 @@ const logoStyle = {
   margin: '0 auto',
 };
 
-const About = ({ onlyContent = false }: { onlyContent?: boolean }) => {
+const About = () => {
   useEffect(() => {
     const linkListener = (event) => {
       const { url } = event.target.dataset;
@@ -69,7 +68,7 @@ const About = ({ onlyContent = false }: { onlyContent?: boolean }) => {
   }, []);
   return (
     <Style>
-      {onlyContent ? null : <CommonHeader />}
+      <Header />
       <div className="content">
         <Avatar animated src="/logo.png" size={100} style={logoStyle} />
         <section className="part">
@@ -164,4 +163,4 @@ const About = ({ onlyContent = false }: { onlyContent?: boolean }) => {
   );
 };
 
-export default connect()(About);
+export default About;
