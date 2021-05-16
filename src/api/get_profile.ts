@@ -22,7 +22,7 @@ async function getProfile() {
     avatar: string;
     join_time: string;
     nickname: string;
-    powers: Power[];
+    powers?: Power[];
     status: string;
   }>('/1/user/profile', {
     withToken: true,

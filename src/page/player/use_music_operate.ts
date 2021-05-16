@@ -1,10 +1,6 @@
 import { useCallback } from 'react';
 
-import config from '@/config';
-import openLink from '@/util/open_link';
-import recordDownloadLog from '@/api/record_download_log';
-import logger from '@/platform/logger';
-import { Music as MusicType, DownloadType } from '@/constant/music';
+import { Music as MusicType } from '@/constant/music';
 import eventemitter, { Type as EventType } from './eventemitter';
 
 export default (music?: MusicType, afterOperate?: (...params: any) => any) => {
@@ -50,66 +46,6 @@ export default (music?: MusicType, afterOperate?: (...params: any) => any) => {
       afterOperate();
     }
   }, [music, afterOperate]);
-  const onDownloadNormal = useCallback(() => {
-    if (!music) {
-      return;
-    }
-    recordDownloadLog({
-      id: music.id,
-      type: DownloadType.NORMAL,
-    }).catch((error) =>
-      logger.error(error, {
-        description: '下载音乐记录失败',
-        report: true,
-      }),
-    );
-    openLink(
-      `${config.apiOrigin}/1/dynamic/music?id=${music.id}&type=${DownloadType.NORMAL}`,
-    );
-    if (afterOperate) {
-      afterOperate();
-    }
-  }, [music, afterOperate]);
-  const onDownloadAccompany = useCallback(() => {
-    if (!music) {
-      return;
-    }
-    if (afterOperate) {
-      setTimeout(afterOperate, 0);
-    }
-    recordDownloadLog({
-      id: music.id,
-      type: DownloadType.ACCOMPANY,
-    }).catch((error) =>
-      logger.error(error, {
-        description: '下载音乐记录失败',
-        report: true,
-      }),
-    );
-    return openLink(
-      `${config.apiOrigin}/1/dynamic/music?id=${music.id}&type=${DownloadType.ACCOMPANY}`,
-    );
-  }, [music, afterOperate]);
-  const onDownloadHQ = useCallback(() => {
-    if (!music) {
-      return;
-    }
-    if (afterOperate) {
-      setTimeout(afterOperate, 0);
-    }
-    recordDownloadLog({
-      id: music.id,
-      type: DownloadType.HQ,
-    }).catch((error) =>
-      logger.error(error, {
-        description: '下载音乐记录失败',
-        report: true,
-      }),
-    );
-    return openLink(
-      `${config.apiOrigin}/1/dynamic/music?id=${music.id}&type=${DownloadType.HQ}`,
-    );
-  }, [music, afterOperate]);
   const onWatchMv = useCallback(() => {
     if (!music) {
       return;
@@ -132,9 +68,6 @@ export default (music?: MusicType, afterOperate?: (...params: any) => any) => {
     onAddToPlayqueue,
     onAddToMusicbill,
     onAddToPlaylist,
-    onDownloadNormal,
-    onDownloadAccompany,
-    onDownloadHQ,
     onWatchMv,
     onOperate,
   };
