@@ -2,7 +2,7 @@ export const ROOT_PATH = {
   HOME: '/',
   SIGNIN: '/signin',
   PLAYER: '/player',
-  DASHBOARD: '/dashboard',
+  CMS: '/cms',
   ABOUT: '/about',
   DESKTOP_CONFIGURE: '/desktop_configure',
 };
@@ -15,8 +15,8 @@ export const PLAYER_PATH = {
   PROFILE: `${ROOT_PATH.PLAYER}/profile`,
 };
 
-export const DASHBOARD_PATH = {
-  HOME: ROOT_PATH.DASHBOARD,
-  FIGURE: `${ROOT_PATH.DASHBOARD}/figure`,
-  MUSIC: `${ROOT_PATH.DASHBOARD}/music`,
+export const CMS_PATH = {
+  HOME: ROOT_PATH.CMS,
+  FIGURE: `${ROOT_PATH.CMS}/figure`,
+  MUSIC: `${ROOT_PATH.CMS}/music`,
 };

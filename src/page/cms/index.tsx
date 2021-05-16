@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import loadable from 'react-loadable';
 
-import { DASHBOARD_PATH } from '@/constant/route';
+import { CMS_PATH } from '@/constant/route';
 import withSignin from '@/platform/with_signin';
 import RouteContainer from '../route_container';
 import RouteLoader from './route_loader';
@@ -57,10 +57,10 @@ const Dashboard = () => (
       <div className="container">
         <Sidebar />
         <Switch>
-          <Route path={DASHBOARD_PATH.HOME} component={ROUTE.HOME} exact />
-          <Route path={DASHBOARD_PATH.FIGURE} component={ROUTE.FIGURE} />
-          <Route path={DASHBOARD_PATH.MUSIC} component={ROUTE.MUSIC} />
-          <Redirect to={DASHBOARD_PATH.HOME} />
+          <Route path={CMS_PATH.HOME} component={ROUTE.HOME} exact />
+          <Route path={CMS_PATH.FIGURE} component={ROUTE.FIGURE} />
+          <Route path={CMS_PATH.MUSIC} component={ROUTE.MUSIC} />
+          <Redirect to={CMS_PATH.HOME} />
         </Switch>
       </div>
     </Style>

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import useQuery from '@/util/use_query';
 import toast from '../../../../platform/toast';
-import { DASHBOARD_PATH } from '../../../../constant/route';
+import { CMS_PATH } from '../../../../constant/route';
 import Input from '../../../../component/input';
 import IconButton, { Name } from '../../../../component/icon_button';
 
@@ -36,7 +36,7 @@ const SearchBox = () => {
       return toast.error('请输入关键词');
     }
     return history.push(
-      `${DASHBOARD_PATH.FIGURE}?keyword=${encodeURIComponent(keyword)}${
+      `${CMS_PATH.FIGURE}?keyword=${encodeURIComponent(keyword)}${
         figure ? `&figure=${figure}` : ''
       }`,
     );

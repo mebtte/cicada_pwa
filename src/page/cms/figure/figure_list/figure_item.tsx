@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { Figure } from '@/constant/figure';
-import { DASHBOARD_PATH } from '@/constant/route';
+import { CMS_PATH } from '@/constant/route';
 import Avatar from '@/component/avatar';
 
 const Style = styled(Link)`
@@ -41,7 +41,7 @@ const FigureItem = ({
   const { id, avatar, name, alias } = figure;
   return (
     <Style
-      to={`${DASHBOARD_PATH.FIGURE}?keyword=${encodeURIComponent(
+      to={`${CMS_PATH.FIGURE}?keyword=${encodeURIComponent(
         keyword,
       )}&figure=${id}`}
     >

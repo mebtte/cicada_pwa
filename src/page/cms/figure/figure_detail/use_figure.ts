@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useQuery from '@/util/use_query';
-import { DASHBOARD_PATH } from '@/constant/route';
+import { CMS_PATH } from '@/constant/route';
 import { RequestStatus } from '../../../../constant';
 import { Figure, SearchKey } from '../../../../constant/figure';
 import eventemitter, { Type as EventType } from '../eventemitter';
@@ -95,7 +95,7 @@ export default () => {
   useEffect(() => {
     const removeListener = () =>
       history.replace(
-        `${DASHBOARD_PATH.FIGURE}${
+        `${CMS_PATH.FIGURE}${
           keyword ? `?keyword=${encodeURIComponent(keyword)}` : ''
         }`,
       );

@@ -29,9 +29,8 @@ const ROUTE_MAP_COMPONENT = {
     timeout: 30000,
     delay: 300,
   }),
-  [ROOT_PATH.DASHBOARD]: loadable({
-    loader: () =>
-      import(/* webpackChunkName: "page_dashboard" */ '../page/dashboard'),
+  [ROOT_PATH.CMS]: loadable({
+    loader: () => import(/* webpackChunkName: "page_cms" */ '../page/cms'),
     loading: RouteLoader,
     timeout: 30000,
     delay: 300,
