@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import loadable from 'react-loadable';
 
 import { ROOT_PATH } from '@/constant/route';
@@ -52,13 +52,6 @@ const ROUTE_MAP_COMPONENT = {
     delay: 300,
   }),
 };
-const NotFound = loadable({
-  loader: () =>
-    import(/* webpackChunkName: "not_found_page" */ '../page/not_found'),
-  loading: RouteLoader,
-  timeout: 30000,
-  delay: 300,
-});
 
 const routeList = Object.keys(ROUTE_MAP_COMPONENT).map((path) => (
   <Route
@@ -74,7 +67,7 @@ const App = () => (
     <GlobalStyle />
     <Switch>
       {routeList}
-      <Route path="*" component={NotFound} />
+      <Redirect to={ROOT_PATH.HOME} />
     </Switch>
     <Toast />
     <Dialog />
