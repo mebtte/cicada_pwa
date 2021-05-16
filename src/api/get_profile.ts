@@ -1,13 +1,14 @@
 /* eslint-disable camelcase */
+import { User } from '@/constant/user';
+
 import api from '.';
 import getRandomCover from '../util/get_random_cover';
-import { Power } from '../constant/user';
 
 /**
  * 获取用户资料
  * @author mebtte<hi@mebtte.com>
  */
-async function getProfile() {
+async function getProfile(): Promise<User> {
   const {
     id,
     email,
@@ -15,15 +16,15 @@ async function getProfile() {
     nickname,
     status,
     join_time: joinTime,
-    powers,
+    cms,
   } = await api.get<{
     id: string;
     email: string;
     avatar: string;
     join_time: string;
     nickname: string;
-    powers?: Power[];
     status: string;
+    cms: number;
   }>('/1/user/profile', {
     withToken: true,
   });
@@ -34,7 +35,7 @@ async function getProfile() {
     nickname,
     status,
     joinTime: new Date(joinTime),
-    powers,
+    cms: !!cms,
   };
 }
 

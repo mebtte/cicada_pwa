@@ -3,17 +3,22 @@ import styled from 'styled-components';
 
 import Icon, { Name } from '@/component/icon';
 import { EMAIL } from '@/constant/regexp';
-import { LAST_SIGNIN_EMAIL } from '../../constant/storage_key';
-import toast from '../../platform/toast';
-import logger from '../../platform/logger';
-import signin from '../../api/signin';
-import store from '../../store';
-import { setUser } from '../../store/user';
-import dialog from '../../platform/dialog';
+import {
+  TOKEN,
+  TOKEN_EXPIRED_AT,
+  LAST_SIGNIN_EMAIL,
+} from '@/constant/storage_key';
+import toast from '@/platform/toast';
+import logger from '@/platform/logger';
+import signin from '@/api/signin';
+import getProfile from '@/api/get_profile';
+import store from '@/store';
+import { setUser } from '@/store/user';
+import dialog from '@/platform/dialog';
+import Input from '@/component/input';
+import Button, { Type } from '@/component/button';
 import Logo from './logo';
 import VerifyCodeButton from './verify_code_button';
-import Input from '../../component/input';
-import Button, { Type } from '../../component/button';
 
 const ICON_SIZE = 18;
 const Style = styled.div`
@@ -69,13 +74,15 @@ const Content = () => {
     }
     setLoading(true);
     try {
-      const user = await signin({ email, verifyCode });
+      const { token, tokenExpiredAt } = await signin({ email, verifyCode });
+      localStorage.setItem(TOKEN_EXPIRED_AT, tokenExpiredAt);
+      localStorage.setItem(TOKEN, token);
       localStorage.setItem(LAST_SIGNIN_EMAIL, email);
-      setTimeout(
+      const user = await getProfile();
+      setTimeout(() => {
         // @ts-ignore
-        () => store.dispatch(setUser(user)),
-        0,
-      );
+        store.dispatch(setUser(user));
+      }, 0);
     } catch (error) {
       logger.error(error, { description: '登录失败', report: true });
       dialog.alert({
