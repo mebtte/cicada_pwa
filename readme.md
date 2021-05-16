@@ -9,13 +9,13 @@
 - cicada_server: 知了服务端, 即将开源
 - cicada_electron: 知了 Electron 客户端, 即将开源
 
-## 开发
+## 开发/构建
 
 ### 配置
 
 项目开发之前需要进行配置, 在项目根目录创建配置文件 `config.json`, 支持的配置项请查看 [schema](./webpack/config_schema.js).
 
-### 开发模式
+### 开发
 
 ```bash
 npm install

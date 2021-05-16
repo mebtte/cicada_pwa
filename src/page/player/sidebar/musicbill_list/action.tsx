@@ -39,7 +39,7 @@ const Action = ({
 }) => (
   <Style>
     <div className="label">我的歌单</div>
-    {status === STATUS.SUCCESS ? (
+    {status !== STATUS.LOADING && status !== STATUS.ERROR ? (
       <>
         <Tooltip title="创建歌单">
           <IconButton
