@@ -1,6 +1,7 @@
-![](./src/static/logo.png)
-
-# 知了
+<div style="margin: 20px 0;">
+  <img src="./src/static/logo.png" style="height: 60px; vertical-align: middle;" />
+  <img src="./src/static/text_logo.png" style="height: 40px; vertical-align: middle; margin-left: 10px;" />
+</div>
 
 知了是一个开源并且支持自定义部署的在线音乐播放器, 更多信息请查看 [https://cicada.mebtte.com](https://cicada.mebtte.com).
 
