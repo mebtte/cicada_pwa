@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
+import useHistory from '@/util/use_history';
+import useQuery from '@/util/use_query';
 import cmsCreateFigure from '@/api/cms_create_figure';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
@@ -8,15 +10,18 @@ import Button, { Type } from '@/component/button';
 import TextField from '@/component/text_field';
 import Dialog, { Title, Content, Action } from '@/component/dialog';
 import eventemitter, { EventType } from './eventemitter';
+import { Query } from './constants';
 
 const CreateFigureDialog = () => {
-  const [open, setOpen] = useState(false);
+  const history = useHistory();
+  const query = useQuery<{ [key in Query]?: string }>();
+  const open = !!query[Query.CREATE_FIGURE_DIALOG_OPEN];
 
   const [name, setName] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setName(event.target.value);
   const onClose = () => {
-    setOpen(false);
+    history.push({ query: { [Query.CREATE_FIGURE_DIALOG_OPEN]: '' } });
     setTimeout(() => setName(''), 1000);
   };
 
@@ -37,13 +42,6 @@ const CreateFigureDialog = () => {
     }
     setLoading(false);
   };
-
-  useEffect(() => {
-    const openListener = () => setOpen(true);
-    eventemitter.on(EventType.OPEN_CREATE_FIGURE_DIALOG, openListener);
-    return () =>
-      void eventemitter.off(EventType.OPEN_CREATE_FIGURE_DIALOG, openListener);
-  }, []);
 
   return (
     <Dialog open={open}>
