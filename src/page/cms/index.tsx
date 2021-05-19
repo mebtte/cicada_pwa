@@ -43,7 +43,7 @@ const Scrollable = styled(PageContainer)`
 const Style = styled.div`
   width: 100%;
   height: 100%;
-  min-width: 1280px;
+  min-width: 960px;
   display: flex;
   > .container {
     flex: 1;

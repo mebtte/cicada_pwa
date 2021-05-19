@@ -1,10 +1,12 @@
+import React, {
+  TextareaHTMLAttributes,
+  useImperativeHandle,
+  useRef,
+  useCallback,
+} from 'react';
 import styled from 'styled-components';
 
-/**
- * 输入区域
- * @author mebtte<hi@mebtte.com>
- */
-const Textarea = styled.textarea`
+const Style = styled.textarea`
   border: none;
   border-radius: 4px;
   outline: none;
@@ -26,5 +28,35 @@ const Textarea = styled.textarea`
     cursor: not-allowed;
   }
 `;
+
+type Props = TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+/**
+ * 输入区域
+ * @author mebtte<hi@mebtte.com>
+ */
+const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(
+  (props: Props, ref) => {
+    const innerRef = useRef<HTMLTextAreaElement>();
+    useImperativeHandle(ref, () => innerRef.current);
+
+    const { onKeyDown } = props;
+    const onKeyDownWrapper = useCallback(
+      (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (onKeyDown) {
+          onKeyDown(event);
+        }
+
+        const { key } = event;
+        if (key.toLowerCase() === 'escape') {
+          innerRef.current.blur();
+        }
+      },
+      [onKeyDown],
+    );
+
+    return <Style {...props} onKeyDown={onKeyDownWrapper} ref={innerRef} />;
+  },
+);
 
 export default Textarea;

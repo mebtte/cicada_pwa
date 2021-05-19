@@ -121,8 +121,11 @@ export const Content = styled.div`
 `;
 
 export const Action = styled.div`
-  text-align: right;
   padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
 `;
 
 export default React.memo(Dialog, (prev, next) => {

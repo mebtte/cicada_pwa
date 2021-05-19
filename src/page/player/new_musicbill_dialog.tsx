@@ -19,9 +19,6 @@ const springConfig = {
   duration: DIALOG_TRANSITION_DURATION,
   easing: easeCubicInOut,
 };
-const buttonStyle = {
-  marginLeft: 20,
-};
 const inputStyle = {
   display: 'block',
   width: '100%',
@@ -91,19 +88,11 @@ const NewMusicbillDialog = () => {
         />
       </Content>
       <Action>
-        <Button
-          label="取消"
-          onClick={onClose}
-          disabled={creating}
-          style={buttonStyle}
-          size={32}
-        />
+        <Button label="取消" onClick={onClose} disabled={creating} />
         <Button
           label="创建"
           onClick={onCreate}
           loading={creating}
-          style={buttonStyle}
-          size={32}
           type={Type.PRIMARY}
         />
       </Action>
