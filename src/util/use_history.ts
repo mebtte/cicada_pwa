@@ -19,9 +19,9 @@ export default () => {
       ...query,
     };
     return history.push(
-      `${pathname}?${Object.keys(targetQuery).map(
-        (key) => `${key}=${encodeURIComponent(targetQuery[key])}`,
-      )}`,
+      `${pathname}?${Object.keys(targetQuery)
+        .map((key) => `${key}=${encodeURIComponent(targetQuery[key])}`)
+        .join('&')}`,
     );
   };
 
