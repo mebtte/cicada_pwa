@@ -7,7 +7,7 @@ import api from '.';
  * @return {Promise<Void>}
  */
 function removeMusicbill(id) {
-  return api.delete('/1/musicbill', { params: { id }, withToken: true });
+  return api.delete('/musicbill', { params: { id }, withToken: true });
 }
 
 export default removeMusicbill;

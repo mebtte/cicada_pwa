@@ -16,7 +16,7 @@ function getVerifyCode({
   email: string;
   type: VerifyCodeType;
 }) {
-  return api.get('/1/verify_code', {
+  return api.get('/verify_code', {
     params: {
       type,
       email,

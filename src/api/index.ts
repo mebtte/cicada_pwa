@@ -50,7 +50,7 @@ function generateMethod(method: METHOD) {
     }
     const [response] = await Promise.all([
       axios({
-        url: `${config.apiOrigin}${path}`,
+        url: `${config.serverOrigin}${path}`,
         method,
         timeout,
         params,

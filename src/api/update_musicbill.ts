@@ -28,7 +28,7 @@ async function updateMusicbill({
     order: number;
     description: string;
     create_time: string;
-  }>('/1/musicbill', {
+  }>('/musicbill', {
     data: form,
     withToken: true,
   });

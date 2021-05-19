@@ -15,7 +15,7 @@ async function updateUser({
   const form = new FormData();
   form.append('key', key);
   form.append('value', value);
-  return api.put('/1/user', {
+  return api.put('/user', {
     withToken: true,
     data: form,
   });

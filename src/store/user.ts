@@ -1,4 +1,4 @@
-import { TOKEN_EXPIRED_AT, TOKEN, USER } from '../constant/storage_key';
+import { USER } from '../constant/storage_key';
 import * as TYPE from './action_type';
 import { getToken, clearToken } from '../platform/token';
 import { User } from '../constant/user';
@@ -6,18 +6,8 @@ import getProfile from '../api/get_profile';
 import logger from '../platform/logger';
 import dialog from '../platform/dialog';
 
-export const setUser = (
-  user: User & {
-    token?: string;
-    tokenExpiredAt?: string;
-  },
-) => (dispatch) => {
-  const { tokenExpiredAt, token, ...u } = user;
-  if (tokenExpiredAt && token) {
-    localStorage.setItem(TOKEN_EXPIRED_AT, tokenExpiredAt);
-    localStorage.setItem(TOKEN, token);
-  }
-  localStorage.setItem(USER, JSON.stringify(u));
+export const setUser = (user: User) => (dispatch) => {
+  localStorage.setItem(USER, JSON.stringify(user));
   dispatch({
     type: TYPE.SET_USER,
     payload: user,

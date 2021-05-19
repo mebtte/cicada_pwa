@@ -6,7 +6,7 @@ function uploadMusic({ music, name, singerIdList, type }) {
   form.append('name', name);
   form.append('singer_ids', singerIdList.join(','));
   form.append('type', type);
-  return api.post('/1/music', {
+  return api.post('/music', {
     data: form,
     withToken: true,
   });

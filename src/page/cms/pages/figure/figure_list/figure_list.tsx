@@ -1,54 +1,77 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import format from 'date-fns/format';
 
-import { RequestStatus } from '../../../../../constant';
-import useFigureList from './use_figure_list';
+import CircularLoader from '@/component/circular_loader';
+import Table from '@/component/table';
+import scrollbar from '@/style/scrollbar';
+import Avatar from '@/component/avatar';
+import { Figure } from '../constants';
 
-import FigureItem from './figure_item';
-import ErrorCard from '../../../../../component/error_card';
-import LoadingCard from '../../../../../component/loading_card';
-import Empty from '../../../../../component/empty';
-
-const cardStyle = {
-  flex: 1,
-  minHeight: 0,
-};
-const Style = styled.div`
+const Style = styled.div<{ isLoading: boolean }>`
   flex: 1;
   min-height: 0;
-  overflow: auto;
-`;
-
-const FigureList = () => {
-  const { keyword, status, error, retry, figureList } = useFigureList();
-
-  if (status === RequestStatus.SUCCESS) {
-    if (figureList.length) {
-      return (
-        <Style>
-          {figureList.map((figure) => (
-            <FigureItem key={figure.id} figure={figure} keyword={keyword} />
-          ))}
-        </Style>
-      );
+  position: relative;
+  margin: 0 20px;
+  > .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    ${scrollbar}
+    > .table {
+      width: 100%;
     }
-    return (
-      <Empty description={`未找到"${keyword}"相关角色`} style={cardStyle} />
-    );
   }
-  if (status === RequestStatus.LOADING) {
-    return <LoadingCard message="正在搜索角色..." style={cardStyle} />;
+  > .loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  if (status === RequestStatus.NOT_START) {
-    return <Empty description="请通过上方输入框搜索角色" style={cardStyle} />;
-  }
-  return (
-    <ErrorCard
-      errorMessage={(error as Error).message}
-      retry={retry}
-      style={cardStyle}
-    />
-  );
-};
+  ${({ isLoading }) => css`
+    > .content {
+      opacity: ${isLoading ? 0.5 : 1};
+    }
+  `}
+`;
+const headers = ['ID', '头像', '名字', '别名', '创建时间'];
+const rowRenderer = (figure: Figure) => [
+  figure.id,
+  figure.avatar ? <Avatar src={figure.avatar} /> : null,
+  figure.name,
+  figure.alias,
+  format(figure.createTime, 'yyyy-MM-dd HH:mm'),
+];
+
+const FigureList = ({
+  figureList,
+  loading,
+}: {
+  figureList: Figure[];
+  loading: boolean;
+}) => (
+  <Style isLoading={loading}>
+    <div className="content">
+      <Table
+        className="table"
+        array={figureList}
+        headers={headers}
+        rowRenderer={rowRenderer}
+      />
+    </div>
+    {loading && (
+      <div className="loading">
+        <CircularLoader />
+      </div>
+    )}
+  </Style>
+);
 
 export default FigureList;

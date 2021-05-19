@@ -27,9 +27,6 @@ const MusicOperateDrawer = () => {
     onAddToPlayqueue,
     onAddToMusicbill,
     onAddToPlaylist,
-    onDownloadNormal,
-    onDownloadAccompany,
-    onDownloadHQ,
     onWatchMv,
   } = useMusicOperate(music, onClose);
 
@@ -77,25 +74,6 @@ const MusicOperateDrawer = () => {
           icon={Name.VIDEO_OUTLINE}
           label="观看MV"
           onClick={onWatchMv}
-        />
-      ) : null}
-      <MenuItem
-        icon={Name.DOWNLOAD_OUTLINE}
-        label="下载"
-        onClick={onDownloadNormal}
-      />
-      {music && music.accompany ? (
-        <MenuItem
-          icon={Name.DOWNLOAD_OUTLINE}
-          label="下载伴奏"
-          onClick={onDownloadAccompany}
-        />
-      ) : null}
-      {music && music.hq ? (
-        <MenuItem
-          icon={Name.DOWNLOAD_OUTLINE}
-          label="下载HQ"
-          onClick={onDownloadHQ}
         />
       ) : null}
     </Popup>

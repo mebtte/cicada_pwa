@@ -1,10 +1,3 @@
-export enum Power {
-  PANGU = 'pangu', // 超级权限
-
-  DELETE_FIGURE = 'delete_figure', // 删除角色
-  DELETE_MUSIC = 'delete_music', // 删除音乐
-}
-
 export interface User {
   id: string;
   email: string;
@@ -12,7 +5,7 @@ export interface User {
   nickname: string;
   status: string;
   joinTime: Date;
-  powers: Power[];
+  cms: boolean;
 }
 
 export const AVATAR_MAX_SIZE = 1000;

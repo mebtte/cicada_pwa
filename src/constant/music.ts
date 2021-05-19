@@ -45,10 +45,3 @@ export interface MusicWithIndex extends Music {
 export interface MusicWithPid extends MusicWithIndex {
   pid: string;
 }
-
-export enum DownloadType {
-  NORMAL = 'normal',
-  ACCOMPANY = 'accompany',
-  HQ = 'hq',
-  MV = 'mv',
-}
