@@ -44,9 +44,9 @@ const Style = styled.div<{ isLoading: boolean }>`
 const headers = ['ID', '头像', '名字', '别名', '创建时间'];
 const rowRenderer = (figure: Figure) => [
   figure.id,
-  figure.avatar ? <Avatar src={figure.avatar} /> : null,
+  figure.avatar ? <Avatar src={figure.avatar} /> : '-',
   figure.name,
-  figure.alias,
+  figure.alias || '-',
   format(figure.createTime, 'yyyy-MM-dd HH:mm'),
 ];
 
@@ -64,6 +64,7 @@ const FigureList = ({
         array={figureList}
         headers={headers}
         rowRenderer={rowRenderer}
+        stickyHeader
       />
     </div>
     {loading && (
