@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
@@ -91,30 +91,44 @@ const rowRenderer = (figure: Figure) => [
 const FigureList = ({
   figureList,
   loading,
+  page,
 }: {
   figureList: Figure[];
   loading: boolean;
-}) => (
-  <Style isLoading={loading}>
-    {loading || figureList.length ? (
-      <div className="content">
-        <Table
-          className="table"
-          array={figureList}
-          headers={headers}
-          rowRenderer={rowRenderer}
-          stickyHeader
-        />
-      </div>
-    ) : (
-      <Empty style={emptyStyle} />
-    )}
-    {loading && (
-      <div className="loading">
-        <CircularLoader />
-      </div>
-    )}
-  </Style>
-);
+  page: number;
+}) => {
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    contentRef.current?.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, [page]);
+
+  return (
+    <Style isLoading={loading}>
+      {loading || figureList.length ? (
+        <div className="content">
+          <Table
+            className="table"
+            array={figureList}
+            headers={headers}
+            rowRenderer={rowRenderer}
+            stickyHeader
+          />
+        </div>
+      ) : (
+        <Empty style={emptyStyle} />
+      )}
+      {loading && (
+        <div className="loading">
+          <CircularLoader />
+        </div>
+      )}
+    </Style>
+  );
+};
 
 export default FigureList;

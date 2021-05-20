@@ -31,7 +31,9 @@ const Wrapper = () => {
       />
     );
   } else {
-    content = <FigureList figureList={figureList} loading={loading} />;
+    content = (
+      <FigureList figureList={figureList} loading={loading} page={page} />
+    );
   }
   return (
     <Style>
