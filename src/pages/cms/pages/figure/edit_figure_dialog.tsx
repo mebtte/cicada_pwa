@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/figure';
-import TextField from '@/components/text_field';
+import Label from '@/components/label';
+import Input from '@/components/input';
 import cmsDeleteFigure from '@/apis/cms_delete_figure';
 import cmsUpdateFigure from '@/apis/cms_update_figure';
 import dialog from '@/platform/dialog';
@@ -12,8 +13,11 @@ import Dialog, { Title, Content, Action } from '@/components/dialog';
 import { Figure } from './constants';
 import eventemitter, { EventType } from './eventemitter';
 
-const textFieldStyle = {
+const labelStyle = {
   marginBottom: '20px',
+};
+const inputStyle = {
+  width: '100%',
 };
 
 const EditFigureDialog = () => {
@@ -91,28 +95,26 @@ const EditFigureDialog = () => {
     <Dialog open={!!figure}>
       <Title>编辑角色资料</Title>
       <Content>
-        <TextField
-          label="名字"
-          inputProps={{
-            value: name,
-            onChange: onNameChange,
-            placeholder: `名字不超过 ${NAME_MAX_LENGTH} 个字符`,
-            maxLength: NAME_MAX_LENGTH,
-            disabled: loading,
-          }}
-          style={textFieldStyle}
-        />
-        <TextField
-          label="别名"
-          inputProps={{
-            value: alias,
-            onChange: onAliasChange,
-            placeholder: `别名不超过 ${ALIAS_MAX_LENGTH} 个字符`,
-            maxLength: ALIAS_MAX_LENGTH,
-            disabled: loading,
-          }}
-          style={textFieldStyle}
-        />
+        <Label label="名字" style={labelStyle}>
+          <Input
+            value={name}
+            onChange={onNameChange}
+            placeholder={`名字不超过 ${NAME_MAX_LENGTH} 个字符`}
+            maxLength={NAME_MAX_LENGTH}
+            disabled={loading}
+            style={inputStyle}
+          />
+        </Label>
+        <Label label="别名" style={labelStyle}>
+          <Input
+            value={alias}
+            onChange={onAliasChange}
+            placeholder={`别名不超过 ${ALIAS_MAX_LENGTH} 个字符`}
+            maxLength={ALIAS_MAX_LENGTH}
+            disabled={loading}
+            style={inputStyle}
+          />
+        </Label>
       </Content>
       <Action>
         <div className="left">

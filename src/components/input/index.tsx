@@ -22,7 +22,8 @@ const Style = styled.input`
     box-shadow: inset 0 0 0 2px rgb(49 194 124 / 0.8);
   }
   &:disabled {
-    opacity: 0.75;
+    background-color: #e6e6e6;
+    color: rgb(155 155 155);
     cursor: not-allowed;
   }
 `;

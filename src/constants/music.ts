@@ -1,6 +1,12 @@
 /* eslint-disable camelcase */
 import { Figure } from './figure';
 
+export const NAME_MAX_LENGTH = 255;
+export const MUSIC_NORMAL = {
+  ACCEPT_MIMES: ['audio/mpeg', 'audio/x-m4a'],
+  MAX_SIZE: 1024 * 1024 * 10,
+};
+
 export enum SearchMusicKey {
   KEYWORD = 'keyword',
   SINGER = 'singer',

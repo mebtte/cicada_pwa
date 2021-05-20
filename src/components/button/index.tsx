@@ -134,7 +134,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
     ref,
   ) => {
     const loaderSize = size * 0.6;
-    const fontSize = size / 2;
+    const fontSize = (size / 5) * 2;
     const padding = `0 ${size / 2}px`;
     return (
       <Style
