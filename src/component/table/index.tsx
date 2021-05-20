@@ -12,6 +12,7 @@ const Style = styled.table<{ stickyHeader: boolean }>`
     text-align: left;
   }
   th {
+    z-index: 1;
     padding: 20px;
     color: #000;
     background-color: rgb(244 244 244);

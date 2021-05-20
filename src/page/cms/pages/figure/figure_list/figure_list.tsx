@@ -56,6 +56,9 @@ const emptyStyle = {
   width: '100%',
   height: '100%',
 };
+const actionStyle = {
+  flexShrink: 1,
+};
 const headers = ['ID', '头像', '名字', '别名', '创建时间', '操作'];
 const rowRenderer = (figure: Figure) => [
   figure.id,
@@ -71,6 +74,7 @@ const rowRenderer = (figure: Figure) => [
       onClick={() =>
         eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)
       }
+      style={actionStyle}
     />
     <Button
       label="编辑头像"
@@ -79,6 +83,7 @@ const rowRenderer = (figure: Figure) => [
       onClick={() =>
         eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
       }
+      style={actionStyle}
     />
   </Operation>,
 ];
