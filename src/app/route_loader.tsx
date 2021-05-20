@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ErrorCard from '../component/error_card';
-import LoadingCard from '../component/loading_card';
+import ErrorCard from '../components/error_card';
+import LoadingCard from '../components/loading_card';
 
 const style = {
   position: 'absolute',

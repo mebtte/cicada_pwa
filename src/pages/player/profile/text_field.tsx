@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import format from 'date-fns/format';
 
 import { User, UpdateKey } from '@/constant/user';
-import updateUser from '@/api/update_user';
+import updateUser from '@/apis/update_user';
 import logger from '@/platform/logger';
 import store from '@/store';
 import { reloadUser } from '@/store/user';
 import dialog from '@/platform/dialog';
-import Input from '@/component/input';
-import Textarea from '@/component/textarea';
-import Button, { Type } from '@/component/button';
+import Input from '@/components/input';
+import Textarea from '@/components/textarea';
+import Button, { Type } from '@/components/button';
 
 const Style = styled.div`
   > .item {

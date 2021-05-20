@@ -5,8 +5,8 @@ import {
   UpdateKey,
   COVER_MAX_SIZE,
 } from '@/constant/musicbill';
-import updateMusicbill from '@/api/update_musicbill';
-import ImageCutterDialog from '@/component/image_cutter_dialog';
+import updateMusicbill from '@/apis/update_musicbill';
+import ImageCutterDialog from '@/components/image_cutter_dialog';
 import eventemitter, { Type as EventType } from '../eventemitter';
 
 const COVER_SIZE = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import IconButton, { Name } from '@/component/icon_button';
+import IconButton, { Name } from '@/components/icon_button';
 
 const Style = styled.div`
   display: flex;

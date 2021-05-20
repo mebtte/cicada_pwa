@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import ErrorCard from '@/component/error_card';
+import ErrorCard from '@/components/error_card';
 import useFigureList from './use_figure_list';
 import Search from './search';
 import Pagination from './pagination';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button, { Type } from '@/component/button';
+import Button, { Type } from '@/components/button';
 import { PlayMode as PlayModeType } from '../constant';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Item from './item';

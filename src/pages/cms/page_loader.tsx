@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ErrorCard from '@/components/error_card';
+import CircularLoader from '@/components/circular_loader';
 import { cmsPage } from './style';
-
-import ErrorCard from '../../component/error_card';
-import CircularLoader from '../../component/circular_loader';
 
 const Style = styled.div`
   display: flex;

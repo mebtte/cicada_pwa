@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Popup from '@/component/popup';
-import { Name } from '@/component/icon';
+import Popup from '@/components/popup';
+import { Name } from '@/components/icon';
 import { Music as MusicType } from '@/constant/music';
 import useMusicOperate from '../use_music_operate';
 import eventemitter, { Type as EventType } from '../eventemitter';

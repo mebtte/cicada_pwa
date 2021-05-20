@@ -8,11 +8,11 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 
 import { ComponentSize } from '@/constant/style';
-import Input from '@/component/input';
-import IconButton, { Name } from '@/component/icon_button';
-import Tooltip from '@/component/tooltip';
-import CircularLoader from '@/component/circular_loader';
-import Avatar, { Shape } from '@/component/avatar';
+import Input from '@/components/input';
+import IconButton, { Name } from '@/components/icon_button';
+import Tooltip from '@/components/tooltip';
+import CircularLoader from '@/components/circular_loader';
+import Avatar, { Shape } from '@/components/avatar';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import { TOP_CONTENT_HEIGHT, TopContent } from '../constant';
 

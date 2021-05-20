@@ -4,7 +4,7 @@ import { useTransition } from 'react-spring';
 
 import { RequestStatus } from '@/constant';
 import { Music, MusicType } from '@/constant/music';
-import ErrorCard from '@/component/error_card';
+import ErrorCard from '@/components/error_card';
 import useLrc from '../use_lrc';
 import { Empty } from './constant';
 import CardContainer from './card_container';

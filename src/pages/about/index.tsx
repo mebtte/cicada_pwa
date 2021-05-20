@@ -7,8 +7,8 @@ import scrollbar from '@/style/scrollbar';
 import openLink from '../../utils/open_link';
 import { CICADA_START_YEAR } from '../../constant';
 import PageContainer from '../page_container';
-import Avatar from '../../component/avatar';
-import Tooltip from '../../component/tooltip';
+import Avatar from '../../components/avatar';
+import Tooltip from '../../components/tooltip';
 import Header from './header';
 
 const Style = styled(PageContainer)`

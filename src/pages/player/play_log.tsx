@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { MusicWithPid } from '../../constant/music';
-import recordPlayLog from '../../api/record_play_log';
+import recordPlayLog from '../../apis/record_play_log';
 import logger from '../../platform/logger';
 import eventemitter, { Type as EventType } from './eventemitter';
 import Context from './context';

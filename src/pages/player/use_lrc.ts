@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 
-import getLrcRequest from '@/api/get_lrc';
+import getLrcRequest from '@/apis/get_lrc';
 import logger from '@/platform/logger';
 import { RequestStatus } from '@/constant';
 import { Music } from '@/constant/music';

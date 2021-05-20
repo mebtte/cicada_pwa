@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 import { XYCoord } from 'dnd-core';
 
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 import { Musicbill as MusicbillType } from './constant';
 
 const Style = styled.div`

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import Icon, { Name } from '@/component/icon';
+import Icon, { Name } from '@/components/icon';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Style = styled(({ active, ...props }) => <Link {...props} />)<{

@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constant/figure';
 import parseSearch from '@/utils/parse_search';
 import useHistory from '@/utils/use_history';
-import Input from '@/component/input';
-import Button, { Type } from '@/component/button';
+import Input from '@/components/input';
+import Button, { Type } from '@/components/button';
 import { Query } from '../constants';
 
 const Style = styled.div`

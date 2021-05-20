@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Figure } from '@/constant/figure';
 import ellipsis from '@/style/ellipsis';
 import { MusicWithIndex } from '@/constant/music';
-import IconButton, { Name, Type } from '@/component/icon_button';
+import IconButton, { Name, Type } from '@/components/icon_button';
 import useMusicOperate from '../../use_music_operate';
 import eventemitter, { Type as EventType } from '../../eventemitter';
 import Singer from '../../component/singer';

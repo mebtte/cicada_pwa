@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constant/figure';
-import TextField from '@/component/text_field';
-import cmsDeleteFigure from '@/api/cms_delete_figure';
-import cmsUpdateFigure from '@/api/cms_update_figure';
+import TextField from '@/components/text_field';
+import cmsDeleteFigure from '@/apis/cms_delete_figure';
+import cmsUpdateFigure from '@/apis/cms_update_figure';
 import dialog from '@/platform/dialog';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import Button, { Type } from '@/component/button';
-import Dialog, { Title, Content, Action } from '@/component/dialog';
+import Button, { Type } from '@/components/button';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
 import { Figure } from './constants';
 import eventemitter, { EventType } from './eventemitter';
 

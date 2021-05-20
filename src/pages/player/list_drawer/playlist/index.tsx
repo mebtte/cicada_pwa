@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 import { MusicWithIndex } from '@/constant/music';
 import filterMusicList from '@/utils/filter_music_list';
-import Input from '@/component/input';
-import Tooltip, { Placement } from '@/component/tooltip';
-import CircularLoader from '@/component/circular_loader';
-import IconButton, { Name } from '@/component/icon_button';
+import Input from '@/components/input';
+import Tooltip, { Placement } from '@/components/tooltip';
+import CircularLoader from '@/components/circular_loader';
+import IconButton, { Name } from '@/components/icon_button';
 import Container from '../container';
 import Playlist from './playlist';
 import Empty from './empty';

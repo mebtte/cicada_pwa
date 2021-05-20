@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import ellipsis from '@/style/ellipsis';
 import { Music as MusicType } from '@/constant/music';
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Singer from './singer';
 

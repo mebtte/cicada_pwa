@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import getRandomInteger from '@/utils/get_random_integer';
-import Skeleton from '@/component/skeleton';
+import Skeleton from '@/components/skeleton';
 import { MUSIC_NAME_SIZE } from './constant';
 import Container from './container';
 import SingerSkeleton from '../../component/singer/skeleton';

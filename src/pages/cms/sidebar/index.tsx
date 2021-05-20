@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { CMS_PATH } from '../../../constant/route';
 
 import MenuItem from './menu_item';
-import { Name } from '../../../component/icon';
+import { Name } from '../../../components/icon';
 
 const Style = styled.div`
   width: 220px;

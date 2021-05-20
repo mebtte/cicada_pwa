@@ -1,6 +1,6 @@
 import { ROOT_PATH, PLAYER_PATH } from '@/constant/route';
 import { IS_ELECTRON, IS_WINDOWS, IS_MAC_OS } from '@/constant';
-import { Name } from '@/component/icon';
+import { Name } from '@/components/icon';
 import openLink from '@/utils/open_link';
 import dialog from '@/platform/dialog';
 

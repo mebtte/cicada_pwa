@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { REMOTE_CONFIG_SEARCH_WORD } from '../../constant/storage_key';
-import getPublicConfig from '../../api/get_public_config';
+import getPublicConfig from '../../apis/get_public_config';
 import { Key } from '../../constant/public_config';
 import logger from '../../platform/logger';
 

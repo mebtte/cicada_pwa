@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { PLAYER_PATH } from '@/constant/route';
 import { User as UserType } from '@/constant/user';
-import Avatar, { Shape } from '@/component/avatar';
+import Avatar, { Shape } from '@/components/avatar';
 
 const AVATAR_SIZE = 100;
 const Style = styled.div`

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Skeleton from '@/component/skeleton';
+import Skeleton from '@/components/skeleton';
 import MusicCard from './music_card';
 import Cover from './cover';
 import { PAGE_SIZE } from './constant';

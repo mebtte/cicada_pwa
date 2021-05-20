@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Avatar from '@/component/avatar';
-import Drawer from '@/component/drawer';
+import Avatar from '@/components/avatar';
+import Drawer from '@/components/drawer';
 import styledScrollbar from '@/style/styled_scrollbar';
 import useMusicPopup from './use_music_popup';
 import useMusicOperate from '../use_music_operate';

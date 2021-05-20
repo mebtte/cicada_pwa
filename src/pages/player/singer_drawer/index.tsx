@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Drawer from '@/component/drawer';
+import Drawer from '@/components/drawer';
 import useSingerDrawer from './use_singer_drawer';
 import SingerInfo from './singer_info';
 import MusicList from '../component/music_list';

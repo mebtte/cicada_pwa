@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 
-import Drawer, { Title } from '@/component/drawer';
+import Drawer, { Title } from '@/components/drawer';
 import { State as GlobalShortcutState } from '@/store/global_shortcut/constants';
 import {
   GLOBAL_SHORTCUT,

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { PLAYER_PATH } from '@/constant/route';
 import getRandomCover from '@/utils/get_random_cover';
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 import useMusicOperate from '../use_music_operate';
 import Context from '../context';
 import Progress from './progress';

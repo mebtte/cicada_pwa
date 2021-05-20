@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import useHistory from '@/utils/use_history';
-import Tooltip, { Placement } from '@/component/tooltip';
-import IconButton, { Name } from '@/component/icon_button';
+import Tooltip, { Placement } from '@/components/tooltip';
+import IconButton, { Name } from '@/components/icon_button';
 import { Query } from './constants';
 
 const Style = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Music as MusicType } from '@/constant/music';
-import IconButton, { Name } from '@/component/icon_button';
+import IconButton, { Name } from '@/components/icon_button';
 import MusicCard from './music_card';
 import Cover from './cover';
 import Singer from '../component/singer';

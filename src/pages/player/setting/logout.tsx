@@ -3,7 +3,7 @@ import React from 'react';
 import dialog from '@/platform/dialog';
 import store from '@/store';
 import { clearUser } from '@/store/user';
-import Button, { Type } from '@/component/button';
+import Button, { Type } from '@/components/button';
 
 const style = {
   margin: 20,

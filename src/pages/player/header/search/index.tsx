@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import { PLAYER_PATH } from '@/constant/route';
 import toast from '@/platform/toast';
-import Input from '@/component/input';
-import IconButton, { Name } from '@/component/icon_button';
+import Input from '@/components/input';
+import IconButton, { Name } from '@/components/icon_button';
 import Context from '../../context';
 import useKeyword from './use_keyboard';
 

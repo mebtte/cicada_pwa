@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { ORIGIN } from '@/constant/regexp';
 import scrollbar from '@/style/scrollbar';
-import Input from '@/component/input';
+import Input from '@/components/input';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
 import {

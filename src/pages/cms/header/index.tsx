@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector, shallowEqual } from 'react-redux';
 
 import { User } from '@/constant/user';
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 
 const Style = styled.div`
   z-index: 1;

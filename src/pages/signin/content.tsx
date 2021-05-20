@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
-import Icon, { Name } from '@/component/icon';
+import Icon, { Name } from '@/components/icon';
 import { EMAIL } from '@/constant/regexp';
 import {
   TOKEN,
@@ -10,13 +10,13 @@ import {
 } from '@/constant/storage_key';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import signin from '@/api/signin';
-import getProfile from '@/api/get_profile';
+import signin from '@/apis/signin';
+import getProfile from '@/apis/get_profile';
 import store from '@/store';
 import { setUser } from '@/store/user';
 import dialog from '@/platform/dialog';
-import Input from '@/component/input';
-import Button, { Type } from '@/component/button';
+import Input from '@/components/input';
+import Button, { Type } from '@/components/button';
 import Logo from './logo';
 import VerifyCodeButton from './verify_code_button';
 

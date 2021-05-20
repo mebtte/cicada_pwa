@@ -5,7 +5,7 @@ import { animated } from 'react-spring';
 import ellipsis from '@/style/ellipsis';
 import { RequestStatus } from '@/constant';
 import { LocalMusicbill } from '@/constant/musicbill';
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 import { TOP_CONTENT_HEIGHT } from '../constant';
 
 const Style = styled(animated.div)`

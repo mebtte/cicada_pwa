@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Slider from '@/component/slider';
+import Slider from '@/components/slider';
 import Item from './item';
 import playerEventemiter, { Type as PlayerEventType } from '../eventemitter';
 

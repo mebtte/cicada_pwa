@@ -2,12 +2,12 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
-import Button, { Type } from '@/component/button';
-import Empty from '@/component/empty';
-import CircularLoader from '@/component/circular_loader';
-import Table from '@/component/table';
+import Button, { Type } from '@/components/button';
+import Empty from '@/components/empty';
+import CircularLoader from '@/components/circular_loader';
+import Table from '@/components/table';
 import scrollbar from '@/style/scrollbar';
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 import { Figure } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 

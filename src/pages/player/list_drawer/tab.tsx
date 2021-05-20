@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import Icon, { Name } from '@/component/icon';
+import Icon, { Name } from '@/components/icon';
 import { TAB, TABS } from './constant';
 
 const Style = styled.div`

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ErrorCard from '../component/error_card';
+import ErrorCard from '../components/error_card';
 
 const style = {
   position: 'absolute',

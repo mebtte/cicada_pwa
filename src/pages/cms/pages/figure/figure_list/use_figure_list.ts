@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import logger from '@/platform/logger';
 import useQuery from '@/utils/use_query';
-import cmsGetFigureList from '@/api/cms_get_figure_list';
+import cmsGetFigureList from '@/apis/cms_get_figure_list';
 import { Figure, Query } from '../constants';
 import { PAGE_SIZE } from './constants';
 import eventemitter, { EventType } from '../eventemitter';

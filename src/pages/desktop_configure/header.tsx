@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 import { HEADER_HEIGHT } from './constant';
 
 const Style = styled.div`

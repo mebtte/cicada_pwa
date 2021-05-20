@@ -9,7 +9,7 @@ import initial from './initial';
 import store from './store';
 import logger from './platform/logger';
 import App from './app';
-import ErrorCard from './component/error_card';
+import ErrorCard from './components/error_card';
 import { reloadUser } from './store/user';
 
 const mountNode = document.querySelector('#root');

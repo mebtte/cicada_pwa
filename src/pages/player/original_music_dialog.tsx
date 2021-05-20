@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
-import getMusicListRequest from '@/api/get_music_list';
+import getMusicListRequest from '@/apis/get_music_list';
 import logger from '@/platform/logger';
 import { SearchMusicKey } from '@/constant/music';
 import dialog from '@/platform/dialog';
-import Dialog from '@/component/dialog';
-import CircularLoader from '@/component/circular_loader';
+import Dialog from '@/components/dialog';
+import CircularLoader from '@/components/circular_loader';
 import eventemitter, { Type as EventType } from './eventemitter';
 
 const Style = styled.div`

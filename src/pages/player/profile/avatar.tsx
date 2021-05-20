@@ -2,12 +2,12 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
 import { User, AVATAR_MAX_SIZE, UpdateKey } from '@/constant/user';
-import updateUser from '@/api/update_user';
+import updateUser from '@/apis/update_user';
 import store from '@/store';
 import { reloadUser } from '@/store/user';
-import Avatar, { Shape } from '@/component/avatar';
-import IconButton, { Name } from '@/component/icon_button';
-import ImageCutterDialog from '@/component/image_cutter_dialog';
+import Avatar, { Shape } from '@/components/avatar';
+import IconButton, { Name } from '@/components/icon_button';
+import ImageCutterDialog from '@/components/image_cutter_dialog';
 
 const AVATAR_SIZE = 100;
 const StyledAvatar = styled(Avatar)`

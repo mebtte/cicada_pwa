@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import { RequestStatus } from '@/constant';
 import scrollbar from '@/style/scrollbar';
-import WidthResizeDetector from '@/component/width_resize_detector';
-import Pagination from '@/component/pagination';
-import ErrorCard from '@/component/error_card';
+import WidthResizeDetector from '@/components/width_resize_detector';
+import Pagination from '@/components/pagination';
+import ErrorCard from '@/components/error_card';
 import Skeleton from './skeleton';
 import MusicList from './music_list';
 import { routeContainerStyle } from '../style';

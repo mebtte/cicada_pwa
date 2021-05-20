@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import getRandomInteger from '@/utils/get_random_integer';
-import Skeleton from '@/component/skeleton';
+import Skeleton from '@/components/skeleton';
 import { CONTAINETR_STYLE, NAME_STYLE, COVER_SIZE } from './constant';
 
 const Style = styled.div`

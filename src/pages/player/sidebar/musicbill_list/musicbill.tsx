@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { LocalMusicbill } from '@/constant/musicbill';
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 import ellipsis from '@/style/ellipsis';
 import { CONTAINETR_STYLE, NAME_STYLE, COVER_SIZE } from './constant';
 

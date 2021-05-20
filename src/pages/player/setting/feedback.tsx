@@ -3,7 +3,7 @@ import React from 'react';
 import { GITHUB_REPOSITORY } from '@/constant';
 import dialog from '@/platform/dialog';
 import openLink from '@/utils/open_link';
-import Button, { Type } from '@/component/button';
+import Button, { Type } from '@/components/button';
 
 const style = {
   margin: 20,

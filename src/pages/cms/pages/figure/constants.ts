@@ -1,4 +1,4 @@
-import cmsGetFigureList from '@/api/cms_get_figure_list';
+import cmsGetFigureList from '@/apis/cms_get_figure_list';
 
 export type Figure = AsyncReturnType<typeof cmsGetFigureList>['list'][0];
 

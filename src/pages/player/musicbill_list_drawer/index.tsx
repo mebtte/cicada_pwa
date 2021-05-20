@@ -6,15 +6,15 @@ import React, {
   useContext,
 } from 'react';
 
-import { RequestStatus } from '../../../constant';
-import { Music as MusicType } from '../../../constant/music';
+import { RequestStatus } from '@/constant';
+import { Music as MusicType } from '@/constant/music';
+import LoadingCard from '@/components/loading_card';
+import ErrorCard from '@/components/error_card';
+import Drawer, { Title } from '@/components/drawer';
+import MusicbillList from './musicbill_list';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Context from '../context';
 import MusicInfo from '../component/music_info';
-import LoadingCard from '../../../component/loading_card';
-import ErrorCard from '../../../component/error_card';
-import MusicbillList from './musicbill_list';
-import Drawer, { Title } from '../../../component/drawer';
 
 const bodyProps = {
   style: {

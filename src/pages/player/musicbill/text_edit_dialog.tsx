@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import updateMusicbillRequest from '@/api/update_musicbill';
+import updateMusicbillRequest from '@/apis/update_musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import {
@@ -11,10 +11,10 @@ import {
   DESCRIPTION,
 } from '@/constant/musicbill';
 import dialog from '@/platform/dialog';
-import Dialog, { Title, Content, Action } from '@/component/dialog';
-import Button, { Type } from '@/component/button';
-import Input from '@/component/input';
-import Textarea from '@/component/textarea';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
+import Button, { Type } from '@/components/button';
+import Input from '@/components/input';
+import Textarea from '@/components/textarea';
 import eventemitter, { Type as EventType } from '../eventemitter';
 
 const Part = styled.div`

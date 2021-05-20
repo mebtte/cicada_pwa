@@ -5,7 +5,7 @@ import {
   minimizePlayerWindow,
   hidePlayerWindow,
 } from '@/platform/electron_new';
-import IconButton, { Name } from '@/component/icon_button';
+import IconButton, { Name } from '@/components/icon_button';
 
 const Style = styled.div`
   -webkit-app-region: no-drag;

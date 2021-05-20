@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 
 import getRandomInteger from '@/utils/get_random_integer';
-import Skeleton from '@/component/skeleton';
+import Skeleton from '@/components/skeleton';
 import { container, StyledLrc, Line } from './constant';
 
 const Style = styled(animated.div)`

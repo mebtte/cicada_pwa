@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IconButton, { Name } from '@/component/icon_button';
+import IconButton, { Name } from '@/components/icon_button';
 import { MusicWithIndex } from '@/constant/music';
 import { Figure } from '@/constant/figure';
 import useMusicOperate from '../../use_music_operate';

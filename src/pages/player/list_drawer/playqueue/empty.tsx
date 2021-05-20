@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Empty from '@/component/empty';
+import Empty from '@/components/empty';
 import Container from '../container';
 
 const Style = styled(Container)`

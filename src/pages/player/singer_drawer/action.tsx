@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { RequestStatus } from '../../../constant';
-import Tooltip, { Placement } from '../../../component/tooltip';
-import IconButton, { Name } from '../../../component/icon_button';
+import { RequestStatus } from '@/constant';
+import Tooltip, { Placement } from '@/components/tooltip';
+import IconButton, { Name } from '@/components/icon_button';
 
 const ACTION_SIZE = 28;
 const Style = styled.div`

@@ -2,7 +2,7 @@ import React, { useRef, useLayoutEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
 import { TOAST_TYPE } from '@/platform/toast';
-import Icon, { Name } from '@/component/icon';
+import Icon, { Name } from '@/components/icon';
 import { Toast as ToastType, TOAST_ANIMATION_DURATION } from './constant';
 
 const TYPE_MAP_COLOR = {

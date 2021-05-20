@@ -1,7 +1,7 @@
 import React from 'react';
 
-import IconButton from '@/component/icon_button';
-import Tooltip from '@/component/tooltip';
+import IconButton from '@/components/icon_button';
+import Tooltip from '@/components/tooltip';
 import { ActionNavigator as ActionNavigatorType } from './constant';
 
 const ActionNavigator = ({

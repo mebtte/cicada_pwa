@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import useHistory from '@/utils/use_history';
 import useQuery from '@/utils/use_query';
-import cmsCreateFigure from '@/api/cms_create_figure';
+import cmsCreateFigure from '@/apis/cms_create_figure';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
 import { NAME_MAX_LENGTH } from '@/constant/figure';
-import Button, { Type } from '@/component/button';
-import TextField from '@/component/text_field';
-import Dialog, { Title, Content, Action } from '@/component/dialog';
+import Button, { Type } from '@/components/button';
+import TextField from '@/components/text_field';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
 import eventemitter, { EventType } from './eventemitter';
 import { Query } from './constants';
 

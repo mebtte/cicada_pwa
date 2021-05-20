@@ -3,8 +3,8 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styled from 'styled-components';
 
-import Drawer, { Title } from '@/component/drawer';
-import updateMusicbillOrder from '@/api/update_musicbill_order';
+import Drawer, { Title } from '@/components/drawer';
+import updateMusicbillOrder from '@/apis/update_musicbill_order';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import scrollbar from '@/style/scrollbar';

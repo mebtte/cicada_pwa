@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Icon, { Name } from '@/component/icon';
+import Icon, { Name } from '@/components/icon';
 
 const Style = styled.div`
   padding: 10px 20px;

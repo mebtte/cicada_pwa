@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
 import { Figure } from '@/constant/figure';
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 
 const COVER_SIZE = 200;
 

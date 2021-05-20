@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Avatar from '@/component/avatar';
+import Avatar from '@/components/avatar';
 import { PLAYER_PATH } from '@/constant/route';
 import { IS_ELECTRON, IS_WINDOWS } from '@/constant';
 import parseSearch from '@/utils/parse_search';
@@ -10,7 +10,7 @@ import {
   minimizePlayerWindow,
   hidePlayerWindow,
 } from '@/platform/electron_new';
-import IconButton, { Name } from '@/component/icon_button';
+import IconButton, { Name } from '@/components/icon_button';
 import Search from './search';
 import Title from './title';
 

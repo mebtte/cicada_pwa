@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import ErrorBoundary from '@/component/error_boundary';
+import ErrorBoundary from '@/components/error_boundary';
 import App from './app';
 import UncaughtError from './uncaught_error';
 

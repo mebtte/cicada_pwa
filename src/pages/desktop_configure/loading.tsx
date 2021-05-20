@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import CircularLoader from '@/component/circular_loader';
+import CircularLoader from '@/components/circular_loader';
 import PageContainer from '../page_container';
 
 const Style = styled(PageContainer)`

@@ -2,13 +2,13 @@ import React from 'react';
 import { useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 
-import { containerStyle } from './constant';
-import { RequestStatus } from '../../../../constant';
-import { MusicWithIndex } from '../../../../constant/music';
+import { RequestStatus } from '@/constant';
+import { MusicWithIndex } from '@/constant/music';
+import Empty from '@/components/empty';
+import ErrorCard from '@/components/error_card';
 import MusicList from './music_list';
 import Skeleton from './skeleton';
-import Empty from '../../../../component/empty';
-import ErrorCard from '../../../../component/error_card';
+import { containerStyle } from './constant';
 
 const TRANSITION = {
   from: { opacity: 0 },

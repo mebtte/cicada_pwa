@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import IconButton, { Name as IconButtonName } from '@/component/icon_button';
-import Tooltip from '@/component/tooltip';
+import IconButton, { Name as IconButtonName } from '@/components/icon_button';
+import Tooltip from '@/components/tooltip';
 import eventemitter, { Type as EventType } from '../../eventemitter';
 import { STATUS } from './constant';
 

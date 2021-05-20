@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import IconButton, { Type } from '@/component/icon_button';
-import Tooltip from '@/component/tooltip';
+import IconButton, { Type } from '@/components/icon_button';
+import Tooltip from '@/components/tooltip';
 import { LinkNavigator as LinkNavigatorType } from './constant';
 
 const LinkNavigator = ({

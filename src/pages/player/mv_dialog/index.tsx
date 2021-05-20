@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Dialog from '@/components/dialog';
 import useMvPopup from './use_mv_popup';
-
-import Dialog from '../../../component/dialog';
 import MusicInfo from '../component/music_info';
 
 const bodyProps = {

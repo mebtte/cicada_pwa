@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import getMusicListRequest from '@/api/get_music_list';
+import getMusicListRequest from '@/apis/get_music_list';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';

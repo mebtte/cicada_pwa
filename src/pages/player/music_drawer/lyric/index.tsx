@@ -4,8 +4,8 @@ import { useTransition, animated } from 'react-spring';
 
 import { RequestStatus } from '@/constant';
 import { Music, MusicType } from '@/constant/music';
-import ErrorCard from '@/component/error_card';
-import Empty from '@/component/empty';
+import ErrorCard from '@/components/error_card';
+import Empty from '@/components/empty';
 import useLrc from '../../use_lrc';
 import Skeleton from './skeleton';
 import Lyric from './lyric';

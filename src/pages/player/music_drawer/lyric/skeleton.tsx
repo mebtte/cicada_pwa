@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import getRandomInteger from '@/utils/get_random_integer';
-import Skeleton from '@/component/skeleton';
+import Skeleton from '@/components/skeleton';
 import Line from './line';
 
 const Wrapper = () => {

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import Tooltip from '@/component/tooltip';
-import IconButton, { Name as IconButtonName } from '@/component/icon_button';
+import Tooltip from '@/components/tooltip';
+import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import { Music } from '@/constant/music';
 import useAudioControl from '../use_audio_control';
 import eventemitter, { Type as EventType } from '../eventemitter';

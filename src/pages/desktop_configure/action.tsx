@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button, { Type } from '@/component/button';
+import Button, { Type } from '@/components/button';
 import { closeConfigWindow } from '@/platform/electron_new';
 import { ACTION_HEIGHT } from './constant';
 

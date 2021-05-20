@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ErrorCard from '@/component/error_card';
+import ErrorCard from '@/components/error_card';
 import PageContainer from '../page_container';
 
 const Style = styled(PageContainer)`

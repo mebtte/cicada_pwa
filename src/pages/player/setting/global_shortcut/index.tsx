@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import Button from '@/component/button';
+import Button from '@/components/button';
 import Item from '../item';
 import ShortcutDrawer from './shortcut_drawer';
 

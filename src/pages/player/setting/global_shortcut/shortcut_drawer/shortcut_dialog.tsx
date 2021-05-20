@@ -17,8 +17,8 @@ import {
 } from '@/store/global_shortcut';
 import { State as GlobalShortcutState } from '@/store/global_shortcut/constants';
 import electron from '@/platform/electron';
-import Dialog, { Title, Content, Action } from '@/component/dialog';
-import Button, { Type } from '@/component/button';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
+import Button, { Type } from '@/components/button';
 
 const ACTION_SIZE = 32;
 const StyledContent = styled(Content)`

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
-import { DIALOG_TYPE } from '../../platform/dialog';
+import { DIALOG_TYPE } from '@/platform/dialog';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
+import Button from '@/components/button';
 import { Dialog as DialogType } from './type';
-
-import Dialog, { Title, Content, Action } from '../../component/dialog';
-import Button from '../../component/button';
 
 const ACTION_SIZE = 32;
 const buttonStyle = {

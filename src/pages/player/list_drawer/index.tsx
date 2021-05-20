@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
 import dialog from '@/platform/dialog';
-import Drawer from '@/component/drawer';
+import Drawer from '@/components/drawer';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import { TAB } from './constant';
 import Context from '../context';

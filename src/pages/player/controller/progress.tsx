@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
-import Slider from '@/component/slider';
+import Slider from '@/components/slider';
 import formatSecond from '@/utils/format_second';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Context from '../context';

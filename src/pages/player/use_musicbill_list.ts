@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 
+import { RequestStatus } from '@/constant';
+import { Music as MusicType } from '@/constant/music';
+import { Musicbill, LocalMusicbill } from '@/constant/musicbill';
+import getMusicbillListRequest from '@/apis/get_musicbill_list';
+import getMusicbill from '@/apis/get_musicbill';
+import addMusicToMusicbill from '@/apis/add_music_to_musicbill';
+import removeMusicFromMusicbill from '@/apis/remove_music_from_musicbill';
+import logger from '@/platform/logger';
+import dialog from '@/platform/dialog';
 import eventemitter, { Type as EventType } from './eventemitter';
-import { RequestStatus } from '../../constant';
-import { Music as MusicType } from '../../constant/music';
-import { Musicbill, LocalMusicbill } from '../../constant/musicbill';
-import getMusicbillListRequest from '../../api/get_musicbill_list';
-import getMusicbill from '../../api/get_musicbill';
-import addMusicToMusicbill from '../../api/add_music_to_musicbill';
-import removeMusicFromMusicbill from '../../api/remove_music_from_musicbill';
-import logger from '../../platform/logger';
-import dialog from '../../platform/dialog';
 
 export default () => {
   const [status, setStatus] = useState(RequestStatus.LOADING);

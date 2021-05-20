@@ -6,11 +6,11 @@ import { PLAYER_PATH } from '@/constant/route';
 import { NAME } from '@/constant/musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import createMusicbill from '@/api/create_musicbill';
+import createMusicbill from '@/apis/create_musicbill';
 import dialog from '@/platform/dialog';
-import Dialog, { Title, Content, Action } from '@/component/dialog';
-import Button, { Type } from '@/component/button';
-import Input from '@/component/input';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
+import Button, { Type } from '@/components/button';
+import Input from '@/components/input';
 import eventemitter, { Type as EventType } from './eventemitter';
 
 const DIALOG_TRANSITION_DURATION = 650;
