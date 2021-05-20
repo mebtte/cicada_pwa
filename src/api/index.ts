@@ -3,7 +3,7 @@ import axios from 'axios';
 import config from '@/config';
 import store from '@/store';
 import { clearUser } from '@/store/user';
-import sleep from '@/util/sleep';
+import sleep from '@/utils/sleep';
 import toast from '@/platform/toast';
 import { getToken, clearToken } from '@/platform/token';
 

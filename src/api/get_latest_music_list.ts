@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import api from '.';
 import { ApiMusic } from '../constant/music';
-import transformApiMusic from '../util/transform_api_music';
+import transformApiMusic from '../utils/transform_api_music';
 
 async function getLatestMusicList(page: number, pageSize = 30) {
   const { count, music_list: musicList } = await api.get<{

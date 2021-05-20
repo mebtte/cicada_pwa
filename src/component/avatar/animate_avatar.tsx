@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
 import { BORDER_RADIUS, Shape, CommonProps, TRANSITION_LIST } from './constant';
-import getRandomInteger from '../../util/get_random_integer';
+import getRandomInteger from '../../utils/get_random_integer';
 
 const Style = styled.div<{
   shape: Shape;

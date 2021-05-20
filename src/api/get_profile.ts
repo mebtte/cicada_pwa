@@ -2,7 +2,7 @@
 import { User } from '@/constant/user';
 
 import api from '.';
-import getRandomCover from '../util/get_random_cover';
+import getRandomCover from '../utils/get_random_cover';
 
 /**
  * 获取用户资料

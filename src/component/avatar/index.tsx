@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useImage from '@/util/use_image';
+import useImage from '@/utils/use_image';
 import Avatar from './avatar';
 import AnimatedAvatar from './animate_avatar';
 import JpegDefaultAvatar from './default_avatar.jpeg';

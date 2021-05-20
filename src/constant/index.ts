@@ -1,4 +1,4 @@
-import getOriginalScrollbarWidth from '@/util/get_original_scrollbar_width';
+import getOriginalScrollbarWidth from '@/utils/get_original_scrollbar_width';
 
 export const CICADA_START_YEAR = 2016;
 

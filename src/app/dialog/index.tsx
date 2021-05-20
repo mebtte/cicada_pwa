@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 import { eventemitter, EVENT_TYPE, DIALOG_TYPE } from '@/platform/dialog';
-import getRandomString from '@/util/get_random_string';
+import getRandomString from '@/utils/get_random_string';
 import { Dialog as DialogType } from './type';
 import Dialog from './dialog';
 

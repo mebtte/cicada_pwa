@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import Cropper from 'cropperjs';
 
-import selectFile from '../util/select_file';
-import loadImage from '../util/load_image';
+import selectFile from '../utils/select_file';
+import loadImage from '../utils/load_image';
 import logger from '../platform/logger';
 import dialog from '../platform/dialog';
 import Dialog, { Title, Content, Action } from './dialog';

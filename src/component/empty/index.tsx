@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import config from '@/config';
-import getRandomInteger from '@/util/get_random_integer';
+import getRandomInteger from '@/utils/get_random_integer';
 import Avatar from '../avatar';
 
 const Style = styled.div`

@@ -2,7 +2,7 @@
 import format from 'date-fns/format';
 
 import api from '.';
-import getRandomCover from '../util/get_random_cover';
+import getRandomCover from '../utils/get_random_cover';
 import { UpdateKey } from '../constant/musicbill';
 
 /**

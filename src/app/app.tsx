@@ -10,33 +10,33 @@ import RouteLoader from './route_loader';
 
 const ROUTE_MAP_COMPONENT = {
   [ROOT_PATH.HOME]: loadable({
-    loader: () => import(/* webpackChunkName: "page_home" */ '../page/home'),
+    loader: () => import(/* webpackChunkName: "page_home" */ '../pages/home'),
     loading: RouteLoader,
     timeout: 30000,
     delay: 300,
   }),
   [ROOT_PATH.SIGNIN]: loadable({
     loader: () =>
-      import(/* webpackChunkName: "page_signin" */ '../page/signin'),
+      import(/* webpackChunkName: "page_signin" */ '../pages/signin'),
     loading: RouteLoader,
     timeout: 30000,
     delay: 300,
   }),
   [ROOT_PATH.PLAYER]: loadable({
     loader: () =>
-      import(/* webpackChunkName: "page_player" */ '../page/player'),
+      import(/* webpackChunkName: "page_player" */ '../pages/player'),
     loading: RouteLoader,
     timeout: 30000,
     delay: 300,
   }),
   [ROOT_PATH.CMS]: loadable({
-    loader: () => import(/* webpackChunkName: "page_cms" */ '../page/cms'),
+    loader: () => import(/* webpackChunkName: "page_cms" */ '../pages/cms'),
     loading: RouteLoader,
     timeout: 30000,
     delay: 300,
   }),
   [ROOT_PATH.ABOUT]: loadable({
-    loader: () => import(/* webpackChunkName: "page_about" */ '../page/about'),
+    loader: () => import(/* webpackChunkName: "page_about" */ '../pages/about'),
     loading: RouteLoader,
     timeout: 30000,
     delay: 300,
@@ -44,7 +44,7 @@ const ROUTE_MAP_COMPONENT = {
   [ROOT_PATH.DESKTOP_CONFIGURE]: loadable({
     loader: () =>
       import(
-        /* webpackChunkName: "page_electron_setting" */ '../page/desktop_configure'
+        /* webpackChunkName: "page_electron_setting" */ '../pages/desktop_configure'
       ),
     loading: RouteLoader,
     timeout: 30000,
