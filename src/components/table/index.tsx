@@ -15,7 +15,7 @@ const Style = styled.table<{ stickyHeader: boolean }>`
     z-index: 1;
     padding: 20px;
     color: #000;
-    background-color: rgb(244 244 244);
+    background-color: #f6f6f6;
     font-weight: bold;
     top: 0;
   }
@@ -23,7 +23,7 @@ const Style = styled.table<{ stickyHeader: boolean }>`
     padding: 10px 20px;
     color: #333;
     background-color: #fff;
-    border-bottom: 1px solid rgb(242 242 242);
+    border-bottom: 1px solid #f6f6f6;
   }
   ${({ stickyHeader }) => css`
     th {

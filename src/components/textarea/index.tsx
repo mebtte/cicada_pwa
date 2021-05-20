@@ -11,7 +11,7 @@ const Style = styled.textarea`
   border-radius: 4px;
   outline: none;
   color: rgb(55 55 55);
-  background-color: rgb(0 0 0 / 0.04);
+  background-color: #f6f6f6;
   height: 32px;
   box-sizing: border-box;
   padding: 8px 12px;
@@ -23,8 +23,7 @@ const Style = styled.textarea`
     box-shadow: inset 0 0 0 2px rgb(49 194 124 / 0.8);
   }
   &:disabled {
-    color: rgb(0 0 0 / 0.38);
-    background-color: rgb(0 0 0 / 0.08);
+    opacity: 0.75;
     cursor: not-allowed;
   }
 `;

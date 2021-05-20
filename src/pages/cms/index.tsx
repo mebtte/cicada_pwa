@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import loadable from 'react-loadable';
 import { shallowEqual, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import toast from '@/platform/toast';
 import { CMS_PATH, ROOT_PATH } from '@/constants/route';
@@ -16,21 +17,21 @@ import Sidebar from './sidebar';
 const ROUTE = {
   HOME: loadable({
     loader: () =>
-      import(/* webpackChunkName: "dashboard_home_page" */ './pages/home'),
+      import(/* webpackChunkName: "cms_home_page" */ './pages/home'),
     loading: PageLoader,
     timeout: 30000,
     delay: 300,
   }),
   FIGURE: loadable({
     loader: () =>
-      import(/* webpackChunkName: "dashboard_figure_page" */ './pages/figure'),
+      import(/* webpackChunkName: "cms_figure_page" */ './pages/figure'),
     loading: PageLoader,
     timeout: 30000,
     delay: 300,
   }),
   MUSIC: loadable({
     loader: () =>
-      import(/* webpackChunkName: "dashboard_music_page" */ './pages/music'),
+      import(/* webpackChunkName: "cms_music_page" */ './pages/music'),
     loading: PageLoader,
     timeout: 30000,
     delay: 300,
@@ -43,7 +44,7 @@ const Scrollable = styled(PageContainer)`
 const Style = styled.div`
   width: 100%;
   height: 100%;
-  min-width: 960px;
+  min-width: 1024px;
   display: flex;
   > .container {
     flex: 1;
@@ -61,6 +62,9 @@ const Dashboard = () => {
   }
   return (
     <Scrollable>
+      <Helmet>
+        <title>内容管理系统 - 知了</title>
+      </Helmet>
       <Style>
         <Sidebar />
         <div className="container">

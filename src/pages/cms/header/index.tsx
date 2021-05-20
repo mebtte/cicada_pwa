@@ -11,7 +11,7 @@ const Style = styled.div`
   display: flex;
   align-items: center;
   padding: 0 20px;
-  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+  box-shadow: 0 2px 2px #f6f6f6;
   > .blank {
     flex: 1;
   }

@@ -9,6 +9,7 @@ import { Name } from '../../../components/icon';
 
 const Style = styled.div`
   width: 220px;
+  background: #f6f6f6;
 `;
 
 const Sidebar = () => {

@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import useHistory from '@/utils/use_history';
-import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
+import Tooltip, { Placement } from '@/components/tooltip';
 import { Query } from './constants';
 
 const Style = styled.div`
@@ -16,13 +16,17 @@ const Style = styled.div`
 
 const Action = () => {
   const history = useHistory();
-  const openCreateFigureDialog = () =>
-    history.push({ query: { [Query.CREATE_FIGURE_DIALOG_OPEN]: 1 } });
 
+  const onCreateMusic = () =>
+    history.push({
+      query: {
+        [Query.CREATE_MUSIC_DIALOG_OPEN]: 1,
+      },
+    });
   return (
     <Style>
-      <Tooltip title="创建角色" placement={Placement.LEFT}>
-        <IconButton name={Name.PLUS_OUTLINE} onClick={openCreateFigureDialog} />
+      <Tooltip title="创建音乐" placement={Placement.LEFT}>
+        <IconButton name={Name.PLUS_OUTLINE} onClick={onCreateMusic} />
       </Tooltip>
     </Style>
   );
