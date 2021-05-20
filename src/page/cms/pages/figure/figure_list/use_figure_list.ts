@@ -5,6 +5,7 @@ import useQuery from '@/util/use_query';
 import cmsGetFigureList from '@/api/cms_get_figure_list';
 import { Figure, Query } from '../constants';
 import { PAGE_SIZE } from './constants';
+import eventemitter, { EventType } from '../eventemitter';
 
 export default () => {
   const query = useQuery<{ [key in Query]: string }>();
@@ -38,6 +39,9 @@ export default () => {
 
   useEffect(() => {
     getFigureList();
+
+    eventemitter.on(EventType.FIGURE_CREATED, getFigureList);
+    return () => void eventemitter.off(EventType.FIGURE_CREATED, getFigureList);
   }, [getFigureList]);
 
   return { error, loading, page, total, figureList, retry: getFigureList };
