@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
+import Empty from '@/component/empty';
 import CircularLoader from '@/component/circular_loader';
 import Table from '@/component/table';
 import scrollbar from '@/style/scrollbar';
@@ -41,6 +42,13 @@ const Style = styled.div<{ isLoading: boolean }>`
     }
   `}
 `;
+const emptyStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+};
 const headers = ['ID', '头像', '名字', '别名', '创建时间'];
 const rowRenderer = (figure: Figure) => [
   figure.id,
@@ -58,15 +66,19 @@ const FigureList = ({
   loading: boolean;
 }) => (
   <Style isLoading={loading}>
-    <div className="content">
-      <Table
-        className="table"
-        array={figureList}
-        headers={headers}
-        rowRenderer={rowRenderer}
-        stickyHeader
-      />
-    </div>
+    {figureList.length ? (
+      <div className="content">
+        <Table
+          className="table"
+          array={figureList}
+          headers={headers}
+          rowRenderer={rowRenderer}
+          stickyHeader
+        />
+      </div>
+    ) : (
+      <Empty style={emptyStyle} />
+    )}
     {loading && (
       <div className="loading">
         <CircularLoader />
