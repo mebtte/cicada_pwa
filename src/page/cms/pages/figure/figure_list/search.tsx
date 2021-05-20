@@ -41,6 +41,7 @@ const Search = ({ loading }: { loading: boolean }) => {
       query: {
         [Query.SEARCH_NAME]: nameInputRef.current.value,
         [Query.SEARCH_ALIAS]: aliasInputRef.current.value,
+        [Query.PAGE]: 1,
       },
     });
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
