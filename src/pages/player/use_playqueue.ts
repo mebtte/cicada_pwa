@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Music, MusicWithIndex, MusicWithPid } from '@/constant/music';
+import { Music, MusicWithIndex, MusicWithPid } from '@/constants/music';
 import toast from '@/platform/toast';
 import getRandomInteger from '@/utils/get_random_integer';
 import getRandomString from '@/utils/get_random_string';

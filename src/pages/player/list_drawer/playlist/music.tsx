@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Figure } from '@/constant/figure';
+import { Figure } from '@/constants/figure';
 import ellipsis from '@/style/ellipsis';
-import { MusicWithIndex } from '@/constant/music';
+import { MusicWithIndex } from '@/constants/music';
 import IconButton, { Name, Type } from '@/components/icon_button';
 import useMusicOperate from '../../use_music_operate';
 import eventemitter, { Type as EventType } from '../../eventemitter';

@@ -6,8 +6,8 @@ import React, {
   useContext,
 } from 'react';
 
-import { RequestStatus } from '@/constant';
-import { Music as MusicType } from '@/constant/music';
+import { RequestStatus } from '@/constants';
+import { Music as MusicType } from '@/constants/music';
 import LoadingCard from '@/components/loading_card';
 import ErrorCard from '@/components/error_card';
 import Drawer, { Title } from '@/components/drawer';

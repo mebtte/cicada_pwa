@@ -1,4 +1,4 @@
-import { IS_ELECTRON } from '../constant';
+import { IS_ELECTRON } from '../constants';
 
 // eslint-disable-next-line import/no-mutable-exports
 let electron: any;

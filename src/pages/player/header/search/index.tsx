@@ -2,7 +2,7 @@ import React, { useState, useCallback, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { PLAYER_PATH } from '@/constant/route';
+import { PLAYER_PATH } from '@/constants/route';
 import toast from '@/platform/toast';
 import Input from '@/components/input';
 import IconButton, { Name } from '@/components/icon_button';

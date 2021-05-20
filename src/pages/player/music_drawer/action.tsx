@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Music } from '@/constant/music';
+import { Music } from '@/constants/music';
 import Tooltip from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
 

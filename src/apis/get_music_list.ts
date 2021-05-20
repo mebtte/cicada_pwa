@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import api from '.';
 import getRandomCover from '../utils/get_random_cover';
-import { MusicType, SearchMusicKey } from '../constant/music';
+import { MusicType, SearchMusicKey } from '../constants/music';
 
 /**
  * 获取音乐列表

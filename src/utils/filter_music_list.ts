@@ -1,4 +1,4 @@
-import { Music } from '../constant/music';
+import { Music } from '../constants/music';
 
 function filterMusic(keyword: string) {
   return (music: Music) => {

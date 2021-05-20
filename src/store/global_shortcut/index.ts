@@ -2,7 +2,7 @@ import { State } from './constants';
 import {
   GLOBAL_SHORTCUT,
   GLOBAL_SHORTCUT_MAP_STORAGE_KEY,
-} from '../../constant/global_shortcut';
+} from '../../constants/global_shortcut';
 import {
   GLOBAL_SHORTCUT_REGISTER_ALL,
   GLOBAL_SHORTCUT_UNREGISTER_ALL,

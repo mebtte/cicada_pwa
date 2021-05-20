@@ -9,7 +9,7 @@ import {
   UpdateKey,
   NAME,
   DESCRIPTION,
-} from '@/constant/musicbill';
+} from '@/constants/musicbill';
 import dialog from '@/platform/dialog';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';

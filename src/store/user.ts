@@ -1,7 +1,7 @@
-import { USER } from '../constant/storage_key';
+import { USER } from '../constants/storage_key';
 import * as TYPE from './action_type';
 import { getToken, clearToken } from '../platform/token';
-import { User } from '../constant/user';
+import { User } from '../constants/user';
 import getProfile from '../apis/get_profile';
 import logger from '../platform/logger';
 import dialog from '../platform/dialog';

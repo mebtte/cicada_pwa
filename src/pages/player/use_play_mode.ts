@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { PlayMode } from './constant';
-import { PLAY_MODE } from '../../constant/storage_key';
+import { PLAY_MODE } from '../../constants/storage_key';
 import eventemitter, { Type as EventType } from './eventemitter';
 
 export default () => {

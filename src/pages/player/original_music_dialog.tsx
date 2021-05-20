@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import getMusicListRequest from '@/apis/get_music_list';
 import logger from '@/platform/logger';
-import { SearchMusicKey } from '@/constant/music';
+import { SearchMusicKey } from '@/constants/music';
 import dialog from '@/platform/dialog';
 import Dialog from '@/components/dialog';
 import CircularLoader from '@/components/circular_loader';

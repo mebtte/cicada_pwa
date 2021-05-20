@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Music as MusicType } from '@/constant/music';
+import { Music as MusicType } from '@/constants/music';
 import Music from './music';
 
 const MusicList = ({

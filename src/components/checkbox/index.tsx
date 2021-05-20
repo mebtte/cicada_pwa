@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components';
 
-import { ComponentSize } from '@/constant/style';
+import { ComponentSize } from '@/constants/style';
 import Icon, { Name } from '../icon';
 
 const Container = styled.div<{

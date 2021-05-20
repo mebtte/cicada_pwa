@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
-import { CMS_PATH } from '../../../constant/route';
+import { CMS_PATH } from '../../../constants/route';
 
 import MenuItem from './menu_item';
 import { Name } from '../../../components/icon';

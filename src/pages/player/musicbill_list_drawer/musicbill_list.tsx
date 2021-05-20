@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import scrollbar from '@/style/scrollbar';
-import { Music as MusicType } from '@/constant/music';
-import { LocalMusicbill } from '@/constant/musicbill';
+import { Music as MusicType } from '@/constants/music';
+import { LocalMusicbill } from '@/constants/musicbill';
 import Musicbill from './musicbill';
 import CreateMusicbill from './create_musicbill';
 

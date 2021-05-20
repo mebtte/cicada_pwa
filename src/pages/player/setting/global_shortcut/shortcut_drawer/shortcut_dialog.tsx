@@ -8,7 +8,7 @@ import {
   GLOBAL_SHORTCUT_MAP_LABEL,
   MUST_HAS_KEYS,
   KEYBOARDJS_MAP_ELECTRON_KEY,
-} from '@/constant/global_shortcut';
+} from '@/constants/global_shortcut';
 import store from '@/store';
 import {
   registerAll,

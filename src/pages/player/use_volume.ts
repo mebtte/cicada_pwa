@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import debounce from 'lodash/debounce';
 
-import { PLAYER_VOLUME } from '../../constant/storage_key';
+import { PLAYER_VOLUME } from '../../constants/storage_key';
 import eventemitter, { Type } from './eventemitter';
 
 const getInitialVolume = () => {

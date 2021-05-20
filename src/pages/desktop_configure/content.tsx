@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
-import { ORIGIN } from '@/constant/regexp';
+import { ORIGIN } from '@/constants/regexp';
 import scrollbar from '@/style/scrollbar';
 import Input from '@/components/input';
 import dialog from '@/platform/dialog';

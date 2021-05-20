@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { PLAYER_PATH } from '@/constant/route';
+import { PLAYER_PATH } from '@/constants/route';
 import getRandomCover from '@/utils/get_random_cover';
 import Avatar from '@/components/avatar';
 import useMusicOperate from '../use_music_operate';

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 
-import { RequestStatus } from '@/constant';
+import { RequestStatus } from '@/constants';
 import { getPWAOrigin } from '@/platform/electron_new';
 import logger from '@/platform/logger';
 

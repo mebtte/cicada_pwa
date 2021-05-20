@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import getRandomCover from '../../utils/get_random_cover';
-import { IS_ELECTRON, IS_WINDOWS } from '../../constant';
+import { IS_ELECTRON, IS_WINDOWS } from '../../constants';
 import PageContainer from '../page_container';
 import Content from './content';
 import AppRegion from './app_region';

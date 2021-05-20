@@ -2,7 +2,7 @@ import React from 'react';
 import { useTransition } from 'react-spring';
 import styled from 'styled-components';
 
-import { Music as MusicType } from '@/constant/music';
+import { Music as MusicType } from '@/constants/music';
 import MusicInfo from './music_info';
 import Skeleton from './skeleton';
 

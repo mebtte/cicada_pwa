@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-import { RequestStatus } from '@/constant';
+import { RequestStatus } from '@/constants';
 
 export const STATUS = {
   ...RequestStatus,

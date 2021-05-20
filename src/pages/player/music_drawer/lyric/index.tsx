@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import { RequestStatus } from '@/constant';
-import { Music, MusicType } from '@/constant/music';
+import { RequestStatus } from '@/constants';
+import { Music, MusicType } from '@/constants/music';
 import ErrorCard from '@/components/error_card';
 import Empty from '@/components/empty';
 import useLrc from '../../use_lrc';

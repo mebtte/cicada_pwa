@@ -5,8 +5,8 @@ import loadable from 'react-loadable';
 import { shallowEqual, useSelector } from 'react-redux';
 
 import toast from '@/platform/toast';
-import { CMS_PATH, ROOT_PATH } from '@/constant/route';
-import { User } from '@/constant/user';
+import { CMS_PATH, ROOT_PATH } from '@/constants/route';
+import { User } from '@/constants/user';
 import withSignin from '@/platform/with_signin';
 import PageContainer from '../page_container';
 import PageLoader from './page_loader';

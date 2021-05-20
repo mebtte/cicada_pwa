@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { PLAYER_PATH } from '@/constant/route';
-import { User as UserType } from '@/constant/user';
+import { PLAYER_PATH } from '@/constants/route';
+import { User as UserType } from '@/constants/user';
 import Avatar, { Shape } from '@/components/avatar';
 
 const AVATAR_SIZE = 100;

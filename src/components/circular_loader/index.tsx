@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
-import { ComponentSize } from '@/constant/style';
+import { ComponentSize } from '@/constants/style';
 import Icon, { Name } from '../icon';
 
 const rotate = keyframes`

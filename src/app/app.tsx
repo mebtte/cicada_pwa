@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import loadable from 'react-loadable';
 
-import { ROOT_PATH } from '@/constant/route';
+import { ROOT_PATH } from '@/constants/route';
 import GlobalStyle from './global_style';
 import Toast from './toast';
 import Dialog from './dialog';

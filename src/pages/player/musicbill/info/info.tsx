@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 
 import ellipsis from '@/style/ellipsis';
-import { RequestStatus } from '@/constant';
-import { LocalMusicbill } from '@/constant/musicbill';
+import { RequestStatus } from '@/constants';
+import { LocalMusicbill } from '@/constants/musicbill';
 import Avatar from '@/components/avatar';
 import { TOP_CONTENT_HEIGHT } from '../constant';
 

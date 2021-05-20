@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GITHUB_REPOSITORY } from '@/constant';
+import { GITHUB_REPOSITORY } from '@/constants';
 import dialog from '@/platform/dialog';
 import openLink from '@/utils/open_link';
 import Button, { Type } from '@/components/button';

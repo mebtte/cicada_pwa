@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { easeCubicInOut } from 'd3-ease';
 
-import { PLAYER_PATH } from '@/constant/route';
-import { NAME } from '@/constant/musicbill';
+import { PLAYER_PATH } from '@/constants/route';
+import { NAME } from '@/constants/musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import createMusicbill from '@/apis/create_musicbill';

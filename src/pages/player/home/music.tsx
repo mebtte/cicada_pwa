@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Music as MusicType } from '@/constant/music';
+import { Music as MusicType } from '@/constants/music';
 import IconButton, { Name } from '@/components/icon_button';
 import MusicCard from './music_card';
 import Cover from './cover';

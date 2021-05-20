@@ -7,7 +7,7 @@ import React, {
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 
-import { ComponentSize } from '@/constant/style';
+import { ComponentSize } from '@/constants/style';
 import Input from '@/components/input';
 import IconButton, { Name } from '@/components/icon_button';
 import Tooltip from '@/components/tooltip';

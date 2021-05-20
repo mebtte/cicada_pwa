@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector, shallowEqual } from 'react-redux';
 
 import scrollbar from '@/style/scrollbar';
-import { User } from '@/constant/user';
+import { User } from '@/constants/user';
 import { routeContainerStyle } from '../style';
 import Avatar from './avatar';
 import TextField from './text_field';

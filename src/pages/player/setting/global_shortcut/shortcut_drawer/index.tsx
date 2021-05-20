@@ -6,7 +6,7 @@ import { State as GlobalShortcutState } from '@/store/global_shortcut/constants'
 import {
   GLOBAL_SHORTCUT,
   GLOBAL_SHORTCUT_MAP_LABEL,
-} from '@/constant/global_shortcut';
+} from '@/constants/global_shortcut';
 import Shortcut from './shortcut';
 import ShortcutDialog from './shortcut_dialog';
 

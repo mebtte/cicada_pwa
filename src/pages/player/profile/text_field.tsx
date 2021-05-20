@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import format from 'date-fns/format';
 
-import { User, UpdateKey } from '@/constant/user';
+import { User, UpdateKey } from '@/constants/user';
 import updateUser from '@/apis/update_user';
 import logger from '@/platform/logger';
 import store from '@/store';

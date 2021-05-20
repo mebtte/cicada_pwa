@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
-import { RequestStatus } from '../../constant';
+import { RequestStatus } from '../../constants';
 import { PlayMode } from './constant';
-import { MusicWithIndex, MusicWithPid } from '../../constant/music';
-import { LocalMusicbill } from '../../constant/musicbill';
+import { MusicWithIndex, MusicWithPid } from '../../constants/music';
+import { LocalMusicbill } from '../../constants/musicbill';
 
 interface Context {
   getMusicbillListStatus: RequestStatus;

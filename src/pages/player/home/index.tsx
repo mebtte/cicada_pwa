@@ -1,7 +1,7 @@
 import React, { useRef, ReactNode, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { RequestStatus } from '@/constant';
+import { RequestStatus } from '@/constants';
 import scrollbar from '@/style/scrollbar';
 import WidthResizeDetector from '@/components/width_resize_detector';
 import Pagination from '@/components/pagination';

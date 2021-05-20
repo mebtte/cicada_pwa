@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import { ZIndex } from '../constant/style';
+import { ZIndex } from '../constants/style';
 import scrollbar from '../style/scrollbar';
 
 const Mask = styled(animated.div)`

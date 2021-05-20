@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 
-import { RequestStatus } from '@/constant';
+import { RequestStatus } from '@/constants';
 import toast from '@/platform/toast';
-import { Music as MusicType } from '@/constant/music';
-import { LocalMusicbill } from '@/constant/musicbill';
+import { Music as MusicType } from '@/constants/music';
+import { LocalMusicbill } from '@/constants/musicbill';
 import Avatar from '@/components/avatar';
 import Checkbox from '@/components/checkbox';
 import CircularLoader from '@/components/circular_loader';

@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import useQuery from '@/utils/use_query';
-import { RequestStatus } from '@/constant';
-import { SearchMusicKey, MusicWithIndex } from '@/constant/music';
+import { RequestStatus } from '@/constants';
+import { SearchMusicKey, MusicWithIndex } from '@/constants/music';
 import getMusicListRequest from '@/apis/get_music_list';
 import logger from '@/platform/logger';
 

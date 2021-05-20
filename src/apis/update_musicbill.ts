@@ -3,7 +3,7 @@ import format from 'date-fns/format';
 
 import api from '.';
 import getRandomCover from '../utils/get_random_cover';
-import { UpdateKey } from '../constant/musicbill';
+import { UpdateKey } from '../constants/musicbill';
 
 /**
  * 更新歌单

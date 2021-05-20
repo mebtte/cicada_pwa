@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Music as MusicType } from '@/constant/music';
+import { Music as MusicType } from '@/constants/music';
 import Tag from '@/components/tag';
 import { MUSIC_TAG_COLOR } from '../../constant';
 import Container from './container';

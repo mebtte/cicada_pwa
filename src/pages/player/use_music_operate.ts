@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { Music as MusicType } from '@/constant/music';
+import { Music as MusicType } from '@/constants/music';
 import eventemitter, { Type as EventType } from './eventemitter';
 
 export default (music?: MusicType, afterOperate?: (...params: any) => any) => {

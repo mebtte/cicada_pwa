@@ -5,7 +5,7 @@ import useQuery from '@/utils/use_query';
 import cmsCreateFigure from '@/apis/cms_create_figure';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
-import { NAME_MAX_LENGTH } from '@/constant/figure';
+import { NAME_MAX_LENGTH } from '@/constants/figure';
 import Button, { Type } from '@/components/button';
 import TextField from '@/components/text_field';
 import Dialog, { Title, Content, Action } from '@/components/dialog';

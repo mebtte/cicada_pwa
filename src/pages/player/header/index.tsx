@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Avatar from '@/components/avatar';
-import { PLAYER_PATH } from '@/constant/route';
-import { IS_ELECTRON, IS_WINDOWS } from '@/constant';
+import { PLAYER_PATH } from '@/constants/route';
+import { IS_ELECTRON, IS_WINDOWS } from '@/constants';
 import parseSearch from '@/utils/parse_search';
 import {
   minimizePlayerWindow,

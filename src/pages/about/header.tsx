@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { shallowEqual, useSelector } from 'react-redux';
 
-import { User } from '@/constant/user';
-import { ROOT_PATH } from '@/constant/route';
+import { User } from '@/constants/user';
+import { ROOT_PATH } from '@/constants/route';
 
 const Style = styled.div`
   box-shadow: 0px 2px 4px -1px rgba(49, 194, 124, 0.2),

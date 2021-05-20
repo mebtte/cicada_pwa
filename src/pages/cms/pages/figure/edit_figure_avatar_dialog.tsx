@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import cmsUpdateFigure from '@/apis/cms_update_figure';
-import { AVATAR_MAX_SIZE } from '@/constant/figure';
+import { AVATAR_MAX_SIZE } from '@/constants/figure';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import eventemitter, { EventType } from './eventemitter';
 import { Figure } from './constants';

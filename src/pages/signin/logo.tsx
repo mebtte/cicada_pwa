@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { ROOT_PATH } from '@/constant/route';
+import { ROOT_PATH } from '@/constants/route';
 
 const Style = styled(Link)`
   display: flex;

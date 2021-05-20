@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { MusicWithIndex } from '@/constant/music';
+import { MusicWithIndex } from '@/constants/music';
 import filterMusicList from '@/utils/filter_music_list';
 import Input from '@/components/input';
 import Tooltip, { Placement } from '@/components/tooltip';

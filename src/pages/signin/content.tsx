@@ -2,12 +2,12 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
 import Icon, { Name } from '@/components/icon';
-import { EMAIL } from '@/constant/regexp';
+import { EMAIL } from '@/constants/regexp';
 import {
   TOKEN,
   TOKEN_EXPIRED_AT,
   LAST_SIGNIN_EMAIL,
-} from '@/constant/storage_key';
+} from '@/constants/storage_key';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import signin from '@/apis/signin';

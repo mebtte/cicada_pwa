@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import api from '.';
 import getRandomCover from '../utils/get_random_cover';
-import { MusicType } from '../constant/music';
+import { MusicType } from '../constants/music';
 
 async function getMusicbill(id: string) {
   const musicbill = await api.get<{

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import { ZIndex } from '@/constant/style';
+import { ZIndex } from '@/constants/style';
 
 const CONTENT_WIDTH = 300;
 const TRANSITION = {

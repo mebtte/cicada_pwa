@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Figure } from '@/constant/figure';
+import { Figure } from '@/constants/figure';
 import eventemitter, { Type as EventType } from '../../eventemitter';
 
 const Style = styled.span`

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constant/figure';
+import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/figure';
 import TextField from '@/components/text_field';
 import cmsDeleteFigure from '@/apis/cms_delete_figure';
 import cmsUpdateFigure from '@/apis/cms_update_figure';

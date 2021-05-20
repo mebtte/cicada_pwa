@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import api from '.';
-import { ApiMusic } from '../constant/music';
+import { ApiMusic } from '../constants/music';
 import transformApiMusic from '../utils/transform_api_music';
 
 async function getLatestMusicList(page: number, pageSize = 30) {

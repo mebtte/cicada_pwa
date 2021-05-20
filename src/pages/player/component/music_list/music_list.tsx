@@ -2,9 +2,9 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import List from 'react-list';
 
-import { ORIGINAL_SCROLLBAR_WIDTH } from '@/constant';
+import { ORIGINAL_SCROLLBAR_WIDTH } from '@/constants';
 import scrollbar from '@/style/scrollbar';
-import { MusicWithIndex } from '@/constant/music';
+import { MusicWithIndex } from '@/constants/music';
 import { containerStyle } from './constant';
 import Music from '../music';
 

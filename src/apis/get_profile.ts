@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { User } from '@/constant/user';
+import { User } from '@/constants/user';
 
 import api from '.';
 import getRandomCover from '../utils/get_random_cover';

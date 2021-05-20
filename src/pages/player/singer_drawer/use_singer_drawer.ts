@@ -4,10 +4,10 @@ import getMusicListRequest from '@/apis/get_music_list';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
-import { RequestStatus } from '@/constant';
+import { RequestStatus } from '@/constants';
 import openLink from '@/utils/open_link';
-import { SearchMusicKey, MusicWithIndex } from '@/constant/music';
-import { Figure } from '@/constant/figure';
+import { SearchMusicKey, MusicWithIndex } from '@/constants/music';
+import { Figure } from '@/constants/figure';
 import eventemitter, { Type as EventType } from '../eventemitter';
 
 export default () => {

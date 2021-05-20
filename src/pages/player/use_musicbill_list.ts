@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { RequestStatus } from '@/constant';
-import { Music as MusicType } from '@/constant/music';
-import { Musicbill, LocalMusicbill } from '@/constant/musicbill';
+import { RequestStatus } from '@/constants';
+import { Music as MusicType } from '@/constants/music';
+import { Musicbill, LocalMusicbill } from '@/constants/musicbill';
 import getMusicbillListRequest from '@/apis/get_musicbill_list';
 import getMusicbill from '@/apis/get_musicbill';
 import addMusicToMusicbill from '@/apis/add_music_to_musicbill';

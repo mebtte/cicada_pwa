@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
 
-import { LocalMusicbill } from '@/constant/musicbill';
+import { LocalMusicbill } from '@/constants/musicbill';
 import Info from './info';
 
 const TRANSITION = {

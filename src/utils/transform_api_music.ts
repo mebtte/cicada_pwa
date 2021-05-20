@@ -1,4 +1,4 @@
-import { ApiMusic, Music } from '../constant/music';
+import { ApiMusic, Music } from '../constants/music';
 import getRandomCover from './get_random_cover';
 
 export default (music: ApiMusic): Music => {

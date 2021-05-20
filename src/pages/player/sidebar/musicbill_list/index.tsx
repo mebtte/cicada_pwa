@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
 
-import { PLAYER_PATH } from '@/constant/route';
-import { RequestStatus } from '@/constant';
+import { PLAYER_PATH } from '@/constants/route';
+import { RequestStatus } from '@/constants';
 import scrollbar from '@/style/no_scrollbar';
 import ErrorCard from '@/components/error_card';
 import Empty from '@/components/empty';

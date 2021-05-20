@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 
-import { IS_ELECTRON, IS_MAC_OS, IS_WINDOWS } from '@/constant';
+import { IS_ELECTRON, IS_MAC_OS, IS_WINDOWS } from '@/constants';
 import KeyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
 
 export default () => {

@@ -7,9 +7,9 @@ import React, {
 } from 'react';
 import styled from 'styled-components';
 
-import { LocalMusicbill } from '@/constant/musicbill';
-import { RequestStatus } from '@/constant';
-import { MUSICBILL_SCROLL_TOP } from '@/constant/storage_key';
+import { LocalMusicbill } from '@/constants/musicbill';
+import { RequestStatus } from '@/constants';
+import { MUSICBILL_SCROLL_TOP } from '@/constants/storage_key';
 import filterMusicList from '@/utils/filter_music_list';
 import { TopContent, TOP_CONTENT_HEIGHT } from './constant';
 import useTopContent from './use_top_content';

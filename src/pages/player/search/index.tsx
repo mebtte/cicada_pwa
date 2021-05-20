@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
-import { ROOT_PATH } from '@/constant/route';
-import { RequestStatus } from '@/constant';
+import { ROOT_PATH } from '@/constants/route';
+import { RequestStatus } from '@/constants';
 import useSearch from './use_search';
 import { routeContainerStyle } from '../style';
 import MusicList from '../component/music_list';

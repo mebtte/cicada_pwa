@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
-import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constant/figure';
+import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/figure';
 import parseSearch from '@/utils/parse_search';
 import useHistory from '@/utils/use_history';
 import Input from '@/components/input';

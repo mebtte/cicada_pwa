@@ -2,8 +2,8 @@ import React from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import { useSelector, shallowEqual } from 'react-redux';
 
-import { ROOT_PATH } from '@/constant/route';
-import { User } from '../constant/user';
+import { ROOT_PATH } from '@/constants/route';
+import { User } from '../constants/user';
 
 const withSignin = () => (Component) => (props) => {
   const user = useSelector(

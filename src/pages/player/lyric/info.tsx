@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { animated, useTransition } from 'react-spring';
 
-import { Music } from '@/constant/music';
+import { Music } from '@/constants/music';
 import styledScrollbar from '@/style/styled_scrollbar';
 import Avatar from '@/components/avatar';
 import Singer from '../component/singer';

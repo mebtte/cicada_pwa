@@ -1,8 +1,8 @@
 import React from 'react';
 
 import IconButton, { Name } from '@/components/icon_button';
-import { MusicWithIndex } from '@/constant/music';
-import { Figure } from '@/constant/figure';
+import { MusicWithIndex } from '@/constants/music';
+import { Figure } from '@/constants/figure';
 import useMusicOperate from '../../use_music_operate';
 import Container from './container';
 import Singer from '../singer';

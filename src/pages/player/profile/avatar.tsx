@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
-import { User, AVATAR_MAX_SIZE, UpdateKey } from '@/constant/user';
+import { User, AVATAR_MAX_SIZE, UpdateKey } from '@/constants/user';
 import updateUser from '@/apis/update_user';
 import store from '@/store';
 import { reloadUser } from '@/store/user';

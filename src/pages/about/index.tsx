@@ -5,7 +5,7 @@ import format from 'date-fns/format';
 import config from '@/config';
 import scrollbar from '@/style/scrollbar';
 import openLink from '../../utils/open_link';
-import { CICADA_START_YEAR } from '../../constant';
+import { CICADA_START_YEAR } from '../../constants';
 import PageContainer from '../page_container';
 import Avatar from '../../components/avatar';
 import Tooltip from '../../components/tooltip';

@@ -4,7 +4,7 @@ import {
   LocalMusicbill,
   UpdateKey,
   COVER_MAX_SIZE,
-} from '@/constant/musicbill';
+} from '@/constants/musicbill';
 import updateMusicbill from '@/apis/update_musicbill';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import eventemitter, { Type as EventType } from '../eventemitter';

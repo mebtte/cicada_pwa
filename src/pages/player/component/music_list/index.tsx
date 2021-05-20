@@ -2,8 +2,8 @@ import React from 'react';
 import { useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 
-import { RequestStatus } from '@/constant';
-import { MusicWithIndex } from '@/constant/music';
+import { RequestStatus } from '@/constants';
+import { MusicWithIndex } from '@/constants/music';
 import Empty from '@/components/empty';
 import ErrorCard from '@/components/error_card';
 import MusicList from './music_list';

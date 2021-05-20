@@ -1,4 +1,4 @@
-import { USER, TOKEN, TOKEN_EXPIRED_AT } from '../constant/storage_key';
+import { USER, TOKEN, TOKEN_EXPIRED_AT } from '../constants/storage_key';
 
 /**
  * 检查是否有效的Date

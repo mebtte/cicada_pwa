@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Helmet } from 'react-helmet';
 
-import { RequestStatus } from '@/constant';
+import { RequestStatus } from '@/constants';
 import useData from './use_data';
 import Loading from './loading';
 import ErrorDisplay from './error_display';

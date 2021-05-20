@@ -1,5 +1,5 @@
 import api from '.';
-import { Type as VerifyCodeType } from '../constant/verify_code';
+import { Type as VerifyCodeType } from '../constants/verify_code';
 
 /**
  * 获取验证码

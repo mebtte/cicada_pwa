@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector, shallowEqual } from 'react-redux';
 
-import { User } from '@/constant/user';
+import { User } from '@/constants/user';
 import Avatar from '@/components/avatar';
 
 const Style = styled.div`

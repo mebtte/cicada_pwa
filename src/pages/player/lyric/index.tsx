@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
-import { ROOT_PATH } from '@/constant/route';
+import { ROOT_PATH } from '@/constants/route';
 import Context from '../context';
 import { routeContainerStyle } from '../style';
 import Info from './info';

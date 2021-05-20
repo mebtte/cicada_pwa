@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
 
-import { PLAYER_PATH } from '@/constant/route';
+import { PLAYER_PATH } from '@/constants/route';
 import Home from './home';
 import Search from './search';
 import Musicbill from './musicbill';

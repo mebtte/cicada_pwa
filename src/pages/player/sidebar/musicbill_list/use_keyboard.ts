@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { IS_ELECTRON, IS_WINDOWS, IS_MAC_OS } from '@/constant';
-import { LocalMusicbill } from '@/constant/musicbill';
+import { IS_ELECTRON, IS_WINDOWS, IS_MAC_OS } from '@/constants';
+import { LocalMusicbill } from '@/constants/musicbill';
 import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
-import { PLAYER_PATH } from '@/constant/route';
+import { PLAYER_PATH } from '@/constants/route';
 
 export default (musicbillList: LocalMusicbill[]) => {
   const history = useHistory();

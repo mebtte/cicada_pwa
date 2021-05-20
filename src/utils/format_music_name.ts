@@ -1,4 +1,4 @@
-import { Music } from '../constant/music';
+import { Music } from '../constants/music';
 
 const SINGERS_MAX_LENGTH = 20;
 

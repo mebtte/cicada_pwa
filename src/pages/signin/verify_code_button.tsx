@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 
-import { EMAIL } from '@/constant/regexp';
-import { Type as VerifyCodeType } from '@/constant/verify_code';
+import { EMAIL } from '@/constants/regexp';
+import { Type as VerifyCodeType } from '@/constants/verify_code';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import getVerifyCodeRequest from '@/apis/get_verify_code';

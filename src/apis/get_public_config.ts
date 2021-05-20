@@ -1,5 +1,5 @@
 import api from '.';
-import { Key } from '../constant/public_config';
+import { Key } from '../constants/public_config';
 
 /**
  * 获取公共配置

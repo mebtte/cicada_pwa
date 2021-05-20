@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { RequestStatus } from '@/constant';
-import { LocalMusicbill } from '@/constant/musicbill';
+import { RequestStatus } from '@/constants';
+import { LocalMusicbill } from '@/constants/musicbill';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';

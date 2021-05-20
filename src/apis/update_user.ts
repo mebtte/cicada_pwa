@@ -1,5 +1,5 @@
 import api from '.';
-import { UpdateKey } from '../constant/user';
+import { UpdateKey } from '../constants/user';
 
 /**
  * 更新用户资料
