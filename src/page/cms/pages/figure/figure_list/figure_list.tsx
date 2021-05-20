@@ -2,12 +2,14 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
+import Button, { Type } from '@/component/button';
 import Empty from '@/component/empty';
 import CircularLoader from '@/component/circular_loader';
 import Table from '@/component/table';
 import scrollbar from '@/style/scrollbar';
 import Avatar from '@/component/avatar';
 import { Figure } from '../constants';
+import eventemitter, { EventType } from '../eventemitter';
 
 const Style = styled.div<{ isLoading: boolean }>`
   flex: 1;
@@ -42,6 +44,11 @@ const Style = styled.div<{ isLoading: boolean }>`
     }
   `}
 `;
+const Operation = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
 const emptyStyle = {
   position: 'absolute',
   top: 0,
@@ -49,13 +56,31 @@ const emptyStyle = {
   width: '100%',
   height: '100%',
 };
-const headers = ['ID', '头像', '名字', '别名', '创建时间'];
+const headers = ['ID', '头像', '名字', '别名', '创建时间', '操作'];
 const rowRenderer = (figure: Figure) => [
   figure.id,
   figure.avatar ? <Avatar src={figure.avatar} /> : '-',
   figure.name,
   figure.alias || '-',
   format(figure.createTime, 'yyyy-MM-dd HH:mm'),
+  <Operation>
+    <Button
+      label="编辑资料"
+      type={Type.PRIMARY}
+      size={20}
+      onClick={() =>
+        eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)
+      }
+    />
+    <Button
+      label="编辑头像"
+      type={Type.PRIMARY}
+      size={20}
+      onClick={() =>
+        eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
+      }
+    />
+  </Operation>,
 ];
 
 const FigureList = ({
@@ -66,7 +91,7 @@ const FigureList = ({
   loading: boolean;
 }) => (
   <Style isLoading={loading}>
-    {figureList.length ? (
+    {loading || figureList.length ? (
       <div className="content">
         <Table
           className="table"

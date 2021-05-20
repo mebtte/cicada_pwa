@@ -40,8 +40,9 @@ export default () => {
   useEffect(() => {
     getFigureList();
 
-    eventemitter.on(EventType.FIGURE_CREATED, getFigureList);
-    return () => void eventemitter.off(EventType.FIGURE_CREATED, getFigureList);
+    eventemitter.on(EventType.FIGURE_CREATED_OR_UPDATED, getFigureList);
+    return () =>
+      void eventemitter.off(EventType.FIGURE_CREATED_OR_UPDATED, getFigureList);
   }, [getFigureList]);
 
   return { error, loading, page, total, figureList, retry: getFigureList };

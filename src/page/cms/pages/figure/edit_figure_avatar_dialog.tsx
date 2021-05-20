@@ -1,0 +1,43 @@
+import React, { useEffect, useState } from 'react';
+
+import cmsUpdateFigure from '@/api/cms_update_figure';
+import { AVATAR_MAX_SIZE } from '@/constant/figure';
+import ImageCutterDialog from '@/component/image_cutter_dialog';
+import eventemitter, { EventType } from './eventemitter';
+import { Figure } from './constants';
+
+const AVATAR_SIZE = {
+  width: AVATAR_MAX_SIZE,
+  height: AVATAR_MAX_SIZE,
+};
+
+const EditFigureAvatarDialog = () => {
+  const [figure, setFigure] = useState<Figure>(null);
+  const onClose = () => setFigure(null);
+  const onUpdate = async (file: File) => {
+    await cmsUpdateFigure({ id: figure.id, key: 'avatar', value: file });
+    eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED);
+  };
+
+  useEffect(() => {
+    const openListener = (f: Figure) => setFigure(f);
+    eventemitter.on(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, openListener);
+    return () =>
+      void eventemitter.off(
+        EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG,
+        openListener,
+      );
+  }, []);
+
+  return (
+    <ImageCutterDialog
+      title={figure ? `编辑"${figure.name}"头像` : '编辑角色头像'}
+      open={!!figure}
+      onClose={onClose}
+      imageSize={AVATAR_SIZE}
+      onUpdate={onUpdate}
+    />
+  );
+};
+
+export default EditFigureAvatarDialog;

@@ -35,7 +35,7 @@ const CreateFigureDialog = () => {
       await cmsCreateFigure(name);
       toast.success(`角色"${name}"已创建`);
       onClose();
-      eventemitter.emit(EventType.FIGURE_CREATED);
+      eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED);
     } catch (error) {
       logger.error(error, { description: '创建角色失败' });
       toast.error(error.message);
