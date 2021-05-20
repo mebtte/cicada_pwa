@@ -35,7 +35,7 @@ const CreateFigureDialog = () => {
       await cmsCreateFigure(name);
       toast.success(`角色"${name}"已创建`);
       onClose();
-      eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED);
+      eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
     } catch (error) {
       logger.error(error, { description: '创建角色失败' });
       toast.error(error.message);
@@ -52,7 +52,7 @@ const CreateFigureDialog = () => {
           inputProps={{
             value: name,
             onChange: onNameChange,
-            placeholder: `角色名字不超过${NAME_MAX_LENGTH}个字符`,
+            placeholder: `角色名字不超过 ${NAME_MAX_LENGTH} 个字符`,
             maxLength: NAME_MAX_LENGTH,
           }}
         />

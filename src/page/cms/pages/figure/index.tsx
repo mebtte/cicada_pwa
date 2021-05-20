@@ -6,6 +6,7 @@ import FigureList from './figure_list';
 import Action from './action';
 import CreateFigureDialog from './create_figure_dialog';
 import EditFigureAvatarDialog from './edit_figure_avatar_dialog';
+import EditFigureDialog from './edit_figure_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -19,6 +20,7 @@ const Figure = () => (
 
     <CreateFigureDialog />
     <EditFigureAvatarDialog />
+    <EditFigureDialog />
   </Style>
 );
 

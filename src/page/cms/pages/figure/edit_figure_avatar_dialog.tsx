@@ -16,7 +16,7 @@ const EditFigureAvatarDialog = () => {
   const onClose = () => setFigure(null);
   const onUpdate = async (file: File) => {
     await cmsUpdateFigure({ id: figure.id, key: 'avatar', value: file });
-    eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED);
+    eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
   };
 
   useEffect(() => {

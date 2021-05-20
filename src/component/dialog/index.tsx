@@ -126,6 +126,9 @@ export const Action = styled.div`
   align-items: center;
   justify-content: flex-end;
   gap: 20px;
+  > .left {
+    flex: 1;
+  }
 `;
 
 export default React.memo(Dialog, (prev, next) => {
