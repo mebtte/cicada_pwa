@@ -92,7 +92,6 @@ module.exports = {
           .map((f) => `/cover/${f}`),
         serverOrigin: config.server_origin,
         pwaOrigin: config.pwa_origin,
-        githubRepository: config.github_repository,
       }),
     }),
     new CopyPlugin({

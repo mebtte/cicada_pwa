@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { GITHUB_REPOSITORY } from '@/constant';
 import dialog from '@/platform/dialog';
-import config from '@/config';
 import openLink from '@/util/open_link';
 import Button, { Type } from '@/component/button';
 
@@ -12,7 +12,7 @@ const style = {
 const onFeedback = () =>
   dialog.confirm({
     title: '即将打开新的页面, 是否继续?',
-    onConfirm: () => openLink(`${config.githubRepository}/issues`),
+    onConfirm: () => openLink(`${GITHUB_REPOSITORY}/issues`),
   });
 
 const Feedback = () => (

@@ -21,7 +21,6 @@ interface Config {
 
   serverOrigin: string;
   pwaOrigin: string;
-  githubRepository: string;
 }
 
 declare global {
