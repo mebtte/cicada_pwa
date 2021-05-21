@@ -2,10 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
-import IconButton, {
-  Name,
-  Type as IconButtonType,
-} from '@/components/icon_button';
+import IconButton, { Name } from '@/components/icon_button';
 import Button, { Type } from '@/components/button';
 import Empty from '@/components/empty';
 import CircularLoader from '@/components/circular_loader';
@@ -71,7 +68,6 @@ const rowRenderer = (figure: Figure) => [
     {figure.avatar ? <Avatar src={figure.avatar} /> : '-'}
     <IconButton
       name={Name.EDIT_OUTLINE}
-      type={IconButtonType.PRIMARY}
       size={ACTION_SIZE}
       onClick={() =>
         eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)

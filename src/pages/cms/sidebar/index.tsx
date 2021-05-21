@@ -2,38 +2,40 @@ import React from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
-import { CMS_PATH } from '../../../constants/route';
-
+import { CMS_PATH } from '@/constants/route';
+import { Name } from '@/components/icon';
 import MenuItem from './menu_item';
-import { Name } from '../../../components/icon';
+import { Menu } from './constants';
 
 const Style = styled.div`
-  width: 220px;
+  width: 200px;
   background: #f6f6f6;
 `;
+const MENUS: Menu[] = [
+  {
+    label: '总览',
+    icon: Name.HOME_OUTLINE,
+    path: CMS_PATH.HOME,
+  },
+  {
+    label: '角色',
+    icon: Name.FIGURE_OUTLINE,
+    path: CMS_PATH.FIGURE,
+  },
+  {
+    label: '音乐',
+    icon: Name.MUSIC_FILL,
+    path: CMS_PATH.MUSIC,
+  },
+];
 
 const Sidebar = () => {
   const { pathname } = useLocation();
   return (
     <Style>
-      <MenuItem
-        iconName={Name.HOME_OUTLINE}
-        label="总览"
-        to={CMS_PATH.HOME}
-        active={CMS_PATH.HOME === pathname}
-      />
-      <MenuItem
-        iconName={Name.FIGURE_OUTLINE}
-        label="角色"
-        to={CMS_PATH.FIGURE}
-        active={CMS_PATH.FIGURE === pathname}
-      />
-      <MenuItem
-        iconName={Name.MUSIC_FILL}
-        label="音乐"
-        to={CMS_PATH.MUSIC}
-        active={CMS_PATH.MUSIC === pathname}
-      />
+      {MENUS.map((menu) => (
+        <MenuItem key={menu.path} pathname={pathname} menu={menu} />
+      ))}
     </Style>
   );
 };
