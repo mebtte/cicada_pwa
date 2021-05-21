@@ -2,15 +2,17 @@
 import api from '.';
 
 async function cmsGetFigureList({
-  name,
-  alias,
   page = 1,
   pageSize = 30,
+  id,
+  name,
+  alias,
 }: {
-  name?: string;
-  alias?: string;
   page?: number;
   pageSize?: number;
+  id?: string;
+  name?: string;
+  alias?: string;
 }) {
   const data = await api.get<{
     total: number;
@@ -22,20 +24,20 @@ async function cmsGetFigureList({
       create_time: string;
     }[];
   }>('/cms/get_figure_list', {
-    params: { name, alias, page, page_size: pageSize },
+    params: { page, page_size: pageSize, id, name, alias },
     withToken: true,
   });
   return {
     total: data.total,
     list: data.list.map(
       ({
-        id,
+        id: figureId,
         name: fName,
         alias: fAlias,
         avatar,
         create_time: createTime,
       }) => ({
-        id,
+        id: figureId,
         name: fName,
         alias: fAlias,
         avatar,

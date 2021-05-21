@@ -25,14 +25,12 @@ const TYPE_MAP = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Style = styled(({ loading, block, type, ...props }) => (
-  <button type="button" {...props} />
-))<{
+const Style = styled.button<{
   loading: boolean;
   block: boolean;
-  type: Type;
+  buttonType: Type;
 }>`
+  white-space: nowrap;
   position: relative;
   border: none;
   outline: none;
@@ -49,13 +47,13 @@ const Style = styled(({ loading, block, type, ...props }) => (
     opacity: 0.5;
     cursor: not-allowed;
   }
-  ${({ type, loading, block }) => {
+  ${({ buttonType, loading, block }) => {
     const {
       color,
       backgroundColor,
       hoverBackgroundColor,
       activeBackgroundColor,
-    } = TYPE_MAP[type];
+    } = TYPE_MAP[buttonType];
     return css`
       background-color: ${backgroundColor};
       display: ${block ? 'block' : 'inline-block'};
@@ -117,9 +115,9 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
     const padding = `0 ${size / 2}px`;
     return (
       <Style
+        type="button"
         {...props}
-        size={size}
-        type={type}
+        buttonType={type}
         disabled={disabled || loading}
         loading={loading}
         block={block}
