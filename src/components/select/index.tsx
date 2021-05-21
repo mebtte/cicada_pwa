@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
+import scrollbar from '@/style/scrollbar';
 import Input from '../input';
 import CircularLoader from '../circular_loader';
 
@@ -22,6 +23,9 @@ const Style = styled.div<{ arrayVisible: boolean }>`
     box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
       0 9px 28px 8px rgb(0 0 0 / 5%);
     transition: ${ANIMATION_DURATION}ms;
+    max-height: 300px;
+    overflow: auto;
+    ${scrollbar}
     &:empty::after {
       content: '空';
       display: block;
