@@ -1,15 +1,19 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
 
-import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/figure';
-import parseSearch from '@/utils/parse_search';
+import Select from '@/components/select';
 import useHistory from '@/utils/use_history';
 import Input from '@/components/input';
 import Button, { Type } from '@/components/button';
-import { Query } from '../constants';
+import {
+  Query,
+  SearchKey,
+  SEARCH_KEYS,
+  SEARCH_KEY_MAP_LALEL,
+} from '../constants';
 
 const Style = styled.div`
+  z-index: 2;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -20,27 +24,35 @@ const Style = styled.div`
     display: flex;
     align-items: center;
     gap: 5px;
-    > .label {
-      font-size: 14px;
-      color: #333;
+    > .key {
+      width: 100px;
     }
-    input {
+    > .value {
       flex: 1;
+      min-width: 0;
     }
   }
 `;
+const itemRenderer = (key: SearchKey) => SEARCH_KEY_MAP_LALEL[key];
 
-const Search = ({ loading }: { loading: boolean }) => {
+const Search = ({
+  searchKey,
+  searchValue: initialSearchValue,
+  loading,
+}: {
+  searchKey: SearchKey;
+  searchValue: string;
+  loading: boolean;
+}) => {
   const history = useHistory();
-  const location = useLocation();
 
-  const nameInputRef = useRef<HTMLInputElement>();
-  const aliasInputRef = useRef<HTMLInputElement>();
+  const [searchValue, setSearchValue] = useState(initialSearchValue);
+  const onSearchValueChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setSearchValue(event.target.value);
   const onSearch = () =>
     history.push({
       query: {
-        [Query.SEARCH_NAME]: nameInputRef.current.value,
-        [Query.SEARCH_ALIAS]: aliasInputRef.current.value,
+        [Query.SEARCH_VALUE]: searchValue,
         [Query.PAGE]: 1,
       },
     });
@@ -49,36 +61,29 @@ const Search = ({ loading }: { loading: boolean }) => {
       onSearch();
     }
   };
-
-  useLayoutEffect(() => {
-    const query = parseSearch<{ [key in Query]?: string }>(location.search);
-    if (query[Query.SEARCH_NAME]) {
-      nameInputRef.current.value = query[Query.SEARCH_NAME];
-    }
-    if (query[Query.SEARCH_ALIAS]) {
-      aliasInputRef.current.value = query[Query.SEARCH_ALIAS];
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const onSearchKeyChange = (key: SearchKey) =>
+    history.push({
+      query: {
+        [Query.SEARCH_KEY]: key,
+      },
+    });
 
   return (
     <Style>
       <div className="input">
-        <div className="label">名字</div>
-        <Input
-          ref={nameInputRef}
-          onKeyDown={onKeyDown}
-          disabled={loading}
-          maxLength={NAME_MAX_LENGTH}
+        <Select
+          className="key"
+          value={searchKey}
+          onChange={onSearchKeyChange}
+          array={SEARCH_KEYS}
+          itemRenderer={itemRenderer}
         />
-      </div>
-      <div className="input">
-        <div className="label">别名</div>
         <Input
-          ref={aliasInputRef}
+          className="value"
+          value={searchValue}
+          onChange={onSearchValueChange}
           onKeyDown={onKeyDown}
-          disabled={loading}
-          maxLength={ALIAS_MAX_LENGTH}
+          placeholder="输入搜索内容"
         />
       </div>
       <Button

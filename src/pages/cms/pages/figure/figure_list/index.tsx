@@ -6,6 +6,7 @@ import useFigureList from './use_figure_list';
 import Search from './search';
 import Pagination from './pagination';
 import FigureList from './figure_list';
+import { SearchKey } from '../constants';
 
 const Style = styled.div`
   flex: 1;
@@ -18,8 +19,20 @@ const errorCardStyle = {
   minHeight: 0,
 };
 
-const Wrapper = () => {
-  const { error, loading, page, total, retry, figureList } = useFigureList();
+const Wrapper = ({
+  searchKey,
+  searchValue,
+  page,
+}: {
+  searchKey: SearchKey;
+  searchValue: string;
+  page: number;
+}) => {
+  const { error, loading, total, retry, figureList } = useFigureList({
+    searchKey,
+    searchValue,
+    page,
+  });
 
   let content: ReactNode = null;
   if (error) {
@@ -37,7 +50,11 @@ const Wrapper = () => {
   }
   return (
     <Style>
-      <Search loading={loading} />
+      <Search
+        loading={loading}
+        searchKey={searchKey}
+        searchValue={searchValue}
+      />
       {content}
       <Pagination page={page} total={total} />
     </Style>

@@ -8,6 +8,7 @@ import CircularLoader from '../circular_loader';
 const ANIMATION_DURATION = 350;
 const Style = styled.div<{ arrayVisible: boolean }>`
   position: relative;
+  display: inline-block;
   > .input {
     width: 100%;
   }

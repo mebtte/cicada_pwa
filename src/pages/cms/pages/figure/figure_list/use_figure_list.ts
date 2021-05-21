@@ -1,19 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import logger from '@/platform/logger';
-import useQuery from '@/utils/use_query';
 import cmsGetFigureList from '@/apis/cms_get_figure_list';
-import { Figure, Query } from '../constants';
+import { Figure, SearchKey } from '../constants';
 import { PAGE_SIZE } from './constants';
 import eventemitter, { EventType } from '../eventemitter';
 
-export default () => {
-  const query = useQuery<{ [key in Query]: string }>();
-  const searchName = query[Query.SEARCH_NAME] || '';
-  const searchAlias = query[Query.SEARCH_ALIAS] || '';
-  const pageString = query[Query.PAGE];
-  const page = pageString ? +pageString : 1 || 1;
-
+export default ({
+  searchKey,
+  searchValue,
+  page,
+}: {
+  searchKey: SearchKey;
+  searchValue: string;
+  page: number;
+}) => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
   const [figureList, setFigureList] = useState<Figure[]>([]);
@@ -23,10 +24,9 @@ export default () => {
     setLoading(true);
     try {
       const { total: latestTotal, list } = await cmsGetFigureList({
-        name: searchName,
-        alias: searchAlias,
         page,
         pageSize: PAGE_SIZE,
+        [searchKey]: searchValue,
       });
       setTotal(latestTotal);
       setFigureList(list);
@@ -35,7 +35,7 @@ export default () => {
       setError(e);
     }
     setLoading(false);
-  }, [searchName, searchAlias, page]);
+  }, [searchKey, searchValue, page]);
 
   useEffect(() => {
     getFigureList();
