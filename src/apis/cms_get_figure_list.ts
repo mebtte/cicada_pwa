@@ -27,10 +27,21 @@ async function cmsGetFigureList({
   });
   return {
     total: data.total,
-    list: data.list.map((f) => ({
-      ...f,
-      createTime: new Date(f.create_time),
-    })),
+    list: data.list.map(
+      ({
+        id,
+        name: fName,
+        alias: fAlias,
+        avatar,
+        create_time: createTime,
+      }) => ({
+        id,
+        name: fName,
+        alias: fAlias,
+        avatar,
+        createTime: new Date(createTime),
+      }),
+    ),
   };
 }
 

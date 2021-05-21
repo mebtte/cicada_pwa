@@ -13,7 +13,7 @@ const Style = styled.div<{ arrayVisible: boolean }>`
   > .array {
     z-index: 1;
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 5px);
     left: 0;
     width: 100%;
     border-radius: 4px;
@@ -63,6 +63,8 @@ function Select<Item>({
   itemRenderer,
   onInputChange,
   loading = false,
+  placeholder,
+  ...props
 }: {
   value: Item | null;
   onChange: (item: Item) => void;
@@ -70,6 +72,8 @@ function Select<Item>({
   itemRenderer: (item: Item, customInput: string) => string;
   onInputChange?: (value: string) => void;
   loading?: boolean;
+  placeholder?: string;
+  [key: string]: any;
 }) {
   const [customInput, setCustomInput] = useState('');
   const onCustomInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -86,7 +90,7 @@ function Select<Item>({
   }, [onInputChange, customInput]);
 
   return (
-    <Style arrayVisible={arrayVisible}>
+    <Style {...props} arrayVisible={arrayVisible}>
       <Input
         className="input"
         value={
@@ -96,6 +100,7 @@ function Select<Item>({
         onChange={onCustomInputChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        placeholder={placeholder}
       />
       <div className="array">
         {loading ? (

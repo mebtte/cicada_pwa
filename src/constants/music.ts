@@ -18,6 +18,11 @@ export enum MusicType {
   INSTRUMENT = 2,
 }
 
+export const MUSIC_TYPE_MAP_LABEL: Record<MusicType, string> = {
+  [MusicType.NORMAL]: '普通',
+  [MusicType.INSTRUMENT]: '纯音乐',
+};
+
 export interface ApiMusic {
   id: string;
   cover: string;

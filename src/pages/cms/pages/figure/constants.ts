@@ -1,6 +1,10 @@
-import cmsGetFigureList from '@/apis/cms_get_figure_list';
-
-export type Figure = AsyncReturnType<typeof cmsGetFigureList>['list'][0];
+export interface Figure {
+  id: string;
+  avatar: string;
+  name: string;
+  alias: string;
+  createTime: Date;
+}
 
 export enum Query {
   SEARCH_NAME = 'search_name',

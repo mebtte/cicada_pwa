@@ -6,19 +6,21 @@ import cmsCreateMusic from '@/apis/cms_create_music';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import selectFile from '@/utils/select_file';
-import { MusicType, NAME_MAX_LENGTH, MUSIC_NORMAL } from '@/constants/music';
+import {
+  MusicType,
+  MUSIC_TYPE_MAP_LABEL,
+  NAME_MAX_LENGTH,
+  MUSIC_NORMAL,
+} from '@/constants/music';
 import Label from '@/components/label';
 import Input from '@/components/input';
 import useHistory from '@/utils/use_history';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
 import useQuery from '@/utils/use_query';
-import { Query, Singer } from './constants';
+import { Query, Figure } from './constants';
+import SingerListSelector from './singer_list_selector';
 
-const MUSIC_TYPE_MAP_LABEL: Record<MusicType, string> = {
-  [MusicType.NORMAL]: '普通',
-  [MusicType.INSTRUMENT]: '纯音乐',
-};
 const MUSIC_TYPES = Object.keys(MUSIC_TYPE_MAP_LABEL).map(
   (t) => +t,
 ) as MusicType[];
@@ -50,7 +52,17 @@ const CreateMusicDialog = () => {
   const query = useQuery<{ [key in Query]?: string }>();
   const open = !!query[Query.CREATE_MUSIC_DIALOG_OPEN];
 
-  const [singerList, setSingerList] = useState<Singer[]>([]);
+  const [singerList, setSingerList] = useState<Figure[]>([]);
+  const onSingerSelect = (singer: Figure) =>
+    setSingerList((sl) => {
+      const exist = sl.find((s) => s.id === singer.id);
+      if (exist) {
+        return sl;
+      }
+      return [...sl, singer];
+    });
+  const onSingerRemove = (singer: Figure) =>
+    setSingerList((sl) => sl.filter((s) => s.id !== singer.id));
 
   const [name, setName] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -87,12 +99,17 @@ const CreateMusicDialog = () => {
       },
     });
     setTimeout(() => {
+      setSingerList([]);
       setName('');
+      setFile(null);
     }, 1000);
   };
 
   const [loading, setLoading] = useState(false);
   const onCreate = async () => {
+    if (!singerList.length) {
+      return toast.error('请选择歌手列表');
+    }
     if (!name) {
       return toast.error('请输入音乐名字');
     }
@@ -107,6 +124,8 @@ const CreateMusicDialog = () => {
         type: musicType,
         file,
       });
+      toast.success(`音乐"${name}"已创建`);
+      onClose();
     } catch (error) {
       logger.error(error, { description: '创建音乐失败', report: true });
       toast.error(error.message);
@@ -118,6 +137,12 @@ const CreateMusicDialog = () => {
     <Dialog open={open}>
       <Title>创建音乐</Title>
       <Content>
+        <SingerListSelector
+          style={labelStyle}
+          singerList={singerList}
+          onSingerSelect={onSingerSelect}
+          onSingerRemove={onSingerRemove}
+        />
         <Label label="音乐名" style={labelStyle}>
           <Input
             value={name}
