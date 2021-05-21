@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { shallowEqual, useSelector } from 'react-redux';
 
+import Button, { Type } from '@/components/button';
 import { User } from '@/constants/user';
 import { ROOT_PATH } from '@/constants/route';
 
@@ -11,7 +12,6 @@ const Style = styled.div`
     0px 4px 5px 0px rgba(49, 194, 124, 0.14),
     0px 1px 10px 0px rgba(49, 194, 124, 0.12);
   > .content {
-    width: 100%;
     max-width: 720px;
     margin: 0 auto;
     display: flex;
@@ -36,19 +36,7 @@ const Style = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      > .action {
-        margin-left: 10px;
-        color: white;
-        background-color: rgba(49, 194, 124, 0.5);
-        padding: 8px 18px;
-        border-radius: 2px;
-        text-decoration: none;
-        font-size: 12px;
-        transition: all 0.3s;
-        &:hover {
-          background-color: rgba(49, 194, 124, 1);
-        }
-      }
+      gap: 20px;
     }
   }
 `;
@@ -66,14 +54,8 @@ const CommonHeader = () => {
           <img className="text" src="/text_logo.png" alt="logo" />
         </Link>
         <div className="rest">
-          <Link className="action" to={ROOT_PATH.PLAYER}>
-            前往播放器
-          </Link>
-          {user && user.cms ? (
-            <Link className="action" to={ROOT_PATH.CMS}>
-              前往 CMS
-            </Link>
-          ) : null}
+          <Button label="播放器" type={Type.PRIMARY} />
+          {user && user.cms ? <Button label="CMS" type={Type.PRIMARY} /> : null}
         </div>
       </div>
     </Style>

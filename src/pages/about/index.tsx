@@ -4,12 +4,12 @@ import format from 'date-fns/format';
 
 import config from '@/config';
 import scrollbar from '@/style/scrollbar';
-import openLink from '../../utils/open_link';
-import { CICADA_START_YEAR } from '../../constants';
-import PageContainer from '../page_container';
-import Avatar from '../../components/avatar';
-import Tooltip from '../../components/tooltip';
+import openLink from '@/utils/open_link';
+import { CICADA_START_YEAR, ELECTRON_GITHUB_REPOSITORY } from '@/constants';
+import Avatar from '@/components/avatar';
+import Tooltip from '@/components/tooltip';
 import Header from './header';
+import PageContainer from '../page_container';
 
 const Style = styled(PageContainer)`
   ${scrollbar}
@@ -130,10 +130,7 @@ const About = () => {
               </span>
             </div>
             <div className="item">
-              <span
-                className="link"
-                data-url="https://github.com/mebtte/cicada_desktop"
-              >
+              <span className="link" data-url={ELECTRON_GITHUB_REPOSITORY}>
                 macOS&nbsp;/&nbsp;Windows
               </span>
               <span className="symbol">@</span>

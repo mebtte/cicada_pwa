@@ -1,8 +1,15 @@
+/* eslint-disable no-nested-ternary */
 import { ROOT_PATH, PLAYER_PATH } from '@/constants/route';
-import { IS_ELECTRON, IS_WINDOWS, IS_MAC_OS } from '@/constants';
+import {
+  IS_ELECTRON,
+  IS_WINDOWS,
+  IS_MAC_OS,
+  ELECTRON_GITHUB_REPOSITORY,
+} from '@/constants';
 import { Name } from '@/components/icon';
 import openLink from '@/utils/open_link';
 import dialog from '@/platform/dialog';
+import config from '@/config';
 
 export enum NavigatorType {
   LINK = 'link',
@@ -40,21 +47,30 @@ const NAVIGATORS: Navigator[] = [
   },
   {
     type: NavigatorType.ACTION,
+    label: 'CMS',
+    icon: Name.CMS_OUTLINE,
+    action: () =>
+      dialog.confirm({
+        title: '即将打开新的页面, 是否继续?',
+        onConfirm: () => void openLink(`${config.pwaOrigin}#${ROOT_PATH.CMS}`),
+      }),
+  },
+  {
+    type: NavigatorType.ACTION,
     label: '关于',
     icon: Name.INFO_OUTLINE,
     action: () =>
       dialog.confirm({
         title: '即将打开新的页面, 是否继续?',
         onConfirm: () =>
-          void openLink(`${window.location.origin}#${ROOT_PATH.ABOUT}`),
+          void openLink(`${config.pwaOrigin}#${ROOT_PATH.ABOUT}`),
       }),
   },
 ];
 if (!IS_ELECTRON) {
   NAVIGATORS.push({
     type: NavigatorType.ACTION,
-    label: '下载桌面客户端',
-    // eslint-disable-next-line no-nested-ternary
+    label: '桌面客户端',
     icon: IS_WINDOWS
       ? Name.WINDOW_COLORFULE
       : IS_MAC_OS
@@ -62,9 +78,9 @@ if (!IS_ELECTRON) {
       : Name.COMPUTER_FILL,
     action: () =>
       dialog.confirm({
-        title: '即将前往下载页面, 是否继续?',
+        title: '即将打开新的页面, 是否继续?',
         onConfirm: () =>
-          void openLink('https://github.com/mebtte/cicada_desktop/releases'),
+          void openLink(`${ELECTRON_GITHUB_REPOSITORY}/releases`),
       }),
   });
 }

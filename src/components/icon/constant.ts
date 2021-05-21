@@ -43,8 +43,10 @@ import WindowsColorful from './windows_colorful';
 import ComputerFill from './computer_fill';
 import JumpFill from './jump_fill';
 import GotoOutline from './goto_outline';
+import CmsOutline from './cms_outline';
 
 export enum Name {
+  CMS_OUTLINE = 'CmsOutline',
   GOTO_OUTLINE = 'GotoOutline',
   JUMP_FILL = 'JumpFill',
   COMPUTER_FILL = 'ComputerFill',
@@ -93,6 +95,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT = {
+  [Name.CMS_OUTLINE]: CmsOutline,
   [Name.JUMP_FILL]: JumpFill,
   [Name.COMPUTER_FILL]: ComputerFill,
   [Name.WINDOW_COLORFULE]: WindowsColorful,

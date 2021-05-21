@@ -16,3 +16,6 @@ export enum RequestStatus {
 export const ORIGINAL_SCROLLBAR_WIDTH = getOriginalScrollbarWidth();
 
 export const GITHUB_REPOSITORY = 'https://github.com/mebtte/cicada_pwa';
+
+export const ELECTRON_GITHUB_REPOSITORY =
+  'https://github.com/mebtte/cicada_electron';
