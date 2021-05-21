@@ -23,10 +23,10 @@ export enum SearchKey {
   ALIAS = 'alias',
 }
 
-export const SEARCH_KEY_MAP_LALEL: Record<SearchKey, string> = {
+export const SEARCH_KEY_MAP_LABEL: Record<SearchKey, string> = {
   [SearchKey.ID]: 'ID',
   [SearchKey.NAME]: '名字',
   [SearchKey.ALIAS]: '别名',
 };
 
-export const SEARCH_KEYS = Object.keys(SEARCH_KEY_MAP_LALEL) as SearchKey[];
+export const SEARCH_KEYS = Object.keys(SEARCH_KEY_MAP_LABEL) as SearchKey[];

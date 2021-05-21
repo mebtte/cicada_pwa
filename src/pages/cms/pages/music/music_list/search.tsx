@@ -27,7 +27,13 @@ const Style = styled.div`
     margin-right: 20px;
   }
 `;
-const itemRenderer = (key: SearchKey) => SEARCH_KEY_MAP_LABEL[key];
+const itemRenderer = (key: SearchKey, customInput: string) => {
+  const target = SEARCH_KEY_MAP_LABEL[key];
+  if (target.includes(customInput)) {
+    return target;
+  }
+  return null;
+};
 
 const Search = ({ searchKey }: { searchKey: SearchKey }) => {
   const history = useHistory();
