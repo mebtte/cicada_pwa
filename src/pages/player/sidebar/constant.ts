@@ -11,12 +11,21 @@ import openLink from '@/utils/open_link';
 import dialog from '@/platform/dialog';
 import config from '@/config';
 
+export enum NavigatorKey {
+  HOME,
+  SETTING,
+  CMS,
+  ABOUT,
+  DESKTOP_APP,
+}
+
 export enum NavigatorType {
   LINK = 'link',
   ACTION = 'action',
 }
 
 export interface LinkNavigator {
+  key: NavigatorKey;
   type: NavigatorType.LINK;
   label: string;
   icon: Name;
@@ -24,6 +33,7 @@ export interface LinkNavigator {
 }
 
 export interface ActionNavigator {
+  key: NavigatorKey;
   type: NavigatorType.ACTION;
   label: string;
   icon: Name;
@@ -34,18 +44,21 @@ export type Navigator = LinkNavigator | ActionNavigator;
 
 const NAVIGATORS: Navigator[] = [
   {
+    key: NavigatorKey.HOME,
     type: NavigatorType.LINK,
     label: '知了',
     icon: Name.HOME_OUTLINE,
     link: ROOT_PATH.PLAYER,
   },
   {
+    key: NavigatorKey.SETTING,
     type: NavigatorType.LINK,
     label: '设置',
     icon: Name.SETTING_OUTLINE,
     link: PLAYER_PATH.SETTING,
   },
   {
+    key: NavigatorKey.CMS,
     type: NavigatorType.ACTION,
     label: 'CMS',
     icon: Name.CMS_OUTLINE,
@@ -56,6 +69,7 @@ const NAVIGATORS: Navigator[] = [
       }),
   },
   {
+    key: NavigatorKey.ABOUT,
     type: NavigatorType.ACTION,
     label: '关于',
     icon: Name.INFO_OUTLINE,
@@ -69,6 +83,7 @@ const NAVIGATORS: Navigator[] = [
 ];
 if (!IS_ELECTRON) {
   NAVIGATORS.push({
+    key: NavigatorKey.DESKTOP_APP,
     type: NavigatorType.ACTION,
     label: '桌面客户端',
     icon: IS_WINDOWS

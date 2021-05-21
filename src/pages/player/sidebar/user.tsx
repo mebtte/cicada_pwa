@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { PLAYER_PATH } from '@/constants/route';
@@ -27,25 +26,19 @@ const Style = styled.div`
   }
 `;
 
-const User = () => {
-  const { user } = useSelector(({ user: u }: { user: UserType }) => ({
-    user: u,
-  }));
-
-  return (
-    <Style>
-      <Link className="avatar-container" to={PLAYER_PATH.PROFILE}>
-        <Avatar
-          className="avatar"
-          animated
-          src={user.avatar}
-          size={AVATAR_SIZE}
-          shape={Shape.CIRCLE}
-        />
-      </Link>
-      <div className="name">{user.nickname}</div>
-    </Style>
-  );
-};
+const User = ({ user }: { user: UserType }) => (
+  <Style>
+    <Link className="avatar-container" to={PLAYER_PATH.PROFILE}>
+      <Avatar
+        className="avatar"
+        animated
+        src={user.avatar}
+        size={AVATAR_SIZE}
+        shape={Shape.CIRCLE}
+      />
+    </Link>
+    <div className="name">{user.nickname}</div>
+  </Style>
+);
 
 export default User;
