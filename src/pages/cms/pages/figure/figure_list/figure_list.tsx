@@ -59,6 +59,7 @@ const emptyStyle = {
 const actionStyle = {
   flexShrink: 1,
 };
+const ACTION_SIZE = 24;
 const headers = ['ID', '头像', '名字', '别名', '创建时间', '操作'];
 const rowRenderer = (figure: Figure) => [
   figure.id,
@@ -70,7 +71,7 @@ const rowRenderer = (figure: Figure) => [
     <Button
       label="编辑资料"
       type={Type.PRIMARY}
-      size={20}
+      size={ACTION_SIZE}
       onClick={() =>
         eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)
       }
@@ -79,7 +80,7 @@ const rowRenderer = (figure: Figure) => [
     <Button
       label="编辑头像"
       type={Type.PRIMARY}
-      size={20}
+      size={ACTION_SIZE}
       onClick={() =>
         eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
       }
@@ -110,7 +111,7 @@ const FigureList = ({
   return (
     <Style isLoading={loading}>
       {loading || figureList.length ? (
-        <div className="content">
+        <div className="content" ref={contentRef}>
           <Table
             className="table"
             array={figureList}

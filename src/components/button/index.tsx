@@ -4,27 +4,6 @@ import styled, { css } from 'styled-components';
 import { Type } from './constant';
 import CircularLoader from '../circular_loader';
 
-// const SIZE_MAP_STYLE = {
-//   [Size.MINI]: {
-//     height: 18,
-//     fontSize: 12,
-//     padding: 8,
-//     loaderSize: 12,
-//   },
-//   [Size.SMALL]: {
-//     height: 24,
-//     fontSize: 12,
-//     padding: 10,
-//     loaderSize: 14,
-//   },
-//   [Size.NORMAL]: {
-//     height: 32,
-//     fontSize: 14,
-//     padding: 15,
-//     loaderSize: 18,
-//   },
-// };
-
 const TYPE_MAP = {
   [Type.NORMAL]: {
     color: 'rgb(55 55 55)',
@@ -134,7 +113,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
     ref,
   ) => {
     const loaderSize = size * 0.6;
-    const fontSize = size / 2;
+    const fontSize = (size / 5) * 2;
     const padding = `0 ${size / 2}px`;
     return (
       <Style

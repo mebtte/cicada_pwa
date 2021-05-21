@@ -7,10 +7,15 @@ import logger from '@/platform/logger';
 import toast from '@/platform/toast';
 import { NAME_MAX_LENGTH } from '@/constants/figure';
 import Button, { Type } from '@/components/button';
-import TextField from '@/components/text_field';
+import Label from '@/components/label';
+import Input from '@/components/input';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import eventemitter, { EventType } from './eventemitter';
 import { Query } from './constants';
+
+const inputStyle = {
+  width: '100%',
+};
 
 const CreateFigureDialog = () => {
   const history = useHistory();
@@ -47,15 +52,15 @@ const CreateFigureDialog = () => {
     <Dialog open={open}>
       <Title>创建角色</Title>
       <Content>
-        <TextField
-          label="角色名字"
-          inputProps={{
-            value: name,
-            onChange: onNameChange,
-            placeholder: `角色名字不超过 ${NAME_MAX_LENGTH} 个字符`,
-            maxLength: NAME_MAX_LENGTH,
-          }}
-        />
+        <Label label="角色名字">
+          <Input
+            value={name}
+            onChange={onNameChange}
+            placeholder={`角色名字不超过 ${NAME_MAX_LENGTH} 个字符`}
+            maxLength={NAME_MAX_LENGTH}
+            style={inputStyle}
+          />
+        </Label>
       </Content>
       <Action>
         <Button label="取消" onClick={onClose} disabled={loading} />

@@ -47,7 +47,7 @@ import GotoOutline from './goto_outline';
 export enum Name {
   GOTO_OUTLINE = 'GotoOutline',
   JUMP_FILL = 'JumpFill',
-  COMPUTER_FILL = 'computer_fill',
+  COMPUTER_FILL = 'ComputerFill',
   WINDOW_COLORFULE = 'WindowsColorful',
   MAC_OS_COLORFULE = 'MacOSColorful',
   MINIMIZE_OUTLINE = 'MinimizeOutline',
