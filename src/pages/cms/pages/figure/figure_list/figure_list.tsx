@@ -2,6 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
+import IconButton, {
+  Name,
+  Type as IconButtonType,
+} from '@/components/icon_button';
 import Button, { Type } from '@/components/button';
 import Empty from '@/components/empty';
 import CircularLoader from '@/components/circular_loader';
@@ -44,7 +48,7 @@ const Style = styled.div<{ isLoading: boolean }>`
     }
   `}
 `;
-const Operation = styled.div`
+const AvatarBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -63,30 +67,27 @@ const ACTION_SIZE = 24;
 const headers = ['ID', '头像', '名字', '别名', '创建时间', '操作'];
 const rowRenderer = (figure: Figure) => [
   figure.id,
-  figure.avatar ? <Avatar src={figure.avatar} /> : '-',
-  figure.name,
-  figure.alias || '-',
-  format(figure.createTime, 'yyyy-MM-dd HH:mm'),
-  <Operation>
-    <Button
-      label="编辑资料"
-      type={Type.PRIMARY}
-      size={ACTION_SIZE}
-      onClick={() =>
-        eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)
-      }
-      style={actionStyle}
-    />
-    <Button
-      label="编辑头像"
-      type={Type.PRIMARY}
+  <AvatarBox>
+    {figure.avatar ? <Avatar src={figure.avatar} /> : '-'}
+    <IconButton
+      name={Name.EDIT_OUTLINE}
+      type={IconButtonType.PRIMARY}
       size={ACTION_SIZE}
       onClick={() =>
         eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
       }
-      style={actionStyle}
     />
-  </Operation>,
+  </AvatarBox>,
+  figure.name,
+  figure.alias || '-',
+  format(figure.createTime, 'yyyy-MM-dd HH:mm'),
+  <Button
+    label="编辑资料"
+    type={Type.PRIMARY}
+    size={ACTION_SIZE}
+    onClick={() => eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)}
+    style={actionStyle}
+  />,
 ];
 
 const FigureList = ({
