@@ -17,7 +17,6 @@ import Input from '@/components/input';
 import useHistory from '@/utils/use_history';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
-import useQuery from '@/utils/use_query';
 import { Query, Figure } from './constants';
 import SingerListSelector from './singer_list_selector';
 
@@ -47,10 +46,8 @@ const inputStyle = {
   width: '100%',
 };
 
-const CreateMusicDialog = () => {
+const CreateMusicDialog = ({ open }: { open: boolean }) => {
   const history = useHistory();
-  const query = useQuery<{ [key in Query]?: string }>();
-  const open = !!query[Query.CREATE_MUSIC_DIALOG_OPEN];
 
   const [singerList, setSingerList] = useState<Figure[]>([]);
   const onSingerSelect = (singer: Figure) =>

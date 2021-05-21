@@ -18,14 +18,14 @@ export type QueryObject = {
 };
 
 export enum SearchKey {
-  NAME = 'name',
   ID = 'id',
+  NAME = 'name',
   ALIAS = 'alias',
 }
 
 export const SEARCH_KEY_MAP_LALEL: Record<SearchKey, string> = {
-  [SearchKey.NAME]: '名字',
   [SearchKey.ID]: 'ID',
+  [SearchKey.NAME]: '名字',
   [SearchKey.ALIAS]: '别名',
 };
 

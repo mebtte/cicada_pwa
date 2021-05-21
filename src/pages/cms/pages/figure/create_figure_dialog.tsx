@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import useHistory from '@/utils/use_history';
-import useQuery from '@/utils/use_query';
 import cmsCreateFigure from '@/apis/cms_create_figure';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
@@ -17,10 +16,8 @@ const inputStyle = {
   width: '100%',
 };
 
-const CreateFigureDialog = () => {
+const CreateFigureDialog = ({ open }: { open: boolean }) => {
   const history = useHistory();
-  const query = useQuery<{ [key in Query]?: string }>();
-  const open = !!query[Query.CREATE_FIGURE_DIALOG_OPEN];
 
   const [name, setName] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>

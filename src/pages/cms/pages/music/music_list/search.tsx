@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Select from '@/components/select';
-import useHistory from '@/utils/use_history';
 import Input from '@/components/input';
 import Button, { Type } from '@/components/button';
+import useHistory from '@/utils/use_history';
+import Select from '@/components/select';
 import {
   Query,
   SearchKey,
+  SEARCH_KEY_MAP_LABEL,
   SEARCH_KEYS,
-  SEARCH_KEY_MAP_LALEL,
 } from '../constants';
 
 const Style = styled.div`
@@ -27,40 +27,24 @@ const Style = styled.div`
     margin-right: 20px;
   }
 `;
-const itemRenderer = (key: SearchKey) => SEARCH_KEY_MAP_LALEL[key];
+const itemRenderer = (key: SearchKey) => SEARCH_KEY_MAP_LABEL[key];
 
-const Search = ({
-  searchKey,
-  searchValue: initialSearchValue,
-  loading,
-}: {
-  searchKey: SearchKey;
-  searchValue: string;
-  loading: boolean;
-}) => {
+const Search = ({ searchKey }: { searchKey: SearchKey }) => {
   const history = useHistory();
 
-  const [searchValue, setSearchValue] = useState(initialSearchValue);
+  const onSearchKeyChange = (key: SearchKey) =>
+    history.push({ query: { [Query.SEARCH_KEY]: key } });
+
+  const [searchValue, setSearchValue] = useState('');
   const onSearchValueChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setSearchValue(event.target.value);
   const onSearch = () =>
-    history.push({
-      query: {
-        [Query.SEARCH_VALUE]: searchValue,
-        [Query.PAGE]: 1,
-      },
-    });
+    history.push({ query: { [Query.SEARCH_VALUE]: searchValue } });
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       onSearch();
     }
   };
-  const onSearchKeyChange = (key: SearchKey) =>
-    history.push({
-      query: {
-        [Query.SEARCH_KEY]: key,
-      },
-    });
 
   return (
     <Style>
@@ -75,15 +59,10 @@ const Search = ({
         className="value"
         value={searchValue}
         onChange={onSearchValueChange}
-        onKeyDown={onKeyDown}
         placeholder="输入搜索内容"
+        onKeyDown={onKeyDown}
       />
-      <Button
-        label="搜索"
-        type={Type.PRIMARY}
-        onClick={onSearch}
-        loading={loading}
-      />
+      <Button label="搜索" type={Type.PRIMARY} onClick={onSearch} />
     </Style>
   );
 };

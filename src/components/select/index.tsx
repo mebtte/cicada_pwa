@@ -4,13 +4,24 @@ import styled, { css } from 'styled-components';
 import scrollbar from '@/style/scrollbar';
 import Input from '../input';
 import CircularLoader from '../circular_loader';
+import Icon, { Name } from '../icon';
 
 const ANIMATION_DURATION = 350;
+const ARROW_SIZE = 12;
 const Style = styled.div<{ arrayVisible: boolean }>`
   position: relative;
   display: inline-block;
-  > .input {
-    width: 100%;
+  > .input-box {
+    position: relative;
+    > .input {
+      width: 100%;
+    }
+    > .arrow {
+      position: absolute;
+      right: 12px;
+      top: calc(50% - ${ARROW_SIZE / 2}px);
+      color: rgb(155 155 155);
+    }
   }
   > .array {
     z-index: 1;
@@ -98,18 +109,23 @@ function Select<Item>({
 
   return (
     <Style {...props} arrayVisible={arrayVisible}>
-      <Input
-        className="input"
-        value={
-          // eslint-disable-next-line no-nested-ternary
-          arrayVisible ? customInput : value ? itemRenderer(value, '') : ''
-        }
-        onChange={onCustomInputChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        placeholder={placeholder}
-        disabled={disabled}
-      />
+      <div className="input-box">
+        <Input
+          className="input"
+          value={
+            // eslint-disable-next-line no-nested-ternary
+            arrayVisible ? customInput : value ? itemRenderer(value, '') : ''
+          }
+          onChange={onCustomInputChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          disabled={disabled}
+        />
+        {arrayVisible ? null : (
+          <Icon className="arrow" name={Name.DOWN_OUTLINE} size={ARROW_SIZE} />
+        )}
+      </div>
       <div className="array">
         {loading ? (
           <div className="loading">
