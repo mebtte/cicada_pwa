@@ -142,6 +142,7 @@ const CreateMusicDialog = () => {
           singerList={singerList}
           onSingerSelect={onSingerSelect}
           onSingerRemove={onSingerRemove}
+          disabled={loading}
         />
         <Label label="音乐名" style={labelStyle}>
           <Input
@@ -159,6 +160,7 @@ const CreateMusicDialog = () => {
             onChange={onMusicTypeChange}
             array={MUSIC_TYPES}
             itemRenderer={musicTypeItemRenderer}
+            disabled={loading}
           />
         </Label>
         <Label label="音乐文件" style={labelStyle}>
@@ -167,8 +169,9 @@ const CreateMusicDialog = () => {
               label="选取文件"
               type={Type.PRIMARY}
               onClick={onSelectFile}
+              disabled={loading}
             />
-            {file ? <Input value={file.name} disabled /> : null}
+            {file ? <Input value={file.name} readOnly /> : null}
           </FileBox>
         </Label>
       </Content>

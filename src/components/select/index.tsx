@@ -64,6 +64,7 @@ function Select<Item>({
   onInputChange,
   loading = false,
   placeholder,
+  disabled,
   ...props
 }: {
   value: Item | null;
@@ -73,6 +74,7 @@ function Select<Item>({
   onInputChange?: (value: string) => void;
   loading?: boolean;
   placeholder?: string;
+  disabled?: boolean;
   [key: string]: any;
 }) {
   const [customInput, setCustomInput] = useState('');
@@ -101,6 +103,7 @@ function Select<Item>({
         onFocus={onFocus}
         onBlur={onBlur}
         placeholder={placeholder}
+        disabled={disabled}
       />
       <div className="array">
         {loading ? (

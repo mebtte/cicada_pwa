@@ -50,11 +50,13 @@ const SingerListSelector = ({
   singerList,
   onSingerSelect,
   onSingerRemove,
+  disabled,
   ...props
 }: HTMLAttributes<HTMLDivElement> & {
   singerList: Figure[];
   onSingerSelect: (singer: Figure) => void;
   onSingerRemove: (singer: Figure) => void;
+  disabled: boolean;
 }) => {
   const history = useHistory();
 
@@ -93,11 +95,13 @@ const SingerListSelector = ({
             onInputChange={onInputChangeRef.current}
             loading={loading > 0}
             placeholder="搜索歌手"
+            disabled={disabled}
           />
           <Button
             label="创建歌手"
             type={ButtonType.PRIMARY}
             onClick={onCreateSinger}
+            disabled={disabled}
           />
         </div>
         <div className="singer-list">
@@ -112,6 +116,7 @@ const SingerListSelector = ({
                 size={18}
                 type={Type.DANGER}
                 onClick={() => onSingerRemove(singer)}
+                disabled={disabled}
               />
             </div>
           ))}
