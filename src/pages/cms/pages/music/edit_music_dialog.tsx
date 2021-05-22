@@ -68,7 +68,7 @@ const EditMusicDialog = () => {
 
       if (needUpdate) {
         toast.success(`音乐"${name}"已更新`);
-        eventemitter.emit(EventType.MUSIC_UPDATED_OR_DELETED);
+        eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
       }
 
       onClose();

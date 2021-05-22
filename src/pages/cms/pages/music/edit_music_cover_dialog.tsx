@@ -16,7 +16,7 @@ const EditFigureAvatarDialog = () => {
   const onClose = () => setMusic(null);
   const onUpdate = async (file: File) => {
     await cmsUpdateMusic({ id: music.id, key: 'cover', value: file });
-    eventemitter.emit(EventType.MUSIC_UPDATED_OR_DELETED);
+    eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
   };
 
   useEffect(() => {

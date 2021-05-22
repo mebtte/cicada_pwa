@@ -123,7 +123,7 @@ const MusicList = ({
         try {
           await cmsDeleteMusic(music.id);
           toast.success(`音乐"${music.name}"已被删除`);
-          eventemitter.emit(EventType.MUSIC_UPDATED_OR_DELETED);
+          eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
         } catch (error) {
           logger.error(error, { description: '删除音乐失败', report: true });
           toast.error(error.message);

@@ -123,6 +123,7 @@ const CreateMusicDialog = () => {
         file,
       });
       toast.success(`音乐"${name}"已创建`);
+      eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
       onClose();
     } catch (error) {
       logger.error(error, { description: '创建音乐失败', report: true });
