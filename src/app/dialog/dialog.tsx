@@ -6,9 +6,6 @@ import Button from '@/components/button';
 import { Dialog as DialogType } from './type';
 
 const ACTION_SIZE = 32;
-const buttonStyle = {
-  marginLeft: 20,
-};
 
 const DialogWrapper = ({
   dialog,
@@ -70,7 +67,6 @@ const DialogWrapper = ({
         <Button
           label={confirmText}
           onClick={onComfirmWrapper}
-          style={buttonStyle}
           loading={confirming}
           disabled={confirming || canceling}
           size={ACTION_SIZE}
