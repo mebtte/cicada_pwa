@@ -5,12 +5,7 @@ import Input from '@/components/input';
 import Button, { Type } from '@/components/button';
 import useHistory from '@/utils/use_history';
 import Select from '@/components/select';
-import {
-  Query,
-  SearchKey,
-  SEARCH_KEY_MAP_LABEL,
-  SEARCH_KEYS,
-} from '../constants';
+import { Query, SearchKey, SEARCH_KEY_MAP, SEARCH_KEYS } from '../constants';
 
 const Style = styled.div`
   z-index: 2;
@@ -18,7 +13,7 @@ const Style = styled.div`
   display: flex;
   align-items: center;
   > .key {
-    width: 120px;
+    width: 150px;
     margin-right: 5px;
   }
   > .value {
@@ -28,9 +23,9 @@ const Style = styled.div`
   }
 `;
 const itemRenderer = (key: SearchKey, customInput: string) => {
-  const target = SEARCH_KEY_MAP_LABEL[key];
-  if (target.includes(customInput)) {
-    return target;
+  const { label } = SEARCH_KEY_MAP[key];
+  if (label.includes(customInput)) {
+    return label;
   }
   return null;
 };
@@ -62,6 +57,7 @@ const Search = ({
     }
   };
 
+  const { placeholder } = SEARCH_KEY_MAP[searchKey];
   return (
     <Style>
       <Select
@@ -76,7 +72,7 @@ const Search = ({
         className="value"
         value={searchValue}
         onChange={onSearchValueChange}
-        placeholder="输入搜索内容"
+        placeholder={placeholder}
         onKeyDown={onKeyDown}
         disabled={loading}
       />

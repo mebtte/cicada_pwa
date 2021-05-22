@@ -8,16 +8,14 @@ async function cmsGetMusicList({
   id,
   name,
   alias,
-  singerId,
-  singerName,
+  singerIdOrName,
 }: {
   page: number;
   pageSize: number;
   id?: string;
   name?: string;
   alias?: string;
-  singerId?: string;
-  singerName?: string;
+  singerIdOrName?: string;
 }) {
   const data = await api.get<{
     total: number;
@@ -42,8 +40,7 @@ async function cmsGetMusicList({
       id,
       name,
       alias,
-      singer_id: singerId,
-      singer_name: singerName,
+      singer_id_or_name: singerIdOrName,
     },
     withToken: true,
   });
