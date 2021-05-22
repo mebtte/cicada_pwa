@@ -14,7 +14,7 @@ const Content = styled.div`
 `;
 const bodyProps = {
   style: {
-    width: 500,
+    width: 550,
     display: 'flex',
     flexDirection: 'column' as 'column',
     padding: 0,
