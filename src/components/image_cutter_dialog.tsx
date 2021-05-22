@@ -9,10 +9,6 @@ import dialog from '../platform/dialog';
 import Dialog, { Title, Content, Action } from './dialog';
 import Button, { Type } from './button';
 
-const ACTION_SIZE = 32;
-const buttonStyle = {
-  marginLeft: 20,
-};
 const Empty = styled.div`
   font-size: 12px;
 `;
@@ -133,25 +129,18 @@ const ImageCutterDialog = ({
         )}
       </Content>
       <Action>
-        <Button
-          label="选取图片"
-          size={ACTION_SIZE}
-          style={buttonStyle}
-          onClick={onSelectImage}
-          disabled={saving}
-        />
-        <Button
-          label="取消"
-          size={ACTION_SIZE}
-          style={buttonStyle}
-          onClick={onClose}
-          disabled={saving}
-        />
+        <div className="left">
+          <Button
+            label="选取图片"
+            type={Type.PRIMARY}
+            onClick={onSelectImage}
+            disabled={saving}
+          />
+        </div>
+        <Button label="取消" onClick={onClose} disabled={saving} />
         <Button
           label="更新"
-          size={ACTION_SIZE}
           type={Type.PRIMARY}
-          style={buttonStyle}
           disabled={!imageUrl}
           loading={saving}
           onClick={onUpdateWrapper}

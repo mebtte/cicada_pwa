@@ -39,8 +39,9 @@ export default ({
   useEffect(() => {
     getMusicList();
 
-    eventemitter.on(EventType.MUSIC_DELETED, getMusicList);
-    return () => void eventemitter.off(EventType.MUSIC_DELETED, getMusicList);
+    eventemitter.on(EventType.MUSIC_UPDATED_OR_DELETED, getMusicList);
+    return () =>
+      void eventemitter.off(EventType.MUSIC_UPDATED_OR_DELETED, getMusicList);
   }, [getMusicList]);
 
   return { error, loading, musicList, total, retry: getMusicList };
