@@ -35,18 +35,6 @@ const StyledContent = styled(Content)`
     }
   }
 `;
-const StyledAction = styled(Action)`
-  display: flex;
-  align-items: center;
-  text-align: left;
-  > .left {
-    flex: 1;
-    min-width: 0;
-  }
-`;
-const buttonStyle = {
-  marginLeft: 10,
-};
 
 const ShortcutDialog = ({
   globalShortcut,
@@ -163,7 +151,7 @@ const ShortcutDialog = ({
           <div className="content empty">按下组合键</div>
         )}
       </StyledContent>
-      <StyledAction>
+      <Action>
         <div className="left">
           <Button
             label="删除快捷键"
@@ -178,10 +166,9 @@ const ShortcutDialog = ({
           size={ACTION_SIZE}
           type={Type.PRIMARY}
           onClick={onSave}
-          style={buttonStyle}
           disabled={!currentKeys.length}
         />
-      </StyledAction>
+      </Action>
     </Dialog>
   );
 };
