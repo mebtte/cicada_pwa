@@ -22,7 +22,6 @@ const Music = () => {
     searchKey = SearchKey.NAME;
   }
   const searchValue = query[Query.SEARCH_VALUE] || '';
-  const createMusicDialogOpen = !!query[Query.CREATE_MUSIC_DIALOG_OPEN];
   const pageString = query[Query.PAGE];
   const page = pageString ? +pageString : 1 || 1;
 
@@ -31,7 +30,7 @@ const Music = () => {
       <MusicList page={page} searchKey={searchKey} searchValue={searchValue} />
       <Action />
 
-      <CreateMusicDialog open={createMusicDialogOpen} />
+      <CreateMusicDialog />
       <EditMusicCoverDialog />
     </Style>
   );

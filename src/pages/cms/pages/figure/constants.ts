@@ -10,7 +10,6 @@ export enum Query {
   PAGE = 'page',
   SEARCH_KEY = 'search_key',
   SEARCH_VALUE = 'search_value',
-  CREATE_FIGURE_DIALOG_OPEN = 'create_figure_dialog_open',
 }
 
 export type QueryObject = {

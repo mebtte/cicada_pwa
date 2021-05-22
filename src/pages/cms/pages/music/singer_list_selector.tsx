@@ -13,7 +13,6 @@ import cmsSearchFigureList from '@/apis/cms_search_figure_list';
 import Select from '@/components/select';
 import Label from '@/components/label';
 import { Figure } from './constants';
-import { Query } from '../figure/constants';
 
 const Style = styled.div`
   > .input {
@@ -79,8 +78,7 @@ const SingerListSelector = ({
       setLoading((l) => l - 1);
     }, 500),
   );
-  const onCreateSinger = () =>
-    history.push(`${CMS_PATH.FIGURE}?${Query.CREATE_FIGURE_DIALOG_OPEN}=1`);
+  const onCreateSinger = () => history.push(CMS_PATH.FIGURE);
 
   return (
     <Label {...props} label="歌手列表">

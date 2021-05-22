@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Select from '@/components/select';
@@ -14,11 +14,11 @@ import {
 } from '@/constants/music';
 import Label from '@/components/label';
 import Input from '@/components/input';
-import useHistory from '@/utils/use_history';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
-import { Query, Figure } from './constants';
+import { Figure } from './constants';
 import SingerListSelector from './singer_list_selector';
+import eventemitter, { EventType } from './eventemitter';
 
 const MUSIC_TYPES = Object.keys(MUSIC_TYPE_MAP_LABEL).map(
   (t) => +t,
@@ -46,9 +46,7 @@ const inputStyle = {
   width: '100%',
 };
 
-const CreateMusicDialog = ({ open }: { open: boolean }) => {
-  const history = useHistory();
-
+const CreateMusicDialog = () => {
   const [singerList, setSingerList] = useState<Figure[]>([]);
   const onSingerSelect = (singer: Figure) =>
     setSingerList((sl) => {
@@ -89,18 +87,21 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
       },
     });
 
+  const [open, setOpen] = useState(false);
   const onClose = () => {
-    history.push({
-      query: {
-        [Query.CREATE_MUSIC_DIALOG_OPEN]: '',
-      },
-    });
+    setOpen(false);
     setTimeout(() => {
       setSingerList([]);
       setName('');
       setFile(null);
     }, 1000);
   };
+  useEffect(() => {
+    const openListener = () => setOpen(true);
+    eventemitter.on(EventType.OPEN_CREATE_MUSIC_DIALOG, openListener);
+    return () =>
+      void eventemitter.off(EventType.OPEN_CREATE_MUSIC_DIALOG, openListener);
+  }, []);
 
   const [loading, setLoading] = useState(false);
   const onCreate = async () => {
@@ -185,4 +186,4 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
   );
 };
 
-export default CreateMusicDialog;
+export default React.memo(CreateMusicDialog);

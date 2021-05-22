@@ -111,4 +111,4 @@ const EditFigureDialog = () => {
   );
 };
 
-export default EditFigureDialog;
+export default React.memo(EditFigureDialog);

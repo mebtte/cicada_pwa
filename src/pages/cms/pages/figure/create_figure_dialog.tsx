@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import useHistory from '@/utils/use_history';
 import cmsCreateFigure from '@/apis/cms_create_figure';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
@@ -10,22 +9,27 @@ import Label from '@/components/label';
 import Input from '@/components/input';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import eventemitter, { EventType } from './eventemitter';
-import { Query } from './constants';
 
 const inputStyle = {
   width: '100%',
 };
 
-const CreateFigureDialog = ({ open }: { open: boolean }) => {
-  const history = useHistory();
-
+const CreateFigureDialog = () => {
   const [name, setName] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setName(event.target.value);
+
+  const [open, setOpen] = useState(false);
   const onClose = () => {
-    history.push({ query: { [Query.CREATE_FIGURE_DIALOG_OPEN]: '' } });
+    setOpen(false);
     setTimeout(() => setName(''), 1000);
   };
+  useEffect(() => {
+    const openListener = () => setOpen(true);
+    eventemitter.on(EventType.OPEN_CREATE_FIGURE_DIALOG, openListener);
+    return () =>
+      void eventemitter.off(EventType.OPEN_CREATE_FIGURE_DIALOG, openListener);
+  }, []);
 
   const [loading, setLoading] = useState(false);
   const onCreate = async () => {
@@ -72,4 +76,4 @@ const CreateFigureDialog = ({ open }: { open: boolean }) => {
   );
 };
 
-export default CreateFigureDialog;
+export default React.memo(CreateFigureDialog);

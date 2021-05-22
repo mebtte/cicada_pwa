@@ -40,4 +40,4 @@ const EditFigureAvatarDialog = () => {
   );
 };
 
-export default EditFigureAvatarDialog;
+export default React.memo(EditFigureAvatarDialog);

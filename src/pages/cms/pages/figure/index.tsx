@@ -24,14 +24,13 @@ const Figure = () => {
   const searchValue = query[Query.SEARCH_VALUE] || '';
   const pageString = query[Query.PAGE];
   const page = pageString ? +pageString : 1 || 1;
-  const createFigureDialogOpen = !!query[Query.CREATE_FIGURE_DIALOG_OPEN];
 
   return (
     <Style>
       <FigureList searchKey={searchKey} searchValue={searchValue} page={page} />
       <Action />
 
-      <CreateFigureDialog open={createFigureDialogOpen} />
+      <CreateFigureDialog />
       <EditFigureAvatarDialog />
       <EditFigureDialog />
     </Style>

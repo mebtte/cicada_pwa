@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import useHistory from '@/utils/use_history';
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
-import { Query } from './constants';
+import eventemitter, { EventType } from './eventemitter';
 
 const Style = styled.div`
   padding: 20px 0;
@@ -13,19 +12,15 @@ const Style = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const openCreateFigureDialog = () =>
+  eventemitter.emit(EventType.OPEN_CREATE_FIGURE_DIALOG);
 
-const Action = () => {
-  const history = useHistory();
-  const openCreateFigureDialog = () =>
-    history.push({ query: { [Query.CREATE_FIGURE_DIALOG_OPEN]: 1 } });
-
-  return (
-    <Style>
-      <Tooltip title="创建角色" placement={Placement.LEFT}>
-        <IconButton name={Name.PLUS_OUTLINE} onClick={openCreateFigureDialog} />
-      </Tooltip>
-    </Style>
-  );
-};
+const Action = () => (
+  <Style>
+    <Tooltip title="创建角色" placement={Placement.LEFT}>
+      <IconButton name={Name.PLUS_OUTLINE} onClick={openCreateFigureDialog} />
+    </Tooltip>
+  </Style>
+);
 
 export default Action;
