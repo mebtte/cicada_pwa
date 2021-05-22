@@ -8,6 +8,7 @@ import CreateMusicDialog from './create_music_dialog';
 import MusicList from './music_list';
 import { Query, QueryObject, SearchKey, SEARCH_KEYS } from './constants';
 import EditMusicCoverDialog from './edit_music_cover_dialog';
+import EditMusicDialog from './edit_music_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -32,6 +33,7 @@ const Music = () => {
 
       <CreateMusicDialog />
       <EditMusicCoverDialog />
+      <EditMusicDialog />
     </Style>
   );
 };

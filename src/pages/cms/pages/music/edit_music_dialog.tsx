@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
 
-import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/figure';
-import Label from '@/components/label';
-import Input from '@/components/input';
-import cmsUpdateFigure from '@/apis/cms_update_figure';
+import cmsUpdateMusic from '@/apis/cms_update_music';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import Button, { Type } from '@/components/button';
+import Label from '@/components/label';
+import Input from '@/components/input';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
-import { Figure } from './constants';
+import Button, { Type } from '@/components/button';
+import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/music';
+import { Music } from './constants';
 import eventemitter, { EventType } from './eventemitter';
 
 const labelStyle = {
-  marginBottom: '20px',
+  marginBottom: 20,
 };
 const inputStyle = {
   width: '100%',
 };
 
-const EditFigureDialog = () => {
-  const [figure, setFigure] = useState<Figure>(null);
-  const onClose = () => setFigure(null);
+const EditMusicDialog = () => {
+  const [music, setMusic] = useState<Music | null>(null);
 
   const [name, setName] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -30,52 +29,59 @@ const EditFigureDialog = () => {
   const onAliasChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setAlias(event.target.value);
 
+  const onClose = () => {
+    setMusic(null);
+    setTimeout(() => {
+      setName('');
+      setAlias('');
+    }, 1000);
+  };
+  useEffect(() => {
+    const openListener = (m: Music) => {
+      setMusic(m);
+      setName(m.name);
+      setAlias(m.alias);
+    };
+    eventemitter.on(EventType.OPEN_EDIT_MUSIC_DIALOG, openListener);
+    return () =>
+      void eventemitter.off(EventType.OPEN_EDIT_MUSIC_DIALOG, openListener);
+  }, []);
+
   const [loading, setLoading] = useState(false);
   const onUpdate = async () => {
     if (!name) {
-      return toast.error('请输入角色名字');
+      return toast.error('请输入名字');
     }
     setLoading(true);
     try {
       let needUpdate = false;
 
-      if (figure.name !== name) {
+      if (music.name !== name) {
         needUpdate = true;
-        await cmsUpdateFigure({ id: figure.id, key: 'name', value: name });
+        await cmsUpdateMusic({ id: music.id, key: 'name', value: name });
       }
 
-      if (figure.alias !== alias) {
+      if (music.alias !== alias) {
         needUpdate = true;
-        await cmsUpdateFigure({ id: figure.id, key: 'alias', value: alias });
+        await cmsUpdateMusic({ id: music.id, key: 'alias', value: alias });
       }
 
       if (needUpdate) {
-        toast.success(`角色"${name}"已更新`);
-        eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
+        toast.success(`音乐"${name}"已更新`);
+        eventemitter.emit(EventType.MUSIC_UPDATED_OR_DELETED);
       }
 
       onClose();
     } catch (error) {
-      logger.error(error);
+      logger.error(error, { description: '更新音乐失败', report: true });
       toast.error(error.message);
     }
     setLoading(false);
   };
 
-  useEffect(() => {
-    const openListener = (f: Figure) => {
-      setFigure(f);
-      setName(f.name);
-      setAlias(f.alias);
-    };
-    eventemitter.on(EventType.OPEN_EDIT_FIGURE_DIALOG, openListener);
-    return () =>
-      void eventemitter.off(EventType.OPEN_EDIT_FIGURE_DIALOG, openListener);
-  }, []);
-
   return (
-    <Dialog open={!!figure}>
-      <Title>{figure ? `编辑"${figure.name}"资料` : '编辑角色资料'}</Title>
+    <Dialog open={!!music}>
+      <Title>{music ? `编辑"${music.name}"资料` : '编辑音乐资料'}</Title>
       <Content>
         <Label label="名字" style={labelStyle}>
           <Input
@@ -102,8 +108,8 @@ const EditFigureDialog = () => {
         <Button label="取消" onClick={onClose} disabled={loading} />
         <Button
           label="更新"
-          type={Type.PRIMARY}
           onClick={onUpdate}
+          type={Type.PRIMARY}
           loading={loading}
         />
       </Action>
@@ -111,4 +117,4 @@ const EditFigureDialog = () => {
   );
 };
 
-export default React.memo(EditFigureDialog);
+export default React.memo(EditMusicDialog);

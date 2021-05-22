@@ -84,6 +84,7 @@ const SingerBox = styled.div`
       padding: 2px 8px;
       font-size: 12px;
       cursor: pointer;
+      white-space: nowrap;
     }
   }
 `;
