@@ -63,20 +63,24 @@ const CoverBox = styled.div`
 `;
 const ACTION_SIZE = 24;
 const SingerBox = styled.div`
-  max-width: 300px;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 5px;
-  > .singer {
-    text-decoration: none;
-    color: #333;
-    display: inline-block;
-    border: 1px solid rgb(49 194 124 / 0.3);
-    border-radius: 2px;
-    padding: 2px 8px;
-    font-size: 12px;
-    cursor: pointer;
+  > .singer-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    > .singer {
+      text-decoration: none;
+      color: #333;
+      display: inline-block;
+      border: 1px solid rgb(49 194 124 / 0.3);
+      border-radius: 2px;
+      padding: 2px 8px;
+      font-size: 12px;
+      cursor: pointer;
+    }
   }
 `;
 const headers = [
@@ -89,6 +93,12 @@ const headers = [
   '创建时间',
   '操作',
 ];
+const OperationBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+`;
 
 const MusicList = ({
   loading,
@@ -116,24 +126,38 @@ const MusicList = ({
     </CoverBox>,
     MUSIC_TYPE_MAP_LABEL[music.type],
     <SingerBox>
-      {music.singers.map((s) => (
-        <Link
-          key={s.id}
-          className="singer"
-          to={`${CMS_PATH.FIGURE}?${Query.SEARCH_KEY}=${SearchKey.ID}&${Query.SEARCH_VALUE}=${s.id}`}
-        >
-          {s.name}
-        </Link>
-      ))}
+      <div className="singer-list">
+        {music.singers.map((s) => (
+          <Link
+            key={s.id}
+            className="singer"
+            to={`${CMS_PATH.FIGURE}?${Query.SEARCH_KEY}=${SearchKey.ID}&${Query.SEARCH_VALUE}=${s.id}`}
+          >
+            {s.name}
+          </Link>
+        ))}
+      </div>
+      <IconButton
+        name={Name.EDIT_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_SINGERS_DIALOG, music)
+        }
+      />
     </SingerBox>,
     music.alias || '-',
     format(music.createTime, 'yyyy-MM-dd HH:mm'),
-    <Button
-      label="编辑"
-      type={Type.PRIMARY}
-      size={ACTION_SIZE}
-      onClick={() => eventemitter.emit(EventType.OPEN_EDIT_MUSIC_DIALOG, music)}
-    />,
+    <OperationBox>
+      <Button
+        label="编辑"
+        type={Type.PRIMARY}
+        size={ACTION_SIZE}
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_DIALOG, music)
+        }
+      />
+      <Button label="删除" type={Type.DANGER} size={ACTION_SIZE} />
+    </OperationBox>,
   ];
 
   useEffect(() => {

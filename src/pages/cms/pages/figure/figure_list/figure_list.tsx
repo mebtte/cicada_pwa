@@ -2,6 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
+import cmsDeleteFigure from '@/apis/cms_delete_figure';
+import toast from '@/platform/toast';
+import logger from '@/platform/logger';
+import dialog from '@/platform/dialog';
 import IconButton, { Name } from '@/components/icon_button';
 import Button, { Type } from '@/components/button';
 import Empty from '@/components/empty';
@@ -62,29 +66,12 @@ const actionStyle = {
 };
 const ACTION_SIZE = 24;
 const headers = ['ID', '名字', '头像', '别名', '创建时间', '操作'];
-const rowRenderer = (figure: Figure) => [
-  figure.id,
-  figure.name,
-  <AvatarBox>
-    {figure.avatar ? <Avatar src={figure.avatar} /> : '-'}
-    <IconButton
-      name={Name.EDIT_OUTLINE}
-      size={ACTION_SIZE}
-      onClick={() =>
-        eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
-      }
-    />
-  </AvatarBox>,
-  figure.alias || '-',
-  format(figure.createTime, 'yyyy-MM-dd HH:mm'),
-  <Button
-    label="编辑"
-    type={Type.PRIMARY}
-    size={ACTION_SIZE}
-    onClick={() => eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)}
-    style={actionStyle}
-  />,
-];
+const OperationBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+`;
 
 const FigureList = ({
   figureList,
@@ -96,6 +83,56 @@ const FigureList = ({
   page: number;
 }) => {
   const contentRef = useRef<HTMLDivElement | null>(null);
+
+  const onDelete = (figure: Figure) =>
+    dialog.confirm({
+      title: `确定删除角色"${figure.name}"?`,
+      content: '当角色仍挂载音乐时无法被删除, 如若需要删除请先解除关系.',
+      onConfirm: async () => {
+        try {
+          await cmsDeleteFigure(figure.id);
+          toast.success(`角色"${figure.name}"已被删除`);
+          eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
+        } catch (error) {
+          logger.error(error, { description: '删除角色失败', report: true });
+          toast.error(error.message);
+        }
+      },
+    });
+  const rowRenderer = (figure: Figure) => [
+    figure.id,
+    figure.name,
+    <AvatarBox>
+      {figure.avatar ? <Avatar src={figure.avatar} /> : '-'}
+      <IconButton
+        name={Name.EDIT_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
+        }
+      />
+    </AvatarBox>,
+    figure.alias || '-',
+    format(figure.createTime, 'yyyy-MM-dd HH:mm'),
+    <OperationBox>
+      <Button
+        label="编辑"
+        type={Type.PRIMARY}
+        size={ACTION_SIZE}
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)
+        }
+        style={actionStyle}
+      />
+      <Button
+        label="删除"
+        type={Type.DANGER}
+        size={ACTION_SIZE}
+        onClick={() => onDelete(figure)}
+        style={actionStyle}
+      />
+    </OperationBox>,
+  ];
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions

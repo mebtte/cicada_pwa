@@ -35,7 +35,11 @@ const Wrapper = ({
   });
   return (
     <Style>
-      <Search searchKey={searchKey} searchValue={searchValue} />
+      <Search
+        searchKey={searchKey}
+        searchValue={searchValue}
+        loading={loading}
+      />
       {error ? (
         <ErrorCard
           errorMessage={error.message}

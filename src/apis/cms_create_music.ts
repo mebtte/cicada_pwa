@@ -24,6 +24,7 @@ function cmsCreateMusic({
   return api.post('/cms/create_music', {
     data: form,
     withToken: true,
+    timeout: 1000 * 60 * 3,
   });
 }
 

@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/figure';
 import Label from '@/components/label';
 import Input from '@/components/input';
-import cmsDeleteFigure from '@/apis/cms_delete_figure';
 import cmsUpdateFigure from '@/apis/cms_update_figure';
-import dialog from '@/platform/dialog';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import Button, { Type } from '@/components/button';
@@ -23,22 +21,6 @@ const inputStyle = {
 const EditFigureDialog = () => {
   const [figure, setFigure] = useState<Figure>(null);
   const onClose = () => setFigure(null);
-  const onDelete = () =>
-    dialog.confirm({
-      title: `确定删除角色"${figure.name}"?`,
-      content: '当角色仍挂载音乐时无法被删除, 如若需要删除请先解除关系.',
-      onConfirm: async () => {
-        try {
-          await cmsDeleteFigure(figure.id);
-          toast.success(`角色"${figure.name}"已被删除`);
-          eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
-          onClose();
-        } catch (error) {
-          logger.error(error, { description: '删除角色失败', report: true });
-          toast.error(error.message);
-        }
-      },
-    });
 
   const [name, setName] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -117,14 +99,6 @@ const EditFigureDialog = () => {
         </Label>
       </Content>
       <Action>
-        <div className="left">
-          <Button
-            label="删除角色"
-            type={Type.DANGER}
-            onClick={onDelete}
-            disabled={loading}
-          />
-        </div>
         <Button label="取消" onClick={onClose} disabled={loading} />
         <Button
           label="更新"

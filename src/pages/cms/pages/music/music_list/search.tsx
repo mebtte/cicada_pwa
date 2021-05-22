@@ -38,9 +38,11 @@ const itemRenderer = (key: SearchKey, customInput: string) => {
 const Search = ({
   searchKey,
   searchValue: initialSearchValue,
+  loading,
 }: {
   searchKey: SearchKey;
   searchValue: string;
+  loading: boolean;
 }) => {
   const history = useHistory();
 
@@ -68,6 +70,7 @@ const Search = ({
         onChange={onSearchKeyChange}
         array={SEARCH_KEYS}
         itemRenderer={itemRenderer}
+        disabled={loading}
       />
       <Input
         className="value"
@@ -75,8 +78,14 @@ const Search = ({
         onChange={onSearchValueChange}
         placeholder="输入搜索内容"
         onKeyDown={onKeyDown}
+        disabled={loading}
       />
-      <Button label="搜索" type={Type.PRIMARY} onClick={onSearch} />
+      <Button
+        label="搜索"
+        type={Type.PRIMARY}
+        onClick={onSearch}
+        loading={loading}
+      />
     </Style>
   );
 };
