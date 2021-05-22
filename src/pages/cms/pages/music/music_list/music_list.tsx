@@ -3,6 +3,10 @@ import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 import { Link } from 'react-router-dom';
 
+import cmsDeleteMusic from '@/apis/cms_delete_music';
+import toast from '@/platform/toast';
+import dialog from '@/platform/dialog';
+import logger from '@/platform/logger';
 import { CMS_PATH } from '@/constants/route';
 import { MUSIC_TYPE_MAP_LABEL } from '@/constants/music';
 import Avatar from '@/components/avatar';
@@ -110,6 +114,21 @@ const MusicList = ({
   page: number;
 }) => {
   const contentRef = useRef<HTMLDivElement>();
+  const onDelete = (music: Music) =>
+    dialog.confirm({
+      title: `确定删除音乐"${music.name}"?`,
+      content: '当音乐仍挂载有角色时无法被删除, 如若需要删除请先解除关系.',
+      onConfirm: async () => {
+        try {
+          await cmsDeleteMusic(music.id);
+          toast.success(`音乐"${music.name}"已被删除`);
+          eventemitter.emit(EventType.MUSIC_DELETED);
+        } catch (error) {
+          logger.error(error, { description: '删除音乐失败', report: true });
+          toast.error(error.message);
+        }
+      },
+    });
 
   const rowRenderer = (music: Music) => [
     music.id,
@@ -156,7 +175,12 @@ const MusicList = ({
           eventemitter.emit(EventType.OPEN_EDIT_MUSIC_DIALOG, music)
         }
       />
-      <Button label="删除" type={Type.DANGER} size={ACTION_SIZE} />
+      <Button
+        label="删除"
+        type={Type.DANGER}
+        size={ACTION_SIZE}
+        onClick={() => onDelete(music)}
+      />
     </OperationBox>,
   ];
 

@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import cmsGetMusicList from '@/apis/cms_get_music_list';
 import { SearchKey, Music, PAGE_SIZE } from '../constants';
+import eventemitter, { EventType } from '../eventemitter';
 
 export default ({
   page,
@@ -37,6 +38,9 @@ export default ({
 
   useEffect(() => {
     getMusicList();
+
+    eventemitter.on(EventType.MUSIC_DELETED, getMusicList);
+    return () => void eventemitter.off(EventType.MUSIC_DELETED, getMusicList);
   }, [getMusicList]);
 
   return { error, loading, musicList, total, retry: getMusicList };

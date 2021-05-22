@@ -1,6 +1,7 @@
 import Eventemitter from 'eventemitter3';
 
 export enum EventType {
+  MUSIC_DELETED = 'music_deleted',
   OPEN_EDIT_MUSIC_COVER_DIALOG = 'open_edit_music_cover_dialog',
   OPEN_EDIT_MUSIC_DIALOG = 'open_edit_music_dialog',
   OPEN_EDIT_MUSIC_SINGERS_DIALOG = 'open_edit_music_singers_dialog',
