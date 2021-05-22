@@ -49,6 +49,9 @@ module.exports = {
     'no-void': 'off',
     'no-restricted-syntax': 'off',
     'import/extensions': 'off',
+
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
   },
   globals: {
     __CONFIG__: 'readonly',

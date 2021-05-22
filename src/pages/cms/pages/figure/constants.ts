@@ -30,3 +30,5 @@ export const SEARCH_KEY_MAP_LABEL: Record<SearchKey, string> = {
 };
 
 export const SEARCH_KEYS = Object.keys(SEARCH_KEY_MAP_LABEL) as SearchKey[];
+
+export const PAGE_SIZE = 30;

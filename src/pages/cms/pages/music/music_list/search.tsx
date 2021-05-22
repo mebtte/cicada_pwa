@@ -35,17 +35,25 @@ const itemRenderer = (key: SearchKey, customInput: string) => {
   return null;
 };
 
-const Search = ({ searchKey }: { searchKey: SearchKey }) => {
+const Search = ({
+  searchKey,
+  searchValue: initialSearchValue,
+}: {
+  searchKey: SearchKey;
+  searchValue: string;
+}) => {
   const history = useHistory();
 
   const onSearchKeyChange = (key: SearchKey) =>
-    history.push({ query: { [Query.SEARCH_KEY]: key } });
+    history.push({ query: { [Query.PAGE]: 1, [Query.SEARCH_KEY]: key } });
 
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(initialSearchValue);
   const onSearchValueChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setSearchValue(event.target.value);
   const onSearch = () =>
-    history.push({ query: { [Query.SEARCH_VALUE]: searchValue } });
+    history.push({
+      query: { [Query.PAGE]: 1, [Query.SEARCH_VALUE]: searchValue },
+    });
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       onSearch();

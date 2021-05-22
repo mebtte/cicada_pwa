@@ -61,9 +61,10 @@ const actionStyle = {
   flexShrink: 1,
 };
 const ACTION_SIZE = 24;
-const headers = ['ID', '头像', '名字', '别名', '创建时间', '操作'];
+const headers = ['ID', '名字', '头像', '别名', '创建时间', '操作'];
 const rowRenderer = (figure: Figure) => [
   figure.id,
+  figure.name,
   <AvatarBox>
     {figure.avatar ? <Avatar src={figure.avatar} /> : '-'}
     <IconButton
@@ -74,11 +75,10 @@ const rowRenderer = (figure: Figure) => [
       }
     />
   </AvatarBox>,
-  figure.name,
   figure.alias || '-',
   format(figure.createTime, 'yyyy-MM-dd HH:mm'),
   <Button
-    label="编辑资料"
+    label="编辑"
     type={Type.PRIMARY}
     size={ACTION_SIZE}
     onClick={() => eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)}

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import ErrorCard from '@/components/error_card';
@@ -34,20 +34,6 @@ const Wrapper = ({
     page,
   });
 
-  let content: ReactNode = null;
-  if (error) {
-    content = (
-      <ErrorCard
-        errorMessage={error.message}
-        retry={retry}
-        style={errorCardStyle}
-      />
-    );
-  } else {
-    content = (
-      <FigureList figureList={figureList} loading={loading} page={page} />
-    );
-  }
   return (
     <Style>
       <Search
@@ -55,7 +41,15 @@ const Wrapper = ({
         searchKey={searchKey}
         searchValue={searchValue}
       />
-      {content}
+      {error ? (
+        <ErrorCard
+          errorMessage={error.message}
+          retry={retry}
+          style={errorCardStyle}
+        />
+      ) : (
+        <FigureList figureList={figureList} loading={loading} page={page} />
+      )}
       <Pagination page={page} total={total} />
     </Style>
   );

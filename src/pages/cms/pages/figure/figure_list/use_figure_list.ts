@@ -2,8 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import logger from '@/platform/logger';
 import cmsGetFigureList from '@/apis/cms_get_figure_list';
-import { Figure, SearchKey } from '../constants';
-import { PAGE_SIZE } from './constants';
+import { PAGE_SIZE, Figure, SearchKey } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 
 export default ({

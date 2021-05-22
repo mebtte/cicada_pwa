@@ -1,3 +1,5 @@
+import { MusicType } from '@/constants/music';
+
 export interface Figure {
   id: string;
   avatar: string;
@@ -6,10 +8,26 @@ export interface Figure {
   createTime: Date;
 }
 
+export interface Music {
+  id: string;
+  cover: string;
+  name: string;
+  alias: string;
+  type: MusicType;
+  singers: {
+    id: string;
+    avatar: string;
+    name: string;
+    alias: string;
+  }[];
+  createTime: Date;
+}
+
 export enum Query {
   SEARCH_KEY = 'search_key',
   SEARCH_VALUE = 'search_value',
   CREATE_MUSIC_DIALOG_OPEN = 'create_music_dialog_open',
+  PAGE = 'page',
 }
 
 export type QueryObject = {
@@ -20,8 +38,8 @@ export enum SearchKey {
   ID = 'id',
   NAME = 'name',
   ALIAS = 'alias',
-  SINGER_ID = 'singer_id',
-  SINGER_NAME = 'singer_name',
+  SINGER_ID = 'singerId',
+  SINGER_NAME = 'singerName',
 }
 
 export const SEARCH_KEY_MAP_LABEL: Record<SearchKey, string> = {
@@ -33,3 +51,5 @@ export const SEARCH_KEY_MAP_LABEL: Record<SearchKey, string> = {
 };
 
 export const SEARCH_KEYS = Object.keys(SEARCH_KEY_MAP_LABEL) as SearchKey[];
+
+export const PAGE_SIZE = 30;

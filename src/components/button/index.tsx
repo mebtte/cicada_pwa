@@ -26,7 +26,7 @@ const TYPE_MAP = {
 };
 
 const Style = styled.button<{
-  loading: boolean;
+  isLoading: boolean;
   block: boolean;
   buttonType: Type;
 }>`
@@ -47,7 +47,7 @@ const Style = styled.button<{
     opacity: 0.5;
     cursor: not-allowed;
   }
-  ${({ buttonType, loading, block }) => {
+  ${({ buttonType, isLoading, block }) => {
     const {
       color,
       backgroundColor,
@@ -58,7 +58,7 @@ const Style = styled.button<{
       background-color: ${backgroundColor};
       display: ${block ? 'block' : 'inline-block'};
       width: ${block ? '100%' : 'auto'};
-      color: ${loading ? 'transparent !important' : color};
+      color: ${isLoading ? 'transparent !important' : color};
       > .loader {
         color: ${color};
       }
@@ -119,7 +119,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         {...props}
         buttonType={type}
         disabled={disabled || loading}
-        loading={loading}
+        isLoading={loading}
         block={block}
         ref={ref}
         style={{

@@ -52,8 +52,8 @@ const Search = ({
   const onSearch = () =>
     history.push({
       query: {
-        [Query.SEARCH_VALUE]: searchValue,
         [Query.PAGE]: 1,
+        [Query.SEARCH_VALUE]: searchValue,
       },
     });
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -63,9 +63,7 @@ const Search = ({
   };
   const onSearchKeyChange = (key: SearchKey) =>
     history.push({
-      query: {
-        [Query.SEARCH_KEY]: key,
-      },
+      query: { [Query.PAGE]: 1, [Query.SEARCH_KEY]: key },
     });
 
   return (

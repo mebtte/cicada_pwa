@@ -2,7 +2,7 @@ import React from 'react';
 
 import useHistory from '@/utils/use_history';
 import Pagination from '@/components/pagination';
-import { PAGE_SIZE, Query } from '../constants';
+import { Query, PAGE_SIZE } from '../constants';
 
 const style = {
   margin: '20px 0',
