@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { RequestStatus } from '@/constants';
@@ -37,19 +37,8 @@ const Action = ({
   onEdit: () => void;
   onEditCover: () => void;
 }) => {
-  const onAddToPlaylist = useCallback(() => {
-    const { status, musicList } = musicbill;
-    if (status === RequestStatus.LOADING) {
-      return toast.info('歌单正在加载...');
-    }
-    if (status === RequestStatus.ERROR) {
-      return dialog.confirm({
-        title: '歌单加载失败',
-        content: '是否重新加载歌单?',
-        // @ts-ignore
-        onConfirm: () => reload(),
-      });
-    }
+  const onAddToPlaylist = () => {
+    const { musicList } = musicbill;
     if (!musicList.length) {
       return toast.info('这是空的歌单');
     }
@@ -57,41 +46,38 @@ const Action = ({
       PlayerEventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
       musicList,
     );
-  }, [musicbill, reload]);
-  const onDelete = useCallback(
-    () =>
-      dialog.confirm({
-        title: `确定删除歌单"${musicbill.name}"?`,
-        content: '注意, 歌单删除后无法恢复.',
-        onConfirm: () =>
-          dialog.confirm({
-            title: `确定删除歌单"${musicbill.name}"?`,
-            content:
-              '注意, 歌单删除后无法恢复. 现在是第二次确认, 也是最后一次确认.',
-            onConfirm: async () => {
-              try {
-                await removeMusicbillRequest(musicbill.id);
-                toast.success(`歌单"${musicbill.name}"已删除`);
-                playerEventemitter.emit(
-                  PlayerEventType.REMOVE_MUSICBILL,
-                  musicbill.id,
-                );
-              } catch (error) {
-                logger.error(error, {
-                  description: '删除歌单失败',
-                  report: true,
-                });
-                dialog.alert({
-                  title: '删除歌单失败',
-                  content: error.message,
-                });
-                return true;
-              }
-            },
-          }),
-      }),
-    [musicbill],
-  );
+  };
+  const onDelete = () =>
+    dialog.confirm({
+      title: `确定删除歌单"${musicbill.name}"?`,
+      content: '注意, 歌单删除后无法恢复.',
+      onConfirm: () =>
+        dialog.confirm({
+          title: `确定删除歌单"${musicbill.name}"?`,
+          content:
+            '注意, 歌单删除后无法恢复. 现在是第二次确认, 也是最后一次确认.',
+          onConfirm: async () => {
+            try {
+              await removeMusicbillRequest(musicbill.id);
+              toast.success(`歌单"${musicbill.name}"已删除`);
+              playerEventemitter.emit(
+                PlayerEventType.REMOVE_MUSICBILL,
+                musicbill.id,
+              );
+            } catch (error) {
+              logger.error(error, {
+                description: '删除歌单失败',
+                report: true,
+              });
+              dialog.alert({
+                title: '删除歌单失败',
+                content: error.message,
+              });
+              return true;
+            }
+          },
+        }),
+    });
 
   const { status } = musicbill;
   return (
@@ -111,6 +97,7 @@ const Action = ({
           size={ACTION_SIZE}
           onClick={onAddToPlaylist}
           style={actionStyle}
+          disabled={status !== RequestStatus.SUCCESS}
         />
       </Tooltip>
       <Tooltip title="歌单内查找" placement={Placement.LEFT}>
