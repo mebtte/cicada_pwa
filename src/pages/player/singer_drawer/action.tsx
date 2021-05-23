@@ -40,6 +40,7 @@ const Action = ({
         name={Name.PLUS_OUTLINE}
         size={ACTION_SIZE}
         onClick={addAllToPlaylist}
+        disabled={status !== RequestStatus.SUCCESS}
         style={iconButtonStyle}
       />
     </Tooltip>

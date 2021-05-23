@@ -2,8 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 
 import getMusicListRequest from '@/apis/get_music_list';
 import logger from '@/platform/logger';
-import toast from '@/platform/toast';
-import dialog from '@/platform/dialog';
 import { RequestStatus } from '@/constants';
 import openLink from '@/utils/open_link';
 import { SearchMusicKey, MusicWithIndex } from '@/constants/music';
@@ -44,21 +42,11 @@ export default () => {
       });
   }, [id]);
   const onClose = useCallback(() => setOpen(false), []);
-  const addAllToPlaylist = useCallback(() => {
-    if (status === RequestStatus.LOADING) {
-      return toast.info('正在加载音乐列表...');
-    }
-    if (status === RequestStatus.ERROR) {
-      return dialog.confirm({
-        title: '是否重新加载音乐列表?',
-        onConfirm: () => void getMusicList(),
-      });
-    }
-    return eventemitter.emit(
-      EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
-      musicList,
-    );
-  }, [getMusicList, status, musicList]);
+  const addAllToPlaylist = useCallback(
+    () =>
+      eventemitter.emit(EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST, musicList),
+    [musicList],
+  );
   const toNeteaseCloudMusic = useCallback(() => {
     openLink(
       `https://music.163.com/#/search/m/?s=${encodeURIComponent(
