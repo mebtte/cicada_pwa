@@ -41,6 +41,7 @@ const EditMusicLrcDialog = () => {
     }
     setError(null);
     setLoading(true);
+    setLrc('获取歌词中...');
     try {
       const l = await getLrcRequest(music.id);
       originalLrcRef.current = l;
@@ -94,7 +95,7 @@ const EditMusicLrcDialog = () => {
           />
         ) : (
           <Textarea
-            value={loading ? '获取歌词中...' : lrc}
+            value={lrc}
             onChange={onLrcChange}
             placeholder="输入歌词"
             disabled={loading}
