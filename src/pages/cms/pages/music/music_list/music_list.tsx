@@ -175,6 +175,13 @@ const MusicList = ({
         }
       />
       <IconButton
+        name={Name.LYRIC_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_LRC_DIALOG, music)
+        }
+      />
+      <IconButton
         name={Name.GARBAGE_OUTLINE}
         type={Type.DANGER}
         size={ACTION_SIZE}

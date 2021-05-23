@@ -44,8 +44,10 @@ import ComputerFill from './computer_fill';
 import JumpFill from './jump_fill';
 import GotoOutline from './goto_outline';
 import CmsOutline from './cms_outline';
+import LyricOutline from './lyric_outline';
 
 export enum Name {
+  LYRIC_OUTLINE = 'LyricOutline',
   CMS_OUTLINE = 'CmsOutline',
   GOTO_OUTLINE = 'GotoOutline',
   JUMP_FILL = 'JumpFill',
@@ -95,6 +97,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT = {
+  [Name.LYRIC_OUTLINE]: LyricOutline,
   [Name.CMS_OUTLINE]: CmsOutline,
   [Name.JUMP_FILL]: JumpFill,
   [Name.COMPUTER_FILL]: ComputerFill,

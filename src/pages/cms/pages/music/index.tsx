@@ -10,6 +10,7 @@ import MusicList from './music_list';
 import { Query, QueryObject } from './constants';
 import EditMusicCoverDialog from './edit_music_cover_dialog';
 import EditMusicDialog from './edit_music_dialog';
+import EditMusicLrcDialog from './edit_music_lrc_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -35,6 +36,7 @@ const Music = () => {
       <CreateMusicDialog />
       <EditMusicCoverDialog />
       <EditMusicDialog />
+      <EditMusicLrcDialog />
     </Style>
   );
 };
