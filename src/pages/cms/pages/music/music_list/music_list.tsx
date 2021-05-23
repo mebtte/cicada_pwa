@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 import { Link } from 'react-router-dom';
 
+import { SearchKey } from '@/apis/cms_get_figure_list';
 import cmsDeleteMusic from '@/apis/cms_delete_music';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
@@ -17,7 +18,7 @@ import Table from '@/components/table';
 import scrollbar from '@/style/scrollbar';
 import { Music } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
-import { Query, SearchKey } from '../../figure/constants';
+import { Query } from '../../figure/constants';
 
 const Style = styled.div<{ isLoading: boolean }>`
   flex: 1;

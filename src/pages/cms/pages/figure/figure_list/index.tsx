@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { SearchKey } from '@/apis/cms_get_figure_list';
 import ErrorCard from '@/components/error_card';
 import useFigureList from './use_figure_list';
 import Search from './search';
 import Pagination from './pagination';
 import FigureList from './figure_list';
-import { SearchKey } from '../constants';
 
 const Style = styled.div`
   flex: 1;

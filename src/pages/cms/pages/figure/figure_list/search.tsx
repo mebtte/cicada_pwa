@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import {
+  SearchKey,
+  SEARCH_KEYS,
+  SEARCH_KEY_MAP_LABEL,
+} from '@/apis/cms_get_figure_list';
 import Select from '@/components/select';
 import useHistory from '@/utils/use_history';
 import Input from '@/components/input';
 import Button, { Type } from '@/components/button';
-import {
-  Query,
-  SearchKey,
-  SEARCH_KEYS,
-  SEARCH_KEY_MAP_LABEL,
-} from '../constants';
+import { Query } from '../constants';
 
 const Style = styled.div`
   z-index: 2;

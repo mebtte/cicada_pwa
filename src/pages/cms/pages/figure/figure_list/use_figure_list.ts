@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import logger from '@/platform/logger';
-import cmsGetFigureList from '@/apis/cms_get_figure_list';
-import { PAGE_SIZE, Figure, SearchKey } from '../constants';
+import cmsGetFigureList, { SearchKey } from '@/apis/cms_get_figure_list';
+import { PAGE_SIZE, Figure } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 
 export default ({
@@ -25,7 +25,8 @@ export default ({
       const { total: latestTotal, list } = await cmsGetFigureList({
         page,
         pageSize: PAGE_SIZE,
-        [searchKey]: searchValue,
+        searchKey,
+        searchValue,
       });
       setTotal(latestTotal);
       setFigureList(list);

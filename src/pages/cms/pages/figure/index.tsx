@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { SearchKey, SEARCH_KEYS } from '@/apis/cms_get_figure_list';
 import useQuery from '@/utils/use_query';
 import { cmsPage } from '../../style';
 import FigureList from './figure_list';
@@ -8,7 +9,7 @@ import Action from './action';
 import CreateFigureDialog from './create_figure_dialog';
 import EditFigureAvatarDialog from './edit_figure_avatar_dialog';
 import EditFigureDialog from './edit_figure_dialog';
-import { Query, QueryObject, SearchKey, SEARCH_KEYS } from './constants';
+import { Query, QueryObject } from './constants';
 
 const Style = styled.div`
   ${cmsPage};
