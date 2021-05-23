@@ -8,6 +8,7 @@ import logger from '@/platform/logger';
 import selectFile from '@/utils/select_file';
 import {
   MusicType,
+  MUSIC_TYPES,
   MUSIC_TYPE_MAP_LABEL,
   NAME_MAX_LENGTH,
   MUSIC_NORMAL,
@@ -20,9 +21,6 @@ import { Figure } from './constants';
 import SingerListSelector from './singer_list_selector';
 import eventemitter, { EventType } from './eventemitter';
 
-const MUSIC_TYPES = Object.keys(MUSIC_TYPE_MAP_LABEL).map(
-  (t) => +t,
-) as MusicType[];
 const musicTypeItemRenderer = (musicType: MusicType, filter: string) => {
   const target = MUSIC_TYPE_MAP_LABEL[musicType];
   if (target.includes(filter)) {

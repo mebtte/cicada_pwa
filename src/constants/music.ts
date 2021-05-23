@@ -16,8 +16,8 @@ export enum SearchMusicKey {
 }
 
 export enum MusicType {
-  NORMAL = 1,
-  INSTRUMENT = 2,
+  NORMAL = 'normal',
+  INSTRUMENT = 'instrument',
 }
 
 export const MUSIC_TYPE_MAP_LABEL: Record<MusicType, string> = {
@@ -25,9 +25,7 @@ export const MUSIC_TYPE_MAP_LABEL: Record<MusicType, string> = {
   [MusicType.INSTRUMENT]: '纯音乐',
 };
 
-export const MUSIC_TYPES = Object.keys(MUSIC_TYPE_MAP_LABEL).map(
-  (t) => +t,
-) as MusicType[];
+export const MUSIC_TYPES = Object.keys(MUSIC_TYPE_MAP_LABEL) as MusicType[];
 
 export interface ApiMusic {
   id: string;

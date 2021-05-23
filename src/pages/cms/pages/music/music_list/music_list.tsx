@@ -9,7 +9,7 @@ import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
 import { CMS_PATH } from '@/constants/route';
-import { MUSIC_TYPE_MAP_LABEL } from '@/constants/music';
+import { MusicType, MUSIC_TYPE_MAP_LABEL } from '@/constants/music';
 import Avatar from '@/components/avatar';
 import IconButton, { Name, Type } from '@/components/icon_button';
 import CircularLoader from '@/components/circular_loader';
@@ -174,13 +174,15 @@ const MusicList = ({
           eventemitter.emit(EventType.OPEN_EDIT_MUSIC_DIALOG, music)
         }
       />
-      <IconButton
-        name={Name.LYRIC_OUTLINE}
-        size={ACTION_SIZE}
-        onClick={() =>
-          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_LRC_DIALOG, music)
-        }
-      />
+      {music.type === MusicType.NORMAL ? (
+        <IconButton
+          name={Name.LYRIC_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={() =>
+            eventemitter.emit(EventType.OPEN_EDIT_MUSIC_LRC_DIALOG, music)
+          }
+        />
+      ) : null}
       <IconButton
         name={Name.GARBAGE_OUTLINE}
         type={Type.DANGER}
