@@ -6,8 +6,7 @@ import cmsDeleteFigure from '@/apis/cms_delete_figure';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
-import IconButton, { Name } from '@/components/icon_button';
-import Button, { Type } from '@/components/button';
+import IconButton, { Name, Type } from '@/components/icon_button';
 import Empty from '@/components/empty';
 import CircularLoader from '@/components/circular_loader';
 import Table from '@/components/table';
@@ -61,15 +60,11 @@ const emptyStyle = {
   width: '100%',
   height: '100%',
 };
-const actionStyle = {
-  flexShrink: 1,
-};
 const ACTION_SIZE = 24;
 const headers = ['ID', '名字', '头像', '别名', '创建时间', '操作'];
 const OperationBox = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 5px;
 `;
 
@@ -115,21 +110,18 @@ const FigureList = ({
     figure.alias || '-',
     format(figure.createTime, 'yyyy-MM-dd HH:mm'),
     <OperationBox>
-      <Button
-        label="编辑"
-        type={Type.PRIMARY}
+      <IconButton
+        name={Name.EDIT_OUTLINE}
         size={ACTION_SIZE}
         onClick={() =>
           eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)
         }
-        style={actionStyle}
       />
-      <Button
-        label="删除"
+      <IconButton
+        name={Name.GARBAGE_OUTLINE}
         type={Type.DANGER}
         size={ACTION_SIZE}
         onClick={() => onDelete(figure)}
-        style={actionStyle}
       />
     </OperationBox>,
   ];
