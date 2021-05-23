@@ -15,7 +15,6 @@ const textareaStyle: React.CSSProperties = {
   width: '100%',
   height: '350px',
   resize: 'vertical',
-  whiteSpace: 'nowrap',
 };
 const errorCardStyle: React.CSSProperties = {
   padding: '50px 0',
@@ -95,7 +94,7 @@ const EditMusicLrcDialog = () => {
           />
         ) : (
           <Textarea
-            value={lrc}
+            value={loading ? '获取歌词中...' : lrc}
             onChange={onLrcChange}
             placeholder="输入歌词"
             disabled={loading}
