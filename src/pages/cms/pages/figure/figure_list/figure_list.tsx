@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
+import { SearchKey } from '@/apis/cms_get_figure_list';
 import cmsDeleteFigure from '@/apis/cms_delete_figure';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
@@ -72,10 +73,14 @@ const FigureList = ({
   figureList,
   loading,
   page,
+  searchKey,
+  searchValue,
 }: {
   figureList: Figure[];
   loading: boolean;
   page: number;
+  searchKey: SearchKey;
+  searchValue: string;
 }) => {
   const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -132,7 +137,7 @@ const FigureList = ({
       top: 0,
       behavior: 'smooth',
     });
-  }, [page]);
+  }, [page, searchKey, searchValue]);
 
   return (
     <Style isLoading={loading}>

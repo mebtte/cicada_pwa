@@ -48,7 +48,13 @@ const Wrapper = ({
           style={errorCardStyle}
         />
       ) : (
-        <FigureList figureList={figureList} loading={loading} page={page} />
+        <FigureList
+          figureList={figureList}
+          loading={loading}
+          page={page}
+          searchKey={searchKey}
+          searchValue={searchValue}
+        />
       )}
       <Pagination page={page} total={total} />
     </Style>

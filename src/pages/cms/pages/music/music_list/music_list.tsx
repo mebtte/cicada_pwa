@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 import { Link } from 'react-router-dom';
 
-import { SearchKey } from '@/apis/cms_get_figure_list';
+import { SearchKey as FigureSearchKey } from '@/apis/cms_get_figure_list';
+import { SearchKey } from '@/apis/cms_get_music_list';
 import cmsDeleteMusic from '@/apis/cms_delete_music';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
@@ -108,10 +109,14 @@ const MusicList = ({
   loading,
   musicList,
   page,
+  searchKey,
+  searchValue,
 }: {
   loading: boolean;
   musicList: Music[];
   page: number;
+  searchKey: SearchKey;
+  searchValue: string;
 }) => {
   const contentRef = useRef<HTMLDivElement>();
   const onDelete = (music: Music) =>
@@ -150,7 +155,7 @@ const MusicList = ({
           <Link
             key={s.id}
             className="singer"
-            to={`${CMS_PATH.FIGURE}?${Query.SEARCH_KEY}=${SearchKey.ID}&${Query.SEARCH_VALUE}=${s.id}`}
+            to={`${CMS_PATH.FIGURE}?${Query.SEARCH_KEY}=${FigureSearchKey.ID}&${Query.SEARCH_VALUE}=${s.id}`}
           >
             {s.name}
           </Link>
@@ -198,7 +203,7 @@ const MusicList = ({
       top: 0,
       behavior: 'smooth',
     });
-  }, [page]);
+  }, [page, searchKey, searchValue]);
 
   return (
     <Style isLoading={loading}>
