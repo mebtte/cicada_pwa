@@ -32,21 +32,27 @@ const EditFigureDialog = () => {
 
   const [loading, setLoading] = useState(false);
   const onUpdate = async () => {
-    if (!name) {
+    const trimName = name.trim();
+    if (!trimName) {
       return toast.error('请输入角色名字');
     }
     setLoading(true);
     try {
       let needUpdate = false;
 
-      if (figure.name !== name) {
+      if (figure.name !== trimName) {
         needUpdate = true;
-        await cmsUpdateFigure({ id: figure.id, key: 'name', value: name });
+        await cmsUpdateFigure({ id: figure.id, key: 'name', value: trimName });
       }
 
-      if (figure.alias !== alias) {
+      const trimAlias = alias.trim();
+      if (figure.alias !== trimAlias) {
         needUpdate = true;
-        await cmsUpdateFigure({ id: figure.id, key: 'alias', value: alias });
+        await cmsUpdateFigure({
+          id: figure.id,
+          key: 'alias',
+          value: trimAlias,
+        });
       }
 
       if (needUpdate) {

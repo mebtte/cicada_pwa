@@ -10,7 +10,7 @@ function cmsUpdateMusic({
   value,
 }: {
   id: string;
-  key: 'cover' | 'name' | 'alias';
+  key: 'cover' | 'name' | 'type' | 'alias';
   value: string | File;
 }) {
   const form = new FormData();

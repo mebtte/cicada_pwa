@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import Select from '@/components/select';
 import cmsUpdateMusic from '@/apis/cms_update_music';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
@@ -7,7 +8,13 @@ import Label from '@/components/label';
 import Input from '@/components/input';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
-import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/music';
+import {
+  NAME_MAX_LENGTH,
+  ALIAS_MAX_LENGTH,
+  MUSIC_TYPES,
+  MUSIC_TYPE_MAP_LABEL,
+  MusicType,
+} from '@/constants/music';
 import { Music } from './constants';
 import eventemitter, { EventType } from './eventemitter';
 
@@ -17,6 +24,13 @@ const labelStyle = {
 const inputStyle = {
   width: '100%',
 };
+const musicTypeItemRenderer = (t: MusicType, customInput) => {
+  const label = MUSIC_TYPE_MAP_LABEL[t];
+  if (label.includes(customInput)) {
+    return label;
+  }
+  return null;
+};
 
 const EditMusicDialog = () => {
   const [music, setMusic] = useState<Music | null>(null);
@@ -24,6 +38,9 @@ const EditMusicDialog = () => {
   const [name, setName] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setName(event.target.value);
+
+  const [type, setType] = useState(MusicType.NORMAL);
+  const onTypeChange = (t: MusicType) => setType(t);
 
   const [alias, setAlias] = useState('');
   const onAliasChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -33,6 +50,7 @@ const EditMusicDialog = () => {
     setMusic(null);
     setTimeout(() => {
       setName('');
+      setType(MusicType.NORMAL);
       setAlias('');
     }, 1000);
   };
@@ -40,6 +58,7 @@ const EditMusicDialog = () => {
     const openListener = (m: Music) => {
       setMusic(m);
       setName(m.name);
+      setType(m.type);
       setAlias(m.alias);
     };
     eventemitter.on(EventType.OPEN_EDIT_MUSIC_DIALOG, openListener);
@@ -49,21 +68,32 @@ const EditMusicDialog = () => {
 
   const [loading, setLoading] = useState(false);
   const onUpdate = async () => {
-    if (!name) {
+    const trimName = name.trim();
+    if (!trimName) {
       return toast.error('请输入名字');
     }
     setLoading(true);
     try {
       let needUpdate = false;
 
-      if (music.name !== name) {
+      if (music.name !== trimName) {
         needUpdate = true;
-        await cmsUpdateMusic({ id: music.id, key: 'name', value: name });
+        await cmsUpdateMusic({ id: music.id, key: 'name', value: trimName });
       }
 
-      if (music.alias !== alias) {
+      if (music.type !== type) {
         needUpdate = true;
-        await cmsUpdateMusic({ id: music.id, key: 'alias', value: alias });
+        await cmsUpdateMusic({
+          id: music.id,
+          key: 'type',
+          value: type.toString(),
+        });
+      }
+
+      const trimAlias = alias.trim();
+      if (music.alias !== trimAlias) {
+        needUpdate = true;
+        await cmsUpdateMusic({ id: music.id, key: 'alias', value: trimAlias });
       }
 
       if (needUpdate) {
@@ -89,6 +119,16 @@ const EditMusicDialog = () => {
             onChange={onNameChange}
             placeholder={`名字不超过 ${NAME_MAX_LENGTH} 个字符`}
             maxLength={NAME_MAX_LENGTH}
+            disabled={loading}
+            style={inputStyle}
+          />
+        </Label>
+        <Label label="类型" style={labelStyle}>
+          <Select
+            value={type}
+            onChange={onTypeChange}
+            array={MUSIC_TYPES}
+            itemRenderer={musicTypeItemRenderer}
             disabled={loading}
             style={inputStyle}
           />

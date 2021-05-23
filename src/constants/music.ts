@@ -25,6 +25,10 @@ export const MUSIC_TYPE_MAP_LABEL: Record<MusicType, string> = {
   [MusicType.INSTRUMENT]: '纯音乐',
 };
 
+export const MUSIC_TYPES = Object.keys(MUSIC_TYPE_MAP_LABEL).map(
+  (t) => +t,
+) as MusicType[];
+
 export interface ApiMusic {
   id: string;
   cover: string;
