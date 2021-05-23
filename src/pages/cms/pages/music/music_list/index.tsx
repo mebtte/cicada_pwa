@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { SearchKey } from '@/apis/cms_get_music_list';
 import ErrorCard from '@/components/error_card';
 import Search from './search';
 import MusicList from './music_list';
 import useMusicList from './use_music_list';
-import { SearchKey } from '../constants';
 import Pagination from './pagination';
 
 const Style = styled.div`

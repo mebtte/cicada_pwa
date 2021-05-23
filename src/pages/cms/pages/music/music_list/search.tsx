@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import {
+  SearchKey,
+  SEARCH_KEY_MAP_LABEL,
+  SEARCH_KEYS,
+} from '@/apis/cms_get_music_list';
 import Input from '@/components/input';
 import Button, { Type } from '@/components/button';
 import useHistory from '@/utils/use_history';
 import Select from '@/components/select';
-import { Query, SearchKey, SEARCH_KEY_MAP, SEARCH_KEYS } from '../constants';
+import { Query } from '../constants';
 
 const Style = styled.div`
   z-index: 2;
@@ -23,7 +28,7 @@ const Style = styled.div`
   }
 `;
 const itemRenderer = (key: SearchKey, customInput: string) => {
-  const { label } = SEARCH_KEY_MAP[key];
+  const label = SEARCH_KEY_MAP_LABEL[key];
   if (label.includes(customInput)) {
     return label;
   }
@@ -57,7 +62,6 @@ const Search = ({
     }
   };
 
-  const { placeholder } = SEARCH_KEY_MAP[searchKey];
   return (
     <Style>
       <Select
@@ -72,7 +76,7 @@ const Search = ({
         className="value"
         value={searchValue}
         onChange={onSearchValueChange}
-        placeholder={placeholder}
+        placeholder="输入搜索内容"
         onKeyDown={onKeyDown}
         disabled={loading}
       />

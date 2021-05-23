@@ -1,8 +1,8 @@
 import logger from '@/platform/logger';
 import { useCallback, useEffect, useState } from 'react';
 
-import cmsGetMusicList from '@/apis/cms_get_music_list';
-import { SearchKey, Music, PAGE_SIZE } from '../constants';
+import cmsGetMusicList, { SearchKey } from '@/apis/cms_get_music_list';
+import { Music, PAGE_SIZE } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 
 export default ({
@@ -25,7 +25,8 @@ export default ({
       const data = await cmsGetMusicList({
         page,
         pageSize: PAGE_SIZE,
-        [searchKey]: searchValue,
+        searchKey,
+        searchValue,
       });
       setTotal(data.total);
       setMusicList(data.list);

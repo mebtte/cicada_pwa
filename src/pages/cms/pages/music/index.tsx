@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { SearchKey, SEARCH_KEYS } from '@/apis/cms_get_music_list';
 import useQuery from '@/utils/use_query';
 import { cmsPage } from '../../style';
 import Action from './action';
 import CreateMusicDialog from './create_music_dialog';
 import MusicList from './music_list';
-import { Query, QueryObject, SearchKey, SEARCH_KEYS } from './constants';
+import { Query, QueryObject } from './constants';
 import EditMusicCoverDialog from './edit_music_cover_dialog';
 import EditMusicDialog from './edit_music_dialog';
 
