@@ -1,7 +1,7 @@
 export enum PlayMode {
   SQ = 'sq',
   HQ = 'hq',
-  ACCOMPANY = 'accompany',
+  ACCOMPANY = 'ac',
 }
 
 export const MUSIC_TAG_COLOR = {

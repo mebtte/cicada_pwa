@@ -7,10 +7,10 @@ async function getMusicbill(id: string) {
   const musicbill = await api.get<{
     music_list: {
       type: MusicType;
-      accompany: boolean | string;
+      ac: string;
       alias: string;
       cover?: string;
-      hq: boolean | string;
+      hq: string;
       id: string;
       name: string;
       sq: string;
@@ -20,7 +20,7 @@ async function getMusicbill(id: string) {
         id: string;
         name: string;
       }[];
-      mv: boolean | string;
+      mv: string;
     }[];
   }>('/musicbill', {
     params: { id },
@@ -30,20 +30,9 @@ async function getMusicbill(id: string) {
   return {
     id,
     musicList: musicList.map(
-      ({
+      ({ type, ac, alias, cover, hq, id: musicId, name, sq, singers, mv }) => ({
         type,
-        accompany,
-        alias,
-        cover,
-        hq,
-        id: musicId,
-        name,
-        sq,
-        singers,
-        mv,
-      }) => ({
-        type,
-        accompany,
+        ac,
         alias,
         cover: cover || getRandomCover(),
         hq,

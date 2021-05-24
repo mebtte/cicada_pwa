@@ -17,35 +17,24 @@ async function getMusicList({
   const musicList = await api.get<
     {
       type: MusicType;
-      accompany: boolean | string;
+      ac: string;
       alias: string;
       cover?: string;
-      hq: boolean | string;
+      hq: string;
       id: string;
       name: string;
       sq: string;
       singers: { alias: string; avatar?: string; id: string; name: string }[];
-      mv: boolean | string;
+      mv: string;
     }[]
   >('/music/list', {
     params: { key, value },
     withToken: true,
   });
   return musicList.map(
-    ({
+    ({ type, ac, alias, cover, hq, id: musicId, name, sq, singers, mv }) => ({
       type,
-      accompany,
-      alias,
-      cover,
-      hq,
-      id: musicId,
-      name,
-      sq,
-      singers,
-      mv,
-    }) => ({
-      type,
-      accompany,
+      ac,
       alias,
       cover: cover || getRandomCover(),
       hq,

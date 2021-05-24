@@ -20,7 +20,7 @@ const MusicInfo = ({
   onViewMusic: () => void;
   [key: string]: any;
 }) => {
-  const { name, singers, accompany, hq } = music;
+  const { name, singers, ac, hq } = music;
   return (
     <Container {...props}>
       <div className="text">
@@ -36,9 +36,7 @@ const MusicInfo = ({
         </span>
       </div>
       <div className="tags">
-        {accompany ? (
-          <StyledTag tag="ac" color={MUSIC_TAG_COLOR.ACCOMPANY} />
-        ) : null}
+        {ac ? <StyledTag tag="ac" color={MUSIC_TAG_COLOR.ACCOMPANY} /> : null}
         {hq ? <StyledTag tag="hq" color={MUSIC_TAG_COLOR.HQ} /> : null}
       </div>
     </Container>
