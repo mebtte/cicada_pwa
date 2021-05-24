@@ -29,7 +29,7 @@ const context = createContext<Context>({
   getMusicbillListStatus: RequestStatus.LOADING,
   musicbillList: [],
 
-  playMode: PlayMode.NORMAL,
+  playMode: PlayMode.SQ,
 
   audioLoading: false,
   audioPaused: true,

@@ -23,7 +23,7 @@ async function getMusicList({
       hq: boolean | string;
       id: string;
       name: string;
-      normal: string;
+      sq: string;
       singers: { alias: string; avatar?: string; id: string; name: string }[];
       mv: boolean | string;
     }[]
@@ -40,7 +40,7 @@ async function getMusicList({
       hq,
       id: musicId,
       name,
-      normal,
+      sq,
       singers,
       mv,
     }) => ({
@@ -51,7 +51,7 @@ async function getMusicList({
       hq,
       id: musicId,
       name,
-      normal,
+      sq,
       singers: singers.map(
         ({ alias: singerAlias, avatar, id: singerId, name: singerName }) => ({
           alias: singerAlias,

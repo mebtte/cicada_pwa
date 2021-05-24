@@ -7,9 +7,9 @@ import Item from './item';
 
 const PLAY_MODES = Object.values(PlayModeType);
 const PLAY_MODE_MAP_LABEL = {
-  [PlayModeType.NORMAL]: '普通',
+  [PlayModeType.SQ]: '标准音质',
+  [PlayModeType.HQ]: '高音质',
   [PlayModeType.ACCOMPANY]: '伴奏',
-  [PlayModeType.HQ]: 'HQ',
 };
 
 const buttonStyle = {

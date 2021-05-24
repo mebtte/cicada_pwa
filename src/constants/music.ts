@@ -36,7 +36,7 @@ export interface ApiMusic {
   accompany: string;
   hq: string;
   mv: string;
-  normal: string;
+  sq: string;
   singers: Figure[];
 }
 
@@ -49,7 +49,7 @@ export interface Music {
   accompany: boolean | string;
   hq: boolean | string;
   mv: boolean | string;
-  normal: string;
+  sq: string;
   singers: Figure[];
 }
 

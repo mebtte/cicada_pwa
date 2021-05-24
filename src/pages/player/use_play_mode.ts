@@ -6,10 +6,8 @@ import eventemitter, { Type as EventType } from './eventemitter';
 
 export default () => {
   const [playMode, setPlayMode] = useState<PlayMode>(() => {
-    const pm = localStorage.getItem(PLAY_MODE);
-    return (pm && Object.values<string>(PlayMode).includes(pm)
-      ? pm
-      : PlayMode.NORMAL) as PlayMode;
+    const pm = localStorage.getItem(PLAY_MODE) as PlayMode;
+    return pm && Object.values(PlayMode).includes(pm) ? pm : PlayMode.SQ;
   });
 
   useEffect(() => {

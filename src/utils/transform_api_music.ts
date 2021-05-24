@@ -11,7 +11,7 @@ export default (music: ApiMusic): Music => {
     accompany,
     hq,
     mv,
-    normal,
+    sq,
     singers,
   } = music;
   return {
@@ -23,7 +23,7 @@ export default (music: ApiMusic): Music => {
     accompany,
     hq,
     mv,
-    normal,
+    sq,
     singers: singers.map((s) => ({
       ...s,
       avatar: s.avatar || getRandomCover(),

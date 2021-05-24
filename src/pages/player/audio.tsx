@@ -95,7 +95,7 @@ const Audio = ({
     <audio
       ref={audioRef}
       style={style}
-      src={(music[playMode] || music.normal) as string}
+      src={(music[playMode] || music.sq) as string}
       autoPlay
       onPlay={onPlay}
       onPause={onPause}
