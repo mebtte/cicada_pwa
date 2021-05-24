@@ -1,5 +1,14 @@
 import api from '.';
 
+export enum Key {
+  COVER = 'cover',
+  NAME = 'name',
+  TYPE = 'type',
+  ALIAS = 'alias',
+  LRC = 'lrc',
+  SINGER = 'singer',
+}
+
 /**
  * CMS 更新音乐
  * @author mebtte<hi@mebtte.com>
@@ -10,7 +19,7 @@ function cmsUpdateMusic({
   value,
 }: {
   id: string;
-  key: 'cover' | 'name' | 'type' | 'alias' | 'lrc';
+  key: Key;
   value: string | File;
 }) {
   const form = new FormData();

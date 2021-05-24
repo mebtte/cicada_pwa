@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import cmsUpdateFigure from '@/apis/cms_update_figure';
+import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
 import { AVATAR_MAX_SIZE } from '@/constants/figure';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import eventemitter, { EventType } from './eventemitter';
@@ -15,7 +15,7 @@ const EditFigureAvatarDialog = () => {
   const [figure, setFigure] = useState<Figure>(null);
   const onClose = () => setFigure(null);
   const onUpdate = async (file: File) => {
-    await cmsUpdateFigure({ id: figure.id, key: 'avatar', value: file });
+    await cmsUpdateFigure({ id: figure.id, key: Key.AVATAR, value: file });
     eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
   };
 

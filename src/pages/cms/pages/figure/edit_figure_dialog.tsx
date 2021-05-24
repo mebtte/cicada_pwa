@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/figure';
 import Label from '@/components/label';
 import Input from '@/components/input';
-import cmsUpdateFigure from '@/apis/cms_update_figure';
+import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import Button, { Type } from '@/components/button';
@@ -42,7 +42,11 @@ const EditFigureDialog = () => {
 
       if (figure.name !== trimName) {
         needUpdate = true;
-        await cmsUpdateFigure({ id: figure.id, key: 'name', value: trimName });
+        await cmsUpdateFigure({
+          id: figure.id,
+          key: Key.NAME,
+          value: trimName,
+        });
       }
 
       const trimAlias = alias.trim();
@@ -50,7 +54,7 @@ const EditFigureDialog = () => {
         needUpdate = true;
         await cmsUpdateFigure({
           id: figure.id,
-          key: 'alias',
+          key: Key.ALIAS,
           value: trimAlias,
         });
       }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Select from '@/components/select';
-import cmsUpdateMusic from '@/apis/cms_update_music';
+import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import Label from '@/components/label';
@@ -78,14 +78,14 @@ const EditMusicDialog = () => {
 
       if (music.name !== trimName) {
         needUpdate = true;
-        await cmsUpdateMusic({ id: music.id, key: 'name', value: trimName });
+        await cmsUpdateMusic({ id: music.id, key: Key.NAME, value: trimName });
       }
 
       if (music.type !== type) {
         needUpdate = true;
         await cmsUpdateMusic({
           id: music.id,
-          key: 'type',
+          key: Key.TYPE,
           value: type.toString(),
         });
       }
@@ -93,7 +93,11 @@ const EditMusicDialog = () => {
       const trimAlias = alias.trim();
       if (music.alias !== trimAlias) {
         needUpdate = true;
-        await cmsUpdateMusic({ id: music.id, key: 'alias', value: trimAlias });
+        await cmsUpdateMusic({
+          id: music.id,
+          key: Key.ALIAS,
+          value: trimAlias,
+        });
       }
 
       if (needUpdate) {

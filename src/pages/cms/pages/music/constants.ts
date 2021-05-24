@@ -5,7 +5,6 @@ export interface Figure {
   avatar: string;
   name: string;
   alias: string;
-  createTime: Date;
 }
 
 export interface Music {

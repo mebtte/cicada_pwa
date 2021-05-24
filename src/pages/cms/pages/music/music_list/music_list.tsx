@@ -165,7 +165,7 @@ const MusicList = ({
         name={Name.EDIT_OUTLINE}
         size={ACTION_SIZE}
         onClick={() =>
-          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_SINGERS_DIALOG, music)
+          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_SINGER_LIST_DIALOG, music)
         }
       />
     </SingerBox>,

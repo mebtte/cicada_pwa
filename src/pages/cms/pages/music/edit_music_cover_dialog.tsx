@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import cmsUpdateMusic from '@/apis/cms_update_music';
+import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
 import { COVER_MAX_SIZE } from '@/constants/music';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import eventemitter, { EventType } from './eventemitter';
@@ -15,7 +15,7 @@ const EditFigureAvatarDialog = () => {
   const [music, setMusic] = useState<Music>(null);
   const onClose = () => setMusic(null);
   const onUpdate = async (file: File) => {
-    await cmsUpdateMusic({ id: music.id, key: 'cover', value: file });
+    await cmsUpdateMusic({ id: music.id, key: Key.COVER, value: file });
     eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
   };
 

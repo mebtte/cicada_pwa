@@ -1,5 +1,11 @@
 import api from '.';
 
+export enum Key {
+  NAME = 'name',
+  ALIAS = 'alias',
+  AVATAR = 'avatar',
+}
+
 /**
  * CMS 更新角色
  * @author mebtte<hi@mebtte.com>
@@ -10,7 +16,7 @@ function cmsUpdateFigure({
   value,
 }: {
   id: string;
-  key: 'name' | 'alias' | 'avatar';
+  key: Key;
   value: string | File;
 }) {
   const form = new FormData();

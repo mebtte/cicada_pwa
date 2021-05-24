@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 
-import cmsUdpateMusic from '@/apis/cms_update_music';
+import cmsUdpateMusic, { Key } from '@/apis/cms_update_music';
 import toast from '@/platform/toast';
 import ErrorCard from '@/components/error_card';
 import Textarea from '@/components/textarea';
@@ -62,7 +62,7 @@ const EditMusicLrcDialog = () => {
   const onUpdate = async () => {
     setLoading(true);
     try {
-      await cmsUdpateMusic({ id: music.id, key: 'lrc', value: lrc });
+      await cmsUdpateMusic({ id: music.id, key: Key.LRC, value: lrc });
       toast.success(`已更新"${music.name}"歌词`);
       onClose();
     } catch (e) {
