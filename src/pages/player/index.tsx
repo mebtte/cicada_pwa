@@ -28,7 +28,6 @@ import ListDrawer from './list_drawer';
 import MusicbillListDrawer from './musicbill_list_drawer';
 import MusicbillOrderDrawer from './musicbilll_order_drawer';
 import NewMusicbillDialog from './new_musicbill_dialog';
-import OriginalMusicDialog from './original_music_dialog';
 import MvDialog from './mv_dialog';
 
 const Scrollable = styled(PageContainer)`
@@ -106,7 +105,6 @@ const Wrapper = () => {
 
       <MvDialog />
       <NewMusicbillDialog />
-      <OriginalMusicDialog />
 
       <MusicOperatePopup />
 

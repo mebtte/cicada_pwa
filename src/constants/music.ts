@@ -9,12 +9,6 @@ export const MUSIC_NORMAL = {
   MAX_SIZE: 1024 * 1024 * 10,
 };
 
-export enum SearchMusicKey {
-  KEYWORD = 'keyword',
-  SINGER = 'singer',
-  IDS = 'ids',
-}
-
 export enum MusicType {
   NORMAL = 'normal',
   INSTRUMENT = 'instrument',

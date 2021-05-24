@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 
 import useQuery from '@/utils/use_query';
 import { RequestStatus } from '@/constants';
-import { SearchMusicKey, MusicWithIndex } from '@/constants/music';
-import getMusicListRequest from '@/apis/get_music_list';
+import { MusicWithIndex } from '@/constants/music';
+import searchMusic from '@/apis/search_music';
 import logger from '@/platform/logger';
 
 const effect = (keyword: string) => {
@@ -34,7 +34,7 @@ export default () => {
     effect(keyword);
 
     setStatus(RequestStatus.LOADING);
-    getMusicListRequest({ key: SearchMusicKey.KEYWORD, value: keyword })
+    searchMusic()
       .then((ml) => {
         const { length } = ml;
         setMusicList(
@@ -61,7 +61,7 @@ export default () => {
     effect(keyword);
 
     setStatus(RequestStatus.LOADING);
-    getMusicListRequest({ key: SearchMusicKey.KEYWORD, value: keyword })
+    searchMusic()
       .then((ml) => {
         if (canceled) {
           return;
