@@ -41,7 +41,10 @@ export default () => {
   const onClose = useCallback(() => setOpen(false), []);
   const addAllToPlaylist = useCallback(
     () =>
-      eventemitter.emit(EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST, musicList),
+      eventemitter.emit(
+        EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
+        musicList.map((m) => m.music),
+      ),
     [musicList],
   );
   const toNeteaseCloudMusic = useCallback(() => {

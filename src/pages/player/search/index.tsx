@@ -40,6 +40,7 @@ const Wrapper = () => {
           musicList={musicList}
           reload={reload}
           emptyDescription="未找到相关音乐"
+          errorMessage={error ? error.message : ''}
           style={musicListStyle}
         />
         <Pagination total={total} page={page} />
