@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import useQuery from '@/utils/use_query';
-import { RequestStatus } from '@/constants';
-import { SearchMusicKey, MusicWithIndex } from '@/constants/music';
-import getMusicListRequest from '@/apis/get_music_list';
+import { MusicWithIndex } from '@/constants/music';
+import searchMusic, { SearchKey, SEARCH_KEYS } from '@/apis/search_music';
 import logger from '@/platform/logger';
+import { Query as PlayerQuery } from '../constants';
+import { PAGE_SIZE, Query } from './constants';
 
 const effect = (keyword: string) => {
   // eslint-disable-next-line default-case
@@ -23,74 +24,57 @@ const effect = (keyword: string) => {
 };
 
 export default () => {
-  const { keyword } = useQuery<{ keyword: string }>();
-  const [status, setStatus] = useState(RequestStatus.NOT_START);
+  const query = useQuery<{ keyword: string }>();
+
+  const [error, setError] = useState<Error | null>(null);
+  const [loading, setLoading] = useState(false);
   const [musicList, setMusicList] = useState<MusicWithIndex[]>([]);
-  const onSearch = useCallback(() => {
-    if (!keyword) {
-      return;
-    }
+  const [total, setTotal] = useState(0);
 
-    effect(keyword);
+  let searchKey = query[PlayerQuery.SEARCH_KEY] as SearchKey;
+  if (!SEARCH_KEYS.includes(searchKey)) {
+    searchKey = SearchKey.MUSIC_NAME;
+  }
+  const searchValue = query[PlayerQuery.SEARCH_VALUE];
+  const pageString = query[Query.PAGE];
+  const page = pageString ? +pageString : 1 || 1;
 
-    setStatus(RequestStatus.LOADING);
-    getMusicListRequest({ key: SearchMusicKey.KEYWORD, value: keyword })
-      .then((ml) => {
-        const { length } = ml;
-        setMusicList(
-          ml.map((m, index) => ({
-            ...m,
-            index: length - index,
-          })),
-        );
-        setStatus(RequestStatus.SUCCESS);
-      })
-      .catch((error) => {
-        logger.error(error, { description: '搜索音乐错误', report: true });
-        setStatus(RequestStatus.ERROR);
+  const onSearch = useCallback(async () => {
+    effect(searchValue);
+
+    setError(null);
+    setLoading(true);
+    try {
+      const { total: nextTotal, list } = await searchMusic({
+        searchKey,
+        searchValue,
+        page,
+        pageSize: PAGE_SIZE,
       });
-  }, [keyword]);
+      setTotal(nextTotal);
+      setMusicList(
+        list.map((m, index) => ({
+          index: list.length - index,
+          music: m,
+        })),
+      );
+    } catch (e) {
+      logger.error(e, { description: '搜索音乐失败', report: true });
+      setError(e);
+    }
+    setLoading(false);
+  }, [searchKey, searchValue, page]);
 
   useEffect(() => {
-    if (!keyword) {
-      return;
-    }
-
-    let canceled = false;
-
-    effect(keyword);
-
-    setStatus(RequestStatus.LOADING);
-    getMusicListRequest({ key: SearchMusicKey.KEYWORD, value: keyword })
-      .then((ml) => {
-        if (canceled) {
-          return;
-        }
-        const { length } = ml;
-        setMusicList(
-          ml.map((m, index) => ({
-            ...m,
-            index: length - index,
-          })),
-        );
-        setStatus(RequestStatus.SUCCESS);
-      })
-      .catch((error) => {
-        logger.error(error, { description: '搜索音乐错误', report: true });
-        if (canceled) {
-          return;
-        }
-        setStatus(RequestStatus.ERROR);
-      });
-    return () => {
-      canceled = true;
-    };
-  }, [keyword]);
+    onSearch();
+  }, [onSearch]);
 
   return {
-    keyword,
-    status,
+    error,
+    loading,
     musicList,
+    total,
     reload: onSearch,
+    page,
   };
 };

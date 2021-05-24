@@ -1,15 +1,17 @@
 import React from 'react';
 
-import { MusicWithPid } from '../../constants/music';
+import { QueueMusic } from '../../constants/music';
 import recordPlayLog from '../../apis/record_play_log';
 import logger from '../../platform/logger';
 import eventemitter, { Type as EventType } from './eventemitter';
 import Context from './context';
 
-class PlayLog extends React.PureComponent<{
-  music: MusicWithPid;
+interface Props {
+  queueMusic: QueueMusic;
   duration: number;
-}> {
+}
+
+class PlayLog extends React.PureComponent<Props> {
   static contextType = Context;
 
   context: React.ContextType<typeof Context>;
@@ -21,11 +23,11 @@ class PlayLog extends React.PureComponent<{
     eventemitter.on(EventType.AUDIO_TIME_UPDATE, this.onTimeUpdate);
   }
 
-  componentDidUpdate(prevProps) {
-    const { music, duration } = prevProps;
-    if (music.pid !== this.props.music.pid) {
+  componentDidUpdate(prevProps: Props) {
+    const { queueMusic, duration } = prevProps;
+    if (queueMusic.pid !== this.props.queueMusic.pid) {
       recordPlayLog({
-        id: music.id,
+        id: queueMusic.music.id,
         percent: duration ? this.currentTime / duration : 0,
       }).catch((error) =>
         logger.error(error, { description: '音乐播放记录失败', report: true }),
@@ -44,13 +46,15 @@ class PlayLog extends React.PureComponent<{
       currentPlayqueuePosition,
       audioDuration: duration,
     } = this.context;
-    const music = playqueue[currentPlayqueuePosition];
-    recordPlayLog({
-      id: music.id,
-      percent: duration ? this.currentTime / duration : 0,
-    }).catch((error) =>
-      logger.error(error, { description: '音乐播放记录失败', report: true }),
-    );
+    const queueMusic = playqueue[currentPlayqueuePosition] as QueueMusic | null;
+    if (queueMusic) {
+      recordPlayLog({
+        id: queueMusic.music.id,
+        percent: duration ? this.currentTime / duration : 0,
+      }).catch((error) =>
+        logger.error(error, { description: '音乐播放记录失败', report: true }),
+      );
+    }
   };
 
   onTimeUpdate = (time: number) =>

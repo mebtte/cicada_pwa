@@ -44,7 +44,7 @@ const Action = ({
     }
     return playerEventemitter.emit(
       PlayerEventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
-      musicList,
+      musicList.map((m) => m.music),
     );
   };
   const onDelete = () =>

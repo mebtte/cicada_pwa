@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
-import { Music, MusicWithIndex, MusicWithPid } from '@/constants/music';
+import { Music, MusicWithIndex, QueueMusic } from '@/constants/music';
 import toast from '@/platform/toast';
 import getRandomInteger from '@/utils/get_random_integer';
 import getRandomString from '@/utils/get_random_string';
 import eventemitter, { Type as EventType } from './eventemitter';
 
 export default (playlist: MusicWithIndex[]) => {
-  const [playqueue, setPlayqueue] = useState<MusicWithPid[]>([]);
+  const [playqueue, setPlayqueue] = useState<QueueMusic[]>([]);
   const [currentPosition, setCurrentPosition] = useState(-1);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default (playlist: MusicWithIndex[]) => {
     const onPlayPlayqueueIndex = (index: number) => setCurrentPosition(index);
 
     // 从播放队列删除音乐
-    const onRemovePlayqueueMusicListener = (music: MusicWithPid) => {
+    const onRemovePlayqueueMusicListener = (music: QueueMusic) => {
       const { pid } = music;
       setPlayqueue((pq) =>
         pq
@@ -38,7 +38,7 @@ export default (playlist: MusicWithIndex[]) => {
     };
 
     // 将播放队列的音乐推迟
-    const onMovePlayqueueMusicLaterListener = (music: MusicWithPid) =>
+    const onMovePlayqueueMusicLaterListener = (music: QueueMusic) =>
       setPlayqueue((pq) => {
         const { index } = music;
         return [
@@ -62,7 +62,7 @@ export default (playlist: MusicWithIndex[]) => {
         setTimeout(() => setCurrentPosition(0), 0);
         return [
           {
-            ...music,
+            music,
             index: 1,
             pid: getRandomString(),
           },
@@ -70,7 +70,7 @@ export default (playlist: MusicWithIndex[]) => {
       });
 
     // 将播放队列的音乐提早
-    const onMovePlayqueueMusicEarlyListener = (music: MusicWithPid) =>
+    const onMovePlayqueueMusicEarlyListener = (music: QueueMusic) =>
       setPlayqueue((pq) => {
         const { index } = music;
         return [
@@ -136,7 +136,7 @@ export default (playlist: MusicWithIndex[]) => {
       setPlayqueue((pq) =>
         [
           ...pq.slice(0, currentPosition + 1),
-          { ...music, pid: getRandomString() },
+          { music, pid: getRandomString() },
           ...pq.slice(currentPosition + 1),
         ].map((m, index) => ({
           ...m,
@@ -187,7 +187,7 @@ export default (playlist: MusicWithIndex[]) => {
       if (!playqueue.length) {
         setPlayqueue([
           {
-            ...music,
+            music,
             index: 1,
             pid: getRandomString(),
           },
@@ -199,7 +199,7 @@ export default (playlist: MusicWithIndex[]) => {
       setPlayqueue(
         [
           ...playqueue.slice(0, currentPosition + 1),
-          { ...music, pid: getRandomString() },
+          { music, pid: getRandomString() },
           ...playqueue.slice(currentPosition + 1),
         ].map((m, index) => ({
           ...m,

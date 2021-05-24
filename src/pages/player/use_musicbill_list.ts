@@ -70,7 +70,7 @@ export default () => {
                 ...mb,
                 status: RequestStatus.SUCCESS,
                 musicList: musicList.map((m, index) => ({
-                  ...m,
+                  music: m,
                   index: length - index,
                 })),
               };
@@ -137,12 +137,12 @@ export default () => {
       setMusicbillList((mbl) =>
         mbl.map((mb) => {
           if (mb.id === musicbillId) {
-            const musicList = [music, ...mb.musicList];
+            const musicList = [{ index: 0, music }, ...mb.musicList];
             const { length } = musicList;
             return {
               ...mb,
               musicList: musicList.map((m, index) => ({
-                ...m,
+                music: m.music,
                 index: length - index,
               })),
             };
@@ -168,7 +168,9 @@ export default () => {
         setMusicbillList((mbl) =>
           mbl.map((mb) => {
             if (mb.id === musicbillId) {
-              const musicList = mb.musicList.filter((m) => m.id !== musicId);
+              const musicList = mb.musicList.filter(
+                (m) => m.music.id !== musicId,
+              );
               const { length } = musicList;
               return {
                 ...mb,
@@ -195,7 +197,9 @@ export default () => {
       setMusicbillList((mbl) =>
         mbl.map((mb) => {
           if (mb.id === musicbillId) {
-            const musicList = mb.musicList.filter((m) => m.id !== musicId);
+            const musicList = mb.musicList.filter(
+              (m) => m.music.id !== musicId,
+            );
             const { length } = musicList;
             return {
               ...mb,
@@ -226,12 +230,12 @@ export default () => {
         setMusicbillList((mbl) =>
           mbl.map((mb) => {
             if (mb.id === musicbillId) {
-              const musicList = [music, ...mb.musicList];
+              const musicList = [{ index: 0, music }, ...mb.musicList];
               const { length } = musicList;
               return {
                 ...mb,
                 musicList: musicList.map((m, index) => ({
-                  ...m,
+                  music: m.music,
                   index: length - index,
                 })),
               };

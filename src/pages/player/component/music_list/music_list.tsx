@@ -27,7 +27,7 @@ const MusicList = React.forwardRef<HTMLDivElement, Props>(
     const itemRenderer = useCallback(
       (index, key) => {
         const music = musicList[index];
-        return <Music key={key} music={music} style={musicStyle} />;
+        return <Music key={key} listMusic={music} style={musicStyle} />;
       },
       [musicList],
     );

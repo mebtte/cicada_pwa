@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { QueueMusic } from '@/constants/music';
 import scrollbar from '@/style/scrollbar';
 import withSignin from '@/platform/with_signin';
 import electron from '@/platform/electron';
@@ -28,7 +29,6 @@ import ListDrawer from './list_drawer';
 import MusicbillListDrawer from './musicbill_list_drawer';
 import MusicbillOrderDrawer from './musicbilll_order_drawer';
 import NewMusicbillDialog from './new_musicbill_dialog';
-import OriginalMusicDialog from './original_music_dialog';
 import MvDialog from './mv_dialog';
 
 const Scrollable = styled(PageContainer)`
@@ -64,7 +64,7 @@ const Wrapper = () => {
     playlist,
   );
   const searchWord = useSearchWord();
-  const currentMusic = playqueue[currentPlayqueuePosition];
+  const queueMusic = playqueue[currentPlayqueuePosition] as QueueMusic | null;
   const volume = useVolume();
 
   return (
@@ -106,16 +106,15 @@ const Wrapper = () => {
 
       <MvDialog />
       <NewMusicbillDialog />
-      <OriginalMusicDialog />
 
       <MusicOperatePopup />
 
       {electron ? <Electron /> : null}
-      {currentMusic ? (
+      {queueMusic ? (
         <>
-          <Audio volume={volume} playMode={playMode} music={currentMusic} />
-          <MediaSession music={currentMusic} />
-          <PlayLog music={currentMusic} duration={audioDuration} />
+          <Audio volume={volume} playMode={playMode} queueMusic={queueMusic} />
+          <MediaSession music={queueMusic.music} />
+          <PlayLog queueMusic={queueMusic} duration={audioDuration} />
         </>
       ) : null}
     </Context.Provider>

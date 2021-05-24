@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import List from 'react-list';
 
 import scrollbar from '../../../../style/scrollbar';
-import { MusicWithPid } from '../../../../constants/music';
+import { QueueMusic } from '../../../../constants/music';
 import Container from '../container';
 import Music from './music';
 
@@ -17,7 +17,7 @@ const Playqueue = ({
   playqueue,
   currentPlayqueuePosition,
 }: {
-  playqueue: MusicWithPid[];
+  playqueue: QueueMusic[];
   currentPlayqueuePosition: number;
 }) => {
   const reversedPlayqueue = useMemo(() => [...playqueue].reverse(), [
@@ -31,7 +31,7 @@ const Playqueue = ({
       <Music
         key={key}
         activeIndex={activeIndex}
-        music={music}
+        queueMusic={music}
         playqueueLength={length}
       />
     );

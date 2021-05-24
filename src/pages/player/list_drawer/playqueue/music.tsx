@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { Figure } from '@/constants/figure';
 import ellipsis from '@/style/ellipsis';
-import { MusicWithPid } from '@/constants/music';
+import { QueueMusic } from '@/constants/music';
 import IconButton, { Name, Type } from '@/components/icon_button';
 import useMusicOperate from '../../use_music_operate';
 import eventemitter, { Type as EventType } from '../../eventemitter';
@@ -63,15 +63,15 @@ const renderSinger = (s: Figure) => <Singer key={s.id} singer={s} />;
 
 const Music = ({
   activeIndex,
-  music,
+  queueMusic,
   playqueueLength,
 }: {
   activeIndex: number;
   playqueueLength: number;
-  music: MusicWithPid;
+  queueMusic: QueueMusic;
 }) => {
-  const { index } = music;
-  const { onView, onOperate } = useMusicOperate(music);
+  const { index } = queueMusic;
+  const { onView, onOperate } = useMusicOperate(queueMusic.music);
   const onJump = useCallback(() => {
     if (index === activeIndex) {
       return;
@@ -79,19 +79,31 @@ const Music = ({
     return eventemitter.emit(EventType.ACTION_PLAY_PLAYQUEUE_INDEX, index - 1);
   }, [index, activeIndex]);
   const onRemove = useCallback(
-    () => eventemitter.emit(EventType.ACTION_REMOVE_PLAYQUEUE_MUSIC, music),
-    [music],
+    () =>
+      eventemitter.emit(
+        EventType.ACTION_REMOVE_PLAYQUEUE_MUSIC,
+        queueMusic.music,
+      ),
+    [queueMusic],
   );
   const onMoveLater = useCallback(
-    () => eventemitter.emit(EventType.ACTION_MOVE_PLAYQUEUE_MUSIC_LATER, music),
-    [music],
+    () =>
+      eventemitter.emit(
+        EventType.ACTION_MOVE_PLAYQUEUE_MUSIC_LATER,
+        queueMusic.music,
+      ),
+    [queueMusic],
   );
   const onMoveEarly = useCallback(
-    () => eventemitter.emit(EventType.ACTION_MOVE_PLAYQUEUE_MUSIC_EARLY, music),
-    [music],
+    () =>
+      eventemitter.emit(
+        EventType.ACTION_MOVE_PLAYQUEUE_MUSIC_EARLY,
+        queueMusic.music,
+      ),
+    [queueMusic],
   );
 
-  const { name, singers } = music;
+  const { name, singers } = queueMusic.music;
   const active = index === activeIndex;
   return (
     <Style active={active}>

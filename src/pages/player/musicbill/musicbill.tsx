@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import { LocalMusicbill } from '@/constants/musicbill';
 import { RequestStatus } from '@/constants';
 import { MUSICBILL_SCROLL_TOP } from '@/constants/storage_key';
-import filterMusicList from '@/utils/filter_music_list';
 import { TopContent, TOP_CONTENT_HEIGHT } from './constant';
 import useTopContent from './use_top_content';
 import useKeyword from './use_keyword';
@@ -22,6 +21,7 @@ import Action from './action';
 import TextEditDialog from './text_edit_dialog';
 import CoverEditDialog from './cover_edit_dialog';
 import Search from './search';
+import filterMusicList from './filter_music_list';
 
 const Style = styled.div`
   ${routeContainerStyle}

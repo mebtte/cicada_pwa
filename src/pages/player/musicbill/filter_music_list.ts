@@ -1,8 +1,8 @@
-import { Music } from '../constants/music';
+import { MusicWithIndex } from '@/constants/music';
 
 function filterMusic(keyword: string) {
-  return (music: Music) => {
-    const { name, alias, singers } = music;
+  return (listMusic: MusicWithIndex) => {
+    const { name, alias, singers } = listMusic.music;
     if (
       name.toLowerCase().indexOf(keyword) > -1 ||
       alias.toLowerCase().indexOf(keyword) > -1
@@ -22,5 +22,5 @@ function filterMusic(keyword: string) {
   };
 }
 
-export default <T extends Music>(musicList: T[], keyword) =>
+export default (musicList: MusicWithIndex[], keyword) =>
   musicList.filter(filterMusic(keyword));

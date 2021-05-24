@@ -35,6 +35,7 @@ interface Props {
   musicList: MusicWithIndex[];
   reload: () => void;
   emptyDescription?: string;
+  errorMessage?: string;
   style?: React.CSSProperties;
   musicListProps?: any;
 }
@@ -46,6 +47,7 @@ const Wrapper = React.forwardRef<HTMLDivElement, Props>(
       musicList,
       reload,
       emptyDescription = '空的音乐列表',
+      errorMessage = '获取音乐列表失败',
       musicListProps,
       style,
     }: Props,
@@ -82,7 +84,7 @@ const Wrapper = React.forwardRef<HTMLDivElement, Props>(
             default: {
               content = (
                 <ErrorCard
-                  errorMessage="获取音乐列表失败"
+                  errorMessage={errorMessage}
                   retry={reload}
                   style={containerStyle}
                 />

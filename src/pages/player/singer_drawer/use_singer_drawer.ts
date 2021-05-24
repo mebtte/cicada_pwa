@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import getMusicListRequest from '@/apis/get_music_list';
+import getSingerMusicList from '@/apis/get_singer_music_list';
 import logger from '@/platform/logger';
 import { RequestStatus } from '@/constants';
 import openLink from '@/utils/open_link';
-import { SearchMusicKey, MusicWithIndex } from '@/constants/music';
+import { MusicWithIndex } from '@/constants/music';
 import { Figure } from '@/constants/figure';
 import eventemitter, { Type as EventType } from '../eventemitter';
 
@@ -19,16 +19,13 @@ export default () => {
       return;
     }
     setStatus(RequestStatus.LOADING);
-    getMusicListRequest({
-      key: SearchMusicKey.SINGER,
-      value: id,
-    })
+    getSingerMusicList(id)
       .then((ml) => {
         const { length } = ml;
         setMusicList(
           ml.map((m, index) => ({
-            ...m,
             index: length - index,
+            music: m,
           })),
         );
         setStatus(RequestStatus.SUCCESS);
@@ -44,7 +41,10 @@ export default () => {
   const onClose = useCallback(() => setOpen(false), []);
   const addAllToPlaylist = useCallback(
     () =>
-      eventemitter.emit(EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST, musicList),
+      eventemitter.emit(
+        EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
+        musicList.map((m) => m.music),
+      ),
     [musicList],
   );
   const toNeteaseCloudMusic = useCallback(() => {
