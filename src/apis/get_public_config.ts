@@ -1,13 +1,15 @@
 import api from '.';
-import { Key } from '../constants/public_config';
+
+export enum Key {
+  SEARCH_WORD = 'search_word', // 搜索词
+}
 
 /**
  * 获取公共配置
  * @author mebtte<hi@mebtte.com>
- * @param key 公共配置 key
  */
 function getPublicConfig(key: Key) {
-  return api.get<string>('/public_config', {
+  return api.get<string>('/get_public_config', {
     withToken: true,
     params: { key },
   });
