@@ -1,16 +1,13 @@
 import React from 'react';
 
 import Button, { Type } from '@/components/button';
-import { PlayMode as PlayModeType } from '../constant';
+import {
+  PlayMode as PlayModeType,
+  PLAY_MODE_MAP_LABEL,
+  PLAY_MODES,
+} from '../constants';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Item from './item';
-
-const PLAY_MODES = Object.values(PlayModeType);
-const PLAY_MODE_MAP_LABEL = {
-  [PlayModeType.SQ]: '标准音质',
-  [PlayModeType.HQ]: '高音质',
-  [PlayModeType.ACCOMPANY]: '伴奏',
-};
 
 const buttonStyle = {
   marginLeft: 10,

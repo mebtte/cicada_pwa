@@ -2,10 +2,11 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { SearchKey, SEARCH_KEYS } from '@/apis/search_music';
+import useQuery from '@/utils/use_query';
 import Avatar from '@/components/avatar';
 import { PLAYER_PATH } from '@/constants/route';
 import { IS_ELECTRON, IS_WINDOWS } from '@/constants';
-import parseSearch from '@/utils/parse_search';
 import {
   minimizePlayerWindow,
   hidePlayerWindow,
@@ -13,6 +14,7 @@ import {
 import IconButton, { Name } from '@/components/icon_button';
 import Search from './search';
 import Title from './title';
+import { Query, QueryObject } from '../constants';
 
 const Style = styled.div`
   z-index: 2;
@@ -24,22 +26,24 @@ const Style = styled.div`
   -webkit-app-region: drag;
 `;
 const actionStyle = {
-  marginLeft: 5,
+  marginLeft: 10,
   WebkitAppRegion: 'no-drag',
 };
 
 const Header = () => {
-  const { pathname, search } = useLocation();
+  const { pathname } = useLocation();
+  const query = useQuery<QueryObject>();
+
+  let searchKey = query[Query.SEARCH_KEY] as SearchKey;
+  if (!SEARCH_KEYS.includes(searchKey)) {
+    searchKey = SearchKey.MUSIC_NAME;
+  }
+  const searchValue = query[Query.SEARCH_VALUE] || '';
 
   let title = null;
   switch (pathname) {
     case PLAYER_PATH.SEARCH: {
-      const { keyword } = parseSearch(search);
-      if (keyword) {
-        title = `搜索"${decodeURIComponent(keyword)}"`;
-      } else {
-        title = '搜索';
-      }
+      title = `搜索"${query[Query.SEARCH_VALUE]}"`;
       break;
     }
     case PLAYER_PATH.SETTING: {
@@ -57,7 +61,7 @@ const Header = () => {
     <Style>
       <Avatar animated src="/logo.png" size={32} />
       <Title title={title} />
-      <Search />
+      <Search searchKey={searchKey} searchValue={searchValue} />
       {IS_ELECTRON && IS_WINDOWS ? (
         <>
           <IconButton

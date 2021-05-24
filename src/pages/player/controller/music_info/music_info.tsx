@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Music as MusicType } from '@/constants/music';
 import Tag from '@/components/tag';
-import { MUSIC_TAG_COLOR } from '../../constant';
+import { MUSIC_TAG_COLOR } from '../../constants';
 import Container from './container';
 import Singer from '../../component/singer';
 
@@ -36,7 +36,7 @@ const MusicInfo = ({
         </span>
       </div>
       <div className="tags">
-        {ac ? <StyledTag tag="ac" color={MUSIC_TAG_COLOR.ACCOMPANY} /> : null}
+        {ac ? <StyledTag tag="ac" color={MUSIC_TAG_COLOR.AC} /> : null}
         {hq ? <StyledTag tag="hq" color={MUSIC_TAG_COLOR.HQ} /> : null}
       </div>
     </Container>

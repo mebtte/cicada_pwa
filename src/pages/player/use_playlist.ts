@@ -11,14 +11,14 @@ export default () => {
     // 指定音乐播放
     const onPlayMusicListener = (music: Music) =>
       setPlaylist((pl) => {
-        const musicIdList = pl.map((m) => m.id);
+        const musicIdList = pl.map((m) => m.music.id);
         if (musicIdList.includes(music.id)) {
           return pl;
         }
         const newPlaylist = [music, ...pl];
         const { length } = newPlaylist;
         return newPlaylist.map((m, index) => ({
-          ...m,
+          music,
           index: length - index,
         }));
       });
@@ -26,7 +26,7 @@ export default () => {
     // 添加音乐列表到播放列表
     const onAddMusicListToPlaylistListener = (musicList: Music[]) =>
       setPlaylist((pl) => {
-        const currentMusicIdList = pl.map((m) => m.id);
+        const currentMusicIdList = pl.map((m) => m.music.id);
         const newMusicList = musicList.filter(
           (m) => !currentMusicIdList.includes(m.id),
         );
@@ -34,11 +34,14 @@ export default () => {
           toast.info('播放列表已包含这些音乐');
           return pl;
         }
-        const newPlaylist = [...pl, ...newMusicList];
+        const newPlaylist = [
+          ...pl,
+          ...newMusicList.map((m) => ({ index: 0, music: m })),
+        ];
         const { length } = newPlaylist;
         toast.success(`已添加${newMusicList.length}首音乐到播放列表`);
         return newPlaylist.map((m, index) => ({
-          ...m,
+          music: m.music,
           index: length - index,
         }));
       });
@@ -50,10 +53,10 @@ export default () => {
     const onClearPlaylistListener = () => setPlaylist([]);
 
     // 移除播放列表中的音乐
-    const onRemovePlaylistMusicListener = (music: MusicWithIndex) => {
-      const { id } = music;
+    const onRemovePlaylistMusicListener = (listMusic: MusicWithIndex) => {
+      const { id } = listMusic.music;
       return setPlaylist((pl) => {
-        const newPlaylist = pl.filter((m) => m.id !== id);
+        const newPlaylist = pl.filter((m) => m.music.id !== id);
         const { length } = newPlaylist;
         return newPlaylist.map((m, index) => ({
           ...m,

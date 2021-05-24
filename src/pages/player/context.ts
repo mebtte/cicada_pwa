@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
 import { RequestStatus } from '../../constants';
-import { PlayMode } from './constant';
-import { MusicWithIndex, MusicWithPid } from '../../constants/music';
+import { PlayMode } from './constants';
+import { MusicWithIndex, QueueMusic } from '../../constants/music';
 import { LocalMusicbill } from '../../constants/musicbill';
 
 interface Context {
@@ -17,7 +17,7 @@ interface Context {
 
   playlist: MusicWithIndex[];
 
-  playqueue: MusicWithPid[];
+  playqueue: QueueMusic[];
   currentPlayqueuePosition: number;
 
   searchWord: string;

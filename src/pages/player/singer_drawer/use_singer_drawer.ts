@@ -24,8 +24,8 @@ export default () => {
         const { length } = ml;
         setMusicList(
           ml.map((m, index) => ({
-            ...m,
             index: length - index,
+            music: m,
           })),
         );
         setStatus(RequestStatus.SUCCESS);

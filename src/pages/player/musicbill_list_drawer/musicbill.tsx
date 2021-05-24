@@ -30,7 +30,7 @@ const Musicbill = ({
         musicbill,
       );
     }
-    const checked = !!musicbill.musicList.find((m) => m.id === music.id);
+    const checked = !!musicbill.musicList.find((m) => m.music.id === music.id);
     if (checked) {
       return playerEventemitter.emit(
         PlayerEventType.REMOVE_MUSIC_FROM_MUSICBILL,
@@ -46,7 +46,7 @@ const Musicbill = ({
 
   let icon = null;
   if (status === RequestStatus.SUCCESS) {
-    const checked = music && !!musicList.find((m) => m.id === music.id);
+    const checked = music && !!musicList.find((m) => m.music.id === music.id);
     icon = <Checkbox checked={checked} size={ICON_SIZE} />;
   } else if (status === RequestStatus.LOADING) {
     icon = <CircularLoader size={ICON_SIZE} style={ICON_STYLE} />;

@@ -16,7 +16,7 @@ const Style = styled.div`
 
 const Playlist = ({ playlist }: { playlist: MusicType[] }) => {
   const itemRenderer = (index, key) => (
-    <Music key={key} music={playlist[index]} />
+    <Music key={key} listMusic={playlist[index]} />
   );
   return (
     <Style>

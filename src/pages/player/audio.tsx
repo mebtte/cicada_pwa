@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import eventemitter, { Type as EventType } from './eventemitter';
 import logger from '../../platform/logger';
 import dialog from '../../platform/dialog';
-import { MusicWithPid } from '../../constants/music';
-import { PlayMode } from './constant';
+import { QueueMusic } from '../../constants/music';
+import { PlayMode } from './constants';
 
 const TIME_UPDATE_INTERVAL = 1000 * 0.5; // timeUpdate最大时间间隔
 
@@ -30,13 +30,15 @@ const onError = (e) => {
 
 const Audio = ({
   playMode,
-  music,
+  queueMusic,
   volume,
 }: {
   playMode: PlayMode;
-  music: MusicWithPid;
+  queueMusic: QueueMusic;
   volume: number;
 }) => {
+  const { pid, music } = queueMusic;
+
   const audioRef = useRef<HTMLAudioElement>();
   const lastUpdateTime = useRef(0);
   const onTimeUpdate = useCallback((event) => {
@@ -58,7 +60,7 @@ const Audio = ({
     audioRef.current.currentTime = 0;
     eventemitter.emit(EventType.AUDIO_TIME_UPDATE, 0);
     audioRef.current.play();
-  }, [music.pid]);
+  }, [pid]);
   useEffect(() => {
     const setTimeListener = (time: number) => {
       onWaiting();

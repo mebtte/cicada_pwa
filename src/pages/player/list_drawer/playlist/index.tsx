@@ -2,7 +2,6 @@ import React, { useCallback, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { MusicWithIndex } from '@/constants/music';
-import filterMusicList from '@/utils/filter_music_list';
 import Input from '@/components/input';
 import Tooltip, { Placement } from '@/components/tooltip';
 import CircularLoader from '@/components/circular_loader';
@@ -10,6 +9,7 @@ import IconButton, { Name } from '@/components/icon_button';
 import Container from '../container';
 import Playlist from './playlist';
 import Empty from './empty';
+import filterPlaylist from './filter_playlist';
 
 const Style = styled(Container)`
   display: flex;
@@ -66,7 +66,7 @@ const Wrapper = ({
     return () => clearTimeout(timer);
   }, []);
 
-  const filteredPlaylist = filterMusicList(playlist, keyword);
+  const filteredPlaylist = filterPlaylist(playlist, keyword);
   return (
     <Style>
       <div className="action">

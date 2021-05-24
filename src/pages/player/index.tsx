@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { QueueMusic } from '@/constants/music';
 import scrollbar from '@/style/scrollbar';
 import withSignin from '@/platform/with_signin';
 import electron from '@/platform/electron';
@@ -63,7 +64,7 @@ const Wrapper = () => {
     playlist,
   );
   const searchWord = useSearchWord();
-  const currentMusic = playqueue[currentPlayqueuePosition];
+  const queueMusic = playqueue[currentPlayqueuePosition] as QueueMusic | null;
   const volume = useVolume();
 
   return (
@@ -109,11 +110,11 @@ const Wrapper = () => {
       <MusicOperatePopup />
 
       {electron ? <Electron /> : null}
-      {currentMusic ? (
+      {queueMusic ? (
         <>
-          <Audio volume={volume} playMode={playMode} music={currentMusic} />
-          <MediaSession music={currentMusic} />
-          <PlayLog music={currentMusic} duration={audioDuration} />
+          <Audio volume={volume} playMode={playMode} queueMusic={queueMusic} />
+          <MediaSession music={queueMusic.music} />
+          <PlayLog queueMusic={queueMusic} duration={audioDuration} />
         </>
       ) : null}
     </Context.Provider>

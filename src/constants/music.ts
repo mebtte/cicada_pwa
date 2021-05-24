@@ -47,10 +47,11 @@ export interface Music {
   singers: Figure[];
 }
 
-export interface MusicWithIndex extends Music {
+export interface MusicWithIndex {
   index: number;
+  music: Music;
 }
 
-export interface MusicWithPid extends MusicWithIndex {
+export interface QueueMusic extends MusicWithIndex {
   pid: string;
 }

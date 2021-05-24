@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
+import { QueueMusic } from '@/constants/music';
 import { ROOT_PATH } from '@/constants/route';
 import Context from '../context';
 import { routeContainerStyle } from '../style';
@@ -23,15 +24,15 @@ const Style = styled.div`
 
 const Wrapper = () => {
   const { playqueue, currentPlayqueuePosition } = useContext(Context);
-  const music = playqueue[currentPlayqueuePosition];
-  if (!music) {
+  const queueMusic = playqueue[currentPlayqueuePosition] as QueueMusic | null;
+  if (!queueMusic) {
     return <Redirect to={ROOT_PATH.PLAYER} />;
   }
   return (
     <Style>
       <div className="container">
-        <Info music={music} />
-        <Lyric music={music} />
+        <Info music={queueMusic.music} />
+        <Lyric music={queueMusic.music} />
       </div>
     </Style>
   );
