@@ -32,9 +32,6 @@ const EditMusicSingerListDialog = () => {
 
   const [loading, setLoading] = useState(false);
   const onUpdate = async () => {
-    if (!singerList.length) {
-      return toast.error('请选择歌手');
-    }
     if (singerList === music.singers) {
       return onClose();
     }
