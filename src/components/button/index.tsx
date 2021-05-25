@@ -30,6 +30,7 @@ const Style = styled.button<{
   block: boolean;
   buttonType: Type;
 }>`
+  user-select: none;
   white-space: nowrap;
   position: relative;
   border: none;
