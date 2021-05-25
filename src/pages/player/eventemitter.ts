@@ -11,10 +11,10 @@ export enum Type {
   ACTION_TOGGLE_PLAY = 'action_toggle_play', // 播放/暂停
   ACTION_PLAY = 'action_play', // 播放
   ACTION_PAUSE = 'action_pause', // 暂停
-  ACTION_SET_TIME = 'action_set_time',
-  ACTION_PREVIOUS = 'action_previous',
-  ACTION_NEXT = 'action_next',
-  ACTION_PLAY_MUSIC = 'action_play_music',
+  ACTION_SET_TIME = 'action_set_time', // 跳转时间
+  ACTION_PREVIOUS = 'action_previous', // 上一首
+  ACTION_NEXT = 'action_next', // 下一首
+  ACTION_PLAY_MUSIC = 'action_play_music', // 播放指定音乐
   ACTION_ADD_MUSIC_LIST_TO_PLAYLIST = 'action_add_music_list_to_playlist',
   ACTION_INSERT_MUSIC_TO_PLAYQUEUE = 'action_insert_music_to_playqueue',
   ACTION_PLAY_PLAYQUEUE_INDEX = 'action_playqueue_index',

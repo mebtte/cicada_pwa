@@ -87,7 +87,7 @@ const Music = ({
     () =>
       eventemitter.emit(
         EventType.ACTION_MOVE_PLAYQUEUE_MUSIC_LATER,
-        queueMusic.music,
+        queueMusic,
       ),
     [queueMusic],
   );
@@ -95,7 +95,7 @@ const Music = ({
     () =>
       eventemitter.emit(
         EventType.ACTION_MOVE_PLAYQUEUE_MUSIC_EARLY,
-        queueMusic.music,
+        queueMusic,
       ),
     [queueMusic],
   );
