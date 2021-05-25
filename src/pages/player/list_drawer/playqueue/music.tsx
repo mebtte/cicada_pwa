@@ -80,10 +80,7 @@ const Music = ({
   }, [index, activeIndex]);
   const onRemove = useCallback(
     () =>
-      eventemitter.emit(
-        EventType.ACTION_REMOVE_PLAYQUEUE_MUSIC,
-        queueMusic.music,
-      ),
+      eventemitter.emit(EventType.ACTION_REMOVE_PLAYQUEUE_MUSIC, queueMusic),
     [queueMusic],
   );
   const onMoveLater = useCallback(
