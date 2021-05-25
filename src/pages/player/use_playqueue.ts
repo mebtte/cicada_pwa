@@ -25,8 +25,8 @@ export default (playlist: MusicWithIndex[]) => {
     const onPlayPlayqueueIndex = (index: number) => setCurrentPosition(index);
 
     // 从播放队列删除音乐
-    const onRemovePlayqueueMusicListener = (music: QueueMusic) => {
-      const { pid } = music;
+    const onRemovePlayqueueMusicListener = (queueMusic: QueueMusic) => {
+      const { pid } = queueMusic;
       setPlayqueue((pq) =>
         pq
           .filter((m) => m.pid !== pid)
@@ -38,9 +38,9 @@ export default (playlist: MusicWithIndex[]) => {
     };
 
     // 将播放队列的音乐推迟
-    const onMovePlayqueueMusicLaterListener = (music: QueueMusic) =>
+    const onMovePlayqueueMusicLaterListener = (queueMusic: QueueMusic) =>
       setPlayqueue((pq) => {
-        const { index } = music;
+        const { index } = queueMusic;
         return [
           ...pq.slice(0, index - 1),
           pq[index],

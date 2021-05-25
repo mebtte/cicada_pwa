@@ -15,10 +15,10 @@ export default () => {
         if (musicIdList.includes(music.id)) {
           return pl;
         }
-        const newPlaylist = [music, ...pl];
+        const newPlaylist = [{ index: 0, music }, ...pl];
         const { length } = newPlaylist;
         return newPlaylist.map((m, index) => ({
-          music,
+          music: m.music,
           index: length - index,
         }));
       });

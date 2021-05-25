@@ -8,9 +8,9 @@ export enum Type {
   AUDIO_TIME_UPDATE = 'audio_time_update', // 音频当前时间更新
   AUDIO_ERROR = 'audio_error', // 音频发生错误
 
-  ACTION_TOGGLE_PLAY = 'action_toggle_play',
-  ACTION_PLAY = 'action_play',
-  ACTION_PAUSE = 'action_pause',
+  ACTION_TOGGLE_PLAY = 'action_toggle_play', // 播放/暂停
+  ACTION_PLAY = 'action_play', // 播放
+  ACTION_PAUSE = 'action_pause', // 暂停
   ACTION_SET_TIME = 'action_set_time',
   ACTION_PREVIOUS = 'action_previous',
   ACTION_NEXT = 'action_next',
