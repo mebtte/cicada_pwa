@@ -57,6 +57,7 @@ const Wrapper = ({
       pathname: PLAYER_PATH.SEARCH,
       query: {
         [Query.SEARCH_VALUE]: trimSearchValue,
+        [Query.PAGE]: 1,
       },
     });
   };

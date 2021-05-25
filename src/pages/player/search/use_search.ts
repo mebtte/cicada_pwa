@@ -4,8 +4,8 @@ import useQuery from '@/utils/use_query';
 import { MusicWithIndex } from '@/constants/music';
 import searchMusic, { SearchKey, SEARCH_KEYS } from '@/apis/search_music';
 import logger from '@/platform/logger';
-import { Query as PlayerQuery } from '../constants';
-import { PAGE_SIZE, Query } from './constants';
+import { Query } from '../constants';
+import { PAGE_SIZE } from './constants';
 
 const effect = (keyword: string) => {
   // eslint-disable-next-line default-case
@@ -31,11 +31,11 @@ export default () => {
   const [musicList, setMusicList] = useState<MusicWithIndex[]>([]);
   const [total, setTotal] = useState(0);
 
-  let searchKey = query[PlayerQuery.SEARCH_KEY] as SearchKey;
+  let searchKey = query[Query.SEARCH_KEY] as SearchKey;
   if (!SEARCH_KEYS.includes(searchKey)) {
     searchKey = SearchKey.MUSIC_NAME_OR_ALIAS;
   }
-  const searchValue = query[PlayerQuery.SEARCH_VALUE];
+  const searchValue = query[Query.SEARCH_VALUE];
   const pageString = query[Query.PAGE];
   const page = pageString ? +pageString : 1 || 1;
 
