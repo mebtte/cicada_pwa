@@ -6,7 +6,7 @@ import api from '.';
 export enum SearchKey {
   MUSIC_NAME_OR_ALIAS = 'music_name_or_alias',
   SINGER_NAME_OR_ALIAS = 'singer_name_or_alias',
-  LRC = 'lrc',
+  MUSIC_LRC = 'music_lrc',
 }
 export const SEARCH_KEY_MAP: Record<SearchKey, { label: string }> = {
   [SearchKey.MUSIC_NAME_OR_ALIAS]: {
@@ -15,7 +15,7 @@ export const SEARCH_KEY_MAP: Record<SearchKey, { label: string }> = {
   [SearchKey.SINGER_NAME_OR_ALIAS]: {
     label: '歌手',
   },
-  [SearchKey.LRC]: {
+  [SearchKey.MUSIC_LRC]: {
     label: '歌词',
   },
 };
