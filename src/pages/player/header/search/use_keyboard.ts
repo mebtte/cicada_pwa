@@ -4,7 +4,7 @@ import { IS_MAC_OS, IS_WINDOWS } from '@/constants';
 import KeyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
 
 export default () => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const listener = KeyboardHandlerWrapper((event: KeyboardEvent) => {

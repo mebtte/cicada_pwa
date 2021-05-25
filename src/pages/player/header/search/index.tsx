@@ -1,4 +1,9 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useContext,
+  useLayoutEffect,
+} from 'react';
 import styled from 'styled-components';
 
 import { SearchKey, SEARCH_KEYS, SEARCH_KEY_MAP } from '@/apis/search_music';
@@ -71,6 +76,12 @@ const Wrapper = ({
     [],
   );
   const inputRef = useKeyword();
+
+  useLayoutEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    inputRef.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchKey]);
 
   return (
     <Style>
