@@ -1,6 +1,6 @@
 {
   "name": "cicada_web",
-  "version": "3.75.161",
+  "version": "3.75.162",
   "private": true,
   "author": {
     "name": "mebtte",
@@ -78,7 +78,7 @@
     "react-helmet": "^6.1.0",
     "react-list": "^0.8.16",
     "react-loadable": "^5.5.0",
-    "react-lrc": "^2.0.0",
+    "react-lrc": "^2.0.3",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.1.2",
     "react-slider": "^1.1.2",
