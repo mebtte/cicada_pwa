@@ -7,7 +7,7 @@ import CircularLoader from '../circular_loader';
 import Icon, { Name } from '../icon';
 
 const ANIMATION_DURATION = 350;
-const ARROW_SIZE = 12;
+const ARROW_SIZE = 10;
 const Style = styled.div<{ arrayVisible: boolean }>`
   position: relative;
   display: inline-block;
@@ -17,6 +17,7 @@ const Style = styled.div<{ arrayVisible: boolean }>`
       width: 100%;
     }
     > .arrow {
+      pointer-events: none;
       position: absolute;
       right: 12px;
       top: calc(50% - ${ARROW_SIZE / 2}px);
