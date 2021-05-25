@@ -4,15 +4,15 @@ import transformApiMusic from '@/utils/transform_api_music';
 import api from '.';
 
 export enum SearchKey {
-  MUSIC_NAME = 'music_name',
-  SINGER_NAME = 'singer_name',
+  MUSIC_NAME_OR_ALIAS = 'music_name_or_alias',
+  SINGER_NAME_OR_ALIAS = 'singer_name_or_alias',
   LRC = 'lrc',
 }
 export const SEARCH_KEY_MAP: Record<SearchKey, { label: string }> = {
-  [SearchKey.MUSIC_NAME]: {
-    label: '歌名',
+  [SearchKey.MUSIC_NAME_OR_ALIAS]: {
+    label: '音乐',
   },
-  [SearchKey.SINGER_NAME]: {
+  [SearchKey.SINGER_NAME_OR_ALIAS]: {
     label: '歌手',
   },
   [SearchKey.LRC]: {

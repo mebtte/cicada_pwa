@@ -33,7 +33,7 @@ export default () => {
 
   let searchKey = query[PlayerQuery.SEARCH_KEY] as SearchKey;
   if (!SEARCH_KEYS.includes(searchKey)) {
-    searchKey = SearchKey.MUSIC_NAME;
+    searchKey = SearchKey.MUSIC_NAME_OR_ALIAS;
   }
   const searchValue = query[PlayerQuery.SEARCH_VALUE];
   const pageString = query[Query.PAGE];

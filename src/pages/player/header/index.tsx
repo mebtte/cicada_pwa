@@ -36,7 +36,7 @@ const Header = () => {
 
   let searchKey = query[Query.SEARCH_KEY] as SearchKey;
   if (!SEARCH_KEYS.includes(searchKey)) {
-    searchKey = SearchKey.MUSIC_NAME;
+    searchKey = SearchKey.MUSIC_NAME_OR_ALIAS;
   }
   const searchValue = query[Query.SEARCH_VALUE] || '';
 
