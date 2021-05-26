@@ -17,8 +17,7 @@ export const MUSIC_TAG_COLOR = {
 };
 
 export enum Query {
-  SEARCH_KEY = 'search_key',
-  SEARCH_VALUE = 'search_value',
+  KEYWORD = 'keyword',
   PAGE = 'page',
 }
 export type QueryObject = { [key in Query]?: string };

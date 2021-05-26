@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import toast from '@/platform/toast';
+import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
 
 const ACTION_SIZE = 28;
@@ -19,9 +21,9 @@ const Action = ({
 }: {
   reload: () => void;
   loading: boolean;
-}) => {
-  return (
-    <Style>
+}) => (
+  <Style>
+    <Tooltip title="重新加载" placement={Placement.LEFT}>
       <IconButton
         className="action"
         name={Name.REFRESH_OUTLINE}
@@ -29,8 +31,16 @@ const Action = ({
         onClick={reload}
         loading={loading}
       />
-    </Style>
-  );
-};
+    </Tooltip>
+    <Tooltip title="通过歌词搜索" placement={Placement.LEFT}>
+      <IconButton
+        className="action"
+        name={Name.LYRIC_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() => toast.info('即将开放')}
+      />
+    </Tooltip>
+  </Style>
+);
 
 export default Action;

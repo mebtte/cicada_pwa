@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 import useQuery from '@/utils/use_query';
 import { MusicWithIndex } from '@/constants/music';
-import searchMusic, { SearchKey, SEARCH_KEYS } from '@/apis/search_music';
+import searchMusic from '@/apis/search_music';
 import logger from '@/platform/logger';
 import { Query } from '../constants';
 import { PAGE_SIZE } from './constants';
@@ -31,23 +31,18 @@ export default () => {
   const [musicList, setMusicList] = useState<MusicWithIndex[]>([]);
   const [total, setTotal] = useState(0);
 
-  let searchKey = query[Query.SEARCH_KEY] as SearchKey;
-  if (!SEARCH_KEYS.includes(searchKey)) {
-    searchKey = SearchKey.MUSIC_NAME_OR_ALIAS;
-  }
-  const searchValue = query[Query.SEARCH_VALUE];
+  const keyword = query[Query.KEYWORD];
   const pageString = query[Query.PAGE];
   const page = pageString ? +pageString : 1 || 1;
 
   const onSearch = useCallback(async () => {
-    effect(searchValue);
+    effect(keyword);
 
     setError(null);
     setLoading(true);
     try {
       const { total: nextTotal, list } = await searchMusic({
-        searchKey,
-        searchValue,
+        keyword,
         page,
         pageSize: PAGE_SIZE,
       });
@@ -63,7 +58,7 @@ export default () => {
       setError(e);
     }
     setLoading(false);
-  }, [searchKey, searchValue, page]);
+  }, [keyword, page]);
 
   useEffect(() => {
     onSearch();

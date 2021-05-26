@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { SearchKey, SEARCH_KEYS } from '@/apis/search_music';
 import useQuery from '@/utils/use_query';
 import Avatar from '@/components/avatar';
 import { PLAYER_PATH } from '@/constants/route';
@@ -32,18 +31,14 @@ const actionStyle = {
 
 const Header = () => {
   const { pathname } = useLocation();
-  const query = useQuery<QueryObject>();
 
-  let searchKey = query[Query.SEARCH_KEY] as SearchKey;
-  if (!SEARCH_KEYS.includes(searchKey)) {
-    searchKey = SearchKey.MUSIC_NAME_OR_ALIAS;
-  }
-  const searchValue = query[Query.SEARCH_VALUE] || '';
+  const query = useQuery<QueryObject>();
+  const keyword = query[Query.KEYWORD] || '';
 
   let title = null;
   switch (pathname) {
     case PLAYER_PATH.SEARCH: {
-      title = `搜索"${query[Query.SEARCH_VALUE]}"`;
+      title = `搜索"${keyword}"`;
       break;
     }
     case PLAYER_PATH.SETTING: {
@@ -61,7 +56,7 @@ const Header = () => {
     <Style>
       <Avatar animated src="/logo.png" size={32} />
       <Title title={title} />
-      <Search searchKey={searchKey} searchValue={searchValue} />
+      <Search keyword={keyword} />
       {IS_ELECTRON && IS_WINDOWS ? (
         <>
           <IconButton
