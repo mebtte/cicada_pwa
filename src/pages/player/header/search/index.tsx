@@ -37,7 +37,7 @@ const Wrapper = ({ keyword: initialKeyword }: { keyword: string }) => {
     return history.push({
       pathname: PLAYER_PATH.SEARCH,
       query: {
-        [Query.KEYWORD]: keyword,
+        [Query.KEYWORD]: trimKeyword,
         [Query.PAGE]: 1,
       },
     });
