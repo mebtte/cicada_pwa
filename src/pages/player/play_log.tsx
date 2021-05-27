@@ -14,6 +14,7 @@ interface Props {
 class PlayLog extends React.PureComponent<Props> {
   static contextType = Context;
 
+  // @ts-expect-error
   context: React.ContextType<typeof Context>;
 
   currentTime: number;
