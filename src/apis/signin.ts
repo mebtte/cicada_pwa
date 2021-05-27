@@ -15,7 +15,7 @@ async function signin({
   const { token, token_expired_at: tokenExpiredAt } = await api.post<{
     token: string;
     token_expired_at: string;
-  }>('/user/signin', {
+  }>('/signin', {
     data: { email, verify_code: verifyCode },
   });
   return {

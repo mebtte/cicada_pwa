@@ -1,10 +1,9 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 
 import { EMAIL } from '@/constants/regexp';
-import { Type as VerifyCodeType } from '@/constants/verify_code';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import getVerifyCodeRequest from '@/apis/get_verify_code';
+import getSigninVerifyCode from '@/apis/get_signin_verify_code';
 import formatSecond from '@/utils/format_second';
 import dialog from '@/platform/dialog';
 import Button, { Type } from '@/components/button';
@@ -25,10 +24,7 @@ const VerifyCodeButton = ({ email }: { email: string }) => {
     }
     setLoading(true);
     try {
-      await getVerifyCodeRequest({
-        email,
-        type: VerifyCodeType.SIGNIN,
-      });
+      await getSigninVerifyCode(email);
       setEndTime(new Date(Date.now() + GET_VERIFY_CODE_INTERVAL).getTime());
       setTimeString(formatSecond(GET_VERIFY_CODE_INTERVAL / 1000));
     } catch (error) {
