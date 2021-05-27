@@ -12,11 +12,9 @@ const Style = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  > .avatar-container {
-    > .avatar {
-      cursor: pointer;
-      border: 4px solid rgb(49 194 124 / 0.5);
-    }
+  > .avatar {
+    cursor: pointer;
+    border: 4px solid rgb(49 194 124 / 0.5);
   }
   > .nickname {
     font-size: 14px;
