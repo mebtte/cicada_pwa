@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import { PLAYER_PATH } from '@/constants/route';
 import { User as UserType } from '@/constants/user';
 import Avatar, { Shape } from '@/components/avatar';
+import globalEventemitter, { EventType } from '@/platform/global_eventemitter';
 
 const AVATAR_SIZE = 100;
 const Style = styled.div`
@@ -19,25 +18,26 @@ const Style = styled.div`
       border: 4px solid rgb(49 194 124 / 0.5);
     }
   }
-  > .name {
+  > .nickname {
     font-size: 14px;
     margin-top: 10px;
     color: rgb(55 55 55);
   }
 `;
+const openProfileDialog = () =>
+  globalEventemitter.emit(EventType.OPEN_PROFILE_DIALOG);
 
 const User = ({ user }: { user: UserType }) => (
   <Style>
-    <Link className="avatar-container" to={PLAYER_PATH.PROFILE}>
-      <Avatar
-        className="avatar"
-        animated
-        src={user.avatar}
-        size={AVATAR_SIZE}
-        shape={Shape.CIRCLE}
-      />
-    </Link>
-    <div className="name">{user.nickname}</div>
+    <Avatar
+      className="avatar"
+      animated
+      src={user.avatar}
+      size={AVATAR_SIZE}
+      shape={Shape.CIRCLE}
+      onClick={openProfileDialog}
+    />
+    <div className="nickname">{user.nickname}</div>
   </Style>
 );
 

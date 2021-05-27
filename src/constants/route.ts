@@ -12,7 +12,6 @@ export const PLAYER_PATH = {
   SETTING: `${ROOT_PATH.PLAYER}/setting`,
   SEARCH: `${ROOT_PATH.PLAYER}/search`,
   LYRIC: `${ROOT_PATH.PLAYER}/lyric`,
-  PROFILE: `${ROOT_PATH.PLAYER}/profile`,
 };
 
 export const CMS_PATH = {

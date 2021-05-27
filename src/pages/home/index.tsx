@@ -1,7 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const Introduce = () => <Redirect to="/player" />;
+import { ROOT_PATH } from '@/constants/route';
+import { IS_ELECTRON } from '@/platform/electron_new';
+import Home from './home';
 
-export default connect()(Introduce);
+const Wrapper = () =>
+  IS_ELECTRON ? <Redirect to={ROOT_PATH.PLAYER} /> : <Home />;
+
+export default Wrapper;

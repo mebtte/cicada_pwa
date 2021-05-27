@@ -6,7 +6,6 @@ import scrollbar from '@/style/scrollbar';
 import Context from '../context';
 import { routeContainerStyle } from '../style';
 import PlayMode from './play_mode';
-import Logout from './logout';
 import GlobalShortcut from './global_shortcut';
 import Volume from './volume';
 import Feedback from './feedback';
@@ -25,7 +24,6 @@ const Setting = () => {
       <Volume volume={volume} />
       {electron ? <GlobalShortcut /> : null}
       <Feedback />
-      <Logout />
     </Style>
   );
 };

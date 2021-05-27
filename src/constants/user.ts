@@ -3,15 +3,14 @@ export interface User {
   email: string;
   avatar: string;
   nickname: string;
-  status: string;
-  joinTime: Date;
+  condition: string;
   cms: boolean;
+  joinTime: Date;
+  joinTimeString: string;
 }
 
 export const AVATAR_MAX_SIZE = 1000;
 
-export enum UpdateKey {
-  AVATAR = 'avatar',
-  NICKNAME = 'nickname',
-  STATUS = 'status',
-}
+export const NICKNAME_MAX_LENGTH = 33;
+
+export const CONDITION_MAX_LENGTH = 255;

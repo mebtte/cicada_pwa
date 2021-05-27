@@ -4,6 +4,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 
 import { User } from '@/constants/user';
 import Avatar from '@/components/avatar';
+import globalEentemitter, { EventType } from '@/platform/global_eventemitter';
 
 const Style = styled.div`
   z-index: 1;
@@ -16,13 +17,23 @@ const Style = styled.div`
     flex: 1;
   }
 `;
+const avatarStyle = {
+  cursor: 'pointer',
+};
+const openProfileDialog = () =>
+  globalEentemitter.emit(EventType.OPEN_PROFILE_DIALOG);
 
 const Header = () => {
   const user = useSelector(({ user: u }: { user: User }) => u, shallowEqual);
   return (
     <Style>
       <div className="blank" />
-      <Avatar animated src={user.avatar} />
+      <Avatar
+        animated
+        src={user.avatar}
+        onClick={openProfileDialog}
+        style={avatarStyle}
+      />
     </Style>
   );
 };

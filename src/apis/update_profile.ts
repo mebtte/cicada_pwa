@@ -1,24 +1,29 @@
 import api from '.';
-import { UpdateKey } from '../constants/user';
+
+export enum Key {
+  AVATAR = 'avatar',
+  NICKNAME = 'nickname',
+  CONDITION = 'condition',
+}
 
 /**
  * 更新用户资料
  * @author mebtte<hi@mebtte.com>
  */
-async function updateUser({
+async function updateProfile({
   key,
   value,
 }: {
-  key: UpdateKey;
+  key: Key;
   value: string | File;
 }) {
   const form = new FormData();
   form.append('key', key);
   form.append('value', value);
-  return api.put('/user', {
+  return api.put<void>('/user', {
     withToken: true,
     data: form,
   });
 }
 
-export default updateUser;
+export default updateProfile;

@@ -9,7 +9,6 @@ import Search from './search';
 import Musicbill from './musicbill';
 import Setting from './setting';
 import Lyric from './lyric';
-import Profile from './profile';
 
 const Style = styled.div`
   flex: 1;
@@ -42,7 +41,6 @@ const Wrapper = () => {
             <Route path={PLAYER_PATH.MUSICBILL} component={Musicbill} />
             <Route path={PLAYER_PATH.SETTING} component={Setting} />
             <Route path={PLAYER_PATH.LYRIC} component={Lyric} />
-            <Route path={PLAYER_PATH.PROFILE} component={Profile} />
             <Route path="*" component={Home} />
           </Switch>
         </AnimatedDiv>

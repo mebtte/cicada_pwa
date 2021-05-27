@@ -45,8 +45,12 @@ import JumpFill from './jump_fill';
 import GotoOutline from './goto_outline';
 import CmsOutline from './cms_outline';
 import LyricOutline from './lyric_outline';
+import EarphoneOutline from './earphone_outline';
+import GithubFill from './github_fill';
 
 export enum Name {
+  GITHUB_FILL = 'GithubFill',
+  EARPHONE_OUTLINE = 'EarphoneOutline',
   LYRIC_OUTLINE = 'LyricOutline',
   CMS_OUTLINE = 'CmsOutline',
   GOTO_OUTLINE = 'GotoOutline',
@@ -97,6 +101,8 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT = {
+  [Name.GITHUB_FILL]: GithubFill,
+  [Name.EARPHONE_OUTLINE]: EarphoneOutline,
   [Name.LYRIC_OUTLINE]: LyricOutline,
   [Name.CMS_OUTLINE]: CmsOutline,
   [Name.JUMP_FILL]: JumpFill,

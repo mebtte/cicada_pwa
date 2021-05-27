@@ -1,12 +1,15 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import loadable from 'react-loadable';
+import { shallowEqual, useSelector } from 'react-redux';
 
+import { User } from '@/constants/user';
 import { ROOT_PATH } from '@/constants/route';
 import GlobalStyle from './global_style';
 import Toast from './toast';
 import Dialog from './dialog';
 import RouteLoader from './route_loader';
+import ProfileDialog from './profile_dialog';
 
 const ROUTE_MAP_COMPONENT = {
   [ROOT_PATH.HOME]: loadable({
@@ -61,16 +64,25 @@ const routeList = Object.keys(ROUTE_MAP_COMPONENT).map((path) => (
   />
 ));
 
-const App = () => (
-  <>
-    <GlobalStyle />
-    <Switch>
-      {routeList}
-      <Redirect to={ROOT_PATH.HOME} />
-    </Switch>
-    <Toast />
-    <Dialog />
-  </>
-);
+const App = () => {
+  const user = useSelector(
+    ({ user: u }: { user: User | null }) => u,
+    shallowEqual,
+  );
+  return (
+    <>
+      <GlobalStyle />
+      <Toast />
+      <Dialog />
+
+      <Switch>
+        {routeList}
+        <Redirect to={ROOT_PATH.HOME} />
+      </Switch>
+
+      {user ? <ProfileDialog user={user} /> : null}
+    </>
+  );
+};
 
 export default App;

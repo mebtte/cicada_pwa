@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
+import format from 'date-fns/format';
 
 import Icon, { Name } from '@/components/icon';
 import { EMAIL } from '@/constants/regexp';
@@ -79,10 +80,17 @@ const Content = () => {
       localStorage.setItem(TOKEN, token);
       localStorage.setItem(LAST_SIGNIN_EMAIL, email);
       const user = await getProfile();
-      setTimeout(() => {
-        // @ts-ignore
-        store.dispatch(setUser(user));
-      }, 0);
+      setTimeout(
+        () =>
+          store.dispatch(
+            // @ts-expect-error
+            setUser({
+              ...user,
+              joinTimeString: format(user.joinTime, 'yyyy-MM-dd HH:mm'),
+            }),
+          ),
+        0,
+      );
     } catch (error) {
       logger.error(error, { description: '登录失败', report: true });
       dialog.alert({

@@ -62,11 +62,7 @@ const NAVIGATORS: Navigator[] = [
     type: NavigatorType.ACTION,
     label: 'CMS',
     icon: Name.CMS_OUTLINE,
-    action: () =>
-      dialog.confirm({
-        title: '即将打开新的页面, 是否继续?',
-        onConfirm: () => void openLink(`${config.pwaOrigin}#${ROOT_PATH.CMS}`),
-      }),
+    action: () => openLink(`${config.pwaOrigin}#${ROOT_PATH.CMS}`),
   },
   {
     key: NavigatorKey.ABOUT,

@@ -45,10 +45,6 @@ const Header = () => {
       title = '设置';
       break;
     }
-    case PLAYER_PATH.PROFILE: {
-      title = '个人资料';
-      break;
-    }
     default:
       title = '知了';
   }

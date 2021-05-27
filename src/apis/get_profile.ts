@@ -1,6 +1,4 @@
 /* eslint-disable camelcase */
-import { User } from '@/constants/user';
-
 import api from '.';
 import getRandomCover from '../utils/get_random_cover';
 
@@ -8,13 +6,13 @@ import getRandomCover from '../utils/get_random_cover';
  * 获取用户资料
  * @author mebtte<hi@mebtte.com>
  */
-async function getProfile(): Promise<User> {
+async function getProfile() {
   const {
     id,
     email,
     avatar,
     nickname,
-    status,
+    condition,
     join_time: joinTime,
     cms,
   } = await api.get<{
@@ -23,7 +21,7 @@ async function getProfile(): Promise<User> {
     avatar: string;
     join_time: string;
     nickname: string;
-    status: string;
+    condition: string;
     cms: number;
   }>('/user/profile', {
     withToken: true,
@@ -33,7 +31,7 @@ async function getProfile(): Promise<User> {
     email,
     avatar: avatar || getRandomCover(),
     nickname,
-    status,
+    condition,
     joinTime: new Date(joinTime),
     cms: !!cms,
   };

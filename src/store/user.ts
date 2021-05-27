@@ -1,3 +1,5 @@
+import format from 'date-fns/format';
+
 import { USER } from '../constants/storage_key';
 import * as TYPE from './action_type';
 import { getToken, clearToken } from '../platform/token';
@@ -21,7 +23,14 @@ export const reloadUser = () => async (dispatch, getState) => {
   }
 
   return getProfile()
-    .then((user) => dispatch(setUser(user)))
+    .then((user) =>
+      dispatch(
+        setUser({
+          ...user,
+          joinTimeString: format(user.joinTime, 'yyyy-MM-dd HH:mm'),
+        }),
+      ),
+    )
     .catch((error) => {
       logger.error(error, {
         description: '加载用户信息失败',
