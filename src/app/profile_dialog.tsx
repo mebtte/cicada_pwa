@@ -28,7 +28,7 @@ const textareaStyle = {
   ...inputStyle,
   height: 100,
 };
-const onLogout = () =>
+const onSignout = () =>
   dialog.confirm({
     title: '确定退出登录吗?',
     // @ts-expect-error
@@ -138,7 +138,7 @@ const ProfileDialog = ({ user }: { user: User }) => {
             label="退出登录"
             type={ButtonType.DANGER}
             disabled={loading}
-            onClick={onLogout}
+            onClick={onSignout}
           />
         </div>
         <Button label="关闭" onClick={onClose} disabled={loading} />

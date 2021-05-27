@@ -65,21 +65,22 @@ const Header = ({ user }: { user: User | null }) => (
             <IconButton name={Name.GITHUB_FILL} size={ACTION_SIZE} />
           </a>
         </Tooltip>
-        {user ? (
-          <>
-            <Tooltip title="CMS" placement={Placement.BOTTOM}>
-              <Link to={ROOT_PATH.CMS}>
-                <IconButton name={Name.CMS_OUTLINE} size={ACTION_SIZE} />
-              </Link>
-            </Tooltip>
-            <Tooltip title="播放器" placement={Placement.BOTTOM}>
-              <Link to={ROOT_PATH.PLAYER}>
-                <IconButton name={Name.EARPHONE_OUTLINE} size={ACTION_SIZE} />
-              </Link>
-            </Tooltip>
-          </>
-        ) : (
-          <Button label="登录" size={ACTION_SIZE} />
+        {user && user.cms ? (
+          <Tooltip title="CMS" placement={Placement.BOTTOM}>
+            <Link to={ROOT_PATH.CMS}>
+              <IconButton name={Name.CMS_OUTLINE} size={ACTION_SIZE} />
+            </Link>
+          </Tooltip>
+        ) : null}
+        <Tooltip title="播放器" placement={Placement.BOTTOM}>
+          <Link to={ROOT_PATH.PLAYER}>
+            <IconButton name={Name.EARPHONE_OUTLINE} size={ACTION_SIZE} />
+          </Link>
+        </Tooltip>
+        {user ? null : (
+          <Link to={ROOT_PATH.SIGNIN}>
+            <Button label="登录" size={ACTION_SIZE} />
+          </Link>
         )}
       </div>
       {user ? (
