@@ -15,3 +15,6 @@ release.sh
 
 # other
 .DS_Store
+
+# vscode
+.vscode
