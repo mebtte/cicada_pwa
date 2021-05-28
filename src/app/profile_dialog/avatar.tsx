@@ -32,7 +32,7 @@ const Wrapper = ({ user }: { user: User }) => {
   };
   return (
     <Style>
-      <Avatar className="avatar" src={user.avatar} size={100} />
+      <Avatar className="avatar" src={user.avatar} size={100} animated />
       <IconButton
         name={Name.EDIT_OUTLINE}
         onClick={() => setEditDialogOpen(true)}

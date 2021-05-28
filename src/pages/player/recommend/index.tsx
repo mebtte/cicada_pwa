@@ -29,15 +29,8 @@ const paginationStyle = {
 
 const Home = () => {
   const rootRef = useRef<HTMLDivElement>();
-  const {
-    status,
-    error,
-    retry,
-    page,
-    pageCount,
-    onPageChange,
-    musicList,
-  } = useLastestMusicList();
+  const { status, error, retry, page, pageCount, onPageChange, musicList } =
+    useLastestMusicList();
 
   useEffect(() => {
     const scrollToTopListener = () =>

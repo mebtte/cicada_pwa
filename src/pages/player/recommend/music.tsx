@@ -16,13 +16,8 @@ const Music = ({
   music: MusicType;
   containerWidth: number;
 }) => {
-  const {
-    onView,
-    onPlay,
-    onAddToPlayqueue,
-    onAddToMusicbill,
-    onOperate,
-  } = useMusicOperate(music);
+  const { onView, onPlay, onAddToPlayqueue, onAddToMusicbill, onOperate } =
+    useMusicOperate(music);
   const { id, cover, name, singers } = music;
   return (
     <MusicCard key={id} containerWidth={containerWidth}>

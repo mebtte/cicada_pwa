@@ -46,9 +46,9 @@ const NAVIGATORS: Navigator[] = [
   {
     key: NavigatorKey.HOME,
     type: NavigatorType.LINK,
-    label: '知了',
-    icon: Name.HOME_OUTLINE,
-    link: ROOT_PATH.PLAYER,
+    label: '推荐',
+    icon: Name.RECOMMEND_OUTLINE,
+    link: PLAYER_PATH.RECOMMEND,
   },
   {
     key: NavigatorKey.SETTING,

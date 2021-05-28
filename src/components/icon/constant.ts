@@ -5,7 +5,6 @@ import CorrectOutline from './correct_outline';
 import DownloadOutline from './download_outline';
 import EditOutline from './edit_outline';
 import GarbageOutline from './garbage_outline';
-import HomeOutline from './home_outline';
 import InfoOutline from './info_outline';
 import InsertOutline from './insert_outline';
 import LoadingOutline from './loading_outline';
@@ -47,8 +46,10 @@ import CmsOutline from './cms_outline';
 import LyricOutline from './lyric_outline';
 import EarphoneOutline from './earphone_outline';
 import GithubFill from './github_fill';
+import RecommendOutline from './recommend_outline';
 
 export enum Name {
+  RECOMMEND_OUTLINE = 'RecommendOutline',
   GITHUB_FILL = 'GithubFill',
   EARPHONE_OUTLINE = 'EarphoneOutline',
   LYRIC_OUTLINE = 'LyricOutline',
@@ -77,7 +78,6 @@ export enum Name {
   DOWNLOAD_OUTLINE = 'DownloadOutline',
   EDIT_OUTLINE = 'EditOutline',
   GARBAGE_OUTLINE = 'GarbageOutline',
-  HOME_OUTLINE = 'HomeOutline',
   INFO_OUTLINE = 'InfoOutline',
   INSERT_OUTLINE = 'InsertOutline',
   LOADING_OUTLINE = 'LoadingOutline',
@@ -101,6 +101,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT = {
+  [Name.RECOMMEND_OUTLINE]: RecommendOutline,
   [Name.GITHUB_FILL]: GithubFill,
   [Name.EARPHONE_OUTLINE]: EarphoneOutline,
   [Name.LYRIC_OUTLINE]: LyricOutline,
@@ -129,7 +130,6 @@ export const NAME_MAP_CONTENT = {
   [Name.DOWNLOAD_OUTLINE]: DownloadOutline,
   [Name.EDIT_OUTLINE]: EditOutline,
   [Name.GARBAGE_OUTLINE]: GarbageOutline,
-  [Name.HOME_OUTLINE]: HomeOutline,
   [Name.INSERT_OUTLINE]: InsertOutline,
   [Name.INFO_OUTLINE]: InfoOutline,
   [Name.LOADING_OUTLINE]: LoadingOutline,

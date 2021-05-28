@@ -60,9 +60,8 @@ const Wrapper = () => {
     duration: audioDuration,
   } = useAudioState();
   const playlist = usePlaylist();
-  const { playqueue, currentPosition: currentPlayqueuePosition } = usePlayqueue(
-    playlist,
-  );
+  const { playqueue, currentPosition: currentPlayqueuePosition } =
+    usePlayqueue(playlist);
   const searchWord = useSearchWord();
   const queueMusic = playqueue[currentPlayqueuePosition] as QueueMusic | null;
   const volume = useVolume();

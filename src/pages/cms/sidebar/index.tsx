@@ -14,7 +14,7 @@ const Style = styled.div`
 const MENUS: Menu[] = [
   {
     label: '总览',
-    icon: Name.HOME_OUTLINE,
+    icon: Name.FIGURE_OUTLINE,
     path: CMS_PATH.HOME,
   },
   {

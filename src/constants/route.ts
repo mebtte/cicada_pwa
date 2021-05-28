@@ -8,6 +8,7 @@ export const ROOT_PATH = {
 };
 
 export const PLAYER_PATH = {
+  RECOMMEND: ROOT_PATH.PLAYER,
   MUSICBILL: `${ROOT_PATH.PLAYER}/musicbill/:id`,
   SETTING: `${ROOT_PATH.PLAYER}/setting`,
   SEARCH: `${ROOT_PATH.PLAYER}/search`,
