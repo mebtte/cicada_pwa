@@ -17,9 +17,11 @@ import Dialog, { Title, Content, Action } from '@/components/dialog';
 import globalEventemitter, { EventType } from '@/platform/global_eventemitter';
 import Button, { Type as ButtonType } from '@/components/button';
 import updateProfile, { Key } from '@/apis/update_profile';
+import Avatar from './avatar';
+import { PART_SPACE } from './constants';
 
 const labelStyle = {
-  marginBottom: 20,
+  marginBottom: PART_SPACE,
 };
 const inputStyle = {
   width: '100%',
@@ -75,7 +77,6 @@ const ProfileDialog = ({ user }: { user: User }) => {
             condition,
           }),
         );
-        toast.success('已更新个人资料');
       }
 
       onClose();
@@ -104,6 +105,7 @@ const ProfileDialog = ({ user }: { user: User }) => {
     <Dialog open={open}>
       <Title>个人资料</Title>
       <Content>
+        <Avatar user={user} />
         <Label label="ID" style={labelStyle}>
           <Input value={user.id} disabled style={inputStyle} />
         </Label>

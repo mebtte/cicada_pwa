@@ -17,8 +17,7 @@ export const setUser = (user: User) => (dispatch) => {
 };
 
 export const reloadUser = () => async (dispatch, getState) => {
-  const { user: u }: { user: User | null } = getState();
-  if (!u) {
+  if (!getState().user) {
     return;
   }
 

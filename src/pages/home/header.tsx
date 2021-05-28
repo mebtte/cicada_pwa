@@ -12,7 +12,7 @@ import IconButton, { Name } from '@/components/icon_button';
 import Tooltip, { Placement } from '@/components/tooltip';
 import { CONTENT_MAX_WIDTH } from './constants';
 
-const ACTION_SIZE = 36;
+const ACTION_SIZE = 28;
 const Style = styled.header`
   border-bottom: 1px solid #d9d9d9;
   background-color: #fff;
@@ -29,10 +29,10 @@ const Style = styled.header`
       gap: 20px;
       user-select: none;
       > .icon-logo {
-        height: 56px;
+        height: 36px;
       }
       > .text-logo {
-        height: 36px;
+        height: 24px;
       }
     }
     > .right {
