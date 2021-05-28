@@ -23,7 +23,7 @@ async function getProfile() {
     nickname: string;
     condition: string;
     cms: number;
-  }>('/user/profile', {
+  }>('/get_profile', {
     withToken: true,
   });
   return {

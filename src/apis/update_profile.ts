@@ -20,7 +20,7 @@ async function updateProfile({
   const form = new FormData();
   form.append('key', key);
   form.append('value', value);
-  return api.put<void>('/user', {
+  return api.post<void>('/update_profile', {
     withToken: true,
     data: form,
   });
