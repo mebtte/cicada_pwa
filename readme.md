@@ -1,13 +1,10 @@
-![](./src/static/logo.png)
-
-# 知了
-
-知了是一个开源并且支持自定义部署的在线音乐播放器, 更多信息请查看 [https://cicada.mebtte.com](https://cicada.mebtte.com).
+# 知了浏览器端
 
 ## 关联项目
 
 - cicada_server: 知了服务端, 即将开源
-- cicada_electron: 知了 Electron 客户端, 即将开源
+- [cicada_electron](https://github.com/mebtte/cicada_electron): 知了 Windows/macOS 客户端
+- cicada_expo: 知了 iOS/Android 客户端, 即将开源
 
 ## 开发/构建
 
