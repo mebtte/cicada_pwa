@@ -16,17 +16,6 @@ const STATUS = {
   INSTRUMENT: 'instrument',
   EMPTY: 'empty',
 };
-const TRANSITION = {
-  from: {
-    opacity: 0,
-  },
-  enter: {
-    opacity: 1,
-  },
-  leave: {
-    opacity: 0,
-  },
-};
 const Style = styled.div`
   flex: 1;
   position: relative;
@@ -45,33 +34,42 @@ const Wrapper = ({ music }: { music: Music }) => {
       : status === RequestStatus.SUCCESS && !lrc
       ? STATUS.EMPTY
       : status;
-  // @ts-ignore
-  const transitions = useTransition(actualStatus, null, TRANSITION);
+  const transitions = useTransition(actualStatus, {
+    from: {
+      opacity: 0,
+    },
+    enter: {
+      opacity: 1,
+    },
+    leave: {
+      opacity: 0,
+    },
+  });
   return (
     <Style>
-      {transitions.map(({ key, item: s, props: style }) => {
+      {transitions((style, s) => {
         if (s === STATUS.SUCCESS) {
-          return <Lyric key={key} style={style} lrc={lrc} />;
+          return <Lyric style={style} lrc={lrc} />;
         }
         if (s === STATUS.LOADING) {
-          return <Skeleton key={key} style={style} />;
+          return <Skeleton style={style} />;
         }
         if (s === STATUS.INSTRUMENT) {
           return (
-            <CardContainer key={key} style={style}>
+            <CardContainer style={style}>
               <Empty>纯音乐, 暂无歌词</Empty>
             </CardContainer>
           );
         }
         if (s === STATUS.EMPTY) {
           return (
-            <CardContainer key={key} style={style}>
+            <CardContainer style={style}>
               <Empty>暂未收录歌词</Empty>
             </CardContainer>
           );
         }
         return (
-          <CardContainer key={key} style={style}>
+          <CardContainer style={style}>
             <ErrorCard
               errorMessage="获取歌词失败"
               retry={reload}

@@ -31,8 +31,7 @@ const AnimatedAvatar = ({ src, size, shape, style, ...props }: CommonProps) => {
     () => TRANSITION_LIST[getRandomInteger(0, TRANSITION_LIST.length)],
     [],
   );
-  // @ts-ignore
-  const transitions = useTransition(src, (s) => s, transtion);
+  const transitions = useTransition(src, transtion);
   return (
     <Style
       {...props}
@@ -43,9 +42,8 @@ const AnimatedAvatar = ({ src, size, shape, style, ...props }: CommonProps) => {
         height: size,
       }}
     >
-      {transitions.map(({ item: s, key, props: imgStyle }) => (
+      {transitions((imgStyle, s) => (
         <Img
-          key={key}
           style={{
             ...imgStyle,
             backgroundImage: `url("${s}")`,

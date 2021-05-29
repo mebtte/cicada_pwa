@@ -40,8 +40,7 @@ const Wrapper = ({ music }: { music: Music }) => {
         ? STATUS.EMPTY
         : status
       : STATUS.INSTRUMENT;
-  // @ts-ignore
-  const transitons = useTransition(actualStatus, (s) => s, {
+  const transitons = useTransition(actualStatus, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
@@ -49,7 +48,7 @@ const Wrapper = ({ music }: { music: Music }) => {
 
   return (
     <Style>
-      {transitons.map(({ item: s, key, props: style }) => {
+      {transitons((style, s) => {
         let content = null;
         if (s === STATUS.SUCCESS) {
           content = <Lyric lrc={lrc} />;
@@ -68,11 +67,7 @@ const Wrapper = ({ music }: { music: Music }) => {
             />
           );
         }
-        return (
-          <AnimatedDiv key={key} style={style}>
-            {content}
-          </AnimatedDiv>
-        );
+        return <AnimatedDiv style={style}>{content}</AnimatedDiv>;
       })}
     </Style>
   );

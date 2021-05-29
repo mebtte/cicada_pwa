@@ -8,11 +8,6 @@ import Avatar from '@/components/avatar';
 import Singer from '../component/singer';
 
 const COVER_SIZE = 240;
-const TRANSITION = {
-  from: { opacity: 0, transform: 'translateY(-100%)' },
-  enter: { opacity: 1, transform: 'translateY(0%)' },
-  leave: { opacity: 0, transform: 'translateY(100%)' },
-};
 const Style = styled.div`
   box-sizing: border-box;
   width: ${COVER_SIZE}px;
@@ -44,16 +39,19 @@ const Style = styled.div`
 `;
 
 const Info = ({ music }: { music: Music }) => {
-  // @ts-ignore
-  const transitions = useTransition(music, (m) => m.id, TRANSITION);
+  const transitions = useTransition(music, {
+    from: { opacity: 0, transform: 'translateY(-100%)' },
+    enter: { opacity: 1, transform: 'translateY(0%)' },
+    leave: { opacity: 0, transform: 'translateY(100%)' },
+  });
   return (
     <Style>
       <Avatar animated src={music.cover} size={COVER_SIZE} />
       <div className="info-wrapper">
-        {transitions.map(({ key, props: style, item: m }) => {
+        {transitions((style, m) => {
           const { name, singers } = m;
           return (
-            <animated.div key={key} style={style} className="info">
+            <animated.div style={style} className="info">
               <div className="name">{name}</div>
               <div className="singers">
                 {singers.length ? (

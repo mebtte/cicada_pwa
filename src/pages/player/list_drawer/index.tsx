@@ -1,4 +1,10 @@
-import React, { useState, useCallback, useEffect, useContext } from 'react';
+import React, {
+  ReactNode,
+  useState,
+  useCallback,
+  useEffect,
+  useContext,
+} from 'react';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
@@ -30,11 +36,6 @@ const bodyProps = {
     flexDirection: 'column' as 'column',
   },
 };
-const TRANSITION = {
-  from: { opacity: 0, transform: 'translateX(100%)' },
-  enter: { opacity: 1, transform: 'translateX(0)' },
-  leave: { opacity: 0, transform: 'translateX(-100%)' },
-};
 
 const MusicDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -65,14 +66,17 @@ const MusicDrawer = () => {
   }, []);
   const [tab, setTab] = useState(TAB.PLAYLIST);
   const onTabChange = useCallback((t) => setTab(t), []);
-  // @ts-ignore
-  const transtions = useTransition(tab, null, TRANSITION);
+  const transtions = useTransition(tab, {
+    from: { opacity: 0, transform: 'translateX(100%)' },
+    enter: { opacity: 1, transform: 'translateX(0)' },
+    leave: { opacity: 0, transform: 'translateX(-100%)' },
+  });
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
       <Tab tab={tab} onChange={onTabChange} />
       <Container>
-        {transtions.map(({ item: t, key, props: style }) => {
-          let content = null;
+        {transtions((style, t) => {
+          let content: ReactNode = null;
           switch (t) {
             case TAB.PLAYLIST: {
               content = (
@@ -87,11 +91,7 @@ const MusicDrawer = () => {
             default:
               content = null;
           }
-          return (
-            <AnimatedDiv key={key} style={style}>
-              {content}
-            </AnimatedDiv>
-          );
+          return <AnimatedDiv style={style}>{content}</AnimatedDiv>;
         })}
       </Container>
     </Drawer>

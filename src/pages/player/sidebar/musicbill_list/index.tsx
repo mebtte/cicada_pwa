@@ -53,13 +53,13 @@ const MusicbillList = () => {
     getMusicbillListStatus === RequestStatus.SUCCESS && !musicbillList.length
       ? STATUS.EMPTY
       : getMusicbillListStatus;
-  const transitions = useTransition(status, null, {
+  const transitions = useTransition(status, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   });
 
-  const animatedContent = transitions.map(({ item: s, key, props: style }) => {
+  const animatedContent = transitions((style, s) => {
     let content: React.ReactNode;
     if (s === STATUS.SUCCESS) {
       const { pathname } = location;
@@ -83,11 +83,7 @@ const MusicbillList = () => {
         />
       );
     }
-    return (
-      <AnimatedDiv key={key} style={style}>
-        {content}
-      </AnimatedDiv>
-    );
+    return <AnimatedDiv style={style}>{content}</AnimatedDiv>;
   });
   return (
     <Style>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 
@@ -10,11 +10,6 @@ import MusicList from './music_list';
 import Skeleton from './skeleton';
 import { containerStyle } from './constant';
 
-const TRANSITION = {
-  from: { opacity: 0 },
-  enter: { opacity: 1 },
-  leave: { opacity: 0 },
-};
 const Style = styled.div`
   position: relative;
 `;
@@ -55,11 +50,15 @@ const Wrapper = React.forwardRef<HTMLDivElement, Props>(
   ) => {
     const actualStatus =
       status === STATUS.SUCCESS && !musicList.length ? STATUS.EMPTY : status;
-    const transitons = useTransition(actualStatus, null, TRANSITION);
+    const transitons = useTransition(actualStatus, {
+      from: { opacity: 0 },
+      enter: { opacity: 1 },
+      leave: { opacity: 0 },
+    });
     return (
       <Style style={style}>
-        {transitons.map(({ item: s, key, props: innerStyle }) => {
-          let content = null;
+        {transitons((innerStyle, s) => {
+          let content: ReactNode = null;
           switch (s) {
             case STATUS.SUCCESS: {
               content = (
@@ -91,11 +90,7 @@ const Wrapper = React.forwardRef<HTMLDivElement, Props>(
               );
             }
           }
-          return (
-            <AnimatedDiv key={key} style={innerStyle}>
-              {content}
-            </AnimatedDiv>
-          );
+          return <AnimatedDiv style={innerStyle}>{content}</AnimatedDiv>;
         })}
       </Style>
     );

@@ -8,13 +8,6 @@ import logger from '@/platform/logger';
 import PngDefaultCover from './default_cover.jpeg';
 import coverQueue, { AbortError } from './cover_queue';
 
-const TRANSITION = {
-  initial: { opacity: 1 },
-  from: { opacity: 0 },
-  enter: { opacity: 1 },
-  leave: { opacity: 0 },
-};
-
 const Style = styled.div`
   width: 100%;
   padding-bottom: 100%;
@@ -71,14 +64,17 @@ const Wrapper = ({
     [],
   );
 
-  // @ts-ignore
-  const transitions = useTransition(currentSrc, null, TRANSITION);
+  const transitions = useTransition(currentSrc, {
+    initial: { opacity: 1 },
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  });
   return (
     <Style {...props}>
       <Waypoint onEnter={onEnter} />
-      {transitions.map(({ item: s, key, props: style }) => (
+      {transitions((style, s) => (
         <Cover
-          key={key}
           style={{
             ...style,
             backgroundImage: `url(${s})`,

@@ -26,16 +26,15 @@ const AnimatedDiv = styled(animated.div)`
 
 const Wrapper = () => {
   const location = useLocation();
-  // @ts-ignore
-  const transitions = useTransition(location, (l) => l.pathname, {
+  const transitions = useTransition(location, {
     from: { opacity: 0, transform: 'translateX(-100%)' },
     enter: { opacity: 1, transform: 'translateX(0)' },
     leave: { opacity: 0, transform: 'translateX(100%)' },
   });
   return (
     <Style>
-      {transitions.map(({ item: l, props: style, key }) => (
-        <AnimatedDiv key={key} style={style}>
+      {transitions((style, l) => (
+        <AnimatedDiv style={style}>
           <Switch location={l}>
             <Route path={PLAYER_PATH.SEARCH} component={Search} />
             <Route path={PLAYER_PATH.MUSICBILL} component={Musicbill} />

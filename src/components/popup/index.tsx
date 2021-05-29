@@ -6,17 +6,6 @@ import { useTransition, animated } from 'react-spring';
 import { ZIndex } from '@/constants/style';
 
 const CONTENT_WIDTH = 300;
-const TRANSITION = {
-  from: {
-    opacity: 0,
-    transform: 'translate(-50%, 120%)',
-  },
-  enter: { opacity: 1, transform: 'translate(-50%, 0%)' },
-  leave: {
-    opacity: 0,
-    transform: 'translate(-50%, 120%)',
-  },
-};
 const Mask = styled(animated.div)`
   z-index: ${ZIndex.POPUP};
   position: fixed;
@@ -59,8 +48,17 @@ const Popup = ({
   /** 内容属性 */
   bodyProps?: HTMLAttributes<HTMLDivElement>;
 }>) => {
-  // @ts-ignore
-  const transitions = useTransition(open, null, TRANSITION);
+  const transitions = useTransition(open, {
+    from: {
+      opacity: 0,
+      transform: 'translate(-50%, 120%)',
+    },
+    enter: { opacity: 1, transform: 'translate(-50%, 0%)' },
+    leave: {
+      opacity: 0,
+      transform: 'translate(-50%, 120%)',
+    },
+  });
   const bodyRef = useRef<HTMLDivElement>(null);
   const onRequestClose = (event) => {
     // eslint-disable-next-line no-unused-expressions
@@ -72,10 +70,9 @@ const Popup = ({
   };
 
   return ReactDOM.createPortal(
-    transitions.map(({ item, key, props: { opacity, transform } }) =>
-      item ? (
+    transitions(({ opacity, transform }, o) =>
+      o ? (
         <Mask
-          key={key}
           {...maskProps}
           style={{ ...maskProps.style, opacity }}
           onClick={onRequestClose}

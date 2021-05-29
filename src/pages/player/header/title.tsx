@@ -23,17 +23,15 @@ const AnimatedDiv = styled(animated.div)`
 `;
 
 const Title = ({ title }: { title: string }) => {
-  const transitions = useTransition(title, (t) => t, {
+  const transitions = useTransition(title, {
     from: { opacity: 0, transform: 'translateY(-215%)' },
     enter: { opacity: 1, transform: 'translateY(-115%)' },
     leave: { opacity: 0, transform: 'translateY(-15%)' },
   });
   return (
     <Style>
-      {transitions.map(({ item: t, key, props: style }) => (
-        <AnimatedDiv key={key} style={style}>
-          {t}
-        </AnimatedDiv>
+      {transitions((style, t) => (
+        <AnimatedDiv style={style}>{t}</AnimatedDiv>
       ))}
     </Style>
   );

@@ -92,12 +92,16 @@ const Tooltip = ({
   const [spring, setSpring] = useSpring(() => option.spring);
   const onMount = useCallback(
     () =>
-      setSpring({ ...TARGET_SPRING, config: SPRING_CONFIG, onRest: () => {} }),
+      void setSpring({
+        ...TARGET_SPRING,
+        config: SPRING_CONFIG,
+        onRest: () => {},
+      }),
     [setSpring],
   );
   const onHide = useCallback(
     ({ unmount }) =>
-      setSpring({
+      void setSpring({
         ...option.spring,
         config: { ...SPRING_CONFIG, clamp: true },
         onRest: unmount,

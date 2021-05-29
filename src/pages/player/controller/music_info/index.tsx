@@ -6,11 +6,6 @@ import { Music as MusicType } from '@/constants/music';
 import MusicInfo from './music_info';
 import Skeleton from './skeleton';
 
-const TRANSITION = {
-  from: { opacity: 0, transform: 'rotateX(90deg) translateY(-50%)' },
-  enter: { opacity: 1, transform: 'rotateX(0deg) translateY(-50%)' },
-  leave: { opacity: 0, transform: 'rotateX(-90deg) translateY(-50%)' },
-};
 const Style = styled.div`
   flex: 1;
   min-width: 0;
@@ -24,22 +19,20 @@ const Wrapper = ({
   music?: MusicType;
   onViewMusic: () => void;
 }) => {
-  // @ts-ignore
-  const transitions = useTransition(music, (m) => m && m.id, TRANSITION);
+  const transitions = useTransition(music, {
+    from: { opacity: 0, transform: 'rotateX(90deg) translateY(-50%)' },
+    enter: { opacity: 1, transform: 'rotateX(0deg) translateY(-50%)' },
+    leave: { opacity: 0, transform: 'rotateX(-90deg) translateY(-50%)' },
+  });
   return (
     <Style>
-      {transitions.map(({ item: m, key, props: style }) => {
+      {transitions((style, m) => {
         if (m) {
           return (
-            <MusicInfo
-              key={key}
-              style={style}
-              music={m}
-              onViewMusic={onViewMusic}
-            />
+            <MusicInfo style={style} music={m} onViewMusic={onViewMusic} />
           );
         }
-        return <Skeleton key={key} style={style} />;
+        return <Skeleton style={style} />;
       })}
     </Style>
   );

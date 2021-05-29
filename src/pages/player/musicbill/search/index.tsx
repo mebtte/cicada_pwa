@@ -5,8 +5,7 @@ import Search from './search';
 
 const Wrapper = ({ visible, cover }: { visible: Boolean; cover: string }) => {
   const searchRef = useRef<{ focus: () => void }>(null);
-  // @ts-ignore
-  const transitions = useTransition(visible, null, {
+  const transitions = useTransition(visible, {
     from: {
       opacity: 0,
       transform: 'translateY(100%)',
@@ -19,7 +18,6 @@ const Wrapper = ({ visible, cover }: { visible: Boolean; cover: string }) => {
       opacity: 0,
       transform: 'translateY(100%)',
     },
-    // @ts-ignore
     onRest: () => {
       if (searchRef.current) {
         searchRef.current.focus();
@@ -28,10 +26,8 @@ const Wrapper = ({ visible, cover }: { visible: Boolean; cover: string }) => {
   });
   return (
     <>
-      {transitions.map(({ item: v, key, props }) =>
-        v ? (
-          <Search key={key} cover={cover} style={props} ref={searchRef} />
-        ) : null,
+      {transitions((style, v) =>
+        v ? <Search cover={cover} style={style} ref={searchRef} /> : null,
       )}
     </>
   );

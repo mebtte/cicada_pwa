@@ -66,8 +66,6 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
-      'react-spring$': 'react-spring/web.cjs',
-      'react-spring/renderprops$': 'react-spring/renderprops.cjs',
       '@': path.resolve(__dirname, '..', 'src'),
     },
   },

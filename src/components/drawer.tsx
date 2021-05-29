@@ -54,8 +54,7 @@ const Drawer = ({
     }
   };
 
-  // @ts-ignore
-  const transitions = useTransition(open, null, {
+  const transitions = useTransition(open, {
     from: {
       opacity: 0,
       transform: 'translateX(120%)',
@@ -67,11 +66,10 @@ const Drawer = ({
     },
   });
   return ReactDOM.createPortal(
-    transitions.map(({ item: o, key, props: { opacity, transform } }) =>
+    transitions(({ opacity, transform }, o) =>
       o ? (
         <Mask
           {...maskProps}
-          key={key}
           style={{
             opacity,
             ...maskProps.style,
