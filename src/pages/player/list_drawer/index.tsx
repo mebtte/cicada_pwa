@@ -67,9 +67,9 @@ const MusicDrawer = () => {
   const [tab, setTab] = useState(TAB.PLAYLIST);
   const onTabChange = useCallback((t) => setTab(t), []);
   const transtions = useTransition(tab, {
-    from: { opacity: 0, transform: 'translateX(100%)' },
-    enter: { opacity: 1, transform: 'translateX(0)' },
-    leave: { opacity: 0, transform: 'translateX(-100%)' },
+    from: { opacity: 0, transform: 'translate(100%)' },
+    enter: { opacity: 1, transform: 'translate(0%)' },
+    leave: { opacity: 0, transform: 'translate(-100%)' },
   });
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>

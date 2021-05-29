@@ -11,7 +11,7 @@ const Style = styled.div`
     margin-top: ${TRACK_HEIGHT / 2}px;
     width: ${THUMB_SIZE}px;
     height: ${THUMB_SIZE}px;
-    transform: translateY(-50%);
+    transform: translate(0, -50%);
     cursor: grab;
     outline: none;
     box-sizing: border-box;

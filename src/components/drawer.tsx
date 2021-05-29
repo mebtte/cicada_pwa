@@ -57,12 +57,12 @@ const Drawer = ({
   const transitions = useTransition(open, {
     from: {
       opacity: 0,
-      transform: 'translateX(120%)',
+      transform: 'translate(120%)',
     },
-    enter: { opacity: 1, transform: 'translateX(0)' },
+    enter: { opacity: 1, transform: 'translate(0%)' },
     leave: {
       opacity: 0,
-      transform: 'translateX(120%)',
+      transform: 'translate(120%)',
     },
   });
   return ReactDOM.createPortal(
@@ -79,7 +79,10 @@ const Drawer = ({
           <Body
             {...bodyProps}
             ref={bodyRef}
-            style={{ transform, ...bodyProps.style }}
+            style={{
+              transform,
+              ...bodyProps.style,
+            }}
           >
             {children}
           </Body>

@@ -38,9 +38,9 @@ const AnimatedDiv = styled(animated.div)`
 
 const SingerInfo = ({ singer }: { singer: Figure }) => {
   const transitions = useTransition(singer, {
-    from: { opacity: 0, transform: 'translateX(100%)' },
-    enter: { opacity: 1, transform: 'translateX(0)' },
-    leave: { opacity: 0, transform: 'translateX(-100%)' },
+    from: { opacity: 0, transform: 'translate(100%)' },
+    enter: { opacity: 1, transform: 'translate(0%)' },
+    leave: { opacity: 0, transform: 'translate(-100%)' },
   });
   return (
     <Style>

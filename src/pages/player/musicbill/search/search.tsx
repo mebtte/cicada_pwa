@@ -39,7 +39,7 @@ const Style = styled(animated.div)`
       position: absolute;
       top: 50%;
       right: 10px;
-      transform: translateY(-50%);
+      transform: translate(0, -50%);
     }
   }
   > .action {

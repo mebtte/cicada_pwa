@@ -29,7 +29,7 @@ const Style = styled(Container)`
         position: absolute;
         top: 50%;
         right: 10px;
-        transform: translateY(-50%);
+        transform: translate(0, -50%);
       }
     }
     > .clear {

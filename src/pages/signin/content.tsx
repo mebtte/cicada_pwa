@@ -44,7 +44,7 @@ const Style = styled.div`
         position: absolute;
         right: 10px;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translate(0, -50%);
         color: rgba(0, 0, 0, 0.3);
       }
     }

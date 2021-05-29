@@ -54,7 +54,7 @@ const Style = styled.div<{ arrayVisible: boolean }>`
   ${({ arrayVisible }) => css`
     > .array {
       opacity: ${arrayVisible ? 1 : 0};
-      transform: translateY(${arrayVisible ? 0 : '32px'});
+      transform: translate(0, ${arrayVisible ? 0 : '32px'});
       pointer-events: ${arrayVisible ? 'auto' : 'none'};
     }
   `}

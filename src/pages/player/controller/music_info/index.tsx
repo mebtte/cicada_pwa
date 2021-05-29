@@ -20,9 +20,9 @@ const Wrapper = ({
   onViewMusic: () => void;
 }) => {
   const transitions = useTransition(music, {
-    from: { opacity: 0, transform: 'rotateX(90deg) translateY(-50%)' },
-    enter: { opacity: 1, transform: 'rotateX(0deg) translateY(-50%)' },
-    leave: { opacity: 0, transform: 'rotateX(-90deg) translateY(-50%)' },
+    from: { opacity: 0, transform: 'rotate(90deg) translate(0, -50%)' },
+    enter: { opacity: 1, transform: 'rotate(0deg) translate(0, -50%)' },
+    leave: { opacity: 0, transform: 'rotate(-90deg) translate(0, -50%)' },
   });
   return (
     <Style>
