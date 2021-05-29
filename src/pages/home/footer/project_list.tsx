@@ -38,13 +38,13 @@ const PROJECTS: ProjectType[] = [
     icon: Name.COMPUTER_FILL,
     name: 'Cicada Electron',
     link: ELECTRON_GITHUB_REPOSITORY,
-    description: '知了 macOS/Windows 客户端',
+    description: '知了桌面客户端',
   },
   {
     icon: Name.MOBILEPHONE_FILL,
     name: 'Cicada Expo',
     link: EXPO_GITHUB_REPOSITORY,
-    description: '知了 iOS/Android 客户端',
+    description: '知了移动客户端',
   },
 ];
 
