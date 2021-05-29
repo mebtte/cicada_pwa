@@ -5,7 +5,6 @@ import CorrectOutline from './correct_outline';
 import DownloadOutline from './download_outline';
 import EditOutline from './edit_outline';
 import GarbageOutline from './garbage_outline';
-import InfoOutline from './info_outline';
 import InsertOutline from './insert_outline';
 import LoadingOutline from './loading_outline';
 import MailFill from './mail_fill';
@@ -84,7 +83,6 @@ export enum Name {
   DOWNLOAD_OUTLINE = 'DownloadOutline',
   EDIT_OUTLINE = 'EditOutline',
   GARBAGE_OUTLINE = 'GarbageOutline',
-  INFO_OUTLINE = 'InfoOutline',
   INSERT_OUTLINE = 'InsertOutline',
   LOADING_OUTLINE = 'LoadingOutline',
   MAIL_FILL = 'MailFill',
@@ -140,7 +138,6 @@ export const NAME_MAP_CONTENT = {
   [Name.EDIT_OUTLINE]: EditOutline,
   [Name.GARBAGE_OUTLINE]: GarbageOutline,
   [Name.INSERT_OUTLINE]: InsertOutline,
-  [Name.INFO_OUTLINE]: InfoOutline,
   [Name.LOADING_OUTLINE]: LoadingOutline,
   [Name.MAIL_FILL]: MailFill,
   [Name.MORE_OUTLINE]: MoreOutline,

@@ -78,7 +78,6 @@ module.exports = {
           .toString()
           .split('\n')[0]
           .replace(/\s/, ': '),
-        dependencies: Object.keys(pkg.devDependencies).sort(),
         buildTime: new Date(),
         emptyImageList: fs
           .readdirSync(`${STATIC_DIR}/empty`)

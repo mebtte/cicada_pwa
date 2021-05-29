@@ -3,7 +3,6 @@ export const ROOT_PATH = {
   SIGNIN: '/signin',
   PLAYER: '/player',
   CMS: '/cms',
-  ABOUT: '/about',
   DESKTOP_CONFIGURE: '/desktop_configure',
 };
 

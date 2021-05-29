@@ -14,7 +14,6 @@ type RequestIdleCallbackDeadline = {
 interface Config {
   version: string;
   lastCommitMessage: string;
-  dependencies: string[];
   buildTime: string;
   emptyImageList: string[];
   coverList: string[];

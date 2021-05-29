@@ -64,18 +64,6 @@ const NAVIGATORS: Navigator[] = [
     icon: Name.CMS_OUTLINE,
     action: () => openLink(`${config.pwaOrigin}#${ROOT_PATH.CMS}`),
   },
-  {
-    key: NavigatorKey.ABOUT,
-    type: NavigatorType.ACTION,
-    label: '关于',
-    icon: Name.INFO_OUTLINE,
-    action: () =>
-      dialog.confirm({
-        title: '即将打开新的页面, 是否继续?',
-        onConfirm: () =>
-          void openLink(`${config.pwaOrigin}#${ROOT_PATH.ABOUT}`),
-      }),
-  },
 ];
 if (!IS_ELECTRON) {
   NAVIGATORS.push({

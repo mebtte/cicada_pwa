@@ -38,12 +38,6 @@ const ROUTE_MAP_COMPONENT = {
     timeout: 30000,
     delay: 300,
   }),
-  [ROOT_PATH.ABOUT]: loadable({
-    loader: () => import(/* webpackChunkName: "page_about" */ '../pages/about'),
-    loading: RouteLoader,
-    timeout: 30000,
-    delay: 300,
-  }),
   [ROOT_PATH.DESKTOP_CONFIGURE]: loadable({
     loader: () =>
       import(
