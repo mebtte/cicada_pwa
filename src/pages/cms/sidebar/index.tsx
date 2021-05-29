@@ -15,7 +15,7 @@ const MENUS: Menu[] = [
   {
     label: '总览',
     icon: Name.FIGURE_OUTLINE,
-    path: CMS_PATH.HOME,
+    path: CMS_PATH.DASHBOARD,
   },
   {
     label: '角色',

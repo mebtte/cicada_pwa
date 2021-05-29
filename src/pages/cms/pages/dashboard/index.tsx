@@ -7,6 +7,6 @@ const Style = styled.div`
   ${cmsPage};
 `;
 
-const Home = () => <Style>home</Style>;
+const Home = () => <Style>dashboard</Style>;
 
 export default Home;

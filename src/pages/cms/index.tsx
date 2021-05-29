@@ -15,21 +15,21 @@ import Header from './header';
 import Sidebar from './sidebar';
 
 const ROUTE = {
-  HOME: loadable({
+  [CMS_PATH.DASHBOARD]: loadable({
     loader: () =>
-      import(/* webpackChunkName: "cms_home_page" */ './pages/home'),
+      import(/* webpackChunkName: "cms_dashboard_page" */ './pages/dashboard'),
     loading: PageLoader,
     timeout: 30000,
     delay: 300,
   }),
-  FIGURE: loadable({
+  [CMS_PATH.FIGURE]: loadable({
     loader: () =>
       import(/* webpackChunkName: "cms_figure_page" */ './pages/figure'),
     loading: PageLoader,
     timeout: 30000,
     delay: 300,
   }),
-  MUSIC: loadable({
+  [CMS_PATH.MUSIC]: loadable({
     loader: () =>
       import(/* webpackChunkName: "cms_music_page" */ './pages/music'),
     loading: PageLoader,
@@ -53,6 +53,14 @@ const Style = styled.div`
     flex-direction: column;
   }
 `;
+const routeList = Object.keys(ROUTE).map((path) => (
+  <Route
+    key={path}
+    path={path}
+    component={ROUTE[path]}
+    exact={path === CMS_PATH.DASHBOARD}
+  />
+));
 
 const Dashboard = () => {
   const user = useSelector((state: { user: User }) => state.user, shallowEqual);
@@ -70,10 +78,8 @@ const Dashboard = () => {
         <div className="container">
           <Header />
           <Switch>
-            <Route path={CMS_PATH.HOME} component={ROUTE.HOME} exact />
-            <Route path={CMS_PATH.FIGURE} component={ROUTE.FIGURE} />
-            <Route path={CMS_PATH.MUSIC} component={ROUTE.MUSIC} />
-            <Redirect to={CMS_PATH.HOME} />
+            {routeList}
+            <Redirect to={CMS_PATH.DASHBOARD} />
           </Switch>
         </div>
       </Style>

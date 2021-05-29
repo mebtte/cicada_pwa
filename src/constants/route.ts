@@ -15,7 +15,7 @@ export const PLAYER_PATH = {
 };
 
 export const CMS_PATH = {
-  HOME: ROOT_PATH.CMS,
+  DASHBOARD: ROOT_PATH.CMS,
   FIGURE: `${ROOT_PATH.CMS}/figure`,
   MUSIC: `${ROOT_PATH.CMS}/music`,
 };

@@ -49,8 +49,10 @@ import RecommendOutline from './recommend_outline';
 import CloudOutline from './cloud_outline';
 import BrowserFill from './browser_fill';
 import MobilephoneFill from './mobilephone_fill';
+import HouseOutline from './house_outline';
 
 export enum Name {
+  HOUSE_OUTLINE = 'HouseOutline',
   MOBILEPHONE_FILL = 'MobilephoneFill',
   BROWSER_FILL = 'BrowserFill',
   CLOUD_OUTLINE = 'CloudOutline',
@@ -105,6 +107,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT = {
+  [Name.HOUSE_OUTLINE]: HouseOutline,
   [Name.MOBILEPHONE_FILL]: MobilephoneFill,
   [Name.BROWSER_FILL]: BrowserFill,
   [Name.CLOUD_OUTLINE]: CloudOutline,

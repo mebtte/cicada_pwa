@@ -31,10 +31,12 @@ const Style = styled.div`
     flex: 1;
     min-width: 0;
     margin-left: 15px;
+    overflow: hidden;
     > .right-bottom {
       display: flex;
       align-items: center;
       margin: 3px 0 0 0;
+      overflow: visible;
     }
   }
 `;
@@ -43,13 +45,8 @@ const Controller = () => {
   const [initialCover] = useState(getRandomCover());
   const { playqueue, currentPlayqueuePosition } = useContext(Context);
   const queueMusic = playqueue[currentPlayqueuePosition];
-  const {
-    onView,
-    onWatchMv,
-    onAddToMusicbill,
-    onAddToPlayqueue,
-    onOperate,
-  } = useMusicOperate(queueMusic ? queueMusic.music : null);
+  const { onView, onWatchMv, onAddToMusicbill, onAddToPlayqueue, onOperate } =
+    useMusicOperate(queueMusic ? queueMusic.music : null);
 
   return (
     <Style>

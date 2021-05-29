@@ -6,14 +6,11 @@ import { MUSIC_NAME_SIZE } from './constant';
 
 export default styled(animated.div)`
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
   width: 100%;
   display: flex;
   align-items: center;
-  transform-style: preserve-3d;
-  transform-origin: bottom;
-  perspective: 1200px;
   > .text {
     flex: 1;
     color: rgb(222 222 222);

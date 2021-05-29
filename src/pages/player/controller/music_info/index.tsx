@@ -10,6 +10,8 @@ const Style = styled.div`
   flex: 1;
   min-width: 0;
   position: relative;
+  height: 20px;
+  overflow: visible;
 `;
 
 const Wrapper = ({
@@ -20,9 +22,9 @@ const Wrapper = ({
   onViewMusic: () => void;
 }) => {
   const transitions = useTransition(music, {
-    from: { opacity: 0, transform: 'rotate(90deg) translate(0, -50%)' },
-    enter: { opacity: 1, transform: 'rotate(0deg) translate(0, -50%)' },
-    leave: { opacity: 0, transform: 'rotate(-90deg) translate(0, -50%)' },
+    from: { opacity: 0, transform: 'translate(0, -150%)' },
+    enter: { opacity: 1, transform: 'translate(0, -50%)' },
+    leave: { opacity: 0, transform: 'translate(0, 50%)' },
   });
   return (
     <Style>
