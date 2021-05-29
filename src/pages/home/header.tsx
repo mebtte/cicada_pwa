@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import globalEventemitter, { EventType } from '@/platform/global_eventemitter';
-import { GITHUB_REPOSITORY } from '@/constants';
+import { PWA_GITHUB_REPOSITORY } from '@/constants';
 import { ROOT_PATH } from '@/constants/route';
 import Avatar from '@/components/avatar';
 import { User } from '@/constants/user';
 import Button from '@/components/button';
 import IconButton, { Name } from '@/components/icon_button';
 import Tooltip, { Placement } from '@/components/tooltip';
-import { CONTENT_MAX_WIDTH } from './constants';
+import { CONTENT_MAX_WIDTH, VERTICAL_SPACE } from './constants';
 
 const ACTION_SIZE = 28;
 const Style = styled.header`
@@ -19,7 +19,7 @@ const Style = styled.header`
   > .content {
     max-width: ${CONTENT_MAX_WIDTH}px;
     height: 80px;
-    padding: 0 20px;
+    padding: 0 ${VERTICAL_SPACE}px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -61,7 +61,7 @@ const Header = ({ user }: { user: User | null }) => (
       </div>
       <div className="right">
         <Tooltip title="Github" placement={Placement.BOTTOM}>
-          <a href={GITHUB_REPOSITORY}>
+          <a href={PWA_GITHUB_REPOSITORY}>
             <IconButton name={Name.GITHUB_FILL} size={ACTION_SIZE} />
           </a>
         </Tooltip>

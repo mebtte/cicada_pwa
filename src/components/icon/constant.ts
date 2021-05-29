@@ -47,8 +47,14 @@ import LyricOutline from './lyric_outline';
 import EarphoneOutline from './earphone_outline';
 import GithubFill from './github_fill';
 import RecommendOutline from './recommend_outline';
+import CloudOutline from './cloud_outline';
+import BrowserFill from './browser_fill';
+import MobilephoneFill from './mobilephone_fill';
 
 export enum Name {
+  MOBILEPHONE_FILL = 'MobilephoneFill',
+  BROWSER_FILL = 'BrowserFill',
+  CLOUD_OUTLINE = 'CloudOutline',
   RECOMMEND_OUTLINE = 'RecommendOutline',
   GITHUB_FILL = 'GithubFill',
   EARPHONE_OUTLINE = 'EarphoneOutline',
@@ -101,6 +107,9 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT = {
+  [Name.MOBILEPHONE_FILL]: MobilephoneFill,
+  [Name.BROWSER_FILL]: BrowserFill,
+  [Name.CLOUD_OUTLINE]: CloudOutline,
   [Name.RECOMMEND_OUTLINE]: RecommendOutline,
   [Name.GITHUB_FILL]: GithubFill,
   [Name.EARPHONE_OUTLINE]: EarphoneOutline,
