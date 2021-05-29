@@ -3,14 +3,14 @@
 ## 关联项目
 
 - cicada_server: 知了服务端, 即将开源
-- [cicada_electron](https://github.com/mebtte/cicada_electron): 知了 Windows/macOS 客户端
-- cicada_expo: 知了 iOS/Android 客户端, 即将开源
+- [cicada_electron](https://github.com/mebtte/cicada_electron): 知了桌面客户端
+- cicada_expo: 知了移动客户端客户端, 即将开源
 
 ## 开发/构建
 
 ### 配置
 
-项目开发之前需要进行配置, 在项目根目录创建配置文件 `config.json`, 支持的配置项请查看 [schema](./webpack/config_schema.js).
+开发/构建之前需要进行配置, 在项目根目录创建配置文件 `config.json`, 支持的配置项请查看 [schema](./webpack/config_schema.js).
 
 ### 开发
 
