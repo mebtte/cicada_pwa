@@ -27,28 +27,39 @@ const Style = styled.div<{ arrayVisible: boolean }>`
   > .array {
     z-index: 1;
     position: absolute;
-    top: calc(100% + 5px);
+    top: calc(100% + 10px);
     left: 0;
     width: 100%;
     border-radius: 4px;
-    overflow: hidden;
     background-color: #f6f6f6;
-    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
-      0 9px 28px 8px rgb(0 0 0 / 5%);
+    box-shadow: 0px 0px 15px rgb(0 0 0 / 15%);
     transition: ${ANIMATION_DURATION}ms;
-    max-height: 300px;
-    overflow: auto;
-    ${scrollbar}
-    &:empty::after {
-      content: '空';
-      display: block;
-      font-size: 12px;
-      padding: 10px 12px;
-      color: rgb(155 155 155);
-      cursor: not-allowed;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 10px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent transparent #fff transparent;
     }
     > .loading {
       padding: 12px;
+    }
+    > .list {
+      border-radius: 4px;
+      max-height: 300px;
+      overflow: auto;
+      ${scrollbar}
+      &:empty::after {
+        content: '空';
+        display: block;
+        font-size: 12px;
+        padding: 10px 12px;
+        color: rgb(155 155 155);
+        background-color: #fff;
+        cursor: not-allowed;
+      }
     }
   }
   ${({ arrayVisible }) => css`
@@ -133,22 +144,24 @@ function Select<Item>({
             <CircularLoader />
           </div>
         ) : (
-          array.map((item, index) => {
-            const target = itemRenderer(item, customInput);
-            if (!target) {
-              return null;
-            }
-            return (
-              <StyledItem
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                active={value === item}
-                onClick={() => onChange(item)}
-              >
-                {target}
-              </StyledItem>
-            );
-          })
+          <div className="list">
+            {array.map((item, index) => {
+              const target = itemRenderer(item, customInput);
+              if (!target) {
+                return null;
+              }
+              return (
+                <StyledItem
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  active={value === item}
+                  onClick={() => onChange(item)}
+                >
+                  {target}
+                </StyledItem>
+              );
+            })}
+          </div>
         )}
       </div>
     </Style>
