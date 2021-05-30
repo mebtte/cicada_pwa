@@ -31,7 +31,7 @@ const Style = styled.div<{ arrayVisible: boolean }>`
     left: 0;
     width: 100%;
     border-radius: 4px;
-    background-color: #f6f6f6;
+    background-color: #fff;
     box-shadow: 0px 0px 15px rgb(0 0 0 / 15%);
     transition: ${ANIMATION_DURATION}ms;
     &::before {
@@ -57,7 +57,6 @@ const Style = styled.div<{ arrayVisible: boolean }>`
         font-size: 12px;
         padding: 10px 12px;
         color: rgb(155 155 155);
-        background-color: #fff;
         cursor: not-allowed;
       }
     }
