@@ -3,6 +3,7 @@ import { MusicType } from '@/constants/music';
 import api from '.';
 
 export enum SearchKey {
+  COMPOSITE = 'composite',
   ID = 'id',
   NAME = 'name',
   ALIAS = 'alias',
@@ -11,11 +12,12 @@ export enum SearchKey {
 }
 
 export const SEARCH_KEY_MAP_LABEL: Record<SearchKey, string> = {
-  [SearchKey.ID]: 'ID',
-  [SearchKey.NAME]: '名字',
-  [SearchKey.ALIAS]: '别名',
+  [SearchKey.COMPOSITE]: '综合',
+  [SearchKey.ID]: '音乐ID',
+  [SearchKey.NAME]: '音乐名',
+  [SearchKey.ALIAS]: '音乐别名',
   [SearchKey.SINGER_ID]: '歌手 ID',
-  [SearchKey.SINGER_NAME]: '歌手名字',
+  [SearchKey.SINGER_NAME]: '歌手名',
 };
 
 export const SEARCH_KEYS = Object.keys(SEARCH_KEY_MAP_LABEL);
