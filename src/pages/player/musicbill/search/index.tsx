@@ -12,7 +12,7 @@ const Wrapper = ({ visible, cover }: { visible: Boolean; cover: string }) => {
     },
     enter: {
       opacity: 1,
-      transform: 'translate(0, 0)',
+      transform: 'translate(0, 0%)',
     },
     leave: {
       opacity: 0,

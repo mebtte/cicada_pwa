@@ -8,10 +8,10 @@ import Musicbill from './musicbill';
 const Wrapper = () => {
   const { id } = useParams<{ id: string }>();
   const { musicbillList } = useContext(Context);
-  const musicbill = useMemo(() => musicbillList.find((m) => m.id === id), [
-    musicbillList,
-    id,
-  ]);
+  const musicbill = useMemo(
+    () => musicbillList.find((m) => m.id === id),
+    [musicbillList, id],
+  );
 
   if (musicbill) {
     return <Musicbill musicbill={musicbill} />;

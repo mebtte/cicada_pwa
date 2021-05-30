@@ -18,7 +18,7 @@ const Wrapper = ({
     },
     enter: {
       opacity: 1,
-      transform: 'translate(0, 0)',
+      transform: 'translate(0, 0%)',
     },
     leave: {
       opacity: 0,

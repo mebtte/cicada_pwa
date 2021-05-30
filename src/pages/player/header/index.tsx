@@ -36,6 +36,7 @@ const Header = () => {
   const keyword = query[Query.KEYWORD] || '';
 
   let title = null;
+  // eslint-disable-next-line default-case
   switch (pathname) {
     case PLAYER_PATH.SEARCH: {
       title = `搜索"${keyword}"`;
@@ -45,9 +46,8 @@ const Header = () => {
       title = '设置';
       break;
     }
-    default:
-      title = '知了';
   }
+  title = title || '知了';
   return (
     <Style>
       <Avatar animated src="/logo.png" size={32} />
