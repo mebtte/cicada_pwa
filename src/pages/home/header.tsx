@@ -60,7 +60,7 @@ const Header = ({ user }: { user: User | null }) => (
         <img className="text-logo" src="/text_logo.png" alt="logo" />
       </div>
       <div className="right">
-        <Tooltip title="Github" placement={Placement.BOTTOM}>
+        <Tooltip title="源代码" placement={Placement.BOTTOM}>
           <a href={PWA_GITHUB_REPOSITORY}>
             <IconButton name={Name.GITHUB_FILL} size={ACTION_SIZE} />
           </a>
