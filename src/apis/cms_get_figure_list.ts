@@ -2,12 +2,14 @@
 import api from '.';
 
 export enum SearchKey {
+  COMPOSITE = 'composite',
   ID = 'id',
   NAME = 'name',
   ALIAS = 'alias',
 }
 
 export const SEARCH_KEY_MAP_LABEL: Record<SearchKey, string> = {
+  [SearchKey.COMPOSITE]: '综合',
   [SearchKey.ID]: 'ID',
   [SearchKey.NAME]: '名字',
   [SearchKey.ALIAS]: '别名',

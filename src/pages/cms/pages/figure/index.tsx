@@ -20,7 +20,7 @@ const Figure = () => {
   const query = useQuery<QueryObject>();
   let searchKey = query[Query.SEARCH_KEY] as SearchKey;
   if (!SEARCH_KEYS.includes(searchKey)) {
-    searchKey = SearchKey.NAME;
+    searchKey = SearchKey.COMPOSITE;
   }
   const searchValue = query[Query.SEARCH_VALUE] || '';
   const pageString = query[Query.PAGE];
