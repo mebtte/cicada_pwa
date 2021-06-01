@@ -11,7 +11,7 @@ import {
   MUSIC_TYPES,
   MUSIC_TYPE_MAP_LABEL,
   NAME_MAX_LENGTH,
-  MUSIC_NORMAL,
+  MUSIC_SQ,
 } from '@/constants/music';
 import Label from '@/components/label';
 import Input from '@/components/input';
@@ -67,18 +67,18 @@ const CreateMusicDialog = () => {
   const [file, setFile] = useState<File | null>(null);
   const onSelectFile = () =>
     selectFile({
-      acceptTypes: MUSIC_NORMAL.ACCEPT_MIMES,
+      acceptTypes: MUSIC_SQ.ACCEPT_MIMES,
       onSelect: (f) => {
-        if (!MUSIC_NORMAL.ACCEPT_MIMES.includes(f.type)) {
+        if (!MUSIC_SQ.ACCEPT_MIMES.includes(f.type)) {
           return toast.error(
-            `不支持的文件类型, 支持的文件类型为 ${MUSIC_NORMAL.ACCEPT_MIMES.join(
+            `不支持的文件类型, 支持的文件类型为 ${MUSIC_SQ.ACCEPT_MIMES.join(
               ',',
             )}`,
           );
         }
-        if (f.size > MUSIC_NORMAL.MAX_SIZE) {
+        if (f.size > MUSIC_SQ.MAX_SIZE) {
           return toast.error(
-            `文件过大, 最大不超过 ${MUSIC_NORMAL.MAX_SIZE / 1024 / 1024}MB`,
+            `文件过大, 最大不超过 ${MUSIC_SQ.MAX_SIZE / 1024 / 1024}MB`,
           );
         }
         return setFile(f);

@@ -4,7 +4,6 @@ export default ({
 }: {
   acceptTypes?: string[];
   onSelect: (file: File) => void;
-  maxSize?: number;
 }) => {
   const input = document.createElement('input');
   input.type = 'file';

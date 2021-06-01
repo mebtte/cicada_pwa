@@ -63,7 +63,6 @@ const EditMusicLrcDialog = () => {
     setLoading(true);
     try {
       await cmsUdpateMusic({ id: music.id, key: Key.LRC, value: lrc });
-      toast.success(`已更新"${music.name}"歌词`);
       onClose();
     } catch (e) {
       logger.error(e, { description: '更新音乐 lrc 失败', report: true });

@@ -7,6 +7,9 @@ export enum Key {
   ALIAS = 'alias',
   LRC = 'lrc',
   SINGER = 'singer',
+  SQ = 'sq',
+  HQ = 'hq',
+  AC = 'ac',
 }
 
 /**

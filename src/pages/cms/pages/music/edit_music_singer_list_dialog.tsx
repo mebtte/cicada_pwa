@@ -42,7 +42,6 @@ const EditMusicSingerListDialog = () => {
         key: Key.SINGER,
         value: singerList.map((s) => s.id).join(','),
       });
-      toast.success(`已更新"${music.name}"歌手列表`);
       eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
       onClose();
     } catch (error) {

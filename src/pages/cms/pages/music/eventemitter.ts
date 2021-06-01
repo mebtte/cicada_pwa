@@ -7,6 +7,7 @@ export enum EventType {
   OPEN_EDIT_MUSIC_SINGER_LIST_DIALOG = 'open_edit_music_singer_list_dialog',
   OPEN_CREATE_MUSIC_DIALOG = 'open_create_music_dialog',
   OPEN_EDIT_MUSIC_LRC_DIALOG = 'open_edit_music_lrc_dialog',
+  OPEN_EDIT_MUSIC_RESOURCE_DIALOG = 'open_edit_music_resource_dialog',
 }
 
 export default new Eventemitter<EventType>();

@@ -1,4 +1,5 @@
 import { MusicType } from '@/constants/music';
+import { Key } from '@/apis/cms_update_music';
 
 export interface Figure {
   id: string;
@@ -20,6 +21,9 @@ export interface Music {
     alias: string;
   }[];
   createTime: Date;
+  sq: string;
+  hq: string;
+  ac: string;
 }
 
 export enum Query {
@@ -33,3 +37,9 @@ export type QueryObject = {
 };
 
 export const PAGE_SIZE = 30;
+
+export enum EditMusicResourceType {
+  SQ = Key.SQ,
+  HQ = Key.HQ,
+  AC = Key.AC,
+}

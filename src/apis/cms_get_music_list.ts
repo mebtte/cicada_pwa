@@ -60,6 +60,9 @@ async function cmsGetMusicList({
         alias: string;
       }[];
       create_time: string;
+      sq: string;
+      hq: string;
+      ac: string;
     }[];
   }>('/cms/get_music_list', {
     params,
@@ -76,6 +79,9 @@ async function cmsGetMusicList({
         type,
         singers,
         create_time: createTime,
+        sq,
+        hq,
+        ac,
       }) => ({
         id: musicId,
         cover,
@@ -84,6 +90,9 @@ async function cmsGetMusicList({
         type,
         singers,
         createTime: new Date(createTime),
+        sq,
+        hq,
+        ac,
       }),
     ),
   };

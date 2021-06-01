@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 import { Link } from 'react-router-dom';
 
+import Tooltip from '@/components/tooltip';
+import Tag, { Type as TagType } from '@/components/tag';
 import { SearchKey as FigureSearchKey } from '@/apis/cms_get_figure_list';
 import { SearchKey } from '@/apis/cms_get_music_list';
 import cmsDeleteMusic from '@/apis/cms_delete_music';
@@ -17,7 +19,7 @@ import CircularLoader from '@/components/circular_loader';
 import Empty from '@/components/empty';
 import Table from '@/components/table';
 import scrollbar from '@/style/scrollbar';
-import { Music } from '../constants';
+import { EditMusicResourceType, Music } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 import { Query } from '../../figure/constants';
 
@@ -96,9 +98,18 @@ const headers = [
   '类型',
   '歌手',
   '别名',
+  '资源',
   '创建时间',
   '操作',
 ];
+const ResourceBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  > .action {
+    cursor: pointer;
+  }
+`;
 const OperationBox = styled.div`
   display: flex;
   align-items: center;
@@ -170,6 +181,48 @@ const MusicList = ({
       />
     </SingerBox>,
     music.alias || '-',
+    <ResourceBox>
+      <Tooltip title="标准音质">
+        <Tag
+          className="action"
+          type={TagType.SQ}
+          onClick={() =>
+            eventemitter.emit(EventType.OPEN_EDIT_MUSIC_RESOURCE_DIALOG, {
+              music,
+              type: EditMusicResourceType.SQ,
+            })
+          }
+        />
+      </Tooltip>
+      <Tooltip title="高音质">
+        <Tag
+          className="action"
+          type={TagType.HQ}
+          gray={!music.hq}
+          onClick={() =>
+            eventemitter.emit(EventType.OPEN_EDIT_MUSIC_RESOURCE_DIALOG, {
+              music,
+              type: EditMusicResourceType.HQ,
+            })
+          }
+        />
+      </Tooltip>
+      {music.type === MusicType.NORMAL ? (
+        <Tooltip title="伴奏">
+          <Tag
+            className="action"
+            type={TagType.AC}
+            gray={!music.ac}
+            onClick={() =>
+              eventemitter.emit(EventType.OPEN_EDIT_MUSIC_RESOURCE_DIALOG, {
+                music,
+                type: EditMusicResourceType.AC,
+              })
+            }
+          />
+        </Tooltip>
+      ) : null}
+    </ResourceBox>,
     format(music.createTime, 'yyyy-MM-dd HH:mm'),
     <OperationBox>
       <IconButton

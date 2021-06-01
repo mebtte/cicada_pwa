@@ -1,15 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import { Music as MusicType } from '@/constants/music';
-import Tag from '@/components/tag';
-import { MUSIC_TAG_COLOR } from '../../constants';
+import Tag, { Type } from '@/components/tag';
 import Container from './container';
 import Singer from '../../component/singer';
-
-const StyledTag = styled(Tag)`
-  margin-left: 5px;
-`;
 
 const MusicInfo = ({
   music,
@@ -36,8 +30,8 @@ const MusicInfo = ({
         </span>
       </div>
       <div className="tags">
-        {ac ? <StyledTag tag="ac" color={MUSIC_TAG_COLOR.AC} /> : null}
-        {hq ? <StyledTag tag="hq" color={MUSIC_TAG_COLOR.HQ} /> : null}
+        {hq ? <Tag type={Type.HQ} /> : null}
+        {ac ? <Tag type={Type.AC} /> : null}
       </div>
     </Container>
   );

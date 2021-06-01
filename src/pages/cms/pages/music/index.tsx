@@ -12,6 +12,7 @@ import EditMusicCoverDialog from './edit_music_cover_dialog';
 import EditMusicDialog from './edit_music_dialog';
 import EditMusicLrcDialog from './edit_music_lrc_dialog';
 import EditMusicSingerListDialog from './edit_music_singer_list_dialog';
+import EditMusicResourceDialog from './edit_music_resource_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -39,6 +40,7 @@ const Music = () => {
       <EditMusicDialog />
       <EditMusicLrcDialog />
       <EditMusicSingerListDialog />
+      <EditMusicResourceDialog />
     </Style>
   );
 };

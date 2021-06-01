@@ -10,12 +10,6 @@ export const PLAY_MODE_MAP_LABEL: Record<PlayMode, string> = {
 };
 export const PLAY_MODES = Object.keys(PLAY_MODE_MAP_LABEL) as PlayMode[];
 
-export const MUSIC_TAG_COLOR = {
-  AC: 'rgb(49, 194, 124)',
-  HQ: 'rgb(255,119,75)',
-  MV: 'rgb(1,196,240)',
-};
-
 export enum Query {
   KEYWORD = 'keyword',
   PAGE = 'page',
