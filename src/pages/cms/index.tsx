@@ -36,6 +36,15 @@ const ROUTE = {
     timeout: 30000,
     delay: 300,
   }),
+  [CMS_PATH.PUBLIC_CONFIG]: loadable({
+    loader: () =>
+      import(
+        /* webpackChunkName: "cms_public_config_page" */ './pages/public_config'
+      ),
+    loading: PageLoader,
+    timeout: 30000,
+    delay: 300,
+  }),
 };
 
 const Scrollable = styled(PageContainer)`

@@ -27,6 +27,11 @@ const MENUS: Menu[] = [
     icon: Name.MUSIC_FILL,
     path: CMS_PATH.MUSIC,
   },
+  {
+    label: '公共配置',
+    icon: Name.SETTING_OUTLINE,
+    path: CMS_PATH.PUBLIC_CONFIG,
+  },
 ];
 
 const Sidebar = () => {

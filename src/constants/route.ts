@@ -18,4 +18,5 @@ export const CMS_PATH = {
   DASHBOARD: ROOT_PATH.CMS,
   FIGURE: `${ROOT_PATH.CMS}/figure`,
   MUSIC: `${ROOT_PATH.CMS}/music`,
+  PUBLIC_CONFIG: `${ROOT_PATH.CMS}/public_config`,
 };
