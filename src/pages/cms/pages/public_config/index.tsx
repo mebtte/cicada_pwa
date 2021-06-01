@@ -26,6 +26,7 @@ const Style = styled.div<{
     ${scrollbar}
     overflow: auto;
     padding: 20px;
+    box-sizing: border-box;
     > .table {
       width: 100%;
     }
