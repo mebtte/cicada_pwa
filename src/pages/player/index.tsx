@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import { QueueMusic } from '@/constants/music';
 import scrollbar from '@/style/scrollbar';
@@ -86,6 +87,9 @@ const Wrapper = () => {
         volume,
       }}
     >
+      <Helmet>
+        <title>知了</title>
+      </Helmet>
       <Scrollable>
         <Style>
           <Sidebar />

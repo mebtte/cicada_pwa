@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import getRandomCover from '../../utils/get_random_cover';
 import { IS_ELECTRON, IS_WINDOWS } from '../../constants';
@@ -20,6 +21,9 @@ const Signin = () => {
   const [cover] = useState(getRandomCover());
   return (
     <Style style={{ backgroundImage: `url(${cover})` }}>
+      <Helmet>
+        <title>登录 - 知了</title>
+      </Helmet>
       {IS_ELECTRON && <AppRegion />}
       {IS_ELECTRON && IS_WINDOWS && <WindowsAction />}
       <Content />

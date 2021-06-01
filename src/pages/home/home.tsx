@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector, shallowEqual } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import { User } from '@/constants/user';
 import scrollbar from '@/style/scrollbar';
@@ -26,6 +27,9 @@ const Home = () => {
   );
   return (
     <Style>
+      <Helmet>
+        <title>知了 - 在线音乐播放器</title>
+      </Helmet>
       <Header user={user} />
       <section className="content" />
       <Footer />
