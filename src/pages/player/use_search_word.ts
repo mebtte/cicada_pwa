@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 
+import { PublicConfigKey } from '@/constants/public_config';
 import { REMOTE_CONFIG_SEARCH_WORD } from '@/constants/storage_key';
-import getPublicConfig, { Key } from '@/apis/get_public_config';
+import getPublicConfig from '@/apis/get_public_config';
 import logger from '@/platform/logger';
 
-const UPDATE_SEARCH_WORD_INTERVAL = 1000 * 60 * 30;
+const UPDATE_SEARCH_WORD_INTERVAL = 1000 * 60 * 15;
 
 export default () => {
   const [searchWord, setSearchWord] = useState(
@@ -14,7 +15,7 @@ export default () => {
   useEffect(() => {
     const request = () =>
       window.requestIdleCallback(() =>
-        getPublicConfig(Key.SEARCH_WORD)
+        getPublicConfig(PublicConfigKey.SEARCH_WORD)
           .then((sw) => {
             localStorage.setItem(REMOTE_CONFIG_SEARCH_WORD, sw);
             return setSearchWord(sw);

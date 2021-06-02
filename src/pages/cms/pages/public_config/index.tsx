@@ -9,6 +9,8 @@ import CircularLoader from '@/components/circular_loader';
 import { cmsPage } from '../../style';
 import usePublicConfigList from './use_public_config_list';
 import { PublicConfig as PublicConfigType } from './constants';
+import eventemitter, { EventType } from './eventemitter';
+import UpdateDialog from './update_dialog';
 
 const Style = styled.div<{
   isLoading: boolean;
@@ -43,12 +45,16 @@ const Style = styled.div<{
   `}
 `;
 const ACTION_SIZE = 24;
-const headers = ['键', '值', '描述', '操作'];
+const headers = ['键', '描述', '值', '操作'];
 const rowRenderer = (pc: PublicConfigType) => [
   pc.key,
-  pc.value,
   pc.description,
-  <IconButton name={Name.EDIT_OUTLINE} size={ACTION_SIZE} />,
+  pc.value,
+  <IconButton
+    name={Name.EDIT_OUTLINE}
+    size={ACTION_SIZE}
+    onClick={() => eventemitter.emit(EventType.OPEN_UPDATE_DIALOG, pc)}
+  />,
 ];
 
 const PublicConfig = () => {
@@ -80,6 +86,8 @@ const PublicConfig = () => {
           ) : null}
         </>
       )}
+
+      <UpdateDialog />
     </Style>
   );
 };
