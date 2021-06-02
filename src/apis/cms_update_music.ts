@@ -32,6 +32,7 @@ function cmsUpdateMusic({
   return api.post('/cms/update_music', {
     data: form,
     withToken: true,
+    timeout: 1000 * 60 * 3,
   });
 }
 
