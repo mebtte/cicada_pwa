@@ -21,12 +21,11 @@ import { Figure } from './constants';
 import SingerListSelector from './singer_list_selector';
 import eventemitter, { EventType } from './eventemitter';
 
-const musicTypeItemRenderer = (musicType: MusicType, filter: string) => {
-  const target = MUSIC_TYPE_MAP_LABEL[musicType];
-  if (target.includes(filter)) {
-    return target;
+const musicTypeItemRenderer = (musicType: MusicType | null) => {
+  if (!musicType) {
+    return null;
   }
-  return null;
+  return MUSIC_TYPE_MAP_LABEL[musicType];
 };
 const FileBox = styled.div`
   display: flex;
@@ -158,6 +157,7 @@ const CreateMusicDialog = () => {
             array={MUSIC_TYPES}
             itemRenderer={musicTypeItemRenderer}
             disabled={loading}
+            customInputDisabled
           />
         </Label>
         <Label label="音乐文件" style={labelStyle}>

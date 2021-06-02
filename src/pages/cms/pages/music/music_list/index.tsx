@@ -13,6 +13,8 @@ const Style = styled.div`
   min-width: 0;
   display: flex;
   flex-direction: column;
+  margin: 20px 20px 20px 0;
+  gap: 20px;
 `;
 const errorCardStyle = {
   flex: 1,

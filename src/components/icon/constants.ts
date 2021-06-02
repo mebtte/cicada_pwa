@@ -50,8 +50,12 @@ import CloudOutline from './cloud_outline';
 import BrowserFill from './browser_fill';
 import MobilephoneFill from './mobilephone_fill';
 import HouseOutline from './house_outline';
+import DashboardOutline from './dashboard_outline';
+import IDFill from './id_fill';
 
 export enum Name {
+  ID_FILL = 'IDFill',
+  DASHBOARD_OUTLINE = 'DashboardOutline',
   HOUSE_OUTLINE = 'HouseOutline',
   MOBILEPHONE_FILL = 'MobilephoneFill',
   BROWSER_FILL = 'BrowserFill',
@@ -107,6 +111,8 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT = {
+  [Name.ID_FILL]: IDFill,
+  [Name.DASHBOARD_OUTLINE]: DashboardOutline,
   [Name.HOUSE_OUTLINE]: HouseOutline,
   [Name.MOBILEPHONE_FILL]: MobilephoneFill,
   [Name.BROWSER_FILL]: BrowserFill,

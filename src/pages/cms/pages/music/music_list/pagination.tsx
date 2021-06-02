@@ -4,10 +4,6 @@ import useHistory from '@/utils/use_history';
 import Pagination from '@/components/pagination';
 import { Query, PAGE_SIZE } from '../constants';
 
-const style = {
-  margin: '20px 0',
-};
-
 const Wrapper = ({ page, total }: { page: number; total: number }) => {
   const history = useHistory();
   const onPageChange = (p: number) =>
@@ -18,7 +14,6 @@ const Wrapper = ({ page, total }: { page: number; total: number }) => {
       currentPage={page}
       pageCount={Math.ceil(total / PAGE_SIZE)}
       onPageChange={onPageChange}
-      style={style}
     />
   );
 };

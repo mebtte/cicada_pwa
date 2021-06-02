@@ -22,6 +22,13 @@ const ROUTE = {
     timeout: 30000,
     delay: 300,
   }),
+  [CMS_PATH.USER]: loadable({
+    loader: () =>
+      import(/* webpackChunkName: "cms_user_page" */ './pages/user'),
+    loading: PageLoader,
+    timeout: 30000,
+    delay: 300,
+  }),
   [CMS_PATH.FIGURE]: loadable({
     loader: () =>
       import(/* webpackChunkName: "cms_figure_page" */ './pages/figure'),

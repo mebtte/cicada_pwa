@@ -14,8 +14,13 @@ const Style = styled.div`
 const MENUS: Menu[] = [
   {
     label: '总览',
-    icon: Name.FIGURE_OUTLINE,
+    icon: Name.DASHBOARD_OUTLINE,
     path: CMS_PATH.DASHBOARD,
+  },
+  {
+    label: '用户',
+    icon: Name.ID_FILL,
+    path: CMS_PATH.USER,
   },
   {
     label: '角色',

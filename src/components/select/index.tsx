@@ -88,6 +88,7 @@ function Select<Item>({
   onChange,
   array,
   itemRenderer,
+  customInputDisabled = false,
   onInputChange,
   loading = false,
   placeholder,
@@ -97,7 +98,8 @@ function Select<Item>({
   value: Item | null;
   onChange: (item: Item) => void;
   array: Item[];
-  itemRenderer: (item: Item, customInput: string) => string;
+  itemRenderer: (item: Item | null, customInput: string) => string;
+  customInputDisabled?: boolean;
   onInputChange?: (value: string) => void;
   loading?: boolean;
   placeholder?: string;
@@ -123,10 +125,8 @@ function Select<Item>({
       <div className="input-box">
         <Input
           className="input"
-          value={
-            // eslint-disable-next-line no-nested-ternary
-            arrayVisible ? customInput : value ? itemRenderer(value, '') : ''
-          }
+          readOnly={customInputDisabled}
+          value={arrayVisible ? customInput : itemRenderer(value, '')}
           onChange={onCustomInputChange}
           onFocus={onFocus}
           onBlur={onBlur}

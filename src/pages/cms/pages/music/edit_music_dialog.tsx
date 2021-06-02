@@ -24,12 +24,11 @@ const labelStyle = {
 const inputStyle = {
   width: '100%',
 };
-const musicTypeItemRenderer = (t: MusicType, customInput) => {
-  const label = MUSIC_TYPE_MAP_LABEL[t];
-  if (label.includes(customInput)) {
-    return label;
+const musicTypeItemRenderer = (t: MusicType | null) => {
+  if (!t) {
+    return null;
   }
-  return null;
+  return MUSIC_TYPE_MAP_LABEL[t];
 };
 
 const EditMusicDialog = () => {
@@ -134,6 +133,7 @@ const EditMusicDialog = () => {
             itemRenderer={musicTypeItemRenderer}
             disabled={loading}
             style={inputStyle}
+            customInputDisabled
           />
         </Label>
         <Label label="别名" style={labelStyle}>

@@ -7,7 +7,7 @@ import eventemitter, { EventType } from './eventemitter';
 
 const Style = styled.div`
   padding: 20px 0;
-  width: 60px;
+  width: 75px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,7 @@ const onCreateMusicDialog = () =>
 
 const Action = () => (
   <Style>
-    <Tooltip title="创建音乐" placement={Placement.LEFT}>
+    <Tooltip title="创建音乐" placement={Placement.RIGHT}>
       <IconButton name={Name.PLUS_OUTLINE} onClick={onCreateMusicDialog} />
     </Tooltip>
   </Style>

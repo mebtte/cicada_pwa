@@ -27,7 +27,6 @@ const Style = styled.div<{ isLoading: boolean }>`
   flex: 1;
   min-height: 0;
   position: relative;
-  margin: 0 20px;
   > .content {
     position: absolute;
     width: 100%;

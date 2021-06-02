@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { Svg } from './base';
-import { Name, NAME_MAP_CONTENT } from './constant';
+import { Name, NAME_MAP_CONTENT } from './constants';
 
 interface Props {
   /** 图标名 */

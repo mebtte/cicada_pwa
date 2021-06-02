@@ -28,8 +28,8 @@ const Figure = () => {
 
   return (
     <Style>
-      <FigureList searchKey={searchKey} searchValue={searchValue} page={page} />
       <Action />
+      <FigureList searchKey={searchKey} searchValue={searchValue} page={page} />
 
       <CreateFigureDialog />
       <EditFigureAvatarDialog />

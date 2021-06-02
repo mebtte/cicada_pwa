@@ -32,8 +32,8 @@ const Music = () => {
 
   return (
     <Style>
-      <MusicList page={page} searchKey={searchKey} searchValue={searchValue} />
       <Action />
+      <MusicList page={page} searchKey={searchKey} searchValue={searchValue} />
 
       <CreateMusicDialog />
       <EditMusicCoverDialog />

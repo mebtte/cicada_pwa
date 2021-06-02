@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+import { IS_WINDOWS, IS_MAC_OS } from '@/constants';
+import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
 import {
   SearchKey,
   SEARCH_KEY_MAP_LABEL,
@@ -14,7 +16,6 @@ import { Query } from '../constants';
 
 const Style = styled.div`
   z-index: 2;
-  padding: 20px;
   display: flex;
   align-items: center;
   > .key {
@@ -27,12 +28,11 @@ const Style = styled.div`
     margin-right: 20px;
   }
 `;
-const itemRenderer = (key: SearchKey, customInput: string) => {
-  const label = SEARCH_KEY_MAP_LABEL[key];
-  if (label.includes(customInput)) {
-    return label;
+const itemRenderer = (key: SearchKey | null) => {
+  if (!key) {
+    return null;
   }
-  return null;
+  return SEARCH_KEY_MAP_LABEL[key];
 };
 
 const Search = ({
@@ -45,6 +45,7 @@ const Search = ({
   loading: boolean;
 }) => {
   const history = useHistory();
+  const inputRef = useRef<HTMLInputElement>();
 
   const onSearchKeyChange = (key: SearchKey) =>
     history.push({ query: { [Query.PAGE]: 1, [Query.SEARCH_KEY]: key } });
@@ -62,6 +63,22 @@ const Search = ({
     }
   };
 
+  useEffect(() => {
+    const onDocumentKeyDown = keyboardHandlerWrapper((event: KeyboardEvent) => {
+      if (
+        event.key !== 'f' ||
+        (IS_MAC_OS && !event.metaKey) ||
+        (IS_WINDOWS && !event.ctrlKey)
+      ) {
+        return;
+      }
+      event.preventDefault();
+      return inputRef.current.focus();
+    });
+    document.addEventListener('keydown', onDocumentKeyDown);
+    return () => document.removeEventListener('keydown', onDocumentKeyDown);
+  }, []);
+
   return (
     <Style>
       <Select
@@ -71,6 +88,7 @@ const Search = ({
         array={SEARCH_KEYS}
         itemRenderer={itemRenderer}
         disabled={loading}
+        customInputDisabled
       />
       <Input
         className="value"
@@ -79,6 +97,7 @@ const Search = ({
         placeholder="输入搜索内容"
         onKeyDown={onKeyDown}
         disabled={loading}
+        ref={inputRef}
       />
       <Button
         label="搜索"
