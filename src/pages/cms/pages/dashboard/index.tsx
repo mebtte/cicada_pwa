@@ -30,6 +30,7 @@ const Style = styled.div`
   }
   > .paper-list {
     padding: 40px;
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

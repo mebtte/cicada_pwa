@@ -13,7 +13,7 @@ const Style = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 200px;
+  width: 250px;
   height: 250px;
   border-radius: 4px;
   transition: 300ms;
