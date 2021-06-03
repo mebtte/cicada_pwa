@@ -53,7 +53,7 @@ const Search = ({
   const onSearch = () =>
     history.push({
       query: {
-        [Query.PAGE]: 1,
+        [Query.PAGE]: '1',
         [Query.SEARCH_VALUE]: searchValue,
       },
     });
@@ -64,7 +64,7 @@ const Search = ({
   };
   const onSearchKeyChange = (key: SearchKey) =>
     history.push({
-      query: { [Query.PAGE]: 1, [Query.SEARCH_KEY]: key },
+      query: { [Query.PAGE]: '1', [Query.SEARCH_KEY]: key },
     });
 
   useEffect(() => {

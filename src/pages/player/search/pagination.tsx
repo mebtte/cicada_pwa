@@ -14,7 +14,7 @@ const Wrapper = ({ total, page }: { total: number; page: number }) => {
   const onPageChange = (p: number) =>
     history.push({
       query: {
-        [Query.PAGE]: p,
+        [Query.PAGE]: p.toString(),
       },
     });
   return (

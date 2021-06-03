@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import dialog from '@/platform/dialog';
 import cmsUpdateMusic from '@/apis/cms_update_music';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
@@ -96,7 +97,7 @@ const EditMusicResourceDialog = () => {
       eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
     } catch (error) {
       logger.error(error, { description: '更新音乐资源失败', report: true });
-      toast.error(error.message);
+      dialog.alert({ title: `更新${label}失败`, content: error.message });
     }
     setLoading(false);
   };

@@ -11,5 +11,5 @@ export interface User {
 }
 
 export enum Query {
-  CREATE_USER_DIALOG_OPEN = 'create_user_dialog_open',
+  CREATE_DIALOG_OPEN = 'create_dialog_open',
 }

@@ -12,7 +12,7 @@ export default () => {
     query,
   }: {
     pathname?: string;
-    query?: { [key: string]: string | number };
+    query?: { [key: string]: string };
   }) => {
     const targetQuery = {
       ...originalQuery,

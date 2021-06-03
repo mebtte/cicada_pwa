@@ -5,6 +5,7 @@ import Label from '@/components/label';
 import Input from '@/components/input';
 import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
 import toast from '@/platform/toast';
+import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
 import Button, { Type } from '@/components/button';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
@@ -66,8 +67,8 @@ const EditFigureDialog = () => {
 
       onClose();
     } catch (error) {
-      logger.error(error);
-      toast.error(error.message);
+      logger.error(error, { description: '更新角色失败', report: true });
+      dialog.alert({ title: '更新角色失败', content: error.message });
     }
     setLoading(false);
   };

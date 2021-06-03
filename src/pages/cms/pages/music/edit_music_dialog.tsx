@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Select from '@/components/select';
 import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
 import toast from '@/platform/toast';
+import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
 import Label from '@/components/label';
 import Input from '@/components/input';
@@ -106,7 +107,10 @@ const EditMusicDialog = () => {
       onClose();
     } catch (error) {
       logger.error(error, { description: '更新音乐失败', report: true });
-      toast.error(error.message);
+      dialog.alert({
+        title: '更新音乐失败',
+        content: error.message,
+      });
     }
     setLoading(false);
   };

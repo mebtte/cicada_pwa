@@ -4,7 +4,7 @@
 
 - cicada_server: 知了服务端, 即将开源
 - [cicada_electron](https://github.com/mebtte/cicada_electron): 知了桌面客户端
-- cicada_expo: 知了移动客户端客户端, 即将开源
+- cicada_expo: 知了移动客户端, 即将开源
 
 ## 开发/构建
 

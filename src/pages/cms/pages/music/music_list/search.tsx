@@ -48,14 +48,14 @@ const Search = ({
   const inputRef = useRef<HTMLInputElement>();
 
   const onSearchKeyChange = (key: SearchKey) =>
-    history.push({ query: { [Query.PAGE]: 1, [Query.SEARCH_KEY]: key } });
+    history.push({ query: { [Query.PAGE]: '1', [Query.SEARCH_KEY]: key } });
 
   const [searchValue, setSearchValue] = useState(initialSearchValue);
   const onSearchValueChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setSearchValue(event.target.value);
   const onSearch = () =>
     history.push({
-      query: { [Query.PAGE]: 1, [Query.SEARCH_VALUE]: searchValue },
+      query: { [Query.PAGE]: '1', [Query.SEARCH_VALUE]: searchValue },
     });
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {

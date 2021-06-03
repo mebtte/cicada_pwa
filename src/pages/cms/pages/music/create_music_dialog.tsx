@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Select from '@/components/select';
 import cmsCreateMusic from '@/apis/cms_create_music';
 import toast from '@/platform/toast';
+import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
 import selectFile from '@/utils/select_file';
 import {
@@ -124,7 +125,7 @@ const CreateMusicDialog = () => {
       onClose();
     } catch (error) {
       logger.error(error, { description: '创建音乐失败', report: true });
-      toast.error(error.message);
+      dialog.alert({ title: '创建音乐失败', content: error.message });
     }
     setLoading(false);
   };

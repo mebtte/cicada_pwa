@@ -84,7 +84,6 @@ const ImageCutterDialog = ({
       await onUpdate(blob as File);
       onClose();
     } catch (error) {
-      cropperRef.current.enable();
       logger.error(error, {
         description: '更新失败',
       });
@@ -93,6 +92,7 @@ const ImageCutterDialog = ({
         content: error.message,
       });
     }
+    cropperRef.current.enable();
     setSaving(false);
   }, [imageUrl, onUpdate, imageSize, onClose]);
 

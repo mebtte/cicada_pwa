@@ -1,7 +1,7 @@
 import Eventemitter from 'eventemitter3';
 
 export enum EventType {
-  USER_UPDATED = 'public_config_updated',
+  USER_CREATED_OR_UPDATED = 'user_created_or_updated',
 
   OPEN_UPDATE_DIALOG = 'open_update_dialog',
 }

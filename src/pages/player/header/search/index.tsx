@@ -38,7 +38,7 @@ const Wrapper = ({ keyword: initialKeyword }: { keyword: string }) => {
       pathname: PLAYER_PATH.SEARCH,
       query: {
         [Query.KEYWORD]: trimKeyword,
-        [Query.PAGE]: 1,
+        [Query.PAGE]: '1',
       },
     });
   };

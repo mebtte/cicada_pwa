@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
 import logger from '@/platform/logger';
-import toast from '@/platform/toast';
+import dialog from '@/platform/dialog';
 import Button, { Type } from '@/components/button';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import eventemitter, { EventType } from './eventemitter';
@@ -49,7 +49,7 @@ const EditMusicSingerListDialog = () => {
         description: '更新音乐歌手列表失败',
         report: true,
       });
-      toast.error(error.message);
+      dialog.alert({ title: '更新音乐歌手列表失败', content: error.message });
     }
     setLoading(false);
   };

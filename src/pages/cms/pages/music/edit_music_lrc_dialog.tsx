@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 
 import cmsUdpateMusic, { Key } from '@/apis/cms_update_music';
-import toast from '@/platform/toast';
+import dialog from '@/platform/dialog';
 import ErrorCard from '@/components/error_card';
 import Textarea from '@/components/textarea';
 import logger from '@/platform/logger';
@@ -66,7 +66,7 @@ const EditMusicLrcDialog = () => {
       onClose();
     } catch (e) {
       logger.error(e, { description: '更新音乐 lrc 失败', report: true });
-      toast.error(e.message);
+      dialog.alert({ title: '更新歌词失败', content: error.message });
     }
     setLoading(false);
   };

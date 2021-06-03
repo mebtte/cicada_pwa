@@ -69,7 +69,7 @@ const rowRenderer = (u: UserType) => [
   u.nickname,
   u.condition,
   u.avatar ? <Avatar src={u.avatar} /> : '-',
-  format(u.joinTime, 'yyyy-MM-dd hh:mm'),
+  format(u.joinTime, 'yyyy-MM-dd HH:mm'),
   <Icon
     name={u.cms ? IconName.CORRECT_OUTLINE : IconName.WRONG_OUTLINE}
     style={u.cms ? enableStyle : disableStyle}

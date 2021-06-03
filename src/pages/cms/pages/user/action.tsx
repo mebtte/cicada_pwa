@@ -19,7 +19,7 @@ const Action = () => {
   const openCreateUserDialog = () =>
     history.push({
       query: {
-        [Query.CREATE_USER_DIALOG_OPEN]: 1,
+        [Query.CREATE_DIALOG_OPEN]: '1',
       },
     });
 

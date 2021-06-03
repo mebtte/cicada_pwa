@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import cmsCreateFigure from '@/apis/cms_create_figure';
 import logger from '@/platform/logger';
+import dialog from '@/platform/dialog';
 import toast from '@/platform/toast';
 import { NAME_MAX_LENGTH } from '@/constants/figure';
 import Button, { Type } from '@/components/button';
@@ -44,7 +45,7 @@ const CreateFigureDialog = () => {
       eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
     } catch (error) {
       logger.error(error, { description: '创建角色失败' });
-      toast.error(error.message);
+      dialog.alert({ title: '创建角色失败', content: error.message });
     }
     setLoading(false);
   };

@@ -65,7 +65,7 @@ const UpdateDialog = () => {
       }
 
       if (updated) {
-        eventemitter.emit(EventType.USER_UPDATED);
+        eventemitter.emit(EventType.USER_CREATED_OR_UPDATED);
       }
 
       onClose();
