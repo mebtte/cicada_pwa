@@ -6,7 +6,7 @@ import useQuery from '@/utils/use_query';
 import { cmsPage } from '../../style';
 import FigureList from './figure_list';
 import Action from './action';
-import CreateFigureDialog from './create_figure_dialog';
+import CreateDialog from './create_dialog';
 import EditFigureAvatarDialog from './edit_figure_avatar_dialog';
 import EditFigureDialog from './edit_figure_dialog';
 import { Query, QueryObject } from './constants';
@@ -25,13 +25,14 @@ const Figure = () => {
   const searchValue = query[Query.SEARCH_VALUE] || '';
   const pageString = query[Query.PAGE];
   const page = pageString ? +pageString : 1 || 1;
+  const createDialogOpen = !!query[Query.CREATE_DIALOG_OPEN];
 
   return (
     <Style>
       <Action />
       <FigureList searchKey={searchKey} searchValue={searchValue} page={page} />
 
-      <CreateFigureDialog />
+      <CreateDialog open={createDialogOpen} />
       <EditFigureAvatarDialog />
       <EditFigureDialog />
     </Style>

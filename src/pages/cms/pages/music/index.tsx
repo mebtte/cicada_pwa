@@ -5,7 +5,7 @@ import { SearchKey, SEARCH_KEYS } from '@/apis/cms_get_music_list';
 import useQuery from '@/utils/use_query';
 import { cmsPage } from '../../style';
 import Action from './action';
-import CreateMusicDialog from './create_music_dialog';
+import CreateDialog from './create_dialog';
 import MusicList from './music_list';
 import { Query, QueryObject } from './constants';
 import EditMusicCoverDialog from './edit_music_cover_dialog';
@@ -29,13 +29,14 @@ const Music = () => {
   const searchValue = query[Query.SEARCH_VALUE] || '';
   const pageString = query[Query.PAGE];
   const page = pageString ? +pageString : 1 || 1;
+  const createDialogOpen = !!query[Query.CREATE_DIALOG_OPEN];
 
   return (
     <Style>
       <Action />
       <MusicList page={page} searchKey={searchKey} searchValue={searchValue} />
 
-      <CreateMusicDialog />
+      <CreateDialog open={createDialogOpen} />
       <EditMusicCoverDialog />
       <EditMusicDialog />
       <EditMusicLrcDialog />

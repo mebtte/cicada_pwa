@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
+import useHistory from '@/utils/use_history';
 import cmsCreateFigure from '@/apis/cms_create_figure';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
@@ -10,27 +11,25 @@ import Label from '@/components/label';
 import Input from '@/components/input';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import eventemitter, { EventType } from './eventemitter';
+import { Query } from './constants';
 
 const inputStyle = {
   width: '100%',
 };
 
-const CreateFigureDialog = () => {
+const CreateFigureDialog = ({ open }: { open: boolean }) => {
+  const history = useHistory();
+
   const [name, setName] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setName(event.target.value);
 
-  const [open, setOpen] = useState(false);
-  const onClose = () => {
-    setOpen(false);
-    setTimeout(() => setName(''), 1000);
-  };
-  useEffect(() => {
-    const openListener = () => setOpen(true);
-    eventemitter.on(EventType.OPEN_CREATE_FIGURE_DIALOG, openListener);
-    return () =>
-      void eventemitter.off(EventType.OPEN_CREATE_FIGURE_DIALOG, openListener);
-  }, []);
+  const onClose = () =>
+    history.push({
+      query: {
+        [Query.CREATE_DIALOG_OPEN]: '',
+      },
+    });
 
   const [loading, setLoading] = useState(false);
   const onCreate = async () => {
@@ -51,7 +50,7 @@ const CreateFigureDialog = () => {
   };
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open || loading}>
       <Title>创建角色</Title>
       <Content>
         <Label label="角色名字">

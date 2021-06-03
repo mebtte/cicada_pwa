@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import useHistory from '@/utils/use_history';
 import Select from '@/components/select';
 import cmsCreateMusic from '@/apis/cms_create_music';
 import toast from '@/platform/toast';
@@ -18,7 +19,7 @@ import Label from '@/components/label';
 import Input from '@/components/input';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
-import { Figure } from './constants';
+import { Figure, Query } from './constants';
 import SingerListSelector from './singer_list_selector';
 import eventemitter, { EventType } from './eventemitter';
 
@@ -44,7 +45,9 @@ const inputStyle = {
   width: '100%',
 };
 
-const CreateMusicDialog = () => {
+const CreateMusicDialog = ({ open }: { open: boolean }) => {
+  const history = useHistory();
+
   const [singerList, setSingerList] = useState<Figure[]>([]);
   const onSingerSelect = (singer: Figure) =>
     setSingerList((sl) => {
@@ -85,21 +88,18 @@ const CreateMusicDialog = () => {
       },
     });
 
-  const [open, setOpen] = useState(false);
   const onClose = () => {
-    setOpen(false);
+    history.push({
+      query: {
+        [Query.CREATE_DIALOG_OPEN]: '',
+      },
+    });
     setTimeout(() => {
       setSingerList([]);
       setName('');
       setFile(null);
     }, 1000);
   };
-  useEffect(() => {
-    const openListener = () => setOpen(true);
-    eventemitter.on(EventType.OPEN_CREATE_MUSIC_DIALOG, openListener);
-    return () =>
-      void eventemitter.off(EventType.OPEN_CREATE_MUSIC_DIALOG, openListener);
-  }, []);
 
   const [loading, setLoading] = useState(false);
   const onCreate = async () => {
@@ -131,7 +131,7 @@ const CreateMusicDialog = () => {
   };
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open || loading}>
       <Title>创建音乐</Title>
       <Content>
         <SingerListSelector
