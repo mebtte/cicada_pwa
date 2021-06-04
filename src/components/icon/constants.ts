@@ -43,7 +43,6 @@ import JumpFill from './jump_fill';
 import GotoOutline from './goto_outline';
 import CmsOutline from './cms_outline';
 import LyricOutline from './lyric_outline';
-import EarphoneOutline from './earphone_outline';
 import GithubFill from './github_fill';
 import RecommendOutline from './recommend_outline';
 import CloudOutline from './cloud_outline';
@@ -62,7 +61,6 @@ export enum Name {
   CLOUD_OUTLINE = 'CloudOutline',
   RECOMMEND_OUTLINE = 'RecommendOutline',
   GITHUB_FILL = 'GithubFill',
-  EARPHONE_OUTLINE = 'EarphoneOutline',
   LYRIC_OUTLINE = 'LyricOutline',
   CMS_OUTLINE = 'CmsOutline',
   GOTO_OUTLINE = 'GotoOutline',
@@ -110,7 +108,7 @@ export enum Name {
   SEARCH_LIST_OUTLINE = 'SearchListOutline',
 }
 
-export const NAME_MAP_CONTENT = {
+export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.ID_FILL]: IDFill,
   [Name.DASHBOARD_OUTLINE]: DashboardOutline,
   [Name.HOUSE_OUTLINE]: HouseOutline,
@@ -119,7 +117,6 @@ export const NAME_MAP_CONTENT = {
   [Name.CLOUD_OUTLINE]: CloudOutline,
   [Name.RECOMMEND_OUTLINE]: RecommendOutline,
   [Name.GITHUB_FILL]: GithubFill,
-  [Name.EARPHONE_OUTLINE]: EarphoneOutline,
   [Name.LYRIC_OUTLINE]: LyricOutline,
   [Name.CMS_OUTLINE]: CmsOutline,
   [Name.JUMP_FILL]: JumpFill,

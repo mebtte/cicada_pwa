@@ -41,7 +41,7 @@ const Header = () => {
       </Tooltip>
       <Tooltip title="播放器" placement={Placement.BOTTOM}>
         <Link to={ROOT_PATH.PLAYER}>
-          <IconButton name={Name.EARPHONE_OUTLINE} />
+          <IconButton name={Name.MUSIC_FILL} />
         </Link>
       </Tooltip>
       <Avatar

@@ -74,7 +74,7 @@ const Header = ({ user }: { user: User | null }) => (
         ) : null}
         <Tooltip title="播放器" placement={Placement.BOTTOM}>
           <Link to={ROOT_PATH.PLAYER}>
-            <IconButton name={Name.EARPHONE_OUTLINE} size={ACTION_SIZE} />
+            <IconButton name={Name.MUSIC_FILL} size={ACTION_SIZE} />
           </Link>
         </Tooltip>
         {user ? null : (
