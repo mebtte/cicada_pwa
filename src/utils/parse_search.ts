@@ -1,5 +1,7 @@
-export default <T>(search: string) => {
-  const query = {};
+export default <Keys extends string>(search: string) => {
+  const query: {
+    [key in Keys]?: string;
+  } = {};
   const s = search.replace(/\?/g, '');
   if (s) {
     s.split('&').forEach((kv) => {
@@ -7,5 +9,5 @@ export default <T>(search: string) => {
       query[key] = decodeURIComponent(value);
     });
   }
-  return query as T;
+  return query;
 };

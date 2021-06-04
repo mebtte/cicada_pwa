@@ -5,7 +5,7 @@ import useQuery from './use_query';
 export default () => {
   const location = useLocation();
   const history = useHistory();
-  const originalQuery = useQuery<{ [key: string]: string }>();
+  const originalQuery = useQuery();
 
   const push = ({
     pathname = location.pathname,

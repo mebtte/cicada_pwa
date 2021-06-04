@@ -13,7 +13,7 @@ import {
 import IconButton, { Name } from '@/components/icon_button';
 import Search from './search';
 import Title from './title';
-import { Query, QueryObject } from '../constants';
+import { Query } from '../constants';
 
 const Style = styled.div`
   z-index: 2;
@@ -32,7 +32,7 @@ const actionStyle = {
 const Header = () => {
   const { pathname } = useLocation();
 
-  const query = useQuery<QueryObject>();
+  const query = useQuery<Query>();
   const keyword = query[Query.KEYWORD] || '';
 
   let title = null;

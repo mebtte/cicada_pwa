@@ -24,7 +24,7 @@ const effect = (keyword: string) => {
 };
 
 export default () => {
-  const query = useQuery<{ keyword: string }>();
+  const query = useQuery<Query>();
 
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);

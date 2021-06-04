@@ -7,7 +7,7 @@ import { cmsPage } from '../../style';
 import Action from './action';
 import CreateDialog from './create_dialog';
 import MusicList from './music_list';
-import { Query, QueryObject } from './constants';
+import { Query } from './constants';
 import EditMusicCoverDialog from './edit_music_cover_dialog';
 import EditMusicDialog from './edit_music_dialog';
 import EditMusicLrcDialog from './edit_music_lrc_dialog';
@@ -20,7 +20,7 @@ const Style = styled.div`
 `;
 
 const Music = () => {
-  const query = useQuery<QueryObject>();
+  const query = useQuery<Query>();
 
   let searchKey = query[Query.SEARCH_KEY] as SearchKey;
   if (!SEARCH_KEYS.includes(searchKey)) {

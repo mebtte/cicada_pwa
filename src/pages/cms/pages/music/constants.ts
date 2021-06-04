@@ -34,10 +34,6 @@ export enum Query {
   CREATE_DIALOG_OPEN = 'create_dialog_open',
 }
 
-export type QueryObject = {
-  [key in Query]?: string;
-};
-
 export const PAGE_SIZE = 30;
 
 export enum EditMusicResourceType {

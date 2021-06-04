@@ -9,7 +9,7 @@ import Action from './action';
 import CreateDialog from './create_dialog';
 import EditFigureAvatarDialog from './edit_figure_avatar_dialog';
 import EditFigureDialog from './edit_figure_dialog';
-import { Query, QueryObject } from './constants';
+import { Query } from './constants';
 
 const Style = styled.div`
   ${cmsPage};
@@ -17,7 +17,7 @@ const Style = styled.div`
 `;
 
 const Figure = () => {
-  const query = useQuery<QueryObject>();
+  const query = useQuery<Query>();
   let searchKey = query[Query.SEARCH_KEY] as SearchKey;
   if (!SEARCH_KEYS.includes(searchKey)) {
     searchKey = SearchKey.COMPOSITE;
