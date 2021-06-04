@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
 import api from '.';
 
+export const KEYWORD_MAX_LENGTH = 50;
+
 /**
  * CMS 搜索角色列表
  * @author mebtte<hi@mebtte.com>

@@ -7,6 +7,7 @@ import {
   SearchKey,
   SEARCH_KEY_MAP_LABEL,
   SEARCH_KEYS,
+  SEARCH_VALUE_MAX_LENGTH,
 } from '@/apis/cms_get_music_list';
 import Input from '@/components/input';
 import Button, { Type } from '@/components/button';
@@ -98,6 +99,7 @@ const Search = ({
         onKeyDown={onKeyDown}
         disabled={loading}
         ref={inputRef}
+        maxLength={SEARCH_VALUE_MAX_LENGTH}
       />
       <Button
         label="搜索"

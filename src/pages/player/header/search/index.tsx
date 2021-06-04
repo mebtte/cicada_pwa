@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useContext } from 'react';
 import styled from 'styled-components';
 
+import { KEYWORD_MAX_LENGTH } from '@/apis/search_music';
 import IconButton, { Name } from '@/components/icon_button';
 import useHistory from '@/utils/use_history';
 import { PLAYER_PATH } from '@/constants/route';
@@ -64,6 +65,7 @@ const Wrapper = ({ keyword: initialKeyword }: { keyword: string }) => {
         onKeyDown={onKeyDown}
         onFocus={onFocus}
         ref={inputRef}
+        maxLength={KEYWORD_MAX_LENGTH}
       />
       <IconButton name={Name.SEARCH_OUTLINE} onClick={onSearch} />
     </Style>

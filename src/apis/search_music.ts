@@ -3,6 +3,8 @@ import transformApiMusic from '@/utils/transform_api_music';
 
 import api from '.';
 
+export const KEYWORD_MAX_LENGTH = 50;
+
 async function searchMusic({
   keyword,
   page = 1,

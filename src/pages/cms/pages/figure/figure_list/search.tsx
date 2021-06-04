@@ -7,6 +7,7 @@ import {
   SearchKey,
   SEARCH_KEYS,
   SEARCH_KEY_MAP_LABEL,
+  SEARCH_VALUE_MAX_LENGTH,
 } from '@/apis/cms_get_figure_list';
 import Select from '@/components/select';
 import useHistory from '@/utils/use_history';
@@ -102,6 +103,7 @@ const Search = ({
         placeholder="输入搜索内容"
         disabled={loading}
         ref={inputRef}
+        maxLength={SEARCH_VALUE_MAX_LENGTH}
       />
       <Button
         label="搜索"

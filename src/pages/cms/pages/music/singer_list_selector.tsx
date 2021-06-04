@@ -9,7 +9,9 @@ import ellipsis from '@/style/ellipsis';
 import IconButton, { Name, Type } from '@/components/icon_button';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
-import cmsSearchFigureList from '@/apis/cms_search_figure_list';
+import cmsSearchFigureList, {
+  KEYWORD_MAX_LENGTH,
+} from '@/apis/cms_search_figure_list';
 import Select from '@/components/select';
 import Label from '@/components/label';
 import { Figure } from './constants';
@@ -69,7 +71,10 @@ const SingerListSelector = ({
       }
       setLoading((l) => l + 1);
       try {
-        const fl = await cmsSearchFigureList({ keyword, size: 50 });
+        const fl = await cmsSearchFigureList({
+          keyword: keyword.slice(0, KEYWORD_MAX_LENGTH),
+          size: 50,
+        });
         setSearchSingerList(fl);
       } catch (error) {
         logger.error(error, { description: '搜索角色列表失败', report: true });
