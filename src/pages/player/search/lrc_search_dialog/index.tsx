@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import styled from 'styled-components';
 
-import { RequestStatus } from '@/constants';
+import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
+import { RequestStatus, IS_MAC_OS, IS_WINDOWS } from '@/constants';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import searchMusicByLrc from '@/apis/search_music_by_lrc';
@@ -45,6 +46,8 @@ interface State {
 }
 
 class LrcSearchDialog extends React.Component<Props, State> {
+  inputRef: RefObject<HTMLInputElement>;
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -54,13 +57,16 @@ class LrcSearchDialog extends React.Component<Props, State> {
       page: 1,
       musicList: { status: RequestStatus.LOADING, keyword: '' },
     };
+    this.inputRef = React.createRef<HTMLInputElement>();
   }
 
   componentDidMount() {
     eventemitter.on(EventType.OPEN_LRC_SEARCH_DIALOG, this.onOpen);
+    // @ts-expect-error
+    document.addEventListener('keydown', this.onKeyboard);
   }
 
-  shouldComponentUpdate(nextProps, nextState: State) {
+  shouldComponentUpdate(_, nextState: State) {
     if (!this.state.open && !nextState.open) {
       return false;
     }
@@ -69,6 +75,8 @@ class LrcSearchDialog extends React.Component<Props, State> {
 
   componentWillUnmount() {
     eventemitter.off(EventType.OPEN_LRC_SEARCH_DIALOG, this.onOpen);
+    // @ts-expect-error
+    document.removeEventListener('keydown', this.onKeyboard);
   }
 
   onOpen = () =>
@@ -77,10 +85,28 @@ class LrcSearchDialog extends React.Component<Props, State> {
         open: true,
         keyword: this.props.keyword,
       },
-      this.onSearch,
+      () => {
+        this.onSearch();
+        this.inputRef.current.focus();
+      },
     );
 
   onClose = () => this.setState({ open: false });
+
+  onKeyboard = keyboardHandlerWrapper((event: React.KeyboardEvent) => {
+    if (!this.state.open) {
+      return;
+    }
+    if (
+      event.key !== 'f' ||
+      (IS_MAC_OS && !event.metaKey) ||
+      (IS_WINDOWS && !event.ctrlKey)
+    ) {
+      return;
+    }
+    event.preventDefault();
+    return this.inputRef.current.focus();
+  });
 
   onKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     this.setState({ keyword: event.target.value });
@@ -149,6 +175,7 @@ class LrcSearchDialog extends React.Component<Props, State> {
             onChange={this.onKeywordChange}
             onKeyDown={this.onKeyDown}
             placeholder="歌词搜索"
+            ref={this.inputRef}
           />
           <IconButton name={Name.SEARCH_OUTLINE} onClick={this.onSearch} />
         </InputBox>
