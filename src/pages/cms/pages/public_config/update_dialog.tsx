@@ -20,6 +20,7 @@ const inputStyle = {
 const textareaStyle = {
   ...inputStyle,
   height: 100,
+  resize: 'vertical' as 'vertical',
 };
 
 const UpdateDialog = () => {

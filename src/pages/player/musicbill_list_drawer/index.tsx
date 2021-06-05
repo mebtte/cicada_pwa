@@ -14,7 +14,7 @@ import Drawer, { Title } from '@/components/drawer';
 import MusicbillList from './musicbill_list';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Context from '../context';
-import MusicInfo from '../component/music_info';
+import MusicInfo from '../components/music_info';
 
 const bodyProps = {
   style: {

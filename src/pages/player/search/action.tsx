@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import toast from '@/platform/toast';
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
+import eventemitter, { EventType } from './eventemitter';
 
 const ACTION_SIZE = 28;
 const Style = styled.div`
@@ -14,6 +14,8 @@ const Style = styled.div`
     margin: 5px 0;
   }
 `;
+const openLrcSearchDialog = () =>
+  eventemitter.emit(EventType.OPEN_LRC_SEARCH_DIALOG);
 
 const Action = ({
   reload,
@@ -37,7 +39,7 @@ const Action = ({
         className="action"
         name={Name.LYRIC_OUTLINE}
         size={ACTION_SIZE}
-        onClick={() => toast.info('即将开放')}
+        onClick={openLrcSearchDialog}
       />
     </Tooltip>
   </Style>

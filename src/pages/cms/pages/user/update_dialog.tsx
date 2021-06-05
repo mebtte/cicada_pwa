@@ -21,6 +21,7 @@ const selectStyle = {
 const textareaStyle = {
   ...selectStyle,
   height: 100,
+  resize: 'vertical' as 'vertical',
 };
 const SELECT_LIST: (0 | 1)[] = [0, 1];
 const itemRenderer = (d: 0 | 1 | null) => {

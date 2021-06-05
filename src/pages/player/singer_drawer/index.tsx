@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Drawer from '@/components/drawer';
 import useSingerDrawer from './use_singer_drawer';
 import SingerInfo from './singer_info';
-import MusicList from '../component/music_list';
+import MusicList from '../components/music_list';
 import Action from './action';
 
 const Content = styled.div`
@@ -23,19 +23,11 @@ const bodyProps = {
 const musicListStyle = {
   flex: 1,
   minWidth: 0,
-  marginLeft: 20,
 };
 
 const SingerDrawer = () => {
-  const {
-    open,
-    onClose,
-    singer,
-    status,
-    musicList,
-    reload,
-    addAllToPlaylist,
-  } = useSingerDrawer();
+  const { open, onClose, singer, status, musicList, reload, addAllToPlaylist } =
+    useSingerDrawer();
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
       {singer ? <SingerInfo singer={singer} /> : null}

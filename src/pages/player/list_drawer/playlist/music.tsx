@@ -7,7 +7,7 @@ import { MusicWithIndex } from '@/constants/music';
 import IconButton, { Name, Type } from '@/components/icon_button';
 import useMusicOperate from '../../use_music_operate';
 import eventemitter, { Type as EventType } from '../../eventemitter';
-import Singer from '../../component/singer';
+import Singer from '../../components/singer';
 
 const HEIGHT = 36;
 const ACTION_SIZE = 20;

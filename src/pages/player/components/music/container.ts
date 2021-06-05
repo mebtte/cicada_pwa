@@ -9,8 +9,10 @@ export default styled.div`
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding-top: 1px;
-  border-bottom: 1px solid rgb(0 0 0 / 0.05);
+  padding: 0 20px;
+  &:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
   > .index {
     font-size: 12px;
     color: rgb(155 155 155);

@@ -4,7 +4,7 @@ import { Music as MusicType } from '@/constants/music';
 import IconButton, { Name } from '@/components/icon_button';
 import MusicCard from './music_card';
 import Cover from './cover';
-import Singer from '../component/singer';
+import Singer from '../components/singer';
 import useMusicOperate from '../use_music_operate';
 
 const ACTION_SIZE = 20;

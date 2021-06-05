@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Dialog from '@/components/dialog';
 import useMvPopup from './use_mv_popup';
-import MusicInfo from '../component/music_info';
+import MusicInfo from '../components/music_info';
 
 const bodyProps = {
   style: {

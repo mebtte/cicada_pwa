@@ -65,6 +65,7 @@ export default () => {
   }, [onSearch]);
 
   return {
+    keyword,
     error,
     loading,
     musicList,

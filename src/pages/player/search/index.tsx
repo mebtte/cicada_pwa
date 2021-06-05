@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import { RequestStatus } from '@/constants';
 import useSearch from './use_search';
 import { routeContainerStyle } from '../style';
-import MusicList from '../component/music_list';
+import MusicList from '../components/music_list';
 import Action from './action';
 import Pagination from './pagination';
+import LrcSearchDialog from './lrc_search_dialog';
 
 const Style = styled.div`
   ${routeContainerStyle}
@@ -25,7 +26,8 @@ const musicListStyle = {
 };
 
 const Wrapper = () => {
-  const { error, loading, total, musicList, page, reload } = useSearch();
+  const { keyword, error, loading, total, musicList, page, reload } =
+    useSearch();
   // eslint-disable-next-line no-nested-ternary
   const status = error
     ? RequestStatus.ERROR
@@ -46,6 +48,8 @@ const Wrapper = () => {
         <Pagination total={total} page={page} />
       </div>
       <Action loading={status === RequestStatus.LOADING} reload={reload} />
+
+      <LrcSearchDialog keyword={keyword} />
     </Style>
   );
 };

@@ -6,7 +6,7 @@ import { Name } from '@/components/icon';
 import { Music as MusicType } from '@/constants/music';
 import useMusicOperate from '../use_music_operate';
 import eventemitter, { Type as EventType } from '../eventemitter';
-import MusicInfo from '../component/music_info';
+import MusicInfo from '../components/music_info';
 import MenuItem from './menu_item';
 
 const MusicInfoWrapper = styled.div`

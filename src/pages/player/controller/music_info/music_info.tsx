@@ -3,7 +3,7 @@ import React from 'react';
 import { Music as MusicType } from '@/constants/music';
 import Tag, { Type } from '@/components/tag';
 import Container from './container';
-import Singer from '../../component/singer';
+import Singer from '../../components/singer';
 
 const MusicInfo = ({
   music,

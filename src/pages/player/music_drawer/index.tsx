@@ -6,7 +6,7 @@ import Drawer from '@/components/drawer';
 import styledScrollbar from '@/style/styled_scrollbar';
 import useMusicPopup from './use_music_popup';
 import useMusicOperate from '../use_music_operate';
-import Singer from '../component/singer';
+import Singer from '../components/singer';
 import Action from './action';
 import Lyric from './lyric';
 
@@ -40,13 +40,8 @@ const Style = styled.div`
 
 const MusicDrawer = () => {
   const { open, onClose, music } = useMusicPopup();
-  const {
-    onPlay,
-    onAddToPlayqueue,
-    onAddToMusicbill,
-    onOperate,
-    onWatchMv,
-  } = useMusicOperate(music, onClose);
+  const { onPlay, onAddToPlayqueue, onAddToMusicbill, onOperate, onWatchMv } =
+    useMusicOperate(music, onClose);
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
       <Avatar animated src={music ? music.cover : ''} size={COVER_SIZE} />

@@ -1,16 +1,12 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import List from 'react-list';
 
-import { ORIGINAL_SCROLLBAR_WIDTH } from '@/constants';
 import scrollbar from '@/style/scrollbar';
 import { MusicWithIndex } from '@/constants/music';
 import { containerStyle } from './constant';
 import Music from '../music';
 
-const musicStyle = {
-  marginRight: ORIGINAL_SCROLLBAR_WIDTH > 0 ? 0 : 10,
-};
 const Style = styled.div`
   ${scrollbar}
   overflow: auto;
@@ -24,13 +20,10 @@ interface Props {
 
 const MusicList = React.forwardRef<HTMLDivElement, Props>(
   ({ style, musicList, ...props }: Props, ref) => {
-    const itemRenderer = useCallback(
-      (index, key) => {
-        const music = musicList[index];
-        return <Music key={key} listMusic={music} style={musicStyle} />;
-      },
-      [musicList],
-    );
+    const itemRenderer = (index, key) => {
+      const music = musicList[index];
+      return <Music key={key} musicWithIndex={music} />;
+    };
 
     return (
       <Style

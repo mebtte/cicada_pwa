@@ -5,7 +5,7 @@ import { animated, useTransition } from 'react-spring';
 import { Music } from '@/constants/music';
 import styledScrollbar from '@/style/styled_scrollbar';
 import Avatar from '@/components/avatar';
-import Singer from '../component/singer';
+import Singer from '../components/singer';
 
 const COVER_SIZE = 240;
 const Style = styled.div`

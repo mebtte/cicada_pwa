@@ -13,5 +13,4 @@ export const PLAY_MODES = Object.keys(PLAY_MODE_MAP_LABEL) as PlayMode[];
 export enum Query {
   KEYWORD = 'keyword',
   PAGE = 'page',
-  LRC_SEARCH_DIALOG_OPEN = 'lrc_search_dialog_open',
 }

@@ -16,7 +16,7 @@ import useKeyword from './use_keyword';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import { routeContainerStyle } from '../style';
 import Info from './info';
-import MusicList from '../component/music_list';
+import MusicList from '../components/music_list';
 import Action from './action';
 import TextEditDialog from './text_edit_dialog';
 import CoverEditDialog from './cover_edit_dialog';
@@ -40,7 +40,6 @@ const Style = styled.div`
 const musicListStyle = {
   flex: 1,
   minWidth: 0,
-  marginLeft: 20,
 };
 const innerMusicListStyle = {
   paddingBottom: 20,

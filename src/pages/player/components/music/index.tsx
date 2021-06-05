@@ -11,23 +11,16 @@ const ACTION_SIZE = 22;
 const renderSinger = (s: Figure) => <Singer key={s.id} singer={s} />;
 
 const Music = ({
-  listMusic,
+  musicWithIndex,
   style,
 }: {
-  listMusic: MusicWithIndex;
+  musicWithIndex: MusicWithIndex;
   style?: React.CSSProperties;
 }) => {
-  const {
-    onPlay,
-    onAddToMusicbill,
-    onAddToPlayqueue,
-    onOperate,
-    onView,
-  } = useMusicOperate(listMusic.music);
-  const {
-    index,
-    music: { name, alias, singers },
-  } = listMusic;
+  const { index, music } = musicWithIndex;
+  const { onPlay, onAddToMusicbill, onAddToPlayqueue, onOperate, onView } =
+    useMusicOperate(music);
+  const { name, alias, singers } = music;
   return (
     <Container style={style}>
       <div className="index">{index}.</div>

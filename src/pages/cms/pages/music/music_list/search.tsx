@@ -10,7 +10,7 @@ import {
   SEARCH_VALUE_MAX_LENGTH,
 } from '@/apis/cms_get_music_list';
 import Input from '@/components/input';
-import Button, { Type } from '@/components/button';
+import IconButton, { Name } from '@/components/icon_button';
 import useHistory from '@/utils/use_history';
 import Select from '@/components/select';
 import { Query } from '../constants';
@@ -19,14 +19,13 @@ const Style = styled.div`
   z-index: 2;
   display: flex;
   align-items: center;
+  gap: 5px;
   > .key {
     width: 150px;
-    margin-right: 5px;
   }
   > .value {
     flex: 1;
     min-width: 0;
-    margin-right: 20px;
   }
 `;
 const itemRenderer = (key: SearchKey | null) => {
@@ -95,15 +94,13 @@ const Search = ({
         className="value"
         value={searchValue}
         onChange={onSearchValueChange}
-        placeholder="输入搜索内容"
         onKeyDown={onKeyDown}
         disabled={loading}
         ref={inputRef}
         maxLength={SEARCH_VALUE_MAX_LENGTH}
       />
-      <Button
-        label="搜索"
-        type={Type.PRIMARY}
+      <IconButton
+        name={Name.SEARCH_OUTLINE}
         onClick={onSearch}
         loading={loading}
       />

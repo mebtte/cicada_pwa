@@ -5,10 +5,10 @@ import Skeleton from '@/components/skeleton';
 import SingerSkeleton from '../singer/skeleton';
 import Container from './container';
 
-const Wrapper = () => {
+const Wrapper = (props: { [key: string]: any }) => {
   const nameWidth = useMemo(() => getRandomInteger(30, 100), []);
   return (
-    <Container>
+    <Container {...props}>
       <div className="index">
         <Skeleton width={25} />
       </div>
