@@ -10,9 +10,6 @@ export default styled.div`
   align-items: center;
   box-sizing: border-box;
   padding: 0 20px;
-  &:nth-child(odd) {
-    background-color: #f9f9f9;
-  }
   > .index {
     font-size: 12px;
     color: rgb(155 155 155);
@@ -44,7 +41,10 @@ export default styled.div`
     opacity: 0;
     transition: all 0.3s;
   }
-  &:hover > .actions {
-    opacity: 1;
+  &:hover {
+    background-color: #f9f9f9;
+    > .actions {
+      opacity: 1;
+    }
   }
 `;

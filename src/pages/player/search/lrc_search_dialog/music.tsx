@@ -9,7 +9,7 @@ import { Music as MusicType } from './constants';
 
 const Style = styled.div`
   padding: 10px 20px;
-  &:nth-child(odd) {
+  &:hover {
     background-color: #f9f9f9;
   }
   > .lyric {

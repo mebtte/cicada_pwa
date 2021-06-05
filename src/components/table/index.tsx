@@ -3,9 +3,12 @@ import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 const Style = styled.table<{ stickyHeader: boolean }>`
-  border-radius: 4px;
   border-spacing: 0;
-  border-collapse: collapse;
+  tr:hover {
+    td {
+      background-color: #f9f9f9;
+    }
+  }
   th,
   td {
     font-size: 14px;
@@ -22,8 +25,6 @@ const Style = styled.table<{ stickyHeader: boolean }>`
   td {
     padding: 10px 20px;
     color: #333;
-    background-color: #fff;
-    border-bottom: 1px solid #f6f6f6;
   }
   ${({ stickyHeader }) => css`
     th {
