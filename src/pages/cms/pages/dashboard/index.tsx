@@ -10,6 +10,8 @@ import useSummaryData from './use_summary_data';
 import UserPaper from './user_paper';
 import FigurePaper from './figure_paper';
 import MusicPaper from './music_paper';
+import UserMusicbillPaper from './user_musicbill_paper';
+import VerifyCodePaper from './verify_code_paper';
 
 const Style = styled.div`
   ${cmsPage};
@@ -31,10 +33,7 @@ const Style = styled.div`
   > .paper-list {
     padding: 40px;
     box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
+    text-align: center;
   }
 `;
 
@@ -48,6 +47,8 @@ const Dashboard = () => {
         <UserPaper total={data.value.userTotal} />
         <FigurePaper total={data.value.figureTotal} />
         <MusicPaper total={data.value.musicTotal} />
+        <UserMusicbillPaper total={data.value.userMusicbillTotal} />
+        <VerifyCodePaper total={data.value.verifyCodeTotal} />
       </div>
     );
   } else if (data.status === RequestStatus.ERROR) {

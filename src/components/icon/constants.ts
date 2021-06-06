@@ -34,7 +34,7 @@ import PlayFill from './play_fill';
 import PauseFill from './pause_fill';
 import SearchListOutline from './search_list_outline';
 import MusicFill from './music_fill';
-import FigureOutline from './figure_outline';
+import FigureFill from './figure_fill';
 import MinimizeOutline from './minimize_outline';
 import MacOSColorful from './mac_os_colorful';
 import WindowsColorful from './windows_colorful';
@@ -69,7 +69,7 @@ export enum Name {
   WINDOW_COLORFULE = 'WindowsColorful',
   MAC_OS_COLORFULE = 'MacOSColorful',
   MINIMIZE_OUTLINE = 'MinimizeOutline',
-  FIGURE_OUTLINE = 'FigureOutline',
+  FIGURE_FILL = 'FigureFill',
   MUSIC_FILL = 'MusicFill',
   PLAY_FILL = 'PlayFill',
   PAUSE_FILL = 'PauseFill',
@@ -124,7 +124,7 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.WINDOW_COLORFULE]: WindowsColorful,
   [Name.MAC_OS_COLORFULE]: MacOSColorful,
   [Name.MINIMIZE_OUTLINE]: MinimizeOutline,
-  [Name.FIGURE_OUTLINE]: FigureOutline,
+  [Name.FIGURE_FILL]: FigureFill,
   [Name.MUSIC_FILL]: MusicFill,
   [Name.SEARCH_LIST_OUTLINE]: SearchListOutline,
   [Name.PAUSE_FILL]: PauseFill,

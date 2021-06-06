@@ -9,9 +9,13 @@ import Paper from './paper';
 import { Query } from '../figure/constants';
 
 const ACTION_SIZE = 24;
+const style = {
+  cursor: 'pointer',
+};
 
 const FigurePaper = ({ total }: { total: number }) => {
   const history = useHistory();
+  const onClick = () => history.push({ pathname: CMS_PATH.FIGURE });
   const onCreateFigure = (event: React.MouseEvent) => {
     event.stopPropagation();
     return history.push({
@@ -23,10 +27,11 @@ const FigurePaper = ({ total }: { total: number }) => {
   };
   return (
     <Paper
-      to={CMS_PATH.FIGURE}
-      icon={IconName.FIGURE_OUTLINE}
+      onClick={onClick}
+      icon={IconName.FIGURE_FILL}
       label="角色数"
       value={total.toString()}
+      style={style}
     >
       <Tooltip title="创建角色" placement={Placement.BOTTOM}>
         <IconButton

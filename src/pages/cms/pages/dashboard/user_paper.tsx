@@ -9,9 +9,13 @@ import Paper from './paper';
 import { Query } from '../user/constants';
 
 const ACTION_SIZE = 24;
+const style = {
+  cursor: 'pointer',
+};
 
 const UserPaper = ({ total }: { total: number }) => {
   const history = useHistory();
+  const onClick = () => history.push({ pathname: CMS_PATH.USER });
   const onCreateUser = (event: React.MouseEvent) => {
     event.stopPropagation();
     return history.push({
@@ -23,10 +27,11 @@ const UserPaper = ({ total }: { total: number }) => {
   };
   return (
     <Paper
-      to={CMS_PATH.USER}
+      onClick={onClick}
       icon={IconName.ID_FILL}
       label="用户数"
       value={total.toString()}
+      style={style}
     >
       <Tooltip title="创建用户" placement={Placement.BOTTOM}>
         <IconButton

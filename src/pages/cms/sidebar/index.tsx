@@ -24,7 +24,7 @@ const MENUS: Menu[] = [
   },
   {
     label: '角色',
-    icon: Name.FIGURE_OUTLINE,
+    icon: Name.FIGURE_FILL,
     path: CMS_PATH.FIGURE,
   },
   {

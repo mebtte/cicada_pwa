@@ -9,9 +9,13 @@ import Paper from './paper';
 import { Query } from '../music/constants';
 
 const ACTION_SIZE = 24;
+const style = {
+  cursor: 'pointer',
+};
 
 const MusicPaper = ({ total }: { total: number }) => {
   const history = useHistory();
+  const onClick = () => history.push({ pathname: CMS_PATH.MUSIC });
   const onCreateMusic = (event: React.MouseEvent) => {
     event.stopPropagation();
     return history.push({
@@ -23,10 +27,11 @@ const MusicPaper = ({ total }: { total: number }) => {
   };
   return (
     <Paper
-      to={CMS_PATH.MUSIC}
+      onClick={onClick}
       icon={IconName.MUSIC_FILL}
       label="音乐数"
       value={total.toString()}
+      style={style}
     >
       <Tooltip title="创建音乐" placement={Placement.BOTTOM}>
         <IconButton

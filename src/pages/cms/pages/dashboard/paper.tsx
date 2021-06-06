@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import useHistory from '@/utils/use_history';
 import Icon, { Name } from '@/components/icon';
 
 const Style = styled.div`
-  cursor: pointer;
+  margin: 15px;
+  background-color: #f9f9f9;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-  display: flex;
+  display: inline-flex;
   gap: 30px;
+  padding: 40px 0;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 250px;
   height: 250px;
   border-radius: 4px;
@@ -29,7 +30,7 @@ const Style = styled.div`
     gap: 10px;
   }
   > .value {
-    font-size: 48px;
+    font-size: 56px;
     font-weight: bold;
     color: #333;
   }
@@ -41,29 +42,25 @@ const Style = styled.div`
 `;
 
 const Paper = ({
-  to,
   icon,
   label,
   value,
   children,
+  ...props
 }: React.PropsWithChildren<{
-  to: string;
   icon: Name;
   label: string;
   value: string;
-}>) => {
-  const history = useHistory();
-  const onClick = () => history.push({ pathname: to });
-  return (
-    <Style onClick={onClick}>
-      <div className="label">
-        <Icon name={icon} size={16} />
-        <div className="text">{label}</div>
-      </div>
-      <div className="value">{value}</div>
-      <div className="action">{children}</div>
-    </Style>
-  );
-};
+  [key: string]: any;
+}>) => (
+  <Style {...props}>
+    <div className="label">
+      <Icon name={icon} size={16} />
+      <div className="text">{label}</div>
+    </div>
+    <div className="value">{value}</div>
+    <div className="action">{children}</div>
+  </Style>
+);
 
 export default Paper;
