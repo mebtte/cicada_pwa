@@ -42,8 +42,8 @@ const replaceIgnoreCase = (
     return original;
   }
   const end = start + searchValue.length;
-  const match = original.slice(start, end + 1);
-  return original.slice(0, start) + handler(match) + original.slice(end + 1);
+  const match = original.slice(start, end);
+  return original.slice(0, start) + handler(match) + original.slice(end);
 };
 
 const Wrapper = ({ keyword, music }: { keyword: string; music: MusicType }) => {
