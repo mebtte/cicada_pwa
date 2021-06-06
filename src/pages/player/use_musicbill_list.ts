@@ -3,8 +3,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { RequestStatus } from '@/constants';
 import { Music as MusicType } from '@/constants/music';
 import { Musicbill, LocalMusicbill } from '@/constants/musicbill';
-import getMusicbillListRequest from '@/apis/get_musicbill_list';
-import getMusicbill from '@/apis/get_musicbill';
+import getUserMusicbillListRequest from '@/apis/get_user_musicbill_list';
+import getUserMusicbillDetail from '@/apis/get_user_musicbill_detail';
 import addMusicToMusicbill from '@/apis/add_music_to_musicbill';
 import removeMusicFromMusicbill from '@/apis/remove_music_from_musicbill';
 import logger from '@/platform/logger';
@@ -17,7 +17,7 @@ export default () => {
   const getMusicbillList = useCallback(async () => {
     setStatus(RequestStatus.LOADING);
     try {
-      const mbl = await getMusicbillListRequest();
+      const mbl = await getUserMusicbillListRequest();
       setMusicbillList(
         mbl.map((mb) => ({
           ...mb,
@@ -61,7 +61,7 @@ export default () => {
         }),
       );
       try {
-        const { musicList } = await getMusicbill(musicbill.id);
+        const { musicList } = await getUserMusicbillDetail(musicbill.id);
         const { length } = musicList;
         setMusicbillList((mbl) =>
           mbl.map((mb) => {

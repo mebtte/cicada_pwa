@@ -1,10 +1,12 @@
 /* eslint-disable camelcase */
-import format from 'date-fns/format';
-
 import api from '.';
 import getRandomCover from '../utils/get_random_cover';
 
-async function getMusicbillList() {
+/**
+ * 获取用户歌单列表
+ * @author mebtte<hi@mebtte.com>
+ */
+async function getUserMusicbillList() {
   const data = await api.get<
     {
       cover?: string;
@@ -14,7 +16,7 @@ async function getMusicbillList() {
       order: number;
       create_time: string;
     }[]
-  >('/musicbill/list', { withToken: true });
+  >('/get_user_musicbill_list', { withToken: true });
   return data.map(
     ({ cover, id, name, order, description, create_time: createTime }) => ({
       cover: cover || getRandomCover(),
@@ -22,9 +24,9 @@ async function getMusicbillList() {
       name,
       order,
       description,
-      createTime: format(new Date(createTime), 'yyyy-MM-dd'),
+      createTime: new Date(createTime),
     }),
   );
 }
 
-export default getMusicbillList;
+export default getUserMusicbillList;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
+import format from 'date-fns/format';
 
 import ellipsis from '@/style/ellipsis';
 import { RequestStatus } from '@/constants';
@@ -62,7 +63,7 @@ const MusicbillInfo = ({
           </div>
         ) : null}
         <div className="other">
-          {createTime}
+          {format(createTime, 'yyyy-MM-dd')}
           创建
           {status === RequestStatus.SUCCESS
             ? `, ${musicList.length}首音乐`

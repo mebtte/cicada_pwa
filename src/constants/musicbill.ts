@@ -25,7 +25,7 @@ export interface Musicbill {
   cover: string;
   order: number;
   description: string;
-  createTime: string;
+  createTime: Date;
   musicList: MusicWithIndex[];
 }
 
