@@ -32,6 +32,19 @@ const musicStyle = {
   padding: 0,
   backgroundColor: 'transparent',
 };
+const replaceIgnoreCase = (
+  original: string,
+  searchValue: string,
+  handler: (match: string) => string,
+) => {
+  const start = original.toLowerCase().indexOf(searchValue.toLowerCase());
+  if (start >= original.length) {
+    return original;
+  }
+  const end = start + searchValue.length;
+  const match = original.slice(start, end + 1);
+  return original.slice(0, start) + handler(match) + original.slice(end + 1);
+};
 
 const Wrapper = ({ keyword, music }: { keyword: string; music: MusicType }) => {
   const {
@@ -39,7 +52,10 @@ const Wrapper = ({ keyword, music }: { keyword: string; music: MusicType }) => {
   } = music;
   const lrcNode = useMemo(() => {
     const { lyrics } = parse(lrc, { trimStart: true, trimEnd: true });
-    const matchIndex = lyrics.findIndex((l) => l.content.includes(keyword));
+    const lowerCaseKeyword = keyword.toLowerCase();
+    const matchIndex = lyrics.findIndex((l) =>
+      l.content.toLowerCase().includes(lowerCaseKeyword),
+    );
     const start = matchIndex - 1 < 0 ? 0 : matchIndex - 1;
     const end =
       matchIndex + 1 >= lyrics.length ? lyrics.length : matchIndex + 1;
@@ -53,7 +69,8 @@ const Wrapper = ({ keyword, music }: { keyword: string; music: MusicType }) => {
             matchLyrics
               .map(
                 (l) =>
-                  `<span class="line">${l.content.replace(
+                  `<span class="line">${replaceIgnoreCase(
+                    l.content,
                     keyword,
                     (match) => `<span class="highlight">${match}</span>`,
                   )}</span>`,
