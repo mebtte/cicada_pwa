@@ -10,6 +10,7 @@ async function cmsGetSummaryData() {
     user_total: number;
     figure_total: number;
     music_total: number;
+    music_play_log_total: number;
     user_musicbill_total: number;
     verify_code_total: number;
   }>('/cms/get_summary_data', {
@@ -19,6 +20,7 @@ async function cmsGetSummaryData() {
     userTotal: data.user_total,
     figureTotal: data.figure_total,
     musicTotal: data.music_total,
+    musicPlayLogTotal: data.music_play_log_total,
     userMusicbillTotal: data.user_musicbill_total,
     verifyCodeTotal: data.verify_code_total,
   };

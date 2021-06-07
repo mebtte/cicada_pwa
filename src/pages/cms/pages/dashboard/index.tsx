@@ -12,6 +12,7 @@ import FigurePaper from './figure_paper';
 import MusicPaper from './music_paper';
 import UserMusicbillPaper from './user_musicbill_paper';
 import VerifyCodePaper from './verify_code_paper';
+import MusicPlayLogPaper from './music_play_log_paper';
 
 const Style = styled.div`
   ${cmsPage};
@@ -47,6 +48,7 @@ const Dashboard = () => {
         <UserPaper total={data.value.userTotal} />
         <FigurePaper total={data.value.figureTotal} />
         <MusicPaper total={data.value.musicTotal} />
+        <MusicPlayLogPaper total={data.value.musicPlayLogTotal} />
         <UserMusicbillPaper total={data.value.userMusicbillTotal} />
         <VerifyCodePaper total={data.value.verifyCodeTotal} />
       </div>
