@@ -64,7 +64,26 @@ const EditMusicResourceDialog = () => {
     selectFile({
       acceptTypes: mimes,
       onSelect: (f) => {
-        if (!MUSIC_SQ.ACCEPT_MIMES.includes(f.type)) {
+        if (
+          type === EditMusicResourceType.SQ &&
+          !MUSIC_SQ.ACCEPT_MIMES.includes(f.type)
+        ) {
+          return toast.error(
+            `不支持的文件类型, 支持的文件类型为 ${mimes.join(',')}`,
+          );
+        }
+        if (
+          type === EditMusicResourceType.HQ &&
+          !MUSIC_HQ.ACCEPT_MIMES.includes(f.type)
+        ) {
+          return toast.error(
+            `不支持的文件类型, 支持的文件类型为 ${mimes.join(',')}`,
+          );
+        }
+        if (
+          type === EditMusicResourceType.AC &&
+          !MUSIC_AC.ACCEPT_MIMES.includes(f.type)
+        ) {
           return toast.error(
             `不支持的文件类型, 支持的文件类型为 ${mimes.join(',')}`,
           );
@@ -114,12 +133,9 @@ const EditMusicResourceDialog = () => {
       setType(t);
       setOriginal(m[t] || '');
     };
-    eventemitter.on(EventType.OPEN_EDIT_MUSIC_RESOURCE_DIALOG, openListener);
+    eventemitter.on(EventType.OPEN_EDIT_RESOURCE_DIALOG, openListener);
     return () =>
-      void eventemitter.off(
-        EventType.OPEN_EDIT_MUSIC_RESOURCE_DIALOG,
-        openListener,
-      );
+      void eventemitter.off(EventType.OPEN_EDIT_RESOURCE_DIALOG, openListener);
   }, []);
 
   return (

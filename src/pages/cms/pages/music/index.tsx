@@ -8,11 +8,12 @@ import Action from './action';
 import CreateDialog from './create_dialog';
 import MusicList from './music_list';
 import { Query } from './constants';
-import EditMusicCoverDialog from './edit_music_cover_dialog';
-import EditMusicDialog from './edit_music_dialog';
-import EditMusicLrcDialog from './edit_music_lrc_dialog';
-import EditMusicSingerListDialog from './edit_music_singer_list_dialog';
-import EditMusicResourceDialog from './edit_music_resource_dialog';
+import EditCoverDialog from './edit_cover_dialog';
+import EditDialog from './edit_dialog';
+import EditLrcDialog from './edit_lrc_dialog';
+import EditSingerListDialog from './edit_singer_list_dialog';
+import EditResourceDialog from './edit_resource_dialog';
+import EditForkFromDialog from './edit_fork_from_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -37,11 +38,12 @@ const Music = () => {
       <MusicList page={page} searchKey={searchKey} searchValue={searchValue} />
 
       <CreateDialog open={createDialogOpen} />
-      <EditMusicCoverDialog />
-      <EditMusicDialog />
-      <EditMusicLrcDialog />
-      <EditMusicSingerListDialog />
-      <EditMusicResourceDialog />
+      <EditCoverDialog />
+      <EditDialog />
+      <EditLrcDialog />
+      <EditSingerListDialog />
+      <EditResourceDialog />
+      <EditForkFromDialog />
     </Style>
   );
 };

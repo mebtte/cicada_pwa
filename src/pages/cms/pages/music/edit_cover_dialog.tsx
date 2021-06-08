@@ -21,12 +21,9 @@ const EditFigureAvatarDialog = () => {
 
   useEffect(() => {
     const openListener = (m: Music) => setMusic(m);
-    eventemitter.on(EventType.OPEN_EDIT_MUSIC_COVER_DIALOG, openListener);
+    eventemitter.on(EventType.OPEN_EDIT_COVER_DIALOG, openListener);
     return () =>
-      void eventemitter.off(
-        EventType.OPEN_EDIT_MUSIC_COVER_DIALOG,
-        openListener,
-      );
+      void eventemitter.off(EventType.OPEN_EDIT_COVER_DIALOG, openListener);
   }, []);
 
   return (

@@ -62,6 +62,8 @@ const Search = ({
       onSearch();
     }
   };
+  const onFocus = (event: React.FocusEvent<HTMLInputElement>) =>
+    event.target.select();
   const onSearchKeyChange = (key: SearchKey) =>
     history.push({
       query: { [Query.PAGE]: '1', [Query.SEARCH_KEY]: key },
@@ -89,6 +91,7 @@ const Search = ({
         className="key"
         value={searchKey}
         onChange={onSearchKeyChange}
+        onFocus={onFocus}
         array={SEARCH_KEYS}
         itemRenderer={itemRenderer}
         disabled={loading}

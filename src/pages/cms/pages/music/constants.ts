@@ -24,6 +24,7 @@ export interface Music {
   sq: string;
   hq: string;
   ac: string;
+  forkFrom?: string[];
 }
 
 export enum Query {

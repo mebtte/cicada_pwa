@@ -61,9 +61,9 @@ const EditMusicDialog = () => {
       setType(m.type);
       setAlias(m.alias);
     };
-    eventemitter.on(EventType.OPEN_EDIT_MUSIC_DIALOG, openListener);
+    eventemitter.on(EventType.OPEN_EDIT_DIALOG, openListener);
     return () =>
-      void eventemitter.off(EventType.OPEN_EDIT_MUSIC_DIALOG, openListener);
+      void eventemitter.off(EventType.OPEN_EDIT_DIALOG, openListener);
   }, []);
 
   const [loading, setLoading] = useState(false);

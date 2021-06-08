@@ -62,6 +62,9 @@ const emptyStyle = {
   width: '100%',
   height: '100%',
 };
+const SmallTd = styled.span`
+  font-size: 12px;
+`;
 const CoverBox = styled.div`
   display: flex;
   align-items: center;
@@ -114,6 +117,13 @@ const OperationBox = styled.div`
   align-items: center;
   gap: 5px;
 `;
+const EmptyTd = styled.span`
+  color: rgb(155 155 155);
+  font-size: 12px;
+  &::after {
+    content: '-';
+  }
+`;
 
 const MusicList = ({
   loading,
@@ -132,7 +142,8 @@ const MusicList = ({
   const onDelete = (music: Music) =>
     dialog.confirm({
       title: `确定删除音乐"${music.name}"?`,
-      content: '当音乐仍挂载有角色时无法被删除, 如若需要删除请先解除关系.',
+      content:
+        '当音乐仍挂载有角色或存在翻唱版本时无法被删除, 如若需要删除请先解除关系.',
       onConfirm: async () => {
         try {
           await cmsDeleteMusic(music.id);
@@ -146,19 +157,19 @@ const MusicList = ({
     });
 
   const rowRenderer = (music: Music) => [
-    music.id,
+    <SmallTd>{music.id}</SmallTd>,
     music.name,
     <CoverBox>
-      {music.cover ? <Avatar src={music.cover} /> : '-'}
+      {music.cover ? <Avatar src={music.cover} /> : <EmptyTd />}
       <IconButton
         name={Name.EDIT_OUTLINE}
         size={ACTION_SIZE}
         onClick={() =>
-          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_COVER_DIALOG, music)
+          eventemitter.emit(EventType.OPEN_EDIT_COVER_DIALOG, music)
         }
       />
     </CoverBox>,
-    MUSIC_TYPE_MAP_LABEL[music.type],
+    <SmallTd>{MUSIC_TYPE_MAP_LABEL[music.type]}</SmallTd>,
     <SingerBox>
       <div className="singer-list">
         {music.singers.map((s) => (
@@ -175,18 +186,18 @@ const MusicList = ({
         name={Name.EDIT_OUTLINE}
         size={ACTION_SIZE}
         onClick={() =>
-          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_SINGER_LIST_DIALOG, music)
+          eventemitter.emit(EventType.OPEN_EDIT_SINGER_LIST_DIALOG, music)
         }
       />
     </SingerBox>,
-    music.alias || '-',
+    music.alias || <EmptyTd />,
     <ResourceBox>
       <Tooltip title="标准音质">
         <Tag
           className="action"
           type={TagType.SQ}
           onClick={() =>
-            eventemitter.emit(EventType.OPEN_EDIT_MUSIC_RESOURCE_DIALOG, {
+            eventemitter.emit(EventType.OPEN_EDIT_RESOURCE_DIALOG, {
               music,
               type: EditMusicResourceType.SQ,
             })
@@ -199,7 +210,7 @@ const MusicList = ({
           type={TagType.HQ}
           gray={!music.hq}
           onClick={() =>
-            eventemitter.emit(EventType.OPEN_EDIT_MUSIC_RESOURCE_DIALOG, {
+            eventemitter.emit(EventType.OPEN_EDIT_RESOURCE_DIALOG, {
               music,
               type: EditMusicResourceType.HQ,
             })
@@ -213,7 +224,7 @@ const MusicList = ({
             type={TagType.AC}
             gray={!music.ac}
             onClick={() =>
-              eventemitter.emit(EventType.OPEN_EDIT_MUSIC_RESOURCE_DIALOG, {
+              eventemitter.emit(EventType.OPEN_EDIT_RESOURCE_DIALOG, {
                 music,
                 type: EditMusicResourceType.AC,
               })
@@ -222,24 +233,31 @@ const MusicList = ({
         </Tooltip>
       ) : null}
     </ResourceBox>,
-    format(music.createTime, 'yyyy-MM-dd HH:mm'),
+    <SmallTd>{format(music.createTime, 'yyyy-MM-dd HH:mm')}</SmallTd>,
     <OperationBox>
       <IconButton
         name={Name.EDIT_OUTLINE}
         size={ACTION_SIZE}
-        onClick={() =>
-          eventemitter.emit(EventType.OPEN_EDIT_MUSIC_DIALOG, music)
-        }
+        onClick={() => eventemitter.emit(EventType.OPEN_EDIT_DIALOG, music)}
       />
       {music.type === MusicType.NORMAL ? (
         <IconButton
           name={Name.LYRIC_OUTLINE}
           size={ACTION_SIZE}
           onClick={() =>
-            eventemitter.emit(EventType.OPEN_EDIT_MUSIC_LRC_DIALOG, music)
+            eventemitter.emit(EventType.OPEN_EDIT_LRC_DIALOG, music)
           }
         />
       ) : null}
+      <Tooltip title="翻唱">
+        <IconButton
+          name={Name.BRANCH_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={() =>
+            eventemitter.emit(EventType.OPEN_EDIT_FORK_FROM_DIALOG, music)
+          }
+        />
+      </Tooltip>
       <IconButton
         name={Name.GARBAGE_OUTLINE}
         type={Type.DANGER}

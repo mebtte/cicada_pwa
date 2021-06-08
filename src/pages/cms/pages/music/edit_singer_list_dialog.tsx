@@ -59,10 +59,10 @@ const EditMusicSingerListDialog = () => {
       setMusic(m);
       setSingerList(m.singers);
     };
-    eventemitter.on(EventType.OPEN_EDIT_MUSIC_SINGER_LIST_DIALOG, openListener);
+    eventemitter.on(EventType.OPEN_EDIT_SINGER_LIST_DIALOG, openListener);
     return () =>
       void eventemitter.off(
-        EventType.OPEN_EDIT_MUSIC_SINGER_LIST_DIALOG,
+        EventType.OPEN_EDIT_SINGER_LIST_DIALOG,
         openListener,
       );
   }, []);

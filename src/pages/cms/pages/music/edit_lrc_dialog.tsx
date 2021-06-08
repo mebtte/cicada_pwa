@@ -73,9 +73,9 @@ const EditMusicLrcDialog = () => {
 
   useEffect(() => {
     const openListener = (m: Music) => setMusic(m);
-    eventemitter.on(EventType.OPEN_EDIT_MUSIC_LRC_DIALOG, openListener);
+    eventemitter.on(EventType.OPEN_EDIT_LRC_DIALOG, openListener);
     return () =>
-      void eventemitter.off(EventType.OPEN_EDIT_MUSIC_LRC_DIALOG, openListener);
+      void eventemitter.off(EventType.OPEN_EDIT_LRC_DIALOG, openListener);
   }, []);
 
   useEffect(() => {

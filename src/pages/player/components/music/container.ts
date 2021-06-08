@@ -39,7 +39,6 @@ export default styled.div`
   }
   > .actions {
     opacity: 0;
-    transition: all 0.3s;
   }
   &:hover {
     background-color: #f9f9f9;

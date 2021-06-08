@@ -64,6 +64,7 @@ async function cmsGetMusicList({
       sq: string;
       hq: string;
       ac: string;
+      fork_from?: string[];
     }[];
   }>('/cms/get_music_list', {
     params,
@@ -83,6 +84,7 @@ async function cmsGetMusicList({
         sq,
         hq,
         ac,
+        fork_from: forkFrom,
       }) => ({
         id: musicId,
         cover,
@@ -94,6 +96,7 @@ async function cmsGetMusicList({
         sq,
         hq,
         ac,
+        forkFrom,
       }),
     ),
   };

@@ -62,6 +62,8 @@ const Search = ({
       onSearch();
     }
   };
+  const onFocus = (event: React.FocusEvent<HTMLInputElement>) =>
+    event.target.select();
 
   useEffect(() => {
     const onDocumentKeyDown = keyboardHandlerWrapper((event: KeyboardEvent) => {
@@ -95,6 +97,7 @@ const Search = ({
         value={searchValue}
         onChange={onSearchValueChange}
         onKeyDown={onKeyDown}
+        onFocus={onFocus}
         disabled={loading}
         ref={inputRef}
         maxLength={SEARCH_VALUE_MAX_LENGTH}

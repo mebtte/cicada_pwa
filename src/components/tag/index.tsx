@@ -5,6 +5,7 @@ export enum Type {
   SQ = 'sq',
   HQ = 'hq',
   AC = 'ac',
+  FORK = 'fo',
 }
 
 const TYPE_MAP: Record<
@@ -16,15 +17,19 @@ const TYPE_MAP: Record<
 > = {
   [Type.SQ]: {
     label: 'sq',
-    color: 'rgb(49, 194, 124)',
+    color: '#ff8e3c',
   },
   [Type.HQ]: {
     label: 'hq',
-    color: 'rgb(255,119,75)',
+    color: '#6246ea',
   },
   [Type.AC]: {
     label: 'ac',
-    color: 'rgb(1,196,240)',
+    color: '#ff6e6c',
+  },
+  [Type.FORK]: {
+    label: 'fo',
+    color: '#67568c',
   },
 };
 

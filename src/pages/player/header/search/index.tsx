@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
 import { KEYWORD_MAX_LENGTH } from '@/apis/search_music';
@@ -8,7 +8,7 @@ import { PLAYER_PATH } from '@/constants/route';
 import toast from '@/platform/toast';
 import Input from '@/components/input';
 import Context from '../../context';
-import useKeyword from './use_keyboard';
+import useKeyboard from './use_keyboard';
 import { Query } from '../../constants';
 
 const Style = styled.div`
@@ -48,11 +48,9 @@ const Wrapper = ({ keyword: initialKeyword }: { keyword: string }) => {
       onSearch();
     }
   };
-  const onFocus = useCallback(
-    (event: React.FocusEvent) => (event.target as HTMLInputElement).select(),
-    [],
-  );
-  const inputRef = useKeyword();
+  const onFocus = (event: React.FocusEvent<HTMLInputElement>) =>
+    event.target.select();
+  const inputRef = useKeyboard();
 
   return (
     <Style>
