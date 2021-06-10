@@ -1,16 +1,18 @@
 import React from 'react';
 
-import Button, { Type } from '@/components/button';
+import Tooltip from '@/components/tooltip';
+import Tag from '@/components/tag';
 import {
   PlayMode as PlayModeType,
-  PLAY_MODE_MAP_LABEL,
+  PLAY_MODE_MAP,
   PLAY_MODES,
 } from '../constants';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Item from './item';
 
-const buttonStyle = {
+const tagStyle = {
   marginLeft: 10,
+  cursor: 'pointer',
 };
 const changePlayMode = (playMode: PlayModeType) =>
   eventemitter.emit(EventType.CHANGE_PLAY_MODE, playMode);
@@ -18,16 +20,19 @@ const changePlayMode = (playMode: PlayModeType) =>
 const PlayMode = ({ playMode }: { playMode: PlayModeType }) => (
   <Item>
     <div className="label">播放模式</div>
-    {PLAY_MODES.map((mode) => (
-      <Button
-        key={mode}
-        label={PLAY_MODE_MAP_LABEL[mode]}
-        type={playMode === mode ? Type.PRIMARY : Type.NORMAL}
-        size={24}
-        style={buttonStyle}
-        onClick={() => changePlayMode(mode)}
-      />
-    ))}
+    {PLAY_MODES.map((pm) => {
+      const { label, tagType } = PLAY_MODE_MAP[pm];
+      return (
+        <Tooltip key={pm} title={label}>
+          <Tag
+            type={tagType}
+            gray={playMode !== pm}
+            style={tagStyle}
+            onClick={() => changePlayMode(pm)}
+          />
+        </Tooltip>
+      );
+    })}
   </Item>
 );
 
