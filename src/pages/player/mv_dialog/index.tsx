@@ -31,7 +31,7 @@ const MvDialog = () => {
       {music ? (
         <>
           <Video
-            src={music.mv as string}
+            src={music.mvLink}
             poster={music.cover}
             preload="auto"
             autoPlay

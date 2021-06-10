@@ -45,7 +45,7 @@ const Action = ({
   const { onTogglePlay, onPrevious, onNext } = useAudioControl(audioLoading);
   return (
     <Style>
-      {music && music.mv ? (
+      {music && music.mvLink ? (
         <Tooltip title="观看MV">
           <IconButton
             className="action"

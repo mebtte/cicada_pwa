@@ -69,7 +69,7 @@ const MusicOperateDrawer = () => {
         label="添加到播放列表"
         onClick={onAddToPlaylist}
       />
-      {music && music.mv ? (
+      {music && music.mvLink ? (
         <MenuItem
           icon={Name.VIDEO_OUTLINE}
           label="观看MV"

@@ -51,7 +51,7 @@ const Action = ({
         size={ACTION_SIZE}
       />
     </Tooltip>
-    {music.mv ? (
+    {music.mvLink ? (
       <Tooltip title="观看MV">
         <IconButton
           name={Name.VIDEO_OUTLINE}

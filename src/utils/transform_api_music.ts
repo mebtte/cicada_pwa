@@ -2,7 +2,18 @@ import { ApiMusic, Music } from '../constants/music';
 import getRandomCover from './get_random_cover';
 
 export default (music: ApiMusic): Music => {
-  const { id, cover, name, type, alias, ac, hq, mv, sq, singers } = music;
+  const {
+    id,
+    cover,
+    name,
+    type,
+    alias,
+    ac,
+    hq,
+    mv_link: mvLink,
+    sq,
+    singers,
+  } = music;
   return {
     id,
     cover: cover || getRandomCover(),
@@ -11,7 +22,7 @@ export default (music: ApiMusic): Music => {
     alias,
     ac,
     hq,
-    mv,
+    mvLink,
     sq,
     singers: singers.map((s) => ({
       ...s,
