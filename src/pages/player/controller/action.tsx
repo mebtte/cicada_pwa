@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Tooltip from '@/components/tooltip';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
-import { Music } from '@/constants/music';
 import useAudioControl from '../use_audio_control';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Context from '../context';
@@ -14,7 +13,6 @@ const Style = styled.div`
   font-size: 0;
   display: flex;
   align-items: center;
-  margin-left: 10px;
   > .line {
     width: 1px;
     height: 15px;
@@ -29,14 +27,10 @@ const onOpenList = () =>
   eventemitter.emit(EventType.OPEN_PLAYLIST_PLAYQUEUE_DRAWER);
 
 const Action = ({
-  music,
-  onWatchMv,
   onAddToMusicbill,
   onAddToPlayqueue,
   onOperate,
 }: {
-  music: Music;
-  onWatchMv: () => void;
   onAddToMusicbill: () => void;
   onAddToPlayqueue: () => void;
   onOperate: () => void;
@@ -45,16 +39,6 @@ const Action = ({
   const { onTogglePlay, onPrevious, onNext } = useAudioControl(audioLoading);
   return (
     <Style>
-      {music && music.mvLink ? (
-        <Tooltip title="观看MV">
-          <IconButton
-            className="action"
-            name={IconButtonName.VIDEO_OUTLINE}
-            size={ACTION_SIZE}
-            onClick={onWatchMv}
-          />
-        </Tooltip>
-      ) : null}
       <Tooltip title="下一首播放">
         <IconButton
           className="action"

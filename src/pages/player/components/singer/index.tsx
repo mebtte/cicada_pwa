@@ -6,11 +6,13 @@ import eventemitter, { Type as EventType } from '../../eventemitter';
 
 const Style = styled.span`
   &::after {
-    content: ' | ';
+    content: '|';
     color: rgb(222 222 222);
+    margin: 0 2px;
   }
   &:last-child::after {
     content: '';
+    margin: 0;
   }
   > .singer {
     font-size: inherit;

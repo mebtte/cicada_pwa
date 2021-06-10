@@ -17,9 +17,11 @@ const Style = styled.div`
 const Wrapper = ({
   music,
   onViewMusic,
+  onWatchMv,
 }: {
   music?: MusicType;
   onViewMusic: () => void;
+  onWatchMv: () => void;
 }) => {
   const transitions = useTransition(music, {
     from: { opacity: 0, transform: 'translate(0, -150%)' },
@@ -31,7 +33,12 @@ const Wrapper = ({
       {transitions((style, m) => {
         if (m) {
           return (
-            <MusicInfo style={style} music={m} onViewMusic={onViewMusic} />
+            <MusicInfo
+              style={style}
+              music={m}
+              onViewMusic={onViewMusic}
+              onWatchMv={onWatchMv}
+            />
           );
         }
         return <Skeleton style={style} />;

@@ -35,7 +35,8 @@ const Style = styled.div`
     > .right-bottom {
       display: flex;
       align-items: center;
-      margin: 3px 0 0 0;
+      gap: 20px;
+      margin: 5px 0 0 0;
       overflow: visible;
     }
   }
@@ -64,10 +65,9 @@ const Controller = () => {
           <MusicInfo
             music={queueMusic ? queueMusic.music : null}
             onViewMusic={onView}
+            onWatchMv={onWatchMv}
           />
           <Action
-            music={queueMusic ? queueMusic.music : null}
-            onWatchMv={onWatchMv}
             onAddToMusicbill={onAddToMusicbill}
             onAddToPlayqueue={onAddToPlayqueue}
             onOperate={onOperate}

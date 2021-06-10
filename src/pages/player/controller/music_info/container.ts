@@ -10,26 +10,21 @@ export default styled(animated.div)`
   left: 0;
   width: 100%;
   display: flex;
+  gap: 10px;
   align-items: center;
   > .text {
-    flex: 1;
     color: rgb(222 222 222);
     ${ellipsis}
     > .name {
       font-size: ${MUSIC_NAME_SIZE}px;
       cursor: pointer;
-      border: none;
-      outline: none;
-      background-color: transparent;
-      margin: 0;
-      padding: 0;
       color: rgb(55 55 55);
       &:hover {
         color: rgb(0 0 0);
       }
     }
     > .singers {
-      margin-left: 10px;
+      margin-left: 5px;
       font-size: 12px;
     }
   }
