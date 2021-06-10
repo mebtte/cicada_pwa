@@ -5,6 +5,7 @@ export enum Type {
   SQ = 'sq',
   HQ = 'hq',
   AC = 'ac',
+  MV = 'mv',
   FORK = 'fo',
 }
 
@@ -17,7 +18,7 @@ const TYPE_MAP: Record<
 > = {
   [Type.SQ]: {
     label: 'sq',
-    color: '#ff8e3c',
+    color: 'var(--color-primary)',
   },
   [Type.HQ]: {
     label: 'hq',
@@ -26,6 +27,10 @@ const TYPE_MAP: Record<
   [Type.AC]: {
     label: 'ac',
     color: '#ff6e6c',
+  },
+  [Type.MV]: {
+    label: 'mv',
+    color: '#ff8e3c',
   },
   [Type.FORK]: {
     label: 'fo',

@@ -10,6 +10,7 @@ export enum Key {
   SQ = 'sq',
   HQ = 'hq',
   AC = 'ac',
+  MV_LINK = 'mv_link',
 }
 
 /**

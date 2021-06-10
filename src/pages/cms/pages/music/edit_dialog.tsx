@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { URL } from '@/constants/regexp';
 import Select from '@/components/select';
 import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
 import toast from '@/platform/toast';
@@ -12,6 +13,7 @@ import Button, { Type } from '@/components/button';
 import {
   NAME_MAX_LENGTH,
   ALIAS_MAX_LENGTH,
+  MV_LINK_MAX_LENGTH,
   MUSIC_TYPES,
   MUSIC_TYPE_MAP_LABEL,
   MusicType,
@@ -46,20 +48,18 @@ const EditMusicDialog = () => {
   const onAliasChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setAlias(event.target.value);
 
-  const onClose = () => {
-    setMusic(null);
-    setTimeout(() => {
-      setName('');
-      setType(MusicType.NORMAL);
-      setAlias('');
-    }, 1000);
-  };
+  const [mvLink, setMvLink] = useState('');
+  const onMvLinkChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setMvLink(event.target.value);
+
+  const onClose = () => setMusic(null);
   useEffect(() => {
     const openListener = (m: Music) => {
       setMusic(m);
       setName(m.name);
       setType(m.type);
       setAlias(m.alias);
+      setMvLink(m.mvLink);
     };
     eventemitter.on(EventType.OPEN_EDIT_DIALOG, openListener);
     return () =>
@@ -72,6 +72,12 @@ const EditMusicDialog = () => {
     if (!trimName) {
       return toast.error('请输入名字');
     }
+
+    const trimMvLink = mvLink.trim();
+    if (trimMvLink && !URL.test(trimMvLink)) {
+      return toast.error('MV 链接格式错误');
+    }
+
     setLoading(true);
     try {
       let needUpdate = false;
@@ -97,6 +103,15 @@ const EditMusicDialog = () => {
           id: music.id,
           key: Key.ALIAS,
           value: trimAlias,
+        });
+      }
+
+      if (music.mvLink !== trimMvLink) {
+        needUpdate = true;
+        await cmsUpdateMusic({
+          id: music.id,
+          key: Key.MV_LINK,
+          value: trimMvLink,
         });
       }
 
@@ -146,6 +161,16 @@ const EditMusicDialog = () => {
             onChange={onAliasChange}
             placeholder={`别名不超过 ${ALIAS_MAX_LENGTH} 个字符`}
             maxLength={ALIAS_MAX_LENGTH}
+            disabled={loading}
+            style={inputStyle}
+          />
+        </Label>
+        <Label label="MV 链接" style={labelStyle}>
+          <Input
+            value={mvLink}
+            onChange={onMvLinkChange}
+            placeholder={`MV 链接不超过 ${MV_LINK_MAX_LENGTH} 个字符`}
+            maxLength={MV_LINK_MAX_LENGTH}
             disabled={loading}
             style={inputStyle}
           />

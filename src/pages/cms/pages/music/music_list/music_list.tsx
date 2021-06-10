@@ -232,6 +232,12 @@ const MusicList = ({
           />
         </Tooltip>
       ) : null}
+      <Tag
+        className="action"
+        type={TagType.MV}
+        gray={!music.mvLink}
+        onClick={() => eventemitter.emit(EventType.OPEN_EDIT_DIALOG, music)}
+      />
     </ResourceBox>,
     <SmallTd>{format(music.createTime, 'yyyy-MM-dd HH:mm')}</SmallTd>,
     <OperationBox>
