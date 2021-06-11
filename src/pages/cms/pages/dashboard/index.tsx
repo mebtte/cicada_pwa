@@ -13,26 +13,25 @@ import MusicPaper from './music_paper';
 import UserMusicbillPaper from './user_musicbill_paper';
 import VerifyCodePaper from './verify_code_paper';
 import MusicPlayLogPaper from './music_play_log_paper';
+import Search from './search';
 
 const Style = styled.div`
   ${cmsPage};
-  position: relative;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   overflow: auto;
   ${scrollbar}
-  > .child {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
   > .loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 50px 0;
+    text-align: center;
+  }
+  > .error-card {
+    padding: 50px 0;
   }
   > .paper-list {
-    padding: 40px;
+    padding: 0 20px;
     box-sizing: border-box;
     text-align: center;
   }
@@ -44,7 +43,7 @@ const Dashboard = () => {
   let content: ReactNode = null;
   if (data.status === RequestStatus.SUCCESS) {
     content = (
-      <div className="child paper-list">
+      <div className="paper-list">
         <UserPaper total={data.value.userTotal} />
         <FigurePaper total={data.value.figureTotal} />
         <MusicPaper total={data.value.musicTotal} />
@@ -56,19 +55,24 @@ const Dashboard = () => {
   } else if (data.status === RequestStatus.ERROR) {
     content = (
       <ErrorCard
-        className="child"
+        className="error-card"
         errorMessage={data.error.message}
         retry={retry}
       />
     );
   } else {
     content = (
-      <div className="child loading">
+      <div className="loading">
         <CircularLoader />
       </div>
     );
   }
-  return <Style>{content}</Style>;
+  return (
+    <Style>
+      <Search />
+      {content}
+    </Style>
+  );
 };
 
 export default Dashboard;

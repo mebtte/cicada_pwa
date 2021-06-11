@@ -31,9 +31,7 @@ const Style = styled.button<{
   background-color: transparent;
   cursor: pointer;
   transition: all 300ms;
-  &:focus {
-    outline: none;
-  }
+  &:focus,
   &:hover {
     background-color: rgb(0 0 0 / 0.04);
   }

@@ -7,7 +7,7 @@ const Style = styled.div`
     color: rgb(155 155 155);
   }
   > .input {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 `;
 
