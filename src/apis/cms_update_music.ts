@@ -11,6 +11,7 @@ export enum Key {
   HQ = 'hq',
   AC = 'ac',
   MV_LINK = 'mv_link',
+  FORK_FROM = 'fork_from',
 }
 
 /**
