@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 
-import getLrcRequest from '@/apis/get_lrc';
+import getMusicLrcRequest from '@/apis/get_music_lrc';
 import logger from '@/platform/logger';
 import { RequestStatus } from '@/constants';
 import { Music } from '@/constants/music';
@@ -10,7 +10,7 @@ export default (music: Music) => {
   const [lrc, setLrc] = useState('');
   const reload = useCallback(() => {
     setStatus(RequestStatus.LOADING);
-    getLrcRequest(music.id)
+    getMusicLrcRequest(music.id)
       .then((l) => {
         setLrc(l);
         setStatus(RequestStatus.SUCCESS);
@@ -24,7 +24,7 @@ export default (music: Music) => {
   useEffect(() => {
     let canceled = false;
     setStatus(RequestStatus.LOADING);
-    getLrcRequest(music.id)
+    getMusicLrcRequest(music.id)
       .then((l) => {
         if (canceled) {
           return;

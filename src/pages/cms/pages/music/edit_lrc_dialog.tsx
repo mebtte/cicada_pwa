@@ -5,7 +5,7 @@ import dialog from '@/platform/dialog';
 import ErrorCard from '@/components/error_card';
 import Textarea from '@/components/textarea';
 import logger from '@/platform/logger';
-import getLrcRequest from '@/apis/get_lrc';
+import getMusicLrcRequest from '@/apis/get_music_lrc';
 import Button, { Type } from '@/components/button';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import { Music } from './constants';
@@ -43,7 +43,7 @@ const EditMusicLrcDialog = () => {
     setLoading(true);
     setLrc('获取歌词中...');
     try {
-      const l = await getLrcRequest(music.id);
+      const l = await getMusicLrcRequest(music.id);
       originalLrcRef.current = l;
       setLrc(l);
     } catch (e) {
