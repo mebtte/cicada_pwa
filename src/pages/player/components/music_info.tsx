@@ -65,7 +65,9 @@ const MusicInfo = ({
       />
       <div className="info">
         <div className="top">
-          <div className="name">{name}</div>
+          <div className="name" onClick={onViewMusic}>
+            {name}
+          </div>
           {hq ? <Tag type={TagType.HQ} /> : null}
           {ac ? <Tag type={TagType.AC} /> : null}
           {mvLink ? <Tag type={TagType.MV} /> : null}
