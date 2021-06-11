@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 import { Link } from 'react-router-dom';
 
+import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
 import Tooltip from '@/components/tooltip';
 import Tag, { Type as TagType } from '@/components/tag';
 import { SearchKey as FigureSearchKey } from '@/apis/cms_get_figure_list';
@@ -69,8 +70,13 @@ const CoverBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  > .actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
 `;
-const ACTION_SIZE = 24;
+const ACTION_SIZE = 22;
 const SingerBox = styled.div`
   display: flex;
   align-items: center;
@@ -115,7 +121,7 @@ const ResourceBox = styled.div`
 const OperationBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 3px;
 `;
 const EmptyTd = styled.span`
   color: rgb(155 155 155);
@@ -141,16 +147,33 @@ const MusicList = ({
   const contentRef = useRef<HTMLDivElement>();
   const onDelete = (music: Music) =>
     dialog.confirm({
-      title: `确定删除音乐"${music.name}"?`,
+      title: `确定删除"${music.name}"?`,
       content:
         '当音乐仍挂载有角色或存在翻唱版本时无法被删除, 如若需要删除请先解除关系.',
       onConfirm: async () => {
         try {
           await cmsDeleteMusic(music.id);
-          toast.success(`音乐"${music.name}"已被删除`);
+          toast.success(`"${music.name}"已被删除`);
           eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
         } catch (error) {
           logger.error(error, { description: '删除音乐失败', report: true });
+          toast.error(error.message);
+        }
+      },
+    });
+  const onDeleteCover = (music: Music) =>
+    dialog.confirm({
+      title: `确定删除"${music.name}"封面?`,
+      onConfirm: async () => {
+        try {
+          await cmsUpdateMusic({ id: music.id, key: Key.COVER, value: '' });
+          toast.success(`"${music.name}"封面已被删除`);
+          eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
+        } catch (error) {
+          logger.error(error, {
+            description: '删除音乐封面失败',
+            report: true,
+          });
           toast.error(error.message);
         }
       },
@@ -161,13 +184,23 @@ const MusicList = ({
     music.name,
     <CoverBox>
       {music.cover ? <Avatar src={music.cover} /> : <EmptyTd />}
-      <IconButton
-        name={Name.EDIT_OUTLINE}
-        size={ACTION_SIZE}
-        onClick={() =>
-          eventemitter.emit(EventType.OPEN_EDIT_COVER_DIALOG, music)
-        }
-      />
+      <div className="actions">
+        <IconButton
+          name={Name.EDIT_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={() =>
+            eventemitter.emit(EventType.OPEN_EDIT_COVER_DIALOG, music)
+          }
+        />
+        {music.cover ? (
+          <IconButton
+            name={Name.GARBAGE_OUTLINE}
+            type={Type.DANGER}
+            size={ACTION_SIZE}
+            onClick={() => onDeleteCover(music)}
+          />
+        ) : null}
+      </div>
     </CoverBox>,
     <SmallTd>{MUSIC_TYPE_MAP_LABEL[music.type]}</SmallTd>,
     <SingerBox>

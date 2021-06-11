@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 
+import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
 import { SearchKey } from '@/apis/cms_get_figure_list';
 import cmsDeleteFigure from '@/apis/cms_delete_figure';
 import toast from '@/platform/toast';
@@ -52,6 +53,11 @@ const AvatarBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  > .actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
 `;
 const emptyStyle = {
   position: 'absolute',
@@ -60,12 +66,12 @@ const emptyStyle = {
   width: '100%',
   height: '100%',
 };
-const ACTION_SIZE = 24;
+const ACTION_SIZE = 22;
 const headers = ['ID', '名字', '头像', '别名', '创建时间', '操作'];
 const OperationBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 3px;
 `;
 
 const FigureList = ({
@@ -85,12 +91,12 @@ const FigureList = ({
 
   const onDelete = (figure: Figure) =>
     dialog.confirm({
-      title: `确定删除角色"${figure.name}"?`,
+      title: `确定删除"${figure.name}"?`,
       content: '当角色仍挂载音乐时无法被删除, 如若需要删除请先解除关系.',
       onConfirm: async () => {
         try {
           await cmsDeleteFigure(figure.id);
-          toast.success(`角色"${figure.name}"已被删除`);
+          toast.success(`"${figure.name}"已删除`);
           eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
         } catch (error) {
           logger.error(error, { description: '删除角色失败', report: true });
@@ -98,18 +104,44 @@ const FigureList = ({
         }
       },
     });
+  const onDeleteAvatar = (figure: Figure) =>
+    dialog.confirm({
+      title: `确定删除"${figure.name}"头像?`,
+      onConfirm: async () => {
+        try {
+          await cmsUpdateFigure({ id: figure.id, key: Key.AVATAR, value: '' });
+          toast.success(`"${figure.name}"头像已删除`);
+          eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
+        } catch (error) {
+          logger.error(error, {
+            description: '删除角色头像失败',
+            report: true,
+          });
+          toast.error(error.message);
+        }
+      },
+    });
+
   const rowRenderer = (figure: Figure) => [
     figure.id,
     figure.name,
     <AvatarBox>
       {figure.avatar ? <Avatar src={figure.avatar} /> : '-'}
-      <IconButton
-        name={Name.EDIT_OUTLINE}
-        size={ACTION_SIZE}
-        onClick={() =>
-          eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
-        }
-      />
+      <div className="actions">
+        <IconButton
+          name={Name.EDIT_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={() =>
+            eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
+          }
+        />
+        <IconButton
+          name={Name.GARBAGE_OUTLINE}
+          size={ACTION_SIZE}
+          type={Type.DANGER}
+          onClick={() => onDeleteAvatar(figure)}
+        />
+      </div>
     </AvatarBox>,
     figure.alias || '-',
     format(figure.createTime, 'yyyy-MM-dd HH:mm'),
