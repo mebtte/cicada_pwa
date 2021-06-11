@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
+import Tag, { Type as TagType } from '@/components/tag';
 import ellipsis from '@/style/ellipsis';
 import { Music as MusicType } from '@/constants/music';
 import Avatar from '@/components/avatar';
@@ -14,19 +15,20 @@ const Style = styled.div`
     margin-left: 10px;
     flex: 1;
     min-width: 0;
-    > .name {
-      ${ellipsis}
-      width: 100%;
-      text-align: left;
-      font-size: 14px;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      padding: 0;
-      margin: 0;
-      background-color: transparent;
-      color: rgb(55 55 55);
-      line-height: 1.5;
+    > .top {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 3px;
+      > .name {
+        ${ellipsis}
+        font-size: 14px;
+        cursor: pointer;
+        color: rgb(55 55 55);
+        &:hover {
+          color: rgb(0 0 0);
+        }
+      }
     }
     > .singers {
       ${ellipsis}
@@ -51,7 +53,7 @@ const MusicInfo = ({
     () => eventemitter.emit(EventType.OPEN_MUSIC_DRAWER, music),
     [music],
   );
-  const { cover, name, singers } = music;
+  const { cover, name, singers, hq, ac, mvLink, forkFrom } = music;
   return (
     <Style {...props}>
       <Avatar
@@ -62,9 +64,13 @@ const MusicInfo = ({
         onClick={onViewMusic}
       />
       <div className="info">
-        <button type="button" className="name " onClick={onViewMusic}>
-          {name}
-        </button>
+        <div className="top">
+          <div className="name">{name}</div>
+          {hq ? <Tag type={TagType.HQ} /> : null}
+          {ac ? <Tag type={TagType.AC} /> : null}
+          {mvLink ? <Tag type={TagType.MV} /> : null}
+          {forkFrom.length ? <Tag type={TagType.FORK_FROM} /> : null}
+        </div>
         <div className="singers ">
           {singers.length ? (
             singers.map((s) => <Singer key={s.id} singer={s} />)

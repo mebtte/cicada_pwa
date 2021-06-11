@@ -204,7 +204,7 @@ const MusicList = ({
           }
         />
       </Tooltip>
-      <Tooltip title="高音质">
+      <Tooltip title="无损音质">
         <Tag
           className="action"
           type={TagType.HQ}
@@ -238,6 +238,16 @@ const MusicList = ({
         gray={!music.mvLink}
         onClick={() => eventemitter.emit(EventType.OPEN_EDIT_DIALOG, music)}
       />
+      <Tooltip title="翻唱">
+        <Tag
+          className="action"
+          type={TagType.FORK_FROM}
+          gray={!music.forkFrom.length}
+          onClick={() =>
+            eventemitter.emit(EventType.OPEN_EDIT_FORK_FROM_DIALOG, music)
+          }
+        />
+      </Tooltip>
     </ResourceBox>,
     <SmallTd>{format(music.createTime, 'yyyy-MM-dd HH:mm')}</SmallTd>,
     <OperationBox>
@@ -255,15 +265,6 @@ const MusicList = ({
           }
         />
       ) : null}
-      <Tooltip title="翻唱">
-        <IconButton
-          name={Name.BRANCH_OUTLINE}
-          size={ACTION_SIZE}
-          onClick={() =>
-            eventemitter.emit(EventType.OPEN_EDIT_FORK_FROM_DIALOG, music)
-          }
-        />
-      </Tooltip>
       <IconButton
         name={Name.GARBAGE_OUTLINE}
         type={Type.DANGER}

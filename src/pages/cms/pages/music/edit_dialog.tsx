@@ -132,7 +132,7 @@ const EditMusicDialog = () => {
 
   return (
     <Dialog open={!!music}>
-      <Title>{music ? `编辑"${music.name}"资料` : '编辑音乐资料'}</Title>
+      <Title>{music ? `编辑"${music.name}"` : '编辑音乐'}</Title>
       <Content>
         <Label label="名字" style={labelStyle}>
           <Input

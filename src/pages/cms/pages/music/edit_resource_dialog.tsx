@@ -28,7 +28,7 @@ const TYPE_MAP: Record<
     maxSize: MUSIC_SQ.MAX_SIZE,
   },
   [EditMusicResourceType.HQ]: {
-    label: '高音质',
+    label: '无损音质',
     mimes: MUSIC_HQ.ACCEPT_MIMES,
     maxSize: MUSIC_HQ.MAX_SIZE,
   },

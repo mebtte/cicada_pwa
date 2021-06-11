@@ -25,7 +25,7 @@ export interface Music {
   hq: string;
   ac: string;
   mvLink: string;
-  forkFrom?: string[];
+  forkFrom: string[];
 }
 
 export enum Query {

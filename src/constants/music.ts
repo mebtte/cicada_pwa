@@ -41,6 +41,7 @@ export interface ApiMusic {
   mv_link: string;
   sq: string;
   singers: Figure[];
+  fork_from?: string[];
 }
 
 export interface Music {
@@ -54,6 +55,7 @@ export interface Music {
   mvLink: string;
   sq: string;
   singers: Figure[];
+  forkFrom: string[];
 }
 
 export interface MusicWithIndex {

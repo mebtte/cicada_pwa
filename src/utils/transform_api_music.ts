@@ -13,6 +13,7 @@ export default (music: ApiMusic): Music => {
     mv_link: mvLink,
     sq,
     singers,
+    fork_from: forkFrom,
   } = music;
   return {
     id,
@@ -28,5 +29,6 @@ export default (music: ApiMusic): Music => {
       ...s,
       avatar: s.avatar || getRandomCover(),
     })),
+    forkFrom: forkFrom || [],
   };
 };

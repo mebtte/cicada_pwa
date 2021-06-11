@@ -6,7 +6,7 @@ export enum Type {
   HQ = 'hq',
   AC = 'ac',
   MV = 'mv',
-  FORK = 'fo',
+  FORK_FROM = 'fork',
 }
 
 const TYPE_MAP: Record<
@@ -22,19 +22,19 @@ const TYPE_MAP: Record<
   },
   [Type.HQ]: {
     label: 'hq',
-    color: '#6246ea',
+    color: 'rgb(235 65 65)',
   },
   [Type.AC]: {
     label: 'ac',
-    color: '#ff6e6c',
+    color: 'rgb(235 150 65)',
   },
   [Type.MV]: {
     label: 'mv',
-    color: '#ff8e3c',
+    color: 'rgb(226 65 235)',
   },
-  [Type.FORK]: {
-    label: 'fo',
-    color: '#67568c',
+  [Type.FORK_FROM]: {
+    label: 'ff',
+    color: 'rgb(102 65 235)',
   },
 };
 
@@ -62,7 +62,7 @@ const Tag = React.forwardRef<HTMLDivElement, Props>(
   ({ type, gray = false, ...props }: Props, ref) => {
     const { label, color } = TYPE_MAP[type];
     return (
-      <Style {...props} ref={ref} color={gray ? 'rgb(155 155 155)' : color}>
+      <Style {...props} ref={ref} color={gray ? 'rgb(188 188 188)' : color}>
         {label}
       </Style>
     );

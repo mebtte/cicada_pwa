@@ -99,7 +99,7 @@ async function cmsGetMusicList({
         hq,
         ac,
         mvLink,
-        forkFrom,
+        forkFrom: forkFrom || [],
       }),
     ),
   };
