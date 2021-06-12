@@ -7,11 +7,10 @@ import IconButton, { Name } from '@/components/icon_button';
 
 const ACTION_SIZE = 24;
 const Style = styled.div`
-  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
-const iconButtonStyle = {
-  marginRight: 5,
-};
 
 const Action = ({
   music,
@@ -29,17 +28,11 @@ const Action = ({
   onWatchMv: () => void;
 }) => (
   <Style>
-    <IconButton
-      name={Name.PLAY_OUTLINE}
-      onClick={onPlay}
-      style={iconButtonStyle}
-      size={ACTION_SIZE}
-    />
+    <IconButton name={Name.PLAY_OUTLINE} onClick={onPlay} size={ACTION_SIZE} />
     <Tooltip title="下一首播放">
       <IconButton
         name={Name.INSERT_OUTLINE}
         onClick={onAddToPlayqueue}
-        style={iconButtonStyle}
         size={ACTION_SIZE}
       />
     </Tooltip>
@@ -47,7 +40,6 @@ const Action = ({
       <IconButton
         name={Name.ADD_TO_OUTLINE}
         onClick={onAddToMusicbill}
-        style={iconButtonStyle}
         size={ACTION_SIZE}
       />
     </Tooltip>
@@ -56,7 +48,6 @@ const Action = ({
         <IconButton
           name={Name.VIDEO_OUTLINE}
           onClick={onWatchMv}
-          style={iconButtonStyle}
           size={ACTION_SIZE}
         />
       </Tooltip>
@@ -64,7 +55,6 @@ const Action = ({
     <IconButton
       name={Name.MORE_OUTLINE}
       onClick={onOperate}
-      style={iconButtonStyle}
       size={ACTION_SIZE}
     />
   </Style>

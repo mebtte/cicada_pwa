@@ -128,7 +128,11 @@ function Select<Item>({
           readOnly={customInputDisabled}
           value={
             // eslint-disable-next-line no-nested-ternary
-            arrayVisible ? customInput : value ? itemRenderer(value, '') : ''
+            arrayVisible
+              ? customInput
+              : value !== null
+              ? itemRenderer(value, '')
+              : ''
           }
           onChange={onCustomInputChange}
           onFocus={onFocus}
