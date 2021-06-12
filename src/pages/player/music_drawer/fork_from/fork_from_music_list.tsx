@@ -5,7 +5,8 @@ import { Music } from '@/constants/music';
 import MusicInfo from '../../components/music_info';
 
 const Style = styled.div`
-  transition: max-height 1s;
+  transition: 1s;
+  overflow: hidden;
   > .content {
     padding: 10px;
     border-radius: 4px;
@@ -35,7 +36,7 @@ const ForkFromMusicList = ({
   }, []);
 
   return (
-    <Style style={{ maxHeight }}>
+    <Style style={{ maxHeight, opacity: maxHeight ? 1 : 0 }}>
       <div className="content" ref={contentRef}>
         <div className="title">翻唱自以下音乐</div>
         <div className="list">

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Style = styled.div`
   overflow: hidden;
-  transition: max-height 1s;
+  transition: 1s;
 `;
 const Line = styled.div`
   font-size: 12px;
@@ -20,7 +20,7 @@ const LyricList = ({ lrc }: { lrc: string }) => {
   }, []);
 
   return (
-    <Style style={{ maxHeight }}>
+    <Style style={{ maxHeight, opacity: maxHeight ? 1 : 0 }}>
       <Lrc
         ref={lrcRef}
         lrc={lrc}
