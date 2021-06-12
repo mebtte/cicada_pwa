@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
-import Tag, { Type as TagType } from '@/components/tag';
 import ellipsis from '@/style/ellipsis';
 import { Music as MusicType } from '@/constants/music';
 import Avatar from '@/components/avatar';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Singer from './singer';
+import MusicTagList from './music_tag_list';
 
 const Style = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ const MusicInfo = ({
     () => eventemitter.emit(EventType.OPEN_MUSIC_DRAWER, music),
     [music],
   );
-  const { cover, name, singers, hq, ac, mvLink, forkFrom } = music;
+  const { cover, name, singers } = music;
   return (
     <Style {...props}>
       <Avatar
@@ -68,10 +68,7 @@ const MusicInfo = ({
           <div className="name" onClick={onViewMusic}>
             {name}
           </div>
-          {hq ? <Tag type={TagType.HQ} /> : null}
-          {ac ? <Tag type={TagType.AC} /> : null}
-          {mvLink ? <Tag type={TagType.MV} /> : null}
-          {forkFrom.length ? <Tag type={TagType.FORK_FROM} /> : null}
+          <MusicTagList music={music} />
         </div>
         <div className="singers ">
           {singers.length ? (

@@ -35,7 +35,7 @@ const Style = styled.div`
     > .right-bottom {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
       margin: 5px 0 0 0;
       overflow: visible;
     }

@@ -28,9 +28,4 @@ export default styled(animated.div)`
       font-size: 12px;
     }
   }
-  > .tags {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
 `;
