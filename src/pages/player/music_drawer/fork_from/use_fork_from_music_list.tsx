@@ -16,7 +16,7 @@ export default (id: string) => {
       setForkFromMusicList(ml);
     } catch (e) {
       logger.error(e, {
-        description: '获取音乐翻唱来源列表失败',
+        description: '获取音乐二次创作来源列表失败',
         report: true,
       });
       setError(e);

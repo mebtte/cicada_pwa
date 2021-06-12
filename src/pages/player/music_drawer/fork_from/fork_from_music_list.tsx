@@ -10,7 +10,7 @@ const Style = styled.div`
   > .content {
     padding: 10px;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: #f6f6f6;
     > .title {
       font-size: 12px;
       color: rgb(155 155 155);
@@ -38,7 +38,7 @@ const ForkFromMusicList = ({
   return (
     <Style style={{ maxHeight, opacity: maxHeight ? 1 : 0 }}>
       <div className="content" ref={contentRef}>
-        <div className="title">翻唱自以下音乐</div>
+        <div className="title">二次创作自以下音乐</div>
         <div className="list">
           {forkFromMusicList.map((m) => (
             <MusicInfo key={m.id} music={m} />

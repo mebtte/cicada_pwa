@@ -3,7 +3,7 @@ import tranfromApiMusic from '@/utils/transform_api_music';
 import api from '.';
 
 /**
- * 获取音乐翻唱来源
+ * 获取音乐二次创作来源
  * @author mebtte<hi@mebtte.com>
  */
 async function getMusicForkFrom(id: string) {

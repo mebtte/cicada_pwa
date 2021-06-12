@@ -149,7 +149,7 @@ const MusicList = ({
     dialog.confirm({
       title: `确定删除"${music.name}"?`,
       content:
-        '当音乐仍挂载有角色或存在翻唱版本时无法被删除, 如若需要删除请先解除关系.',
+        '当音乐仍挂载有角色或存在二次创作版本时无法被删除, 如若需要删除请先解除关系.',
       onConfirm: async () => {
         try {
           await cmsDeleteMusic(music.id);
@@ -271,7 +271,7 @@ const MusicList = ({
         gray={!music.mvLink}
         onClick={() => eventemitter.emit(EventType.OPEN_EDIT_DIALOG, music)}
       />
-      <Tooltip title="翻唱">
+      <Tooltip title="二次创作">
         <Tag
           className="action"
           type={TagType.FORK_FROM}

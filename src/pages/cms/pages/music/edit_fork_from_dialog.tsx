@@ -50,7 +50,10 @@ const EditForkFromDialog = () => {
       const ffl = await getMusicForkFromRequest(music.id);
       setForkFromList(ffl);
     } catch (e) {
-      logger.error(e, { description: '获取音乐翻唱来源失败', report: true });
+      logger.error(e, {
+        description: '获取音乐二次创作来源失败',
+        report: true,
+      });
       setError(e);
     }
     setGetting(false);
@@ -68,8 +71,11 @@ const EditForkFromDialog = () => {
       onClose();
       eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
     } catch (e) {
-      logger.error(e, { description: '更新音乐翻唱来源失败', report: true });
-      dialog.alert({ title: '更新音乐翻唱来源失败', content: e.message });
+      logger.error(e, {
+        description: '更新音乐二次创作来源失败',
+        report: true,
+      });
+      dialog.alert({ title: '更新音乐二次创作来源失败', content: e.message });
     }
     setUpdating(false);
   };
@@ -108,7 +114,7 @@ const EditForkFromDialog = () => {
   }
   return (
     <Dialog open={!!music}>
-      <Title>{music ? `"${music.name}"` : ''}翻唱自</Title>
+      <Title>{music ? `"${music.name}"` : ''}二次创作自</Title>
       <Content>{content}</Content>
       <Action>
         <Button label="取消" onClick={onClose} disabled={getting || updating} />
