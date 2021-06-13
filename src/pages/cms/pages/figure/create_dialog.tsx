@@ -24,12 +24,14 @@ const CreateFigureDialog = ({ open }: { open: boolean }) => {
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setName(event.target.value);
 
-  const onClose = () =>
+  const onClose = () => {
     history.push({
       query: {
         [Query.CREATE_DIALOG_OPEN]: '',
       },
     });
+    setTimeout(() => setName(''), 1000);
+  };
 
   const [loading, setLoading] = useState(false);
   const onCreate = async () => {

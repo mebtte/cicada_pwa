@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import scrollbar from '@/style/styled_scrollbar';
+import Scrollable from '@/components/scrollable';
 import { Music } from '@/constants/music';
 import Singer from '../components/singer';
 import MusicTagList from '../components/music_tag_list';
@@ -9,25 +9,26 @@ import MusicTagList from '../components/music_tag_list';
 const Style = styled.div`
   > .top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
-    > .name {
-      font-size: 22px;
-      color: rgb(55 55 55);
+    > .text {
       white-space: nowrap;
-      overflow: auto;
-      ${scrollbar}
-      > .alias {
+      .name {
+        font-size: 22px;
+        color: rgb(55 55 55);
+      }
+      .alias {
         margin-left: 5px;
         font-size: 14px;
         color: rgb(155 155 155);
       }
     }
+    > .tag {
+      margin-top: 6px;
+    }
   }
   > .singer-list {
     margin-top: 10px;
-    overflow: auto;
-    ${scrollbar}
     font-size: 12px;
     white-space: nowrap;
   }
@@ -36,19 +37,19 @@ const Style = styled.div`
 const MusicInfo = ({ music }: { music: Music }) => (
   <Style>
     <div className="top">
-      <div className="name">
-        {music.name}
+      <Scrollable className="text">
+        <span className="name">{music.name}</span>
         {music.alias ? <span className="alias">{music.alias}</span> : null}
-      </div>
-      <MusicTagList music={music} />
+      </Scrollable>
+      <MusicTagList className="tag" music={music} />
     </div>
-    <div className="singer-list">
+    <Scrollable className="singer-list">
       {music.singers.length ? (
         music.singers.map((s) => <Singer key={s.id} singer={s} />)
       ) : (
         <Singer />
       )}
-    </div>
+    </Scrollable>
   </Style>
 );
 
