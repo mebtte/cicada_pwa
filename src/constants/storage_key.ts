@@ -1,3 +1,5 @@
+export const SERVER_ORIGIN = 'server_origin';
+
 export const LAST_SIGNIN_EMAIL = 'last_signin_email_v1';
 
 export const TOKEN = 'token_v2';

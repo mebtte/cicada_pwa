@@ -2,7 +2,8 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import format from 'date-fns/format';
 
-import Icon, { Name } from '@/components/icon';
+import IconButton, { Name as IconButtonName } from '@/components/icon_button';
+import Icon, { Name as IconName } from '@/components/icon';
 import { EMAIL } from '@/constants/regexp';
 import {
   TOKEN,
@@ -20,6 +21,7 @@ import Input from '@/components/input';
 import Button, { Type } from '@/components/button';
 import Logo from './logo';
 import VerifyCodeButton from './verify_code_button';
+import eventemitter, { EventType } from './eventemitter';
 
 const ICON_SIZE = 18;
 const Style = styled.div`
@@ -29,6 +31,11 @@ const Style = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
   width: 300px;
   padding: 40px;
+  > .setting {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
   > .input-box {
     display: flex;
     align-items: center;
@@ -54,6 +61,8 @@ const inputStyle = {
   width: '100%',
   display: 'block',
 };
+const openSettingDialog = () =>
+  eventemitter.emit(EventType.OPEN_SETTING_DIALOG);
 
 const Content = () => {
   const [email, setEmail] = useState(
@@ -103,6 +112,11 @@ const Content = () => {
 
   return (
     <Style>
+      <IconButton
+        className="setting"
+        name={IconButtonName.SETTING_OUTLINE}
+        onClick={openSettingDialog}
+      />
       <Logo />
       <div className="input-box">
         <div className="input-wrapper">
@@ -114,7 +128,7 @@ const Content = () => {
             placeholder="邮箱"
             type="text"
           />
-          <Icon className="icon" name={Name.MAIL_FILL} size={ICON_SIZE} />
+          <Icon className="icon" name={IconName.MAIL_FILL} size={ICON_SIZE} />
         </div>
       </div>
       <div className="input-box">
@@ -127,7 +141,7 @@ const Content = () => {
             placeholder="验证码"
             type="text"
           />
-          <Icon className="icon" name={Name.SHIELD_FILL} size={ICON_SIZE} />
+          <Icon className="icon" name={IconName.SHIELD_FILL} size={ICON_SIZE} />
         </div>
         <VerifyCodeButton email={email} />
       </div>

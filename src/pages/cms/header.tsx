@@ -10,9 +10,10 @@ import Avatar from '@/components/avatar';
 import globalEentemitter, { EventType } from '@/platform/global_eventemitter';
 import { ROOT_PATH } from '@/constants/route';
 
+const ACTION_SIZE = 24;
 const Style = styled.div`
   z-index: 1;
-  height: 60px;
+  height: 45px;
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -36,12 +37,12 @@ const Header = () => {
       <div className="blank" />
       <Tooltip title="首页" placement={Placement.BOTTOM}>
         <Link to={ROOT_PATH.HOME}>
-          <IconButton name={Name.HOUSE_OUTLINE} />
+          <IconButton name={Name.HOUSE_OUTLINE} size={ACTION_SIZE} />
         </Link>
       </Tooltip>
       <Tooltip title="播放器" placement={Placement.BOTTOM}>
         <Link to={ROOT_PATH.PLAYER}>
-          <IconButton name={Name.MUSIC_FILL} />
+          <IconButton name={Name.MUSIC_FILL} size={ACTION_SIZE} />
         </Link>
       </Tooltip>
       <Avatar
@@ -49,6 +50,7 @@ const Header = () => {
         src={user.avatar}
         onClick={openProfileDialog}
         style={avatarStyle}
+        size={28}
       />
     </Style>
   );

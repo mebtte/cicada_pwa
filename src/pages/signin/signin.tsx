@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
@@ -8,6 +8,7 @@ import PageContainer from '../page_container';
 import Content from './content';
 import AppRegion from './app_region';
 import WindowsAction from './windows_action';
+import SettingDialog from './setting_dialog';
 
 const Style = styled(PageContainer)`
   display: flex;
@@ -18,15 +19,21 @@ const Style = styled(PageContainer)`
 `;
 
 const Signin = () => {
-  const [cover] = useState(getRandomCover());
+  const cover = useMemo(getRandomCover, []);
   return (
     <Style style={{ backgroundImage: `url(${cover})` }}>
       <Helmet>
         <title>登录 - 知了</title>
       </Helmet>
-      {IS_ELECTRON && <AppRegion />}
-      {IS_ELECTRON && IS_WINDOWS && <WindowsAction />}
+      {IS_ELECTRON ? (
+        <>
+          <AppRegion />
+          {IS_WINDOWS && <WindowsAction />}
+        </>
+      ) : null}
       <Content />
+
+      <SettingDialog />
     </Style>
   );
 };
