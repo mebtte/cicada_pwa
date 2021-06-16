@@ -8,6 +8,7 @@ import useMusicPopup from './use_music_popup';
 import useMusicOperate from '../use_music_operate';
 import Action from './action';
 import Lyric from './lyric';
+import Fork from './fork';
 import ForkFrom from './fork_from';
 import MusicInfo from './music_info';
 import Instrument from './instrument';
@@ -45,6 +46,7 @@ const MusicDrawer = () => {
             onOperate={onOperate}
             onWatchMv={onWatchMv}
           />
+          {music.fork.length ? <Fork music={music} /> : null}
           {music.forkFrom.length ? <ForkFrom music={music} /> : null}
           {music.type === MusicType.NORMAL ? (
             <Lyric music={music} />
