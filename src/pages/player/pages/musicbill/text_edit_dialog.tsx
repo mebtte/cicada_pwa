@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import updateMusicbillRequest, { Key } from '@/apis/update_musicbill';
+import updateUserMusicbillRequest, { Key } from '@/apis/update_user_musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import { NAME, DESCRIPTION } from '@/constants/musicbill';
@@ -64,24 +64,22 @@ const TextEditDialog = ({
     setSaving(true);
     try {
       if (musicbill.name !== name) {
-        await updateMusicbillRequest({
+        await updateUserMusicbillRequest({
           id: musicbill.id,
           key: Key.NAME,
           value: name,
         });
       }
       if (musicbill.description !== description) {
-        await updateMusicbillRequest({
+        await updateUserMusicbillRequest({
           id: musicbill.id,
           key: Key.DESCRIPTION,
           value: description,
         });
       }
-      eventemitter.emit(EventType.UPDATE_MUSICBILL, {
+      eventemitter.emit(EventType.USER_MUSICBILL_UPDATED, {
         id: musicbill.id,
-        change: { name, description },
       });
-      toast.success(`已更新歌单"${musicbill.name}"`);
       onClose();
     } catch (error) {
       logger.error(error, { description: '更新歌单信息失败', report: true });

@@ -2,16 +2,19 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { easeCubicInOut } from 'd3-ease';
 
+import { RequestStatus } from '@/constants';
+import getRandomCover from '@/utils/get_random_cover';
+import createUserMusicbill from '@/apis/create_user_musicbill';
 import { PLAYER_PATH } from '@/constants/route';
 import { NAME } from '@/constants/musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import createMusicbill from '@/apis/create_musicbill';
 import dialog from '@/platform/dialog';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
 import Input from '@/components/input';
 import eventemitter, { Type as EventType } from './eventemitter';
+import { Musicbill } from './constants';
 
 const DIALOG_TRANSITION_DURATION = 650;
 
@@ -24,7 +27,7 @@ const inputStyle = {
   width: '100%',
 };
 
-const NewMusicbillDialog = () => {
+const CreateMusicbillDialog = () => {
   const history = useHistory();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -44,12 +47,22 @@ const NewMusicbillDialog = () => {
     }
     setCreating(true);
     try {
-      const musicbill = await createMusicbill(name);
-      toast.success(`已创建歌单"${musicbill.name}"`);
-      eventemitter.emit(EventType.ADD_MUSICBILL, musicbill);
+      const data = await createUserMusicbill(name);
+      const musicbill: Musicbill = {
+        id: data.id,
+        name: data.name,
+        cover: getRandomCover(),
+        order: data.order,
+        description: '',
+        createTime: new Date(data.create_time),
+        musicList: [],
+        status: RequestStatus.SUCCESS,
+      };
+      eventemitter.emit(EventType.USER_MUSICBILL_CREATED, { musicbill });
       onClose();
+
       setTimeout(
-        () => history.push(PLAYER_PATH.MUSICBILL.replace(':id', musicbill.id)),
+        () => history.push(PLAYER_PATH.MUSICBILL.replace(':id', data.id)),
         0,
       );
     } catch (error) {
@@ -100,4 +113,4 @@ const NewMusicbillDialog = () => {
   );
 };
 
-export default React.memo(NewMusicbillDialog);
+export default React.memo(CreateMusicbillDialog);

@@ -24,10 +24,9 @@ const Musicbill = ({
       return toast.info('请等待歌单加载完毕...');
     }
     if (status === RequestStatus.NOT_START || status === RequestStatus.ERROR) {
-      return playerEventemitter.emit(
-        PlayerEventType.FETCH_MUSICBILL,
-        musicbill,
-      );
+      return playerEventemitter.emit(PlayerEventType.FETCH_MUSICBILL, {
+        id: musicbill.id,
+      });
     }
     const checked = !!musicbill.musicList.find((m) => m.music.id === music.id);
     if (checked) {

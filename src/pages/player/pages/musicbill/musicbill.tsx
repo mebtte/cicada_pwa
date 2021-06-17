@@ -52,7 +52,7 @@ const Musicbill = ({ musicbill }: { musicbill: MusicbillType }) => {
   const topContent = useTopContent();
   const keyword = useKeyword(topContent);
   const reload = useCallback(
-    () => eventemitter.emit(EventType.FETCH_MUSICBILL, musicbill),
+    () => eventemitter.emit(EventType.FETCH_MUSICBILL, { id: musicbill.id }),
     [musicbill],
   );
 
@@ -72,7 +72,7 @@ const Musicbill = ({ musicbill }: { musicbill: MusicbillType }) => {
 
   useEffect(() => {
     if (musicbill.status === RequestStatus.NOT_START) {
-      eventemitter.emit(EventType.FETCH_MUSICBILL, musicbill);
+      eventemitter.emit(EventType.FETCH_MUSICBILL, { id: musicbill.id });
     }
   }, [musicbill]);
 

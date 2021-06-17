@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
+import getRandomCover from '@/utils/get_random_cover';
 import { RequestStatus } from '@/constants';
 import getUserMusicbillListRequest from '@/apis/get_user_musicbill_list';
 import getUserMusicbillDetail from '@/apis/get_user_musicbill_detail';
@@ -48,10 +49,10 @@ export default () => {
   }, [getMusicbillList]);
 
   useEffect(() => {
-    const getMusicbillListener = async (musicbill: Musicbill) => {
+    const getMusicbillDetail = async ({ id }: { id: string }) => {
       setMusicbillList((mbl) =>
         mbl.map((mb) => {
-          if (mb.id === musicbill.id) {
+          if (mb.id === id) {
             return {
               ...mb,
               status: RequestStatus.LOADING,
@@ -61,19 +62,19 @@ export default () => {
         }),
       );
       try {
-        const { music_list: musicList } = await getUserMusicbillDetail(
-          musicbill.id,
-        );
-        const { length } = musicList;
+        const data = await getUserMusicbillDetail(id);
         setMusicbillList((mbl) =>
           mbl.map((mb) => {
-            if (mb.id === musicbill.id) {
+            if (mb.id === id) {
               return {
                 ...mb,
+                name: data.name,
+                description: data.description,
+                cover: data.cover || getRandomCover(),
                 status: RequestStatus.SUCCESS,
-                musicList: musicList.map((m, index) => ({
+                musicList: data.music_list.map((m, index) => ({
                   music: transformMusic(m),
-                  index: length - index,
+                  index: data.music_list.length - index,
                 })),
               };
             }
@@ -84,9 +85,13 @@ export default () => {
         logger.error(error, {
           report: true,
         });
+        dialog.alert({
+          title: '获取歌单详情失败',
+          content: error.message,
+        });
         setMusicbillList((mbl) =>
           mbl.map((mb) => {
-            if (mb.id === musicbill.id) {
+            if (mb.id === id) {
               return {
                 ...mb,
                 status: RequestStatus.ERROR,
@@ -97,34 +102,14 @@ export default () => {
         );
       }
     };
-    const updateMusicbillListener = ({
-      id,
-      change,
+    const musicbillCreatedListener = ({
+      musicbill,
     }: {
-      id: string;
-      change: {
-        [key: string]: string | number;
-      };
+      musicbill: Musicbill;
     }) =>
       setMusicbillList((mbl) =>
-        mbl.map((mb) => {
-          if (mb.id === id) {
-            return {
-              ...mb,
-              ...change,
-            };
-          }
-          return mb;
-        }),
+        [...mbl, musicbill].sort((a, b) => a.order - b.order),
       );
-    const addMusicbillListener = (musicbill: Musicbill) =>
-      setMusicbillList((mbl) => [
-        ...mbl,
-        {
-          ...musicbill,
-          status: RequestStatus.NOT_START,
-        },
-      ]);
     const removeMusicbillListener = (id: string) =>
       setMusicbillList((mbl) => mbl.filter((mb) => mb.id !== id));
     const addMusicToMusicbillListener = async ({
@@ -254,9 +239,9 @@ export default () => {
         [...mbl].sort((a, b) => orderMap[a.id] - orderMap[b.id]),
       );
 
-    eventemitter.on(EventType.FETCH_MUSICBILL, getMusicbillListener);
-    eventemitter.on(EventType.UPDATE_MUSICBILL, updateMusicbillListener);
-    eventemitter.on(EventType.ADD_MUSICBILL, addMusicbillListener);
+    eventemitter.on(EventType.FETCH_MUSICBILL, getMusicbillDetail);
+    eventemitter.on(EventType.USER_MUSICBILL_UPDATED, getMusicbillDetail);
+    eventemitter.on(EventType.USER_MUSICBILL_CREATED, musicbillCreatedListener);
     eventemitter.on(EventType.REMOVE_MUSICBILL, removeMusicbillListener);
     eventemitter.on(
       EventType.ADD_MUSIC_TO_MUSICBILL,
@@ -271,9 +256,12 @@ export default () => {
       updateMusicbillOrderListener,
     );
     return () => {
-      eventemitter.off(EventType.FETCH_MUSICBILL, getMusicbillListener);
-      eventemitter.off(EventType.UPDATE_MUSICBILL, updateMusicbillListener);
-      eventemitter.off(EventType.ADD_MUSICBILL, addMusicbillListener);
+      eventemitter.off(EventType.FETCH_MUSICBILL, getMusicbillDetail);
+      eventemitter.off(EventType.USER_MUSICBILL_UPDATED, getMusicbillDetail);
+      eventemitter.off(
+        EventType.USER_MUSICBILL_CREATED,
+        musicbillCreatedListener,
+      );
       eventemitter.off(EventType.REMOVE_MUSICBILL, removeMusicbillListener);
       eventemitter.off(
         EventType.ADD_MUSIC_TO_MUSICBILL,
