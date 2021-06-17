@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Music as MusicType } from '@/constants/music';
 import Container from './container';
 import Singer from '../../components/singer';
 import MusicTagList from '../../components/music_tag_list';
+import { Music as MusicType } from '../../constants';
 
 const MusicInfo = ({
   music,
@@ -12,7 +12,6 @@ const MusicInfo = ({
 }: {
   music: MusicType;
   onViewMusic: () => void;
-  onWatchMv: () => void;
   [key: string]: any;
 }) => {
   const { name, singers } = music;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { RequestStatus } from '@/constants';
-import { Music } from '@/constants/music';
+import { Music } from '../../constants';
 import useLrc from '../../use_lrc';
 import Lyric from './lyric';
 

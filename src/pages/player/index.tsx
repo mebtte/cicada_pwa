@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
-import { QueueMusic } from '@/constants/music';
 import scrollbar from '@/style/scrollbar';
 import withSignin from '@/platform/with_signin';
 import electron from '@/platform/electron';
@@ -31,6 +30,7 @@ import MusicbillListDrawer from './musicbill_list_drawer';
 import MusicbillOrderDrawer from './musicbilll_order_drawer';
 import NewMusicbillDialog from './new_musicbill_dialog';
 import MvDialog from './mv_dialog';
+import { QueueMusic } from './constants';
 
 const Scrollable = styled(PageContainer)`
   overflow: auto;

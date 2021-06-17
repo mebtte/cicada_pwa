@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Music } from '@/constants/music';
 import Tooltip from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
+import { Music } from '../constants';
 
 const ACTION_SIZE = 24;
 const Style = styled.div`

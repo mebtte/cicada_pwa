@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 import getMusicLrcRequest from '@/apis/get_music_lrc';
 import logger from '@/platform/logger';
 import { RequestStatus } from '@/constants';
-import { Music } from '@/constants/music';
+import { Music } from './constants';
 
 export default (music: Music) => {
   const [status, setStatus] = useState(RequestStatus.LOADING);

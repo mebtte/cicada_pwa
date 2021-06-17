@@ -1,10 +1,14 @@
-import { ApiMusic } from '@/constants/music';
-import transformApiMusic from '@/utils/transform_api_music';
+/* eslint-disable camelcase */
+import { MusicType } from '@/constants/music';
 import api from '.';
 
 export const KEYWORD_MAX_LENGTH = 50;
 
-async function searchMusicByLrc({
+/**
+ * 通过歌词搜索音乐
+ * @author mebtte<hi@mebtte.com>
+ */
+function searchMusicByLrc({
   keyword,
   page = 1,
   pageSize = 30,
@@ -13,11 +17,28 @@ async function searchMusicByLrc({
   page?: number;
   pageSize?: number;
 }) {
-  const data = await api.get<{
+  return api.get<{
     total: number;
-    list: (ApiMusic & {
+    list: {
+      id: string;
+      cover: string;
+      name: string;
+      type: MusicType;
+      alias: string;
+      ac: string;
+      hq: string;
+      mv_link: string;
+      sq: string;
+      singers: {
+        id: string;
+        name: string;
+        avatar: string;
+        alias: string;
+      }[];
+      fork?: string[];
+      fork_from?: string[];
       lrc: string;
-    })[];
+    }[];
   }>('/search_music_by_lrc', {
     withToken: true,
     params: {
@@ -26,13 +47,6 @@ async function searchMusicByLrc({
       page_size: pageSize,
     },
   });
-  return {
-    total: data.total,
-    list: data.list.map((m) => ({
-      ...transformApiMusic(m),
-      lrc: m.lrc,
-    })),
-  };
 }
 
 export default searchMusicByLrc;

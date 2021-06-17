@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import List from 'react-list';
 
 import scrollbar from '@/style/scrollbar';
-import { MusicWithIndex } from '@/constants/music';
+import { MusicWithIndex } from '../../constants';
 import { containerStyle } from './constant';
 import Music from '../music';
 

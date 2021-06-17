@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Popup from '@/components/popup';
 import { Name } from '@/components/icon';
-import { Music as MusicType } from '@/constants/music';
+import { Music as MusicType } from '../constants';
 import useMusicOperate from '../use_music_operate';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import MusicInfo from '../components/music_info';

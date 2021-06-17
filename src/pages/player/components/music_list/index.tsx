@@ -3,12 +3,12 @@ import { useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 
 import { RequestStatus } from '@/constants';
-import { MusicWithIndex } from '@/constants/music';
 import Empty from '@/components/empty';
 import ErrorCard from '@/components/error_card';
 import MusicList from './music_list';
 import Skeleton from './skeleton';
 import { containerStyle } from './constant';
+import { MusicWithIndex } from '../../constants';
 
 const Style = styled.div`
   position: relative;

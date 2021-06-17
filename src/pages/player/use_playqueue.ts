@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import { Music, MusicWithIndex, QueueMusic } from '@/constants/music';
 import toast from '@/platform/toast';
 import getRandomInteger from '@/utils/get_random_integer';
 import getRandomString from '@/utils/get_random_string';
 import eventemitter, { Type as EventType } from './eventemitter';
+import { Music, MusicWithIndex, QueueMusic } from './constants';
 
 export default (playlist: MusicWithIndex[]) => {
   const [playqueue, setPlayqueue] = useState<QueueMusic[]>([]);

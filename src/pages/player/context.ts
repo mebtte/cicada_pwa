@@ -1,13 +1,11 @@
 import { createContext } from 'react';
 
-import { RequestStatus } from '../../constants';
-import { PlayMode } from './constants';
-import { MusicWithIndex, QueueMusic } from '../../constants/music';
-import { LocalMusicbill } from '../../constants/musicbill';
+import { RequestStatus } from '@/constants';
+import { PlayMode, MusicWithIndex, QueueMusic, Musicbill } from './constants';
 
 interface Context {
   getMusicbillListStatus: RequestStatus;
-  musicbillList: LocalMusicbill[];
+  musicbillList: Musicbill[];
 
   playMode: PlayMode;
 

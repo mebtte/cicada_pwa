@@ -3,7 +3,12 @@ import format from 'date-fns/format';
 
 import api from '.';
 import getRandomCover from '../utils/get_random_cover';
-import { UpdateKey } from '../constants/musicbill';
+
+export enum Key {
+  NAME = 'name',
+  DESCRIPTION = 'description',
+  COVER = 'cover',
+}
 
 /**
  * 更新歌单
@@ -15,7 +20,7 @@ async function updateMusicbill({
   value,
 }: {
   id: string;
-  key: UpdateKey;
+  key: Key;
   value: string | Blob;
 }) {
   const form = new FormData();

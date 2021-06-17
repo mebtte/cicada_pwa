@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Tag, { Type } from '@/components/tag';
-import { Music } from '@/constants/music';
+import { Music } from '../constants';
 
 const Style = styled.div`
   display: flex;

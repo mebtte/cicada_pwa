@@ -2,7 +2,7 @@ import React from 'react';
 import MediaSession from '@mebtte/react-media-session';
 
 import useAudioControl from './use_audio_control';
-import { Music as MusicType } from '../../constants/music';
+import { Music as MusicType } from './constants';
 
 const Wrapper = ({ music }: { music: MusicType }) => {
   const { onPlay, onPause, onPrevious, onNext } = useAudioControl();

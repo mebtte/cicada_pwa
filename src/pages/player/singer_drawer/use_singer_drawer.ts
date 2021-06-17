@@ -4,9 +4,9 @@ import getSingerMusicList from '@/apis/get_singer_music_list';
 import logger from '@/platform/logger';
 import { RequestStatus } from '@/constants';
 import openLink from '@/utils/open_link';
-import { MusicWithIndex } from '@/constants/music';
-import { Figure } from '@/constants/figure';
+import { Figure, MusicWithIndex } from '../constants';
 import eventemitter, { Type as EventType } from '../eventemitter';
+import { transformMusic } from '../utils';
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ export default () => {
         setMusicList(
           ml.map((m, index) => ({
             index: length - index,
-            music: m,
+            music: transformMusic(m),
           })),
         );
         setStatus(RequestStatus.SUCCESS);

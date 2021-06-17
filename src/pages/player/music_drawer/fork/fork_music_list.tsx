@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { Music } from '@/constants/music';
+import { Music } from '../../constants';
 import MusicInfo from '../../components/music_info';
 
 const Style = styled.div`

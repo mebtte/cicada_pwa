@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { MusicWithIndex } from '@/constants/music';
 import Input from '@/components/input';
 import Tooltip, { Placement } from '@/components/tooltip';
 import CircularLoader from '@/components/circular_loader';
@@ -10,6 +9,7 @@ import Container from '../container';
 import Playlist from './playlist';
 import Empty from './empty';
 import filterPlaylist from './filter_playlist';
+import { MusicWithIndex } from '../../constants';
 
 const Style = styled(Container)`
   display: flex;

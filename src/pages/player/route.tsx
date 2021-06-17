@@ -4,11 +4,11 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
 
 import { PLAYER_PATH } from '@/constants/route';
-import Recommend from './recommend';
-import Search from './search';
-import Musicbill from './musicbill';
-import Setting from './setting';
-import Lyric from './lyric';
+import Recommend from './pages/recommend';
+import Search from './pages/search';
+import Musicbill from './pages/musicbill';
+import Setting from './pages/setting';
+import Lyric from './pages/lyric';
 
 const Style = styled.div`
   flex: 1;

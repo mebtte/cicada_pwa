@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Scrollable from '@/components/scrollable';
-import { Music } from '@/constants/music';
+import { Music } from '../constants';
 import Singer from '../components/singer';
 import MusicTagList from '../components/music_tag_list';
 

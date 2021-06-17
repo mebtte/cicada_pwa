@@ -46,7 +46,7 @@ const Controller = () => {
   const [initialCover] = useState(getRandomCover());
   const { playqueue, currentPlayqueuePosition } = useContext(Context);
   const queueMusic = playqueue[currentPlayqueuePosition];
-  const { onView, onWatchMv, onAddToMusicbill, onAddToPlayqueue, onOperate } =
+  const { onView, onAddToMusicbill, onAddToPlayqueue, onOperate } =
     useMusicOperate(queueMusic ? queueMusic.music : null);
 
   return (
@@ -65,7 +65,6 @@ const Controller = () => {
           <MusicInfo
             music={queueMusic ? queueMusic.music : null}
             onViewMusic={onView}
-            onWatchMv={onWatchMv}
           />
           <Action
             onAddToMusicbill={onAddToMusicbill}

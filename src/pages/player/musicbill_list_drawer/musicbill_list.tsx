@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import scrollbar from '@/style/scrollbar';
-import { Music as MusicType } from '@/constants/music';
-import { LocalMusicbill } from '@/constants/musicbill';
+import { Musicbill as MusicbillType, Music as MusicType } from '../constants';
 import Musicbill from './musicbill';
 import CreateMusicbill from './create_musicbill';
 
@@ -22,7 +21,7 @@ const MusicbillList = ({
   musicbillList,
   music,
 }: {
-  musicbillList: LocalMusicbill[];
+  musicbillList: MusicbillType[];
   music?: MusicType;
 }) => (
   <Style>

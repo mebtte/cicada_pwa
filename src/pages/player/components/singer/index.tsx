@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Figure } from '@/constants/figure';
+import { Figure } from '../../constants';
 import eventemitter, { Type as EventType } from '../../eventemitter';
 
 const Style = styled.span`
   &::after {
     content: '|';
-    color: rgb(222 222 222);
+    color: var(--text-color-tertiary);
     margin: 0 2px;
   }
   &:last-child::after {
@@ -17,14 +17,13 @@ const Style = styled.span`
   > .singer {
     font-size: inherit;
     cursor: pointer;
-    color: rgb(155 155 155);
-    transition: all 300ms;
+    color: var(--text-color-secondary);
     &.unknown {
-      color: rgb(155 155 155) !important;
+      color: var(--text-color-secondary) !important;
       cursor: not-allowed;
     }
     &:hover {
-      color: rgb(55 55 55);
+      color: var(--text-color-primary);
     }
   }
 `;
@@ -37,7 +36,6 @@ const Singer = ({ singer }: { singer?: Figure }) => {
   return (
     <Style>
       {singer ? (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <span className="singer" onClick={onViewSinger}>
           {singer.name}
         </span>
@@ -48,4 +46,4 @@ const Singer = ({ singer }: { singer?: Figure }) => {
   );
 };
 
-export default Singer;
+export default React.memo(Singer);

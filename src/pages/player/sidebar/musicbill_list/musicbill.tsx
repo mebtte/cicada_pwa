@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { LocalMusicbill } from '@/constants/musicbill';
 import Avatar from '@/components/avatar';
 import ellipsis from '@/style/ellipsis';
 import { CONTAINETR_STYLE, NAME_STYLE, COVER_SIZE } from './constant';
+import { Musicbill as MusicbillType } from '../../constants';
 
 const Style = styled(Link)`
   display: block;
@@ -48,7 +48,7 @@ const Musicbill = ({
   to,
   active,
 }: {
-  musicbill: LocalMusicbill;
+  musicbill: MusicbillType;
   to: string;
   active: boolean;
 }) => {

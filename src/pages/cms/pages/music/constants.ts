@@ -3,7 +3,6 @@ import { Key } from '@/apis/cms_update_music';
 
 export interface Figure {
   id: string;
-  avatar: string;
   name: string;
   alias: string;
 }
@@ -14,12 +13,7 @@ export interface Music {
   name: string;
   alias: string;
   type: MusicType;
-  singers: {
-    id: string;
-    avatar: string;
-    name: string;
-    alias: string;
-  }[];
+  singers: Figure[];
   createTime: Date;
   sq: string;
   hq: string;

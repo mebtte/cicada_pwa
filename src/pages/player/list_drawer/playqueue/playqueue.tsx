@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import List from 'react-list';
 
-import scrollbar from '../../../../style/scrollbar';
-import { QueueMusic } from '../../../../constants/music';
+import scrollbar from '@/style/scrollbar';
+import { QueueMusic } from '../../constants';
 import Container from '../container';
 import Music from './music';
 
@@ -20,9 +20,10 @@ const Playqueue = ({
   playqueue: QueueMusic[];
   currentPlayqueuePosition: number;
 }) => {
-  const reversedPlayqueue = useMemo(() => [...playqueue].reverse(), [
-    playqueue,
-  ]);
+  const reversedPlayqueue = useMemo(
+    () => [...playqueue].reverse(),
+    [playqueue],
+  );
   const { length } = reversedPlayqueue;
   const activeIndex = currentPlayqueuePosition + 1;
   const itemRenderer = (index, key) => {

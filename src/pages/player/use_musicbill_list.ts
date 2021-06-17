@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { RequestStatus } from '@/constants';
-import { Music as MusicType } from '@/constants/music';
-import { Musicbill, LocalMusicbill } from '@/constants/musicbill';
 import getUserMusicbillListRequest from '@/apis/get_user_musicbill_list';
 import getUserMusicbillDetail from '@/apis/get_user_musicbill_detail';
 import addMusicToMusicbill from '@/apis/add_music_to_musicbill';
@@ -10,10 +8,12 @@ import removeMusicFromMusicbill from '@/apis/remove_music_from_musicbill';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import eventemitter, { Type as EventType } from './eventemitter';
+import { Music, Musicbill } from './constants';
+import { transformMusic } from './utils';
 
 export default () => {
   const [status, setStatus] = useState(RequestStatus.LOADING);
-  const [musicbillList, setMusicbillList] = useState<LocalMusicbill[]>([]);
+  const [musicbillList, setMusicbillList] = useState<Musicbill[]>([]);
   const getMusicbillList = useCallback(async () => {
     setStatus(RequestStatus.LOADING);
     try {
@@ -48,7 +48,7 @@ export default () => {
   }, [getMusicbillList]);
 
   useEffect(() => {
-    const getMusicbillListener = async (musicbill: LocalMusicbill) => {
+    const getMusicbillListener = async (musicbill: Musicbill) => {
       setMusicbillList((mbl) =>
         mbl.map((mb) => {
           if (mb.id === musicbill.id) {
@@ -61,7 +61,9 @@ export default () => {
         }),
       );
       try {
-        const { musicList } = await getUserMusicbillDetail(musicbill.id);
+        const { music_list: musicList } = await getUserMusicbillDetail(
+          musicbill.id,
+        );
         const { length } = musicList;
         setMusicbillList((mbl) =>
           mbl.map((mb) => {
@@ -70,7 +72,7 @@ export default () => {
                 ...mb,
                 status: RequestStatus.SUCCESS,
                 musicList: musicList.map((m, index) => ({
-                  music: m,
+                  music: transformMusic(m),
                   index: length - index,
                 })),
               };
@@ -129,8 +131,8 @@ export default () => {
       musicbill,
       music,
     }: {
-      musicbill: LocalMusicbill;
-      music: MusicType;
+      musicbill: Musicbill;
+      music: Music;
     }) => {
       const { id: musicbillId, name: musicbillName } = musicbill;
       const { id: musicId, name: musicName } = music;
@@ -189,8 +191,8 @@ export default () => {
       musicbill,
       music,
     }: {
-      musicbill: LocalMusicbill;
-      music: MusicType;
+      musicbill: Musicbill;
+      music: Music;
     }) => {
       const { id: musicbillId, name: musicbillName } = musicbill;
       const { id: musicId, name: musicName } = music;

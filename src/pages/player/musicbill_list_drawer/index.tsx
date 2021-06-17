@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 
 import { RequestStatus } from '@/constants';
-import { Music as MusicType } from '@/constants/music';
 import LoadingCard from '@/components/loading_card';
 import ErrorCard from '@/components/error_card';
 import Drawer, { Title } from '@/components/drawer';
@@ -15,6 +14,7 @@ import MusicbillList from './musicbill_list';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Context from '../context';
 import MusicInfo from '../components/music_info';
+import { Music as MusicType } from '../constants';
 
 const bodyProps = {
   style: {

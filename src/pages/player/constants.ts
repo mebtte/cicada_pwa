@@ -1,3 +1,5 @@
+import { RequestStatus } from '@/constants';
+import { MusicType } from '@/constants/music';
 import { Type as TagType } from '@/components/tag';
 
 export enum PlayMode {
@@ -32,4 +34,46 @@ export const PLAY_MODES = Object.keys(PLAY_MODE_MAP) as PlayMode[];
 export enum Query {
   KEYWORD = 'keyword',
   PAGE = 'page',
+}
+
+export interface Figure {
+  id: string;
+  name: string;
+  avatar: string;
+  alias: string;
+}
+
+export interface Music {
+  id: string;
+  cover: string;
+  name: string;
+  type: MusicType;
+  alias: string;
+  ac: string;
+  hq: string;
+  mvLink: string;
+  sq: string;
+  singers: Figure[];
+  fork: string[];
+  forkFrom: string[];
+}
+
+export interface MusicWithIndex {
+  index: number;
+  music: Music;
+}
+
+export interface QueueMusic extends MusicWithIndex {
+  pid: string;
+}
+
+export interface Musicbill {
+  id: string;
+  name: string;
+  cover: string;
+  order: number;
+  description: string;
+  createTime: Date;
+  musicList: MusicWithIndex[];
+  status: RequestStatus;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { QueueMusic } from '../../constants/music';
-import recordPlayLog from '../../apis/record_play_log';
+import recordPlayLog from '@/apis/record_play_log';
+import { QueueMusic } from './constants';
 import logger from '../../platform/logger';
 import eventemitter, { Type as EventType } from './eventemitter';
 import Context from './context';

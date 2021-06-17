@@ -1,20 +1,43 @@
 /* eslint-disable camelcase */
+import { MusicType } from '@/constants/music';
 import api from '.';
-import { ApiMusic } from '../constants/music';
-import transformApiMusic from '../utils/transform_api_music';
 
-async function getLatestMusicList(page: number, pageSize = 30) {
-  const { count, music_list: musicList } = await api.get<{
+/**
+ * 获取最新音乐列表
+ * @author mebtte<hi@mebtte.com>
+ */
+function getLatestMusicList({
+  page = 1,
+  pageSize = 30,
+}: {
+  page?: number;
+  pageSize?: number;
+} = {}) {
+  return api.get<{
     count: number;
-    music_list: ApiMusic[];
+    music_list: {
+      id: string;
+      cover: string;
+      name: string;
+      type: MusicType;
+      alias: string;
+      ac: string;
+      hq: string;
+      mv_link: string;
+      sq: string;
+      singers: {
+        id: string;
+        name: string;
+        avatar: string;
+        alias: string;
+      }[];
+      fork?: string[];
+      fork_from?: string[];
+    }[];
   }>('/music/latest_list', {
     params: { page, page_size: pageSize },
     withToken: true,
   });
-  return {
-    count,
-    musicList: musicList.map(transformApiMusic),
-  };
 }
 
 export default getLatestMusicList;

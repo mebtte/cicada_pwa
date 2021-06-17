@@ -1,13 +1,12 @@
 import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Figure } from '@/constants/figure';
 import ellipsis from '@/style/ellipsis';
-import { QueueMusic } from '@/constants/music';
 import IconButton, { Name, Type } from '@/components/icon_button';
 import useMusicOperate from '../../use_music_operate';
 import eventemitter, { Type as EventType } from '../../eventemitter';
 import Singer from '../../components/singer';
+import { Figure, QueueMusic } from '../../constants';
 
 const HEIGHT = 36;
 const ACTION_SIZE = 20;

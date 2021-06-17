@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Music, MusicWithIndex } from '../../constants/music';
+import { Music, MusicWithIndex } from './constants';
 import eventemitter, { Type as EventType } from './eventemitter';
 import toast from '../../platform/toast';
 

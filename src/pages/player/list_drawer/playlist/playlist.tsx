@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import List from 'react-list';
 
-import scrollbar from '../../../../style/scrollbar';
-import { MusicWithIndex as MusicType } from '../../../../constants/music';
+import scrollbar from '@/style/scrollbar';
+import { MusicWithIndex } from '../../constants';
 import Music from './music';
 
 const Style = styled.div`
@@ -14,7 +14,7 @@ const Style = styled.div`
   ${scrollbar}
 `;
 
-const Playlist = ({ playlist }: { playlist: MusicType[] }) => {
+const Playlist = ({ playlist }: { playlist: MusicWithIndex[] }) => {
   const itemRenderer = (index, key) => (
     <Music key={key} listMusic={playlist[index]} />
   );

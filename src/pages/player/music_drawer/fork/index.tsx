@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Music } from '@/constants/music';
+import { Music } from '../../constants';
 import useMusicForkMusicList from './use_fork_music_list';
 import ForkMusicList from './fork_music_list';
 

@@ -1,5 +1,5 @@
-import { ApiMusic } from '@/constants/music';
-import transformApiMusic from '@/utils/transform_api_music';
+/* eslint-disable camelcase */
+import { MusicType } from '@/constants/music';
 import api from '.';
 
 export const KEYWORD_MAX_LENGTH = 50;
@@ -13,9 +13,27 @@ async function searchMusic({
   page?: number;
   pageSize?: number;
 }) {
-  const data = await api.get<{
+  return api.get<{
     total: number;
-    list: ApiMusic[];
+    list: {
+      id: string;
+      cover: string;
+      name: string;
+      type: MusicType;
+      alias: string;
+      ac: string;
+      hq: string;
+      mv_link: string;
+      sq: string;
+      singers: {
+        id: string;
+        name: string;
+        avatar: string;
+        alias: string;
+      }[];
+      fork?: string[];
+      fork_from?: string[];
+    }[];
   }>('/search_music', {
     params: {
       keyword,
@@ -24,10 +42,6 @@ async function searchMusic({
     },
     withToken: true,
   });
-  return {
-    total: data.total,
-    list: data.list.map(transformApiMusic),
-  };
 }
 
 export default searchMusic;

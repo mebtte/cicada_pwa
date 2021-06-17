@@ -2,9 +2,9 @@ import React from 'react';
 import { useTransition } from 'react-spring';
 import styled from 'styled-components';
 
-import { Music as MusicType } from '@/constants/music';
 import MusicInfo from './music_info';
 import Skeleton from './skeleton';
+import { Music as MusicType } from '../../constants';
 
 const Style = styled.div`
   flex: 1;
@@ -17,11 +17,9 @@ const Style = styled.div`
 const Wrapper = ({
   music,
   onViewMusic,
-  onWatchMv,
 }: {
   music?: MusicType;
   onViewMusic: () => void;
-  onWatchMv: () => void;
 }) => {
   const transitions = useTransition(music, {
     from: { opacity: 0, transform: 'translate(0, -150%)' },
@@ -33,12 +31,7 @@ const Wrapper = ({
       {transitions((style, m) => {
         if (m) {
           return (
-            <MusicInfo
-              style={style}
-              music={m}
-              onViewMusic={onViewMusic}
-              onWatchMv={onWatchMv}
-            />
+            <MusicInfo style={style} music={m} onViewMusic={onViewMusic} />
           );
         }
         return <Skeleton style={style} />;

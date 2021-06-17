@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 import ellipsis from '@/style/ellipsis';
-import { Music as MusicType } from '@/constants/music';
 import Avatar from '@/components/avatar';
 import eventemitter, { Type as EventType } from '../eventemitter';
 import Singer from './singer';
 import MusicTagList from './music_tag_list';
+import { Music as MusicType } from '../constants';
 
 const Style = styled.div`
   display: flex;

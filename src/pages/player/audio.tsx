@@ -3,8 +3,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import eventemitter, { Type as EventType } from './eventemitter';
 import logger from '../../platform/logger';
 import dialog from '../../platform/dialog';
-import { QueueMusic } from '../../constants/music';
-import { PlayMode } from './constants';
+import { QueueMusic, PlayMode } from './constants';
 
 const TIME_UPDATE_INTERVAL = 1000 * 0.5; // timeUpdate最大时间间隔
 

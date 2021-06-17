@@ -6,19 +6,21 @@ import SingerSkeleton from '../singer/skeleton';
 import Container from './container';
 
 const Wrapper = (props: { [key: string]: any }) => {
-  const nameWidth = useMemo(() => getRandomInteger(30, 100), []);
+  const nameWidth = useMemo(() => getRandomInteger(50, 150), []);
   return (
     <Container {...props}>
       <div className="index">
         <Skeleton width={25} />
       </div>
       <div className="info">
-        <span className="name">
-          <Skeleton width={nameWidth} />
-        </span>
-        <span className="singers">
+        <div className="top">
+          <div className="text">
+            <Skeleton width={nameWidth} />
+          </div>
+        </div>
+        <div className="singers">
           <SingerSkeleton />
-        </span>
+        </div>
       </div>
     </Container>
   );

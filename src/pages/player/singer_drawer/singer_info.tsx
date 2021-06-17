@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import { Figure } from '@/constants/figure';
 import Avatar from '@/components/avatar';
+import { Figure } from '../constants';
 
 const COVER_SIZE = 200;
 

@@ -2,8 +2,6 @@ import React, { useCallback } from 'react';
 
 import { RequestStatus } from '@/constants';
 import toast from '@/platform/toast';
-import { Music as MusicType } from '@/constants/music';
-import { LocalMusicbill } from '@/constants/musicbill';
 import Avatar from '@/components/avatar';
 import Checkbox from '@/components/checkbox';
 import CircularLoader from '@/components/circular_loader';
@@ -11,13 +9,14 @@ import Icon, { Name } from '@/components/icon';
 import playerEventemitter, { Type as PlayerEventType } from '../eventemitter';
 import MusicbillContainer from './musicbill_container';
 import { COVER_SIZE, COVER_STYLE, ICON_SIZE, ICON_STYLE } from './constant';
+import { Music as MusicType, Musicbill as MusicbillType } from '../constants';
 
 const Musicbill = ({
   music,
   musicbill,
 }: {
   music?: MusicType;
-  musicbill: LocalMusicbill;
+  musicbill: MusicbillType;
 }) => {
   const onToggleMusicbill = useCallback(() => {
     const { status } = musicbill;
