@@ -63,23 +63,32 @@ const TextEditDialog = ({
     }
     setSaving(true);
     try {
+      let updated = false;
+
       if (musicbill.name !== name) {
         await updateUserMusicbillRequest({
           id: musicbill.id,
           key: Key.NAME,
           value: name,
         });
+        updated = true;
       }
+
       if (musicbill.description !== description) {
         await updateUserMusicbillRequest({
           id: musicbill.id,
           key: Key.DESCRIPTION,
           value: description,
         });
+        updated = true;
       }
-      eventemitter.emit(EventType.USER_MUSICBILL_UPDATED, {
-        id: musicbill.id,
-      });
+
+      if (updated) {
+        eventemitter.emit(EventType.USER_MUSICBILL_UPDATED, {
+          id: musicbill.id,
+        });
+      }
+
       onClose();
     } catch (error) {
       logger.error(error, { description: '更新歌单信息失败', report: true });
