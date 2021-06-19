@@ -5,7 +5,7 @@ import { useTransition } from 'react-spring';
 import { MusicType } from '@/constants/music';
 import { RequestStatus } from '@/constants';
 import ErrorCard from '@/components/error_card';
-import useLrc from '../../use_lrc';
+import useMusicLrc from '@/utils/use_music_lrc';
 import { Empty } from './constant';
 import CardContainer from './card_container';
 import Skeleton from './skeleton';
@@ -27,14 +27,14 @@ const cardStyle = {
 };
 
 const Wrapper = ({ music }: { music: Music }) => {
-  const { status, reload, lrc } = useLrc(music);
+  const { lrc, retry } = useMusicLrc(music.id);
   const actualStatus =
     // eslint-disable-next-line no-nested-ternary
     music.type === MusicType.INSTRUMENT
       ? STATUS.INSTRUMENT
-      : status === RequestStatus.SUCCESS && !lrc
+      : lrc.status === RequestStatus.SUCCESS && !lrc
       ? STATUS.EMPTY
-      : status;
+      : lrc.status;
   const transitions = useTransition(actualStatus, {
     from: {
       opacity: 0,
@@ -50,7 +50,8 @@ const Wrapper = ({ music }: { music: Music }) => {
     <Style>
       {transitions((style, s) => {
         if (s === STATUS.SUCCESS) {
-          return <Lyric style={style} lrc={lrc} />;
+          // @ts-expect-error
+          return <Lyric style={style} lrc={lrc.value} />;
         }
         if (s === STATUS.LOADING) {
           return <Skeleton style={style} />;
@@ -73,7 +74,7 @@ const Wrapper = ({ music }: { music: Music }) => {
           <CardContainer style={style}>
             <ErrorCard
               errorMessage="获取歌词失败"
-              retry={reload}
+              retry={retry}
               style={cardStyle}
             />
           </CardContainer>

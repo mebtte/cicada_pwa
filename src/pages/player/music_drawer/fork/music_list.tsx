@@ -24,7 +24,13 @@ const Style = styled.div`
   }
 `;
 
-const ForkMusicList = ({ forkMusicList }: { forkMusicList: Music[] }) => {
+const MusicList = ({
+  label,
+  musicList,
+}: {
+  label: string;
+  musicList: Music[];
+}) => {
   const contentRef = useRef<HTMLDivElement>();
   const [maxHeight, setMaxHeight] = useState(0);
   useLayoutEffect(() => {
@@ -34,9 +40,9 @@ const ForkMusicList = ({ forkMusicList }: { forkMusicList: Music[] }) => {
   return (
     <Style style={{ maxHeight, opacity: maxHeight ? 1 : 0 }}>
       <div className="content" ref={contentRef}>
-        <div className="title">被以下音乐二次创作</div>
+        <div className="title">{label}</div>
         <div className="list">
-          {forkMusicList.map((m) => (
+          {musicList.map((m) => (
             <MusicInfo key={m.id} music={m} />
           ))}
         </div>
@@ -45,4 +51,4 @@ const ForkMusicList = ({ forkMusicList }: { forkMusicList: Music[] }) => {
   );
 };
 
-export default ForkMusicList;
+export default MusicList;

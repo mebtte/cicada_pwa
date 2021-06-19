@@ -5,7 +5,7 @@ import eventemitter, { Type as EventType } from '../eventemitter';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [music, setMusic] = useState<MusicType>(null);
+  const [music, setMusic] = useState<MusicType | null>(null);
   const onClose = useCallback(() => setOpen(false), []);
 
   useEffect(() => {

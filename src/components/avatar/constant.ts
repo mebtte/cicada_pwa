@@ -28,14 +28,4 @@ export const TRANSITION_LIST = [
     enter: { opacity: 1, transform: 'translate(0%)' },
     leave: { opacity: 0, transform: 'translate(100%)' },
   },
-  {
-    from: { opacity: 0, transform: 'translate(0, -100%)' },
-    enter: { opacity: 1, transform: 'translate(0, 0%)' },
-    leave: { opacity: 0, transform: 'translate(0, 100%)' },
-  },
-  {
-    from: { opacity: 0, transform: 'translate(0, -100%)' },
-    enter: { opacity: 1, transform: 'translate(0, 0%)' },
-    leave: { opacity: 0, transform: 'translate(0, 100%)' },
-  },
 ];
