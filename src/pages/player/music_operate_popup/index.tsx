@@ -5,7 +5,7 @@ import Popup from '@/components/popup';
 import { Name } from '@/components/icon';
 import { Music as MusicType } from '../constants';
 import useMusicOperate from '../use_music_operate';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import MusicInfo from '../components/music_info';
 import MenuItem from './menu_item';
 
@@ -80,4 +80,4 @@ const MusicOperateDrawer = () => {
   );
 };
 
-export default MusicOperateDrawer;
+export default React.memo(MusicOperateDrawer);

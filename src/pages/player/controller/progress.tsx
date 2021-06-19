@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Slider from '@/components/slider';
 import formatSecond from '@/utils/format_second';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import Context from '../context';
 
 const Style = styled.div`
@@ -31,9 +31,10 @@ const sliderStyle = {
 
 const Progress = () => {
   const { audioDuration } = useContext(Context);
-  const durationString = useMemo(() => formatSecond(audioDuration), [
-    audioDuration,
-  ]);
+  const durationString = useMemo(
+    () => formatSecond(audioDuration),
+    [audioDuration],
+  );
   const [currentTime, setCurrentTime] = useState(0);
   const setTime = (p) => {
     if (!audioDuration) {

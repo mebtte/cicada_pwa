@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import Tooltip from '@/components/tooltip';
-import eventemitter, { Type as EventType } from '../../eventemitter';
+import eventemitter, { EventType } from '../../eventemitter';
 import { STATUS } from './constant';
 
 const ACTION_SIZE = 20;

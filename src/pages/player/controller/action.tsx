@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Tooltip from '@/components/tooltip';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import useAudioControl from '../use_audio_control';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import Context from '../context';
 
 const ACTION_SPACE = 15;
@@ -17,7 +17,7 @@ const Style = styled.div`
     width: 1px;
     height: 15px;
     margin-left: ${ACTION_SPACE}px;
-    background-color: rgb(222 222 222);
+    background-color: var(--text-color-secondary);
   }
   > .action {
     margin-left: ${ACTION_SPACE}px;

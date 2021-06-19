@@ -7,7 +7,7 @@ import {
   PLAY_MODE_MAP,
   PLAY_MODES,
 } from '../../constants';
-import eventemitter, { Type as EventType } from '../../eventemitter';
+import eventemitter, { EventType } from '../../eventemitter';
 import Item from './item';
 
 const tagStyle = {

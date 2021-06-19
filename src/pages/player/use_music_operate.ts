@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { Music as MusicType } from './constants';
-import eventemitter, { Type as EventType } from './eventemitter';
+import eventemitter, { EventType } from './eventemitter';
 
 export default (music?: MusicType, afterOperate?: (...params: any) => any) => {
   const onView = useCallback(() => {

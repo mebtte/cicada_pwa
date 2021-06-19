@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import { PLAYER_PATH } from '@/constants/route';
 import getRandomCover from '@/utils/get_random_cover';
 import Avatar from '@/components/avatar';
 import useMusicOperate from '../use_music_operate';
@@ -11,21 +9,19 @@ import Progress from './progress';
 import MusicInfo from './music_info';
 import Action from './action';
 import { COVER_SIZE } from './constant';
+import eventemitter, { EventType } from '../eventemitter';
 
+const INITIAL_COVER = getRandomCover();
 const Style = styled.div`
-  z-index: 2;
+  z-index: 3;
   height: 60px;
   display: flex;
   align-items: flex-end;
   box-sizing: border-box;
   padding: 0 20px 4px 20px;
-  > .cover-wrapper {
-    &:focus {
-      outline: none;
-    }
-    > .cover {
-      cursor: pointer;
-    }
+  background: rgb(255 255 255 / 0.75);
+  > .cover {
+    cursor: pointer;
   }
   > .right {
     flex: 1;
@@ -41,9 +37,9 @@ const Style = styled.div`
     }
   }
 `;
+const openLyric = () => eventemitter.emit(EventType.OPEN_LYRIC);
 
 const Controller = () => {
-  const [initialCover] = useState(getRandomCover());
   const { playqueue, currentPlayqueuePosition } = useContext(Context);
   const queueMusic = playqueue[currentPlayqueuePosition];
   const { onView, onAddToMusicbill, onAddToPlayqueue, onOperate } =
@@ -51,14 +47,13 @@ const Controller = () => {
 
   return (
     <Style>
-      <Link className="cover-wrapper" to={PLAYER_PATH.LYRIC}>
-        <Avatar
-          className="cover"
-          animated
-          size={COVER_SIZE}
-          src={queueMusic ? queueMusic.music.cover : initialCover}
-        />
-      </Link>
+      <Avatar
+        className="cover"
+        animated
+        size={COVER_SIZE}
+        src={queueMusic ? queueMusic.music.cover : INITIAL_COVER}
+        onClick={openLyric}
+      />
       <div className="right">
         <Progress />
         <div className="right-bottom">

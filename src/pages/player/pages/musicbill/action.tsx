@@ -10,7 +10,7 @@ import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
 import eventemitter, { Type as EventType } from './eventemitter';
 import playerEventemitter, {
-  Type as PlayerEventType,
+  EventType as PlayerEventType,
 } from '../../eventemitter';
 import { TopContent } from './constant';
 import { Musicbill } from '../../constants';
@@ -62,10 +62,9 @@ const Action = ({
             try {
               await removeMusicbillRequest(musicbill.id);
               toast.success(`歌单"${musicbill.name}"已删除`);
-              playerEventemitter.emit(
-                PlayerEventType.REMOVE_MUSICBILL,
-                musicbill.id,
-              );
+              playerEventemitter.emit(PlayerEventType.USER_MUSICBILL_REMOVED, {
+                id: musicbill.id,
+              });
             } catch (error) {
               logger.error(error, {
                 description: '删除歌单失败',

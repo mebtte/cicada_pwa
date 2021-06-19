@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import { Music as MusicType } from '../constants';
 
 export default () => {

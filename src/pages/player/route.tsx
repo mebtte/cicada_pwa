@@ -8,7 +8,6 @@ import Recommend from './pages/recommend';
 import Search from './pages/search';
 import Musicbill from './pages/musicbill';
 import Setting from './pages/setting';
-import Lyric from './pages/lyric';
 
 const Style = styled.div`
   flex: 1;
@@ -33,18 +32,12 @@ const Wrapper = () => {
   });
   return (
     <Style>
-      {transitions(({ opacity, transform }, l) => (
-        <AnimatedDiv
-          style={{
-            opacity,
-            transform,
-          }}
-        >
+      {transitions((style, l) => (
+        <AnimatedDiv style={style}>
           <Switch location={l}>
             <Route path={PLAYER_PATH.SEARCH} component={Search} />
             <Route path={PLAYER_PATH.MUSICBILL} component={Musicbill} />
             <Route path={PLAYER_PATH.SETTING} component={Setting} />
-            <Route path={PLAYER_PATH.LYRIC} component={Lyric} />
             <Route path="*" component={Recommend} />
           </Switch>
         </AnimatedDiv>

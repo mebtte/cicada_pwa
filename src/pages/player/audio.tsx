@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 
-import eventemitter, { Type as EventType } from './eventemitter';
+import eventemitter, { EventType } from './eventemitter';
 import logger from '../../platform/logger';
 import dialog from '../../platform/dialog';
 import { QueueMusic, PlayMode } from './constants';

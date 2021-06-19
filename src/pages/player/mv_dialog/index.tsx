@@ -39,4 +39,4 @@ const MvDialog = () => {
   );
 };
 
-export default MvDialog;
+export default React.memo(MvDialog);

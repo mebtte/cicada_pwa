@@ -3,7 +3,7 @@ import React from 'react';
 import recordPlayLog from '@/apis/record_play_log';
 import { QueueMusic } from './constants';
 import logger from '../../platform/logger';
-import eventemitter, { Type as EventType } from './eventemitter';
+import eventemitter, { EventType } from './eventemitter';
 import Context from './context';
 
 interface Props {

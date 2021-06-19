@@ -10,7 +10,7 @@ import ErrorCard from '@/components/error_card';
 import Empty from '@/components/empty';
 import Skeleton from './skeleton';
 import Musicbill from './musicbill';
-import eventemitter, { Type as EventType } from '../../eventemitter';
+import eventemitter, { EventType } from '../../eventemitter';
 import Context from '../../context';
 import Action from './action';
 import { STATUS } from './constant';

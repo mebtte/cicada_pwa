@@ -9,7 +9,6 @@ export default createGlobalStyle`
 
     --text-color-primary: rgb(55 55 55);
     --text-color-secondary: rgb(155 155 155);
-    --text-color-tertiary: rgb(222 222 222);
   }
 
   body {

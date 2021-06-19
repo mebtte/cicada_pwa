@@ -5,7 +5,7 @@ import logger from '@/platform/logger';
 import { RequestStatus } from '@/constants';
 import openLink from '@/utils/open_link';
 import { Figure, MusicWithIndex } from '../constants';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import { transformMusic } from '../utils';
 
 export default () => {

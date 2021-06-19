@@ -1,6 +1,6 @@
 import Eventemitter from 'eventemitter3';
 
-export enum Type {
+export enum EventType {
   AUDIO_WAITING = 'audio_waiting', // 音频加载中
   AUDIO_CAN_PLAY_THROUGH = 'audio_can_play_through', // 音频可以播放
   AUDIO_PLAY = 'audio_play', // 音频播放
@@ -28,13 +28,13 @@ export enum Type {
 
   RELOAD_MUSICBILL_LIST = 'update_musicbill_list', // 重新获取歌单列表
   FETCH_MUSICBILL = 'fetch_musicbill', // 获取歌单 { id: string }
-  REMOVE_MUSICBILL = 'remove_musicbill', // 移除歌单
   ADD_MUSIC_TO_MUSICBILL = 'add_music_to_musicbill', // 添加音乐到歌单
   REMOVE_MUSIC_FROM_MUSICBILL = 'remove_music_from_musicbill', // 从歌单移除音乐
   UPDATE_MUSICBILL_ORDER = 'update_musicbill_order', // 更新歌单顺序
 
   CHANGE_PLAY_MODE = 'change_play_mode', // 更换播放模式
 
+  OPEN_LYRIC = 'open_lyric', // 打开歌词, {  }
   OPEN_CREATE_MUSICBILL_DIALOG = 'open_create_musicbill_dialog',
   OPEN_MUSIC_OPERATE_POPUP = 'open_music_operate_popup',
   OPEN_MUSICBILL_LIST_DRAWER = 'open_musicbill_list_drawer',
@@ -47,7 +47,8 @@ export enum Type {
   TOGGLE_PLAYLIST_PLAYQUEUE_DRAWER = 'toggle_playlist_playqueue_drawer',
 
   USER_MUSICBILL_CREATED = 'user_musicbill_created', // 用户歌单已创建, { id: string }
-  USER_MUSICBILL_UPDATED = 'user_musicbill_update', // 用户歌单已更新, { musicbill: Musicbill }
+  USER_MUSICBILL_UPDATED = 'user_musicbill_update', // 用户歌单已更新, { id: string }
+  USER_MUSICBILL_REMOVED = 'user_musicbill_removed', // 用户歌单已被移除, { id: string }
 }
 
 export default new Eventemitter();

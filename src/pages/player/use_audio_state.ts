@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import eventemitter, { Type as EventType } from './eventemitter';
+import eventemitter, { EventType } from './eventemitter';
 
 export default () => {
   const [loading, setLoading] = useState(false);
