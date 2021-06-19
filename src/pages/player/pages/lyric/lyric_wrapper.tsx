@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { useTransition } from 'react-spring';
 
@@ -28,14 +29,22 @@ const cardStyle = {
 
 const Wrapper = ({ music }: { music: Music }) => {
   const { lrc, retry } = useMusicLrc(music.id);
-  const actualStatus =
-    // eslint-disable-next-line no-nested-ternary
-    music.type === MusicType.INSTRUMENT
-      ? STATUS.INSTRUMENT
-      : lrc.status === RequestStatus.SUCCESS && !lrc
-      ? STATUS.EMPTY
-      : lrc.status;
-  const transitions = useTransition(actualStatus, {
+  const lrcObject = useMemo(
+    () => ({
+      status:
+        music.type === MusicType.INSTRUMENT
+          ? STATUS.INSTRUMENT
+          : lrc.status === RequestStatus.SUCCESS
+          ? lrc.value
+            ? STATUS.SUCCESS
+            : STATUS.EMPTY
+          : lrc.status,
+      // @ts-expect-error
+      lrc: lrc.value,
+    }),
+    [lrc, music],
+  );
+  const transitions = useTransition(lrcObject, {
     from: {
       opacity: 0,
     },
@@ -48,22 +57,21 @@ const Wrapper = ({ music }: { music: Music }) => {
   });
   return (
     <Style>
-      {transitions((style, s) => {
-        if (s === STATUS.SUCCESS) {
-          // @ts-expect-error
-          return <Lyric style={style} lrc={lrc.value} />;
+      {transitions((style, l) => {
+        if (l.status === STATUS.SUCCESS) {
+          return <Lyric style={style} lrc={l.lrc} />;
         }
-        if (s === STATUS.LOADING) {
+        if (l.status === STATUS.LOADING) {
           return <Skeleton style={style} />;
         }
-        if (s === STATUS.INSTRUMENT) {
+        if (l.status === STATUS.INSTRUMENT) {
           return (
             <CardContainer style={style}>
               <Empty>纯音乐, 暂无歌词</Empty>
             </CardContainer>
           );
         }
-        if (s === STATUS.EMPTY) {
+        if (l.status === STATUS.EMPTY) {
           return (
             <CardContainer style={style}>
               <Empty>暂未收录歌词</Empty>

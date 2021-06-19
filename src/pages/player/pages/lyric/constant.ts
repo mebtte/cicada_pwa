@@ -35,4 +35,5 @@ export const container = css`
 
 export const Empty = styled.div`
   font-size: 12px;
+  color: var(--text-color-secondary);
 `;
