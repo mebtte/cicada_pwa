@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
@@ -6,6 +6,7 @@ import useOpen from './use_open';
 import { Music } from '../constants';
 import Action from './action';
 import Background from './background';
+import Content from './content';
 
 const Style = styled(animated.div)`
   z-index: 2;
@@ -20,28 +21,43 @@ const Lyric = ({
   music,
   onClose,
   style,
+  turntable,
+  toggleTurntable,
 }: {
   music: Music;
   onClose: () => void;
   style: unknown;
-}) => {
-  return (
-    <Style style={style}>
-      <Background cover={music.cover} />
-      <Action onClose={onClose} />
-    </Style>
-  );
-};
+  turntable: boolean;
+  toggleTurntable: () => void;
+}) => (
+  <Style style={style}>
+    <Background cover={music.cover} />
+    <Content music={music} turntable={turntable} />
+    <Action onClose={onClose} toggleTurntable={toggleTurntable} />
+  </Style>
+);
 
 const Wrapper = ({ music }: { music: Music }) => {
   const { open, onClose } = useOpen();
+
+  const [turntable, setTurntable] = useState(false);
+  const toggleTurntable = useCallback(() => setTurntable((t) => !t), []);
+
   const transitions = useTransition(open, {
     from: { transform: 'translateY(100%)', opacity: 0 },
     enter: { transform: 'translateY(0%)', opacity: 1 },
     leave: { transform: 'translateY(100%)', opacity: 0 },
   });
   return transitions((style, o) =>
-    o ? <Lyric music={music} onClose={onClose} style={style} /> : null,
+    o ? (
+      <Lyric
+        music={music}
+        onClose={onClose}
+        style={style}
+        turntable={turntable}
+        toggleTurntable={toggleTurntable}
+      />
+    ) : null,
   );
 };
 

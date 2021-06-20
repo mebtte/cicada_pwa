@@ -31,7 +31,7 @@ const StyledScrollable = styled(Scrollable)`
   ${full}
 `;
 const scrollableMaskProps = {
-  size: 100,
+  size: 50,
   style: { zIndex: 3 },
 };
 const CenterBox = styled(MusicbillListContainer)`

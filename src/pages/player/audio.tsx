@@ -48,7 +48,9 @@ const Audio = ({
       duration - currentTime < TIME_UPDATE_INTERVAL
     ) {
       lastUpdateTime.current = now;
-      return eventemitter.emit(EventType.AUDIO_TIME_UPDATE, currentTime);
+      return eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
+        currentMillisecond: currentTime * 1000,
+      });
     }
   }, []);
 
@@ -57,7 +59,7 @@ const Audio = ({
   }, [volume]);
   useEffect(() => {
     audioRef.current.currentTime = 0;
-    eventemitter.emit(EventType.AUDIO_TIME_UPDATE, 0);
+    eventemitter.emit(EventType.AUDIO_TIME_UPDATED, { currentMillisecond: 0 });
     audioRef.current.play();
   }, [pid]);
   useEffect(() => {
@@ -66,7 +68,9 @@ const Audio = ({
       setTimeout(() => {
         audioRef.current.currentTime = time;
         audioRef.current.play();
-        eventemitter.emit(EventType.AUDIO_TIME_UPDATE, time);
+        eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
+          currentMillisecond: time * 1000,
+        });
       }, 0);
     };
     const togglePlayListener = () => {

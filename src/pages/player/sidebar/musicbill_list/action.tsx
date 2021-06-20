@@ -51,7 +51,7 @@ const Action = ({
     {musicbillCount ? (
       <Tooltip title="排序歌单">
         <IconButton
-          name={IconButtonName.SORT_OUTLINE}
+          name={IconButtonName.EXCHANGE_OUTLINE}
           size={ACTION_SIZE}
           onClick={onOrderMusicbillList}
           disabled={status !== RequestStatus.SUCCESS}

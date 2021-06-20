@@ -24,33 +24,43 @@ const Style = styled.div`
   }
 `;
 
-const Action = ({ onClose }: { onClose: () => void }) => {
-  return (
-    <Style>
-      <IconButton
-        name={Name.DOWN_OUTLINE}
-        onClick={onClose}
-        size={ACTION_SIZE}
-        className="action"
-      />
-      {IS_ELECTRON && IS_WINDOWS ? (
-        <>
-          <IconButton
-            name={Name.MINIMIZE_OUTLINE}
-            onClick={minimizePlayerWindow}
-            size={ACTION_SIZE}
-            className="action"
-          />
-          <IconButton
-            name={Name.WRONG_OUTLINE}
-            onClick={hidePlayerWindow}
-            size={ACTION_SIZE}
-            className="action"
-          />
-        </>
-      ) : null}
-    </Style>
-  );
-};
+const Action = ({
+  toggleTurntable,
+  onClose,
+}: {
+  toggleTurntable: () => void;
+  onClose: () => void;
+}) => (
+  <Style>
+    <IconButton
+      name={Name.EXCHANGE_OUTLINE}
+      onClick={toggleTurntable}
+      size={ACTION_SIZE}
+      className="action"
+    />
+    <IconButton
+      name={Name.DOWN_OUTLINE}
+      onClick={onClose}
+      size={ACTION_SIZE}
+      className="action"
+    />
+    {IS_ELECTRON && IS_WINDOWS ? (
+      <>
+        <IconButton
+          name={Name.MINIMIZE_OUTLINE}
+          onClick={minimizePlayerWindow}
+          size={ACTION_SIZE}
+          className="action"
+        />
+        <IconButton
+          name={Name.WRONG_OUTLINE}
+          onClick={hidePlayerWindow}
+          size={ACTION_SIZE}
+          className="action"
+        />
+      </>
+    ) : null}
+  </Style>
+);
 
 export default Action;

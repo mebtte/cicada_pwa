@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
 import Slider from '@/components/slider';
 import formatSecond from '@/utils/format_second';
 import eventemitter, { EventType } from '../eventemitter';
 import Context from '../context';
+import useAudioCurrentMillisecond from '../use_audio_current_millisecond';
 
 const Style = styled.div`
   display: flex;
@@ -40,7 +41,8 @@ const Progress = () => {
     () => formatSecond(audioDuration),
     [audioDuration],
   );
-  const [currentTime, setCurrentTime] = useState(0);
+
+  const currentMillisecond = useAudioCurrentMillisecond();
   const setTime = (p) => {
     if (!audioDuration) {
       return;
@@ -49,14 +51,7 @@ const Progress = () => {
     eventemitter.emit(EventType.ACTION_SET_TIME, time);
   };
 
-  useEffect(() => {
-    const timeUpdateListener = (time: number) => setCurrentTime(time);
-    eventemitter.on(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
-    return () =>
-      void eventemitter.off(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
-  }, []);
-
-  const percent = audioDuration ? currentTime / audioDuration : 0;
+  const percent = audioDuration ? currentMillisecond / 1000 / audioDuration : 0;
   return (
     <Style>
       <Slider
@@ -68,7 +63,7 @@ const Progress = () => {
         step={0.005}
       />
       <div className="time">
-        <span>{formatSecond(currentTime)}</span>
+        <span>{formatSecond(currentMillisecond / 1000)}</span>
         <span className="symbol" />
         <span>{durationString}</span>
       </div>

@@ -20,7 +20,7 @@ import QuestionFill from './question_fill';
 import RefreshOutline from './refresh_outline';
 import SettingOutline from './setting_outline';
 import ShieldFill from './shield_fill';
-import SortOutline from './sort_outline';
+import ExchangeOutline from './exchange_outline';
 import WrongOutline from './wrong_outline';
 import SearchOutline from './search_outline';
 import VideoOutline from './video_outline';
@@ -102,7 +102,7 @@ export enum Name {
   SEARCH_OUTLINE = 'SearchOutline',
   SETTING_OUTLINE = 'SettingOutline',
   SHIELD_FILL = 'ShieldFill',
-  SORT_OUTLINE = 'SortOutline',
+  EXCHANGE_OUTLINE = 'ExchangeOutline',
   WRONG_OUTLINE = 'WrongOutline',
   VIDEO_OUTLINE = 'VideoOutline',
   SEARCH_LIST_OUTLINE = 'SearchListOutline',
@@ -158,7 +158,7 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.SEARCH_OUTLINE]: SearchOutline,
   [Name.SETTING_OUTLINE]: SettingOutline,
   [Name.SHIELD_FILL]: ShieldFill,
-  [Name.SORT_OUTLINE]: SortOutline,
+  [Name.EXCHANGE_OUTLINE]: ExchangeOutline,
   [Name.WRONG_OUTLINE]: WrongOutline,
   [Name.VIDEO_OUTLINE]: VideoOutline,
   [Name.GOTO_OUTLINE]: GotoOutline,

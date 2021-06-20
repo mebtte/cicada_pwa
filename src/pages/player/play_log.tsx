@@ -17,11 +17,11 @@ class PlayLog extends React.PureComponent<Props> {
   // @ts-expect-error
   context: React.ContextType<typeof Context>;
 
-  currentTime: number;
+  currentMillisecond: number;
 
   componentDidMount() {
     window.addEventListener('beforeunload', this.onBeforeUnload);
-    eventemitter.on(EventType.AUDIO_TIME_UPDATE, this.onTimeUpdate);
+    eventemitter.on(EventType.AUDIO_TIME_UPDATED, this.onTimeUpdate);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -29,7 +29,7 @@ class PlayLog extends React.PureComponent<Props> {
     if (queueMusic.pid !== this.props.queueMusic.pid) {
       recordPlayLog({
         id: queueMusic.music.id,
-        percent: duration ? this.currentTime / duration : 0,
+        percent: duration ? this.currentMillisecond / 1000 / duration : 0,
       }).catch((error) =>
         logger.error(error, { description: '音乐播放记录失败', report: true }),
       );
@@ -38,7 +38,7 @@ class PlayLog extends React.PureComponent<Props> {
 
   componentWillUnmount() {
     window.removeEventListener('beforeunload', this.onBeforeUnload);
-    eventemitter.off(EventType.AUDIO_TIME_UPDATE, this.onTimeUpdate);
+    eventemitter.off(EventType.AUDIO_TIME_UPDATED, this.onTimeUpdate);
   }
 
   onBeforeUnload = () => {
@@ -51,16 +51,16 @@ class PlayLog extends React.PureComponent<Props> {
     if (queueMusic) {
       recordPlayLog({
         id: queueMusic.music.id,
-        percent: duration ? this.currentTime / duration : 0,
+        percent: duration ? this.currentMillisecond / 1000 / duration : 0,
       }).catch((error) =>
         logger.error(error, { description: '音乐播放记录失败', report: true }),
       );
     }
   };
 
-  onTimeUpdate = (time: number) =>
+  onTimeUpdate = ({ currentMillisecond }: { currentMillisecond: number }) =>
     setTimeout(() => {
-      this.currentTime = time;
+      this.currentMillisecond = currentMillisecond;
     }, 0);
 
   render() {

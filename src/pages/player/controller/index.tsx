@@ -8,13 +8,13 @@ import Context from '../context';
 import Progress from './progress';
 import MusicInfo from './music_info';
 import Action from './action';
-import { COVER_SIZE } from './constant';
+import { CONTROLLER_HEIGHT } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 
 const INITIAL_COVER = getRandomCover();
 const Style = styled.div`
   z-index: 3;
-  height: 60px;
+  height: ${CONTROLLER_HEIGHT}px;
   display: flex;
   align-items: flex-end;
   gap: 20px;
@@ -64,7 +64,7 @@ const Controller = () => {
       <Avatar
         className="cover"
         animated
-        size={COVER_SIZE}
+        size={70}
         src={queueMusic ? queueMusic.music.cover : INITIAL_COVER}
         onClick={openLyric}
       />
