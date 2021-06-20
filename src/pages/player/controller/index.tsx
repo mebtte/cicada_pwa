@@ -21,6 +21,10 @@ const Style = styled.div`
   box-sizing: border-box;
   padding: 4px 20px;
   background: rgb(255 255 255 / 0.7);
+  transition: 300ms;
+  &:hover {
+    background: rgb(255 255 255 / 1);
+  }
   > .cover {
     cursor: pointer;
     border: 1px solid var(--color-primary);

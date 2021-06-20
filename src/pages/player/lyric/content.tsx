@@ -122,9 +122,11 @@ const LrcDisplay = ({ lrc, style }: { lrc: string; style: unknown }) => {
 
 const Content = ({
   turntable,
+  toggleTurntable,
   music,
 }: {
   turntable: boolean;
+  toggleTurntable: () => void;
   music: Music;
 }) => {
   const { audioPaused } = useContext(PlayerContext);
@@ -150,7 +152,7 @@ const Content = ({
     if (l === State.TRUNTABLE) {
       return (
         <CoverBox style={style} paused={audioPaused ? '1' : ''}>
-          <div className="cover">
+          <div className="cover" onClick={toggleTurntable}>
             <Avatar animated src={music.cover} size={COVER_SIZE} />
           </div>
         </CoverBox>
@@ -159,7 +161,9 @@ const Content = ({
     if (l === State.INSTRUMENT) {
       return (
         <TextBox style={style}>
-          <div className="text">纯音乐, 无歌词</div>
+          <div className="text" onClick={toggleTurntable}>
+            纯音乐, 无歌词
+          </div>
         </TextBox>
       );
     }
@@ -169,7 +173,9 @@ const Content = ({
       }
       return (
         <TextBox style={style}>
-          <div className="text">暂未收录歌词</div>
+          <div className="text" onClick={toggleTurntable}>
+            暂未收录歌词
+          </div>
         </TextBox>
       );
     }

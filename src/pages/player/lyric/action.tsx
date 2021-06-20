@@ -19,6 +19,10 @@ const Style = styled.div`
   padding: 5px 10px;
   border-radius: 4px;
   background: rgb(255 255 255 / 0.7);
+  transition: 300ms;
+  &:hover {
+    background: rgb(255 255 255 / 1);
+  }
   > .action {
     -webkit-app-region: no-drag;
   }

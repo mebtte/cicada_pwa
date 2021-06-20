@@ -32,7 +32,11 @@ const Lyric = ({
 }) => (
   <Style style={style}>
     <Background cover={music.cover} />
-    <Content music={music} turntable={turntable} />
+    <Content
+      music={music}
+      turntable={turntable}
+      toggleTurntable={toggleTurntable}
+    />
     <Action onClose={onClose} toggleTurntable={toggleTurntable} />
   </Style>
 );
