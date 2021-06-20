@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import { PLAYER_PATH } from '@/constants/route';
 import getRandomCover from '@/utils/get_random_cover';
 import Avatar from '@/components/avatar';
 import useMusicOperate from '../use_music_operate';
@@ -10,27 +8,25 @@ import Context from '../context';
 import Progress from './progress';
 import MusicInfo from './music_info';
 import Action from './action';
-import { COVER_SIZE } from './constant';
+import { CONTROLLER_HEIGHT } from '../constants';
+import eventemitter, { EventType } from '../eventemitter';
 
+const INITIAL_COVER = getRandomCover();
 const Style = styled.div`
-  z-index: 2;
-  height: 60px;
+  z-index: 3;
+  height: ${CONTROLLER_HEIGHT}px;
   display: flex;
   align-items: flex-end;
+  gap: 20px;
   box-sizing: border-box;
-  padding: 0 20px 4px 20px;
-  > .cover-wrapper {
-    &:focus {
-      outline: none;
-    }
-    > .cover {
-      cursor: pointer;
-    }
+  padding: 4px 20px;
+  background: rgb(255 255 255 / 0.7);
+  > .cover {
+    cursor: pointer;
   }
   > .right {
     flex: 1;
     min-width: 0;
-    margin-left: 15px;
     overflow: hidden;
     > .right-bottom {
       display: flex;
@@ -41,9 +37,9 @@ const Style = styled.div`
     }
   }
 `;
+const openLyric = () => eventemitter.emit(EventType.TOGGEL_LYRIC);
 
 const Controller = () => {
-  const [initialCover] = useState(getRandomCover());
   const { playqueue, currentPlayqueuePosition } = useContext(Context);
   const queueMusic = playqueue[currentPlayqueuePosition];
   const { onView, onAddToMusicbill, onAddToPlayqueue, onOperate } =
@@ -51,14 +47,6 @@ const Controller = () => {
 
   return (
     <Style>
-      <Link className="cover-wrapper" to={PLAYER_PATH.LYRIC}>
-        <Avatar
-          className="cover"
-          animated
-          size={COVER_SIZE}
-          src={queueMusic ? queueMusic.music.cover : initialCover}
-        />
-      </Link>
       <div className="right">
         <Progress />
         <div className="right-bottom">
@@ -73,6 +61,13 @@ const Controller = () => {
           />
         </div>
       </div>
+      <Avatar
+        className="cover"
+        animated
+        size={70}
+        src={queueMusic ? queueMusic.music.cover : INITIAL_COVER}
+        onClick={openLyric}
+      />
     </Style>
   );
 };

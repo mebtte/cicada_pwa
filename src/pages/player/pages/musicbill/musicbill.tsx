@@ -12,7 +12,7 @@ import { MUSICBILL_SCROLL_TOP } from '@/constants/storage_key';
 import { TopContent, TOP_CONTENT_HEIGHT } from './constant';
 import useTopContent from './use_top_content';
 import useKeyword from './use_keyword';
-import eventemitter, { Type as EventType } from '../../eventemitter';
+import eventemitter, { EventType } from '../../eventemitter';
 import Info from './info';
 import MusicList from '../../components/music_list';
 import Action from './action';

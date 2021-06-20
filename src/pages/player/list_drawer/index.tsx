@@ -10,7 +10,7 @@ import { useTransition, animated } from 'react-spring';
 
 import dialog from '@/platform/dialog';
 import Drawer from '@/components/drawer';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import { TAB } from './constant';
 import Context from '../context';
 import Tab from './tab';
@@ -64,7 +64,7 @@ const MusicDrawer = () => {
       );
     };
   }, []);
-  const [tab, setTab] = useState(TAB.PLAYLIST);
+  const [tab, setTab] = useState(TAB.PLAYQUEUE);
   const onTabChange = useCallback((t) => setTab(t), []);
   const transtions = useTransition(tab, {
     from: { opacity: 0, transform: 'translate(100%)' },

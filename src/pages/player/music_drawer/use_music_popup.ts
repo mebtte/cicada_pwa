@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { Music as MusicType } from '../constants';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 
 export default () => {
   const [open, setOpen] = useState(false);

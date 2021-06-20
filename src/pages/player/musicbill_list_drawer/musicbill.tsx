@@ -6,7 +6,9 @@ import Avatar from '@/components/avatar';
 import Checkbox from '@/components/checkbox';
 import CircularLoader from '@/components/circular_loader';
 import Icon, { Name } from '@/components/icon';
-import playerEventemitter, { Type as PlayerEventType } from '../eventemitter';
+import playerEventemitter, {
+  EventType as PlayerEventType,
+} from '../eventemitter';
 import MusicbillContainer from './musicbill_container';
 import { COVER_SIZE, COVER_STYLE, ICON_SIZE, ICON_STYLE } from './constant';
 import { Music as MusicType, Musicbill as MusicbillType } from '../constants';

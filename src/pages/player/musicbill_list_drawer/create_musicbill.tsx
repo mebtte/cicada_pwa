@@ -5,7 +5,7 @@ import Avatar from '@/components/avatar';
 import Icon, { Name } from '@/components/icon';
 import MusicbillContainer from './musicbill_container';
 import { COVER_SIZE, COVER_STYLE, ICON_SIZE, ICON_STYLE } from './constant';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 
 const CreateMusicbill = () => {
   const [cover] = useState(getRandomCover());

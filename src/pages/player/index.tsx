@@ -31,6 +31,7 @@ import MusicbillOrderDrawer from './musicbilll_order_drawer';
 import CreateMusicbillDialog from './create_musicbill_dialog';
 import MvDialog from './mv_dialog';
 import { QueueMusic } from './constants';
+import Lyric from './lyric';
 
 const Scrollable = styled(PageContainer)`
   overflow: auto;
@@ -42,13 +43,17 @@ const Style = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   > .container {
-    position: relative;
     flex: 1;
-    min-width: 0;
+    min-height: 0;
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    > .content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
   }
 `;
 
@@ -92,12 +97,16 @@ const Wrapper = () => {
       </Helmet>
       <Scrollable>
         <Style>
-          <Sidebar />
           <div className="container">
-            <Header />
-            <Route />
-            <Controller />
+            <Sidebar />
+            <div className="content">
+              <Header />
+              <Route />
+            </div>
           </div>
+          <Controller />
+
+          <Lyric music={queueMusic ? queueMusic.music : null} />
         </Style>
       </Scrollable>
 
@@ -112,7 +121,6 @@ const Wrapper = () => {
 
       <MusicOperatePopup />
 
-      {electron ? <Electron /> : null}
       {queueMusic ? (
         <>
           <Audio volume={volume} playMode={playMode} queueMusic={queueMusic} />
@@ -120,6 +128,8 @@ const Wrapper = () => {
           <PlayLog queueMusic={queueMusic} duration={audioDuration} />
         </>
       ) : null}
+
+      {electron ? <Electron /> : null}
     </Context.Provider>
   );
 };

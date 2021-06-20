@@ -5,16 +5,18 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import noScrollbarStyle from '@/style/no_scrollbar';
 import scrollbar from '@/style/styled_scrollbar';
 
-const Style = styled.div`
+const Style = styled.div<{ noScrollbar: boolean }>`
   overflow: hidden;
   position: relative;
   > .content {
+    width: 100%;
+    height: 100%;
     overflow: auto;
-    ${scrollbar}
   }
   > .mask {
     pointer-events: none;
@@ -44,13 +46,22 @@ const Style = styled.div`
     left: 0;
     width: 100%;
   }
+  ${({ noScrollbar }) => css`
+    > .content {
+      ${noScrollbar ? noScrollbarStyle : scrollbar}
+    }
+  `}
 `;
 
 type Props = React.PropsWithChildren<{
   r?: number;
   g?: number;
   b?: number;
-  maskSize?: number;
+  noScrollbar?: boolean;
+  maskProps?: {
+    style?: React.CSSProperties;
+    size?: number;
+  };
   contentProps?: HTMLAttributes<HTMLDivElement>;
   [key: string]: any;
 }>;
@@ -61,7 +72,8 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
       r = 255,
       g = 255,
       b = 255,
-      maskSize = 50,
+      noScrollbar,
+      maskProps = {},
       contentProps = {},
       children,
       ...props
@@ -98,8 +110,9 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
       orientate();
     }, [orientate]);
 
+    const { size = 50, style } = maskProps;
     return (
-      <Style {...props} ref={ref}>
+      <Style {...props} noScrollbar={noScrollbar} ref={ref}>
         <div
           {...contentProps}
           ref={innerRef}
@@ -111,7 +124,8 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
         <div
           className="mask left"
           style={{
-            width: maskSize,
+            ...style,
+            width: size,
             opacity: leftVisible ? 1 : 0,
             background: `linear-gradient(to right, rgb(${r} ${g} ${b} / 1), rgb(${r} ${g} ${b} / 0))`,
           }}
@@ -119,7 +133,8 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
         <div
           className="mask right"
           style={{
-            width: maskSize,
+            ...style,
+            width: size,
             opacity: rightVisible ? 1 : 0,
             background: `linear-gradient(to left, rgb(${r} ${g} ${b} / 1), rgb(${r} ${g} ${b} / 0))`,
           }}
@@ -127,7 +142,8 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
         <div
           className="mask top"
           style={{
-            height: maskSize,
+            ...style,
+            height: size,
             opacity: topVisible ? 1 : 0,
             background: `linear-gradient(to bottom, rgb(${r} ${g} ${b} / 1), rgb(${r} ${g} ${b} / 0))`,
           }}
@@ -135,7 +151,8 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
         <div
           className="mask bottom"
           style={{
-            height: maskSize,
+            ...style,
+            height: size,
             opacity: bottomVisible ? 1 : 0,
             background: `linear-gradient(to top, rgb(${r} ${g} ${b} / 1), rgb(${r} ${g} ${b} / 0))`,
           }}

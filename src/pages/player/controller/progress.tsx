@@ -1,26 +1,32 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
 import Slider from '@/components/slider';
 import formatSecond from '@/utils/format_second';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import Context from '../context';
+import useAudioCurrentMillisecond from '../use_audio_current_millisecond';
 
 const Style = styled.div`
-  margin-top: 5px;
   display: flex;
   align-items: center;
   > .time {
     line-height: 1;
     font-size: 12px;
-    width: 70px;
+    width: 80px;
     text-align: right;
     transform-origin: right;
     transform: scale(0.9);
     color: rgb(155 155 155);
+    > span {
+      vertical-align: middle;
+    }
     > .symbol {
-      margin: 0 3px;
-      color: rgb(222 222 222);
+      display: inline-block;
+      margin: 0 5px;
+      width: 1px;
+      height: 14px;
+      background-color: var(--text-color-secondary);
     }
   }
 `;
@@ -31,10 +37,12 @@ const sliderStyle = {
 
 const Progress = () => {
   const { audioDuration } = useContext(Context);
-  const durationString = useMemo(() => formatSecond(audioDuration), [
-    audioDuration,
-  ]);
-  const [currentTime, setCurrentTime] = useState(0);
+  const durationString = useMemo(
+    () => formatSecond(audioDuration),
+    [audioDuration],
+  );
+
+  const currentMillisecond = useAudioCurrentMillisecond();
   const setTime = (p) => {
     if (!audioDuration) {
       return;
@@ -43,14 +51,7 @@ const Progress = () => {
     eventemitter.emit(EventType.ACTION_SET_TIME, time);
   };
 
-  useEffect(() => {
-    const timeUpdateListener = (time: number) => setCurrentTime(time);
-    eventemitter.on(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
-    return () =>
-      void eventemitter.off(EventType.AUDIO_TIME_UPDATE, timeUpdateListener);
-  }, []);
-
-  const percent = audioDuration ? currentTime / audioDuration : 0;
+  const percent = audioDuration ? currentMillisecond / 1000 / audioDuration : 0;
   return (
     <Style>
       <Slider
@@ -62,9 +63,9 @@ const Progress = () => {
         step={0.005}
       />
       <div className="time">
-        {formatSecond(currentTime)}
-        <span className="symbol">|</span>
-        {durationString}
+        <span>{formatSecond(currentMillisecond / 1000)}</span>
+        <span className="symbol" />
+        <span>{durationString}</span>
       </div>
     </Style>
   );

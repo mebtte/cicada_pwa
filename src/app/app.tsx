@@ -10,6 +10,7 @@ import Toast from './toast';
 import Dialog from './dialog';
 import RouteLoader from './route_loader';
 import ProfileDialog from './profile_dialog';
+import Prefetch from './prefetch';
 
 const ROUTE_MAP_COMPONENT = {
   [ROOT_PATH.HOME]: loadable({
@@ -66,6 +67,8 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <Prefetch />
+
       <Toast />
       <Dialog />
 

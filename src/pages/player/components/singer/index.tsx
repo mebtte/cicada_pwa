@@ -2,12 +2,12 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { Figure } from '../../constants';
-import eventemitter, { Type as EventType } from '../../eventemitter';
+import eventemitter, { EventType } from '../../eventemitter';
 
 const Style = styled.span`
   &::after {
     content: '|';
-    color: var(--text-color-tertiary);
+    color: var(--text-color-secondary);
     margin: 0 2px;
   }
   &:last-child::after {

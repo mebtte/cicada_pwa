@@ -8,7 +8,7 @@ import updateMusicbillOrder from '@/apis/update_musicbill_order';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import scrollbar from '@/style/scrollbar';
-import eventemitter, { Type as EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import { Musicbill as MusicbillType } from './constant';
 import Context from '../context';
 import Musicbill from './musicbill';

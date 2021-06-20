@@ -8,7 +8,7 @@ import addMusicToMusicbill from '@/apis/add_music_to_musicbill';
 import removeMusicFromMusicbill from '@/apis/remove_music_from_musicbill';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
-import eventemitter, { Type as EventType } from './eventemitter';
+import eventemitter, { EventType } from './eventemitter';
 import { Music, Musicbill } from './constants';
 import { transformMusic } from './utils';
 
@@ -70,7 +70,7 @@ export default () => {
                 ...mb,
                 name: data.name,
                 description: data.description,
-                cover: data.cover || getRandomCover(),
+                cover: data.cover || mb.cover || getRandomCover(),
                 status: RequestStatus.SUCCESS,
                 musicList: data.music_list.map((m, index) => ({
                   music: transformMusic(m),
@@ -110,7 +110,7 @@ export default () => {
       setMusicbillList((mbl) =>
         [...mbl, musicbill].sort((a, b) => a.order - b.order),
       );
-    const removeMusicbillListener = (id: string) =>
+    const onUserMusicbillRemoved = ({ id }: { id: string }) =>
       setMusicbillList((mbl) => mbl.filter((mb) => mb.id !== id));
     const addMusicToMusicbillListener = async ({
       musicbill,
@@ -242,7 +242,7 @@ export default () => {
     eventemitter.on(EventType.FETCH_MUSICBILL, getMusicbillDetail);
     eventemitter.on(EventType.USER_MUSICBILL_UPDATED, getMusicbillDetail);
     eventemitter.on(EventType.USER_MUSICBILL_CREATED, musicbillCreatedListener);
-    eventemitter.on(EventType.REMOVE_MUSICBILL, removeMusicbillListener);
+    eventemitter.on(EventType.USER_MUSICBILL_REMOVED, onUserMusicbillRemoved);
     eventemitter.on(
       EventType.ADD_MUSIC_TO_MUSICBILL,
       addMusicToMusicbillListener,
@@ -262,7 +262,10 @@ export default () => {
         EventType.USER_MUSICBILL_CREATED,
         musicbillCreatedListener,
       );
-      eventemitter.off(EventType.REMOVE_MUSICBILL, removeMusicbillListener);
+      eventemitter.off(
+        EventType.USER_MUSICBILL_REMOVED,
+        onUserMusicbillRemoved,
+      );
       eventemitter.off(
         EventType.ADD_MUSIC_TO_MUSICBILL,
         addMusicToMusicbillListener,

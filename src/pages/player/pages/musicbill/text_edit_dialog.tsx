@@ -10,7 +10,7 @@ import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
 import Input from '@/components/input';
 import Textarea from '@/components/textarea';
-import eventemitter, { Type as EventType } from '../../eventemitter';
+import eventemitter, { EventType } from '../../eventemitter';
 import { Musicbill } from '../../constants';
 
 const Part = styled.div`

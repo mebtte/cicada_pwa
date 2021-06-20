@@ -7,10 +7,10 @@ import globalEventemitter, { EventType } from '@/platform/global_eventemitter';
 
 const AVATAR_SIZE = 100;
 const Style = styled.div`
-  margin: 50px 0 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
   position: relative;
   > .avatar {
     cursor: pointer;
@@ -18,7 +18,6 @@ const Style = styled.div`
   }
   > .nickname {
     font-size: 14px;
-    margin-top: 10px;
     color: rgb(55 55 55);
   }
 `;

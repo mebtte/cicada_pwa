@@ -27,12 +27,14 @@ function generateMethod(method: METHOD) {
       data,
       timeout = 1000 * 30,
       withToken = false,
+      noDefer = false,
       headers,
     }: {
       params?: { [key: string]: string | number };
       data?: any;
       timeout?: number;
       withToken?: boolean;
+      noDefer?: boolean;
       headers?: { [key: string]: string };
     } = {},
   ) => {
@@ -57,7 +59,7 @@ function generateMethod(method: METHOD) {
         data,
         headers,
       }),
-      sleep(1200),
+      sleep(noDefer ? 0 : 1200),
     ]);
     const { status, statusText } = response;
     if (status !== 200) {
@@ -65,7 +67,11 @@ function generateMethod(method: METHOD) {
       error.code = status;
       throw error;
     }
-    const { code, message, data: responseData } = response.data as {
+    const {
+      code,
+      message,
+      data: responseData,
+    } = response.data as {
       code: number;
       message: string;
       data: DataType;

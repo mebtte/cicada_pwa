@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import debounce from 'lodash/debounce';
 
-import { PLAYER_VOLUME } from '../../constants/storage_key';
-import eventemitter, { Type } from './eventemitter';
+import { PLAYER_VOLUME } from '@/constants/storage_key';
+import eventemitter, { EventType } from './eventemitter';
 
 const getInitialVolume = () => {
   const localString = localStorage.getItem(PLAYER_VOLUME);
@@ -28,9 +28,9 @@ export default () => {
       setVolume(v);
       saveVolume(v);
     };
-    eventemitter.on(Type.ACTION_UPDATE_VOLUME, updateListener);
+    eventemitter.on(EventType.ACTION_UPDATE_VOLUME, updateListener);
     return () =>
-      void eventemitter.off(Type.ACTION_UPDATE_VOLUME, updateListener);
+      void eventemitter.off(EventType.ACTION_UPDATE_VOLUME, updateListener);
   }, []);
 
   return volume;

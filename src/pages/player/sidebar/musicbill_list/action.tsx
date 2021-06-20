@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { RequestStatus } from '@/constants';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import Tooltip from '@/components/tooltip';
-import eventemitter, { Type as EventType } from '../../eventemitter';
-import { STATUS } from './constant';
+import eventemitter, { EventType } from '../../eventemitter';
 
 const ACTION_SIZE = 20;
 const Style = styled.div`
-  padding: 0 20px 10px 20px;
+  padding: 0 20px 5px 20px;
   display: flex;
   align-items: center;
+  gap: 2px;
   > .label {
     flex: 1;
     min-width: 0;
@@ -34,36 +35,34 @@ const Action = ({
   status,
   musicbillCount,
 }: {
-  status: ValueOf<typeof STATUS>;
+  status: RequestStatus;
   musicbillCount: number;
 }) => (
   <Style>
     <div className="label">我的歌单</div>
-    {status !== STATUS.LOADING && status !== STATUS.ERROR ? (
-      <>
-        <Tooltip title="创建歌单">
-          <IconButton
-            name={IconButtonName.PLUS_OUTLINE}
-            size={ACTION_SIZE}
-            onClick={onCreateMusicbill}
-          />
-        </Tooltip>
-        {musicbillCount ? (
-          <Tooltip title="排序歌单">
-            <IconButton
-              name={IconButtonName.SORT_OUTLINE}
-              size={ACTION_SIZE}
-              onClick={onOrderMusicbillList}
-            />
-          </Tooltip>
-        ) : null}
-      </>
+    <Tooltip title="创建歌单">
+      <IconButton
+        name={IconButtonName.PLUS_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={onCreateMusicbill}
+        disabled={status !== RequestStatus.SUCCESS}
+      />
+    </Tooltip>
+    {musicbillCount ? (
+      <Tooltip title="排序歌单">
+        <IconButton
+          name={IconButtonName.EXCHANGE_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={onOrderMusicbillList}
+          disabled={status !== RequestStatus.SUCCESS}
+        />
+      </Tooltip>
     ) : null}
     <Tooltip title="重新获取歌单">
       <IconButton
         name={IconButtonName.REFRESH_OUTLINE}
         size={ACTION_SIZE}
-        loading={status === STATUS.LOADING}
+        loading={status === RequestStatus.LOADING}
         onClick={onReloadMusicbillList}
       />
     </Tooltip>

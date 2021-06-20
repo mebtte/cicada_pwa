@@ -13,6 +13,8 @@ const Style = styled.div`
   width: 240px;
   display: flex;
   flex-direction: column;
+  gap: 30px;
+  padding-top: 30px;
 `;
 
 const Sidebar = () => {

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import eventemitter, { Type as EventType } from './eventemitter';
+import eventemitter, { EventType } from './eventemitter';
 
 const onPlay = () => eventemitter.emit(EventType.ACTION_PLAY);
 const onPause = () => eventemitter.emit(EventType.ACTION_PAUSE);

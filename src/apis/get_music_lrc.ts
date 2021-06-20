@@ -8,6 +8,7 @@ function getMusicLrc(musicId: string) {
   return api.get<string>('/get_music_lrc', {
     params: { music_id: musicId },
     withToken: true,
+    noDefer: true,
   });
 }
 

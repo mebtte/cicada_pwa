@@ -2,6 +2,8 @@ import { RequestStatus } from '@/constants';
 import { MusicType } from '@/constants/music';
 import { Type as TagType } from '@/components/tag';
 
+export const CONTROLLER_HEIGHT = 60;
+
 export enum PlayMode {
   SQ = 'sq',
   HQ = 'hq',

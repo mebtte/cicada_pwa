@@ -3,7 +3,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 
 import { State as GlobalShortcutState } from '../../store/global_shortcut/constants';
 import { GLOBAL_SHORTCUT } from '../../constants/global_shortcut';
-import eventemitter, { Type as EventType } from './eventemitter';
+import eventemitter, { EventType } from './eventemitter';
 import electron from '../../platform/electron';
 
 const SHORTCUT_MAP_ACTION = {

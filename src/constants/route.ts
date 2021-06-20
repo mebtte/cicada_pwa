@@ -11,7 +11,6 @@ export const PLAYER_PATH = {
   MUSICBILL: `${ROOT_PATH.PLAYER}/musicbill/:id`,
   SETTING: `${ROOT_PATH.PLAYER}/setting`,
   SEARCH: `${ROOT_PATH.PLAYER}/search`,
-  LYRIC: `${ROOT_PATH.PLAYER}/lyric`,
 };
 
 export const CMS_PATH = {
