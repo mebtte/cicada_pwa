@@ -44,6 +44,7 @@ const Style = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   > .container {
     flex: 1;
     min-height: 0;
