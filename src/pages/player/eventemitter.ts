@@ -34,7 +34,7 @@ export enum EventType {
 
   CHANGE_PLAY_MODE = 'change_play_mode', // 更换播放模式
 
-  OPEN_LYRIC = 'open_lyric', // 打开歌词, {  }
+  TOGGEL_LYRIC = 'toggle_lyric', // 打开/关闭歌词, {  }
   OPEN_CREATE_MUSICBILL_DIALOG = 'open_create_musicbill_dialog',
   OPEN_MUSIC_OPERATE_POPUP = 'open_music_operate_popup',
   OPEN_MUSICBILL_LIST_DRAWER = 'open_musicbill_list_drawer',

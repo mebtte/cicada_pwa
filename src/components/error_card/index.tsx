@@ -11,10 +11,10 @@ const Style = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   > .error-message {
     max-width: 400px;
     white-space: pre-wrap;
-    margin: 15px 0;
     font-size: 12px;
     line-height: 1.5;
     text-align: center;
@@ -40,7 +40,7 @@ const ErrorCard = ({
   <Style {...props}>
     <Avatar animated src={PngError} size={PLACEHOLDER_SIZE} />
     <div className="error-message">{errorMessage}</div>
-    <IconButton name={Name.REFRESH_OUTLINE} onClick={retry} />
+    <IconButton name={Name.REFRESH_OUTLINE} onClick={retry} size={24} />
   </Style>
 );
 

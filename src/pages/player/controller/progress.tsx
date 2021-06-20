@@ -7,20 +7,25 @@ import eventemitter, { EventType } from '../eventemitter';
 import Context from '../context';
 
 const Style = styled.div`
-  margin-top: 5px;
   display: flex;
   align-items: center;
   > .time {
     line-height: 1;
     font-size: 12px;
-    width: 70px;
+    width: 80px;
     text-align: right;
     transform-origin: right;
     transform: scale(0.9);
     color: rgb(155 155 155);
+    > span {
+      vertical-align: middle;
+    }
     > .symbol {
-      margin: 0 3px;
-      color: rgb(222 222 222);
+      display: inline-block;
+      margin: 0 5px;
+      width: 1px;
+      height: 14px;
+      background-color: var(--text-color-secondary);
     }
   }
 `;
@@ -63,9 +68,9 @@ const Progress = () => {
         step={0.005}
       />
       <div className="time">
-        {formatSecond(currentTime)}
-        <span className="symbol">|</span>
-        {durationString}
+        <span>{formatSecond(currentTime)}</span>
+        <span className="symbol" />
+        <span>{durationString}</span>
       </div>
     </Style>
   );

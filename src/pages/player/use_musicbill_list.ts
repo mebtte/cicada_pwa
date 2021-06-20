@@ -70,7 +70,7 @@ export default () => {
                 ...mb,
                 name: data.name,
                 description: data.description,
-                cover: data.cover || getRandomCover(),
+                cover: data.cover || mb.cover || getRandomCover(),
                 status: RequestStatus.SUCCESS,
                 musicList: data.music_list.map((m, index) => ({
                   music: transformMusic(m),

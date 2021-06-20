@@ -20,6 +20,10 @@ const Style = styled.div`
     width: 100%;
     height: 100%;
   }
+  > .cover {
+    background-size: cover;
+    background-position: center;
+  }
   > .mask {
     backdrop-filter: blur(30px);
   }
@@ -36,7 +40,7 @@ const Background = ({ cover }: { cover: string }) => {
     <Style>
       {transitions(({ opacity }, s) => (
         <animated.div
-          className="child"
+          className="child cover"
           style={{
             opacity,
             backgroundImage: `url(${s})`,

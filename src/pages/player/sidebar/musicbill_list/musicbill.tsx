@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Avatar from '@/components/avatar';
 import ellipsis from '@/style/ellipsis';
-import { CONTAINETR_STYLE, NAME_STYLE, COVER_SIZE } from './constant';
+import { CONTAINETR_STYLE, NAME_STYLE, COVER_SIZE } from './constants';
 import { Musicbill as MusicbillType } from '../../constants';
 
 const Style = styled(Link)`

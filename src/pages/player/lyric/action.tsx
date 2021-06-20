@@ -18,7 +18,10 @@ const Style = styled.div`
   gap: 5px;
   padding: 5px 10px;
   border-radius: 4px;
-  background: rgb(255 255 255 / 0.75);
+  background: rgb(255 255 255 / 0.7);
+  > .action {
+    -webkit-app-region: no-drag;
+  }
 `;
 
 const Action = ({ onClose }: { onClose: () => void }) => {
@@ -28,6 +31,7 @@ const Action = ({ onClose }: { onClose: () => void }) => {
         name={Name.DOWN_OUTLINE}
         onClick={onClose}
         size={ACTION_SIZE}
+        className="action"
       />
       {IS_ELECTRON && IS_WINDOWS ? (
         <>
@@ -35,11 +39,13 @@ const Action = ({ onClose }: { onClose: () => void }) => {
             name={Name.MINIMIZE_OUTLINE}
             onClick={minimizePlayerWindow}
             size={ACTION_SIZE}
+            className="action"
           />
           <IconButton
             name={Name.WRONG_OUTLINE}
             onClick={hidePlayerWindow}
             size={ACTION_SIZE}
+            className="action"
           />
         </>
       ) : null}

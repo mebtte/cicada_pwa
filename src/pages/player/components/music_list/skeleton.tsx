@@ -11,7 +11,7 @@ const Style = styled.div`
 
 const SkeletonWrapper = () => (
   <Style style={containerStyle}>
-    {Array.from({ length: getRandomInteger(5, 20) }, () => 0).map(
+    {Array.from({ length: getRandomInteger(3, 10) }, () => 0).map(
       (_, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <Skeleton key={index} />
