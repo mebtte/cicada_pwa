@@ -23,6 +23,7 @@ const Style = styled.div`
   background: rgb(255 255 255 / 0.7);
   > .cover {
     cursor: pointer;
+    border: 1px solid var(--color-primary);
   }
   > .right {
     flex: 1;
