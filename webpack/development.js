@@ -14,6 +14,5 @@ module.exports = {
     contentBase: path.join(__dirname, '../build'),
     port: 8000,
     hot: true,
-    historyApiFallback: true,
   },
 };

@@ -34,7 +34,7 @@ function getLatestMusicList({
       fork?: string[];
       fork_from?: string[];
     }[];
-  }>('/music/latest_list', {
+  }>('/get_latest_music_list', {
     params: { page, page_size: pageSize },
     withToken: true,
   });
