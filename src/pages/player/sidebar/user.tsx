@@ -14,7 +14,7 @@ const Style = styled.div`
   position: relative;
   > .avatar {
     cursor: pointer;
-    border: 4px solid rgb(49 194 124 / 0.5);
+    border: 1px solid var(--color-primary);
   }
   > .nickname {
     font-size: 14px;
