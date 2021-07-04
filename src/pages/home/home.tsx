@@ -4,7 +4,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
 import { User } from '@/constants/user';
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import PageContainer from '../page_container';
 import Header from './header';
 import { CONTENT_MAX_WIDTH } from './constants';
@@ -13,7 +13,7 @@ import Footer from './footer';
 const Style = styled(PageContainer)`
   background-color: #f3f3f3;
   overflow: auto;
-  ${scrollbar}
+  ${scrollbarAsNeeded}
   >.content {
     max-width: ${CONTENT_MAX_WIDTH}px;
     margin: 0 auto;

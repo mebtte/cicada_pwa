@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import noScrollbar from '@/style/no_scrollbar';
+import scrollbarNever from '@/style/scrollbar_never';
 import getRandomInteger from '@/utils/get_random_integer';
 import Skeleton from '@/components/skeleton';
 import {
@@ -13,7 +13,7 @@ import {
 
 const Style = styled(MusicbillListContainer)`
   overflow: auto;
-  ${noScrollbar}
+  ${scrollbarNever}
 `;
 const Item = styled.div`
   ${CONTAINETR_STYLE}

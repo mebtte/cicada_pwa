@@ -22,8 +22,9 @@ export default () => {
       setMusicbillList(
         mbl.map((mb) => ({
           ...mb,
-          status: RequestStatus.NOT_START,
           musicList: [],
+          status: RequestStatus.NOT_START,
+          error: null,
         })),
       );
       setStatus(RequestStatus.SUCCESS);
@@ -56,6 +57,7 @@ export default () => {
             return {
               ...mb,
               status: RequestStatus.LOADING,
+              error: null,
             };
           }
           return mb;
@@ -71,11 +73,11 @@ export default () => {
                 name: data.name,
                 description: data.description,
                 cover: data.cover || mb.cover || getRandomCover(),
-                status: RequestStatus.SUCCESS,
                 musicList: data.music_list.map((m, index) => ({
                   music: transformMusic(m),
                   index: data.music_list.length - index,
                 })),
+                status: RequestStatus.SUCCESS,
               };
             }
             return mb;
@@ -95,6 +97,7 @@ export default () => {
               return {
                 ...mb,
                 status: RequestStatus.ERROR,
+                error,
               };
             }
             return mb;

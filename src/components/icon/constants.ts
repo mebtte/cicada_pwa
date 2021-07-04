@@ -11,7 +11,6 @@ import MailFill from './mail_fill';
 import MoreOutline from './more_outline';
 import NextFill from './next_fill';
 import NoticeOutline from './notice_outline';
-import PictureFill from './picture_fill';
 import PlayOutline from './play_outline';
 import AddToOutline from './add_to_outline';
 import PlusOutline from './plus_outline';
@@ -93,7 +92,6 @@ export enum Name {
   MORE_OUTLINE = 'MoreOutline',
   NEXT_FILL = 'NextFill',
   NOTICE_OUTLINE = 'NoticeOutline',
-  PICTURE_FILL = 'PictureFill',
   PLAY_OUTLINE = 'PlayOutline',
   PLUS_OUTLINE = 'PlusOutline',
   PREVIOUS_FILL = 'PreviousFill',
@@ -149,7 +147,6 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.MORE_OUTLINE]: MoreOutline,
   [Name.NEXT_FILL]: NextFill,
   [Name.NOTICE_OUTLINE]: NoticeOutline,
-  [Name.PICTURE_FILL]: PictureFill,
   [Name.PLAY_OUTLINE]: PlayOutline,
   [Name.PLUS_OUTLINE]: PlusOutline,
   [Name.PREVIOUS_FILL]: PreviousFill,

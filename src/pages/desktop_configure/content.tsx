@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import { ORIGIN } from '@/constants/regexp';
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import Input from '@/components/input';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
@@ -16,7 +16,7 @@ import Action from './action';
 import { HEADER_HEIGHT, ACTION_HEIGHT } from './constant';
 
 const Style = styled(PageContainer)`
-  ${scrollbar}
+  ${scrollbarAsNeeded}
   overflow: auto;
   box-sizing: border-box;
   padding: ${HEADER_HEIGHT}px 0 ${ACTION_HEIGHT}px 0;

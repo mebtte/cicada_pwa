@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
+import IconButton, { Name } from '@/components/icon_button';
+import Avatar from '@/components/avatar';
 import updateUserMusicbillRequest, { Key } from '@/apis/update_user_musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
@@ -10,9 +12,15 @@ import Dialog, { Title, Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
 import Input from '@/components/input';
 import Textarea from '@/components/textarea';
-import eventemitter, { EventType } from '../../eventemitter';
-import { Musicbill } from '../../constants';
+import playerEventemitter, {
+  EventType as PlayerEventType,
+} from '../../../eventemitter';
+import { Musicbill } from '../../../constants';
+import useOpen from './use_open';
+import eventemitter, { EventType } from '../eventemitter';
 
+const openCoverEditDialog = () =>
+  eventemitter.emit(EventType.OPEN_COVER_EDIT_DIALOG);
 const Part = styled.div`
   margin-bottom: 20px;
   &:last-child {
@@ -29,23 +37,19 @@ const Part = styled.div`
     resize: vertical;
   }
 `;
+const CoverBox = styled(Part)`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
 const inputStyle = {
   display: 'block',
   width: '100%',
 };
-const buttonStyle = {
-  marginLeft: 20,
-};
 
-const TextEditDialog = ({
-  open,
-  onClose,
-  musicbill,
-}: {
-  open: boolean;
-  onClose: () => void;
-  musicbill: Musicbill;
-}) => {
+const TextEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
+  const { open, onClose } = useOpen();
+
   const nameRef = useRef<HTMLInputElement>();
   const descriptionRef = useRef<HTMLTextAreaElement>();
   const [saving, setSaving] = useState(false);
@@ -84,7 +88,7 @@ const TextEditDialog = ({
       }
 
       if (updated) {
-        eventemitter.emit(EventType.USER_MUSICBILL_UPDATED, {
+        playerEventemitter.emit(PlayerEventType.USER_MUSICBILL_UPDATED, {
           id: musicbill.id,
         });
       }
@@ -107,6 +111,14 @@ const TextEditDialog = ({
     <Dialog open={open}>
       <Title>{`更新歌单"${musicbill.name}"`}</Title>
       <Content>
+        <CoverBox>
+          <Avatar animated src={musicbill.cover} size={120} />
+          <IconButton
+            name={Name.EDIT_OUTLINE}
+            onClick={openCoverEditDialog}
+            disabled={saving}
+          />
+        </CoverBox>
         <Part>
           <div className="label">名字</div>
           <Input
@@ -128,19 +140,11 @@ const TextEditDialog = ({
         </Part>
       </Content>
       <Action>
-        <Button
-          label="取消"
-          onClick={onClose}
-          style={buttonStyle}
-          disabled={saving}
-          size={32}
-        />
+        <Button label="取消" onClick={onClose} disabled={saving} />
         <Button
           label="更新"
-          style={buttonStyle}
           loading={saving}
           onClick={onSave}
-          size={32}
           type={Type.PRIMARY}
         />
       </Action>

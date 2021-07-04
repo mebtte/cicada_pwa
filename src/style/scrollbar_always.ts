@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 const THUMB_COLOR = 'rgb(0 0 0 / 0.1)';
 
-export default css`
+const scrollbarAlways = css`
   /* webkit */
   ::-webkit-scrollbar {
     width: 6px;
@@ -19,3 +19,5 @@ export default css`
   scrollbar-width: thin;
   scrollbar-color: ${THUMB_COLOR} transparent;
 `;
+
+export default scrollbarAlways;

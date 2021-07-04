@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import IconButton, { Name } from '@/components/icon_button';
 import ErrorCard from '@/components/error_card';
 import Table from '@/components/table';
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import CircularLoader from '@/components/circular_loader';
 import { cmsPage } from '../../style';
 import usePublicConfigList from './use_public_config_list';
@@ -25,7 +25,7 @@ const Style = styled.div<{
     left: 0;
   }
   > .list {
-    ${scrollbar}
+    ${scrollbarAsNeeded}
     overflow: auto;
     padding: 20px;
     box-sizing: border-box;

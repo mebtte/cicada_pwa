@@ -3,23 +3,20 @@ import React, { useCallback } from 'react';
 import { COVER_MAX_SIZE } from '@/constants/musicbill';
 import updateUserMusicbill, { Key } from '@/apis/update_user_musicbill';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
-import eventemitter, { EventType } from '../../eventemitter';
-import { Musicbill } from '../../constants';
+import playerEventemitter, {
+  EventType as PlayerEventType,
+} from '../../../eventemitter';
+import { Musicbill } from '../../../constants';
+import useOpen from './use_open';
 
 const COVER_SIZE = {
   width: COVER_MAX_SIZE,
   height: COVER_MAX_SIZE,
 };
 
-const CoverEditDialog = ({
-  open,
-  onClose,
-  musicbill,
-}: {
-  open: boolean;
-  onClose: () => void;
-  musicbill: Musicbill;
-}) => {
+const CoverEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
+  const { open, onClose } = useOpen();
+
   const onUpdate = useCallback(
     async (image: File) => {
       await updateUserMusicbill({
@@ -27,7 +24,7 @@ const CoverEditDialog = ({
         key: Key.COVER,
         value: image,
       });
-      eventemitter.emit(EventType.USER_MUSICBILL_UPDATED, {
+      playerEventemitter.emit(PlayerEventType.USER_MUSICBILL_UPDATED, {
         id: musicbill.id,
       });
     },
@@ -37,7 +34,7 @@ const CoverEditDialog = ({
     <ImageCutterDialog
       open={open}
       onClose={onClose}
-      title="选取封面"
+      title="更换封面"
       onUpdate={onUpdate}
       imageSize={COVER_SIZE}
     />

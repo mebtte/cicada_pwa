@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import { Musicbill as MusicbillType, Music as MusicType } from '../constants';
 import Musicbill from './musicbill';
 import CreateMusicbill from './create_musicbill';
@@ -11,7 +11,7 @@ const Style = styled.div`
   min-height: 0;
   padding: 0 20px;
   overflow: auto;
-  ${scrollbar}
+  ${scrollbarAsNeeded}
   > .blank {
     height: 20px;
   }

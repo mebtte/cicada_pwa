@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Lrc, LyricLine as LyricLineType } from 'react-lrc';
 
-import noScrollbar from '@/style/no_scrollbar';
+import scrollbarNever from '@/style/scrollbar_never';
 import useAudioCurrentMillisecond from '../use_audio_current_millisecond';
 
 const StyledLrc = styled(Lrc)`
@@ -11,7 +11,7 @@ const StyledLrc = styled(Lrc)`
   left: 0;
   width: 100%;
   height: 100%;
-  ${noScrollbar}
+  ${scrollbarNever}
 `;
 const LyricLine = styled.div<{ active: boolean }>`
   text-align: center;

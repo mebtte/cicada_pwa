@@ -7,10 +7,28 @@ import React, {
 } from 'react';
 import styled, { css } from 'styled-components';
 
-import noScrollbarStyle from '@/style/no_scrollbar';
-import scrollbar from '@/style/styled_scrollbar';
+import scrollbarAlways from '@/style/scrollbar_always';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
+import scrollbarNever from '@/style/scrollbar_never';
+import { ScrollbarType } from './constants';
 
-const Style = styled.div<{ noScrollbar: boolean }>`
+const SCROLLBAR_TYPE_MAP: Record<
+  ScrollbarType,
+  {
+    scrollbarStyle: ReturnType<typeof css> | null;
+  }
+> = {
+  [ScrollbarType.ALWAYS]: {
+    scrollbarStyle: scrollbarAlways,
+  },
+  [ScrollbarType.AS_NEEDED]: {
+    scrollbarStyle: scrollbarAsNeeded,
+  },
+  [ScrollbarType.NEVER]: {
+    scrollbarStyle: scrollbarNever,
+  },
+};
+const Style = styled.div<{ scrollbarType: ScrollbarType }>`
   overflow: hidden;
   position: relative;
   > .content {
@@ -46,18 +64,21 @@ const Style = styled.div<{ noScrollbar: boolean }>`
     left: 0;
     width: 100%;
   }
-  ${({ noScrollbar }) => css`
-    > .content {
-      ${noScrollbar ? noScrollbarStyle : scrollbar}
-    }
-  `}
+  ${({ scrollbarType }) => {
+    const { scrollbarStyle } = SCROLLBAR_TYPE_MAP[scrollbarType];
+    return css`
+      > .content {
+        ${scrollbarStyle}
+      }
+    `;
+  }}
 `;
 
 type Props = React.PropsWithChildren<{
   r?: number;
   g?: number;
   b?: number;
-  noScrollbar?: boolean;
+  scrollbarType?: ScrollbarType;
   maskProps?: {
     style?: React.CSSProperties;
     size?: number;
@@ -72,7 +93,7 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
       r = 255,
       g = 255,
       b = 255,
-      noScrollbar,
+      scrollbarType = ScrollbarType.ALWAYS,
       maskProps = {},
       contentProps = {},
       children,
@@ -112,7 +133,7 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
 
     const { size = 50, style } = maskProps;
     return (
-      <Style {...props} noScrollbar={noScrollbar} ref={ref}>
+      <Style {...props} scrollbarType={scrollbarType} ref={ref}>
         <div
           {...contentProps}
           ref={innerRef}

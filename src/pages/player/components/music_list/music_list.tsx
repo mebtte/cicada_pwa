@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import List from 'react-list';
 
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import { MusicWithIndex } from '../../constants';
 import { containerStyle } from './constant';
 import Music from '../music';
 
 const Style = styled.div`
-  ${scrollbar}
+  ${scrollbarAsNeeded}
   overflow: auto;
 `;
 

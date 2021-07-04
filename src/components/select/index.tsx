@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import Input from '../input';
 import CircularLoader from '../circular_loader';
 import Icon, { Name } from '../icon';
@@ -50,7 +50,7 @@ const Style = styled.div<{ arrayVisible: boolean }>`
       border-radius: 4px;
       max-height: 300px;
       overflow: auto;
-      ${scrollbar}
+      ${scrollbarAsNeeded}
       &:empty::after {
         content: '空';
         display: block;

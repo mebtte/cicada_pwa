@@ -8,11 +8,11 @@ import logger from '@/platform/logger';
 import removeMusicbillRequest from '@/apis/remove_musicbill';
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
-import eventemitter, { Type as EventType } from './eventemitter';
+import eventemitter, { EventType } from './eventemitter';
 import playerEventemitter, {
   EventType as PlayerEventType,
 } from '../../eventemitter';
-import { TopContent } from './constant';
+import { TopContent } from './constants';
 import { Musicbill } from '../../constants';
 
 const ACTION_SIZE = 28;
@@ -26,19 +26,12 @@ const actionStyle = {
   margin: '5px 0',
 };
 const onSearch = () =>
-  eventemitter.emit(EventType.TOP_CONTENT_CHANGE, TopContent.SEARCH);
+  eventemitter.emit(EventType.TOP_CONTENT_CHANGE, {
+    topContent: TopContent.SEARCH,
+  });
+const openTextEditDialog = () => eventemitter.emit(EventType.OPEN_EDIT_DIALOG);
 
-const Action = ({
-  musicbill,
-  reload,
-  onEdit,
-  onEditCover,
-}: {
-  musicbill: Musicbill;
-  reload: () => void;
-  onEdit: () => void;
-  onEditCover: () => void;
-}) => {
+const Action = ({ musicbill }: { musicbill: Musicbill }) => {
   const onAddToPlaylist = () => {
     const { musicList } = musicbill;
     if (!musicList.length) {
@@ -88,7 +81,11 @@ const Action = ({
           name={Name.REFRESH_OUTLINE}
           size={ACTION_SIZE}
           loading={status === RequestStatus.LOADING}
-          onClick={reload}
+          onClick={() =>
+            playerEventemitter.emit(PlayerEventType.FETCH_MUSICBILL, {
+              id: musicbill.id,
+            })
+          }
           style={actionStyle}
         />
       </Tooltip>
@@ -109,19 +106,11 @@ const Action = ({
           style={actionStyle}
         />
       </Tooltip>
-      <Tooltip title="更换歌单封面" placement={Placement.LEFT}>
-        <IconButton
-          name={Name.PICTURE_FILL}
-          size={ACTION_SIZE}
-          onClick={onEditCover}
-          style={actionStyle}
-        />
-      </Tooltip>
       <Tooltip title="更新歌单信息" placement={Placement.LEFT}>
         <IconButton
           name={Name.EDIT_OUTLINE}
           size={ACTION_SIZE}
-          onClick={onEdit}
+          onClick={openTextEditDialog}
           style={actionStyle}
         />
       </Tooltip>
@@ -137,4 +126,4 @@ const Action = ({
   );
 };
 
-export default React.memo(Action);
+export default Action;

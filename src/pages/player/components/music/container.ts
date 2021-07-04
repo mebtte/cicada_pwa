@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ellipsis from '@/style/ellipsis';
 
 export default styled.div`
-  height: 50px;
+  height: 46px;
   display: flex;
   gap: 10px;
   align-items: center;

@@ -12,7 +12,7 @@ import IconButton, { Name, Type } from '@/components/icon_button';
 import Empty from '@/components/empty';
 import CircularLoader from '@/components/circular_loader';
 import Table from '@/components/table';
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import Avatar from '@/components/avatar';
 import { Figure } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
@@ -28,7 +28,7 @@ const Style = styled.div<{ isLoading: boolean }>`
     top: 0;
     left: 0;
     overflow: auto;
-    ${scrollbar}
+    ${scrollbarAsNeeded}
     > .table {
       width: 100%;
     }

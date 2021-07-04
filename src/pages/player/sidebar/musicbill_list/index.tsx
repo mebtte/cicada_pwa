@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useTransition } from 'react-spring';
 
-import Scrollable from '@/components/scrollable';
+import Scrollable, { ScrollbarType } from '@/components/scrollable';
 import { PLAYER_PATH } from '@/constants/route';
 import { RequestStatus } from '@/constants';
 import ErrorCard from '@/components/error_card';
@@ -60,7 +60,10 @@ const MusicbillList = () => {
         const { pathname } = location;
         return (
           <MusicbillListContainer style={style}>
-            <StyledScrollable noScrollbar maskProps={scrollableMaskProps}>
+            <StyledScrollable
+              scrollbarType={ScrollbarType.NEVER}
+              maskProps={scrollableMaskProps}
+            >
               {musicbillList.map((mb) => {
                 const { id } = mb;
                 const to = PLAYER_PATH.MUSICBILL.replace(':id', id);

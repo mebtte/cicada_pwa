@@ -1,4 +1,4 @@
-import { MusicWithIndex } from '../../constants';
+import { MusicWithIndex } from '../../../constants';
 
 function filterMusic(keyword: string) {
   return (listMusic: MusicWithIndex) => {
@@ -22,5 +22,9 @@ function filterMusic(keyword: string) {
   };
 }
 
-export default (musicList: MusicWithIndex[], keyword) =>
-  musicList.filter(filterMusic(keyword));
+export default (musicList: MusicWithIndex[], keyword) => {
+  if (!keyword) {
+    return musicList;
+  }
+  return musicList.filter(filterMusic(keyword));
+};

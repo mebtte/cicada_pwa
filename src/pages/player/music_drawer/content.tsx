@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import { MusicType } from '@/constants/music';
 import Avatar from '@/components/avatar';
 import Action from './action';
@@ -23,7 +23,7 @@ const Style = styled(animated.div)`
   padding: ${PADDING}px;
   box-sizing: border-box;
   overflow: auto;
-  ${scrollbar}
+  ${scrollbarAsNeeded}
   >.content {
     display: flex;
     flex-direction: column;

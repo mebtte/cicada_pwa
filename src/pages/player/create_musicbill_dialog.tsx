@@ -57,6 +57,7 @@ const CreateMusicbillDialog = () => {
         createTime: new Date(data.create_time),
         musicList: [],
         status: RequestStatus.SUCCESS,
+        error: null,
       };
       eventemitter.emit(EventType.USER_MUSICBILL_CREATED, { musicbill });
       onClose();

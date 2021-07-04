@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useTransition, animated, SpringConfig } from 'react-spring';
 
 import { ZIndex } from '@/constants/style';
-import noScrollbar from '@/style/no_scrollbar';
+import scrollbarNever from '@/style/scrollbar_never';
 
 const TRANSITION = {
   from: {
@@ -30,7 +30,7 @@ const Mask = styled(animated.div)`
   left: 0;
   background-color: rgb(0 0 0 / 0.5);
   overflow: auto;
-  ${noScrollbar}
+  ${scrollbarNever}
 `;
 const Body = styled(animated.div)`
   width: 450px;

@@ -2,7 +2,7 @@ import React, { useRef, ReactNode, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { RequestStatus } from '@/constants';
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import WidthResizeDetector from '@/components/width_resize_detector';
 import Pagination from '@/components/pagination';
 import ErrorCard from '@/components/error_card';
@@ -14,7 +14,7 @@ import useLastestMusicList from './use_latest_music_list';
 const Style = styled(WidthResizeDetector)`
   width: 100%;
   height: 100%;
-  ${scrollbar}
+  ${scrollbarAsNeeded}
   overflow: auto;
   > .list {
     padding: 0 10px;

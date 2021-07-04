@@ -7,7 +7,7 @@ import Drawer, { Title } from '@/components/drawer';
 import updateMusicbillOrder from '@/apis/update_musicbill_order';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import eventemitter, { EventType } from '../eventemitter';
 import { Musicbill as MusicbillType } from './constant';
 import Context from '../context';
@@ -24,7 +24,7 @@ const List = styled.div`
   flex: 1;
   min-height: 0;
   overflow: auto;
-  ${scrollbar}
+  ${scrollbarAsNeeded}
 `;
 
 const MusicbillOrderDrawer = () => {

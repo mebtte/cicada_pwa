@@ -7,7 +7,7 @@ import Avatar from '@/components/avatar';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import ErrorCard from '@/components/error_card';
 import Table from '@/components/table';
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import CircularLoader from '@/components/circular_loader';
 import useUserList from './use_user_list';
 import eventemitter, { EventType } from './eventemitter';
@@ -26,7 +26,7 @@ const Style = styled.div<{ isLoading: boolean }>`
     left: 0;
   }
   > .list {
-    ${scrollbar}
+    ${scrollbarAsNeeded}
     overflow: auto;
     box-sizing: border-box;
     > .table {

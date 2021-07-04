@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import Pagination from '@/components/pagination';
 import ErrorCard from '@/components/error_card';
 import Empty from '@/components/empty';
@@ -38,7 +38,7 @@ const MusicList = styled(animated.div)`
     flex: 1;
     min-height: 0;
     overflow: auto;
-    ${scrollbar}
+    ${scrollbarAsNeeded}
 
     display: flex;
     flex-direction: column;

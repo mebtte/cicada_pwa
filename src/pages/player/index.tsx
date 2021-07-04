@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import withSignin from '@/platform/with_signin';
 import electron from '@/platform/electron';
 import PageContainer from '../page_container';
@@ -35,7 +35,7 @@ import Lyric from './lyric';
 
 const Scrollable = styled(PageContainer)`
   overflow: auto;
-  ${scrollbar};
+  ${scrollbarAsNeeded};
 `;
 const Style = styled.div`
   min-width: 900px;

@@ -19,7 +19,7 @@ import IconButton, { Name, Type } from '@/components/icon_button';
 import CircularLoader from '@/components/circular_loader';
 import Empty from '@/components/empty';
 import Table from '@/components/table';
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import { EditMusicResourceType, Music } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 import { Query } from '../../figure/constants';
@@ -35,7 +35,7 @@ const Style = styled.div<{ isLoading: boolean }>`
     top: 0;
     left: 0;
     overflow: auto;
-    ${scrollbar}
+    ${scrollbarAsNeeded}
     >.table {
       width: 100%;
     }

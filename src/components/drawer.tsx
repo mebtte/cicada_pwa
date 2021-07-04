@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
 import { ZIndex } from '../constants/style';
-import scrollbar from '../style/scrollbar';
+import scrollbarAsNeeded from '../style/scrollbar_as_needed';
 
 const Mask = styled(animated.div)`
   z-index: ${ZIndex.DRAWER};
@@ -17,7 +17,7 @@ const Mask = styled(animated.div)`
   -webkit-app-region: no-drag;
 `;
 const Body = styled(animated.div)`
-  ${scrollbar}
+  ${scrollbarAsNeeded}
   position: absolute;
   top: 0;
   right: 0;

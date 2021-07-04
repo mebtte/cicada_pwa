@@ -26,6 +26,7 @@ const Style = styled.div`
     background: rgb(255 255 255 / 1);
   }
   > .action {
+    cursor: pointer;
     -webkit-app-region: no-drag;
   }
 `;

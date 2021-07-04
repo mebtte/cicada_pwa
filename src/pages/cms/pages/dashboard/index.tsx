@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import scrollbar from '@/style/scrollbar';
+import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import { RequestStatus } from '@/constants';
 import ErrorCard from '@/components/error_card';
 import CircularLoader from '@/components/circular_loader';
@@ -22,7 +22,7 @@ const Style = styled.div`
   flex-direction: column;
   gap: 20px;
   overflow: auto;
-  ${scrollbar}
+  ${scrollbarAsNeeded}
   > .loading {
     padding: 50px 0;
     text-align: center;

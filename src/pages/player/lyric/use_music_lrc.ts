@@ -6,14 +6,30 @@ import { MusicType } from '@/constants/music';
 import { Music } from '../constants';
 import { Status } from './constants';
 
+interface TurntableState {
+  status: Status.TURNTABLE;
+}
+interface LRCLoadingState {
+  status: Status.LRC_LOADING;
+}
+interface LRCEmptyState {
+  status: Status.LRC_EMPTY;
+}
+
+const TURNTABLE_STATE: TurntableState = {
+  status: Status.TURNTABLE,
+};
+const LRC_LOADING_STATE: LRCLoadingState = {
+  status: Status.LRC_LOADING,
+};
+const LRC_EMPTY_STATE: LRCEmptyState = {
+  status: Status.LRC_EMPTY,
+};
+
 export default (music: Music, turntable: boolean) => {
   const [state, setState] = useState<
-    | {
-        status: Status.TURNTABLE;
-      }
-    | {
-        status: Status.LRC_LOADING;
-      }
+    | TurntableState
+    | LRCLoadingState
     | {
         status: Status.LRC_ERROR;
         error: Error;
@@ -23,9 +39,7 @@ export default (music: Music, turntable: boolean) => {
         status: Status.LRC_SUCCESS;
         lrc: string;
       }
-    | {
-        status: Status.LRC_EMPTY;
-      }
+    | LRCEmptyState
   >({
     status: Status.TURNTABLE,
   });
@@ -34,14 +48,10 @@ export default (music: Music, turntable: boolean) => {
     let canceled = false;
     const getMusicLrc = async () => {
       if (turntable || music.type === MusicType.INSTRUMENT) {
-        return setState({
-          status: Status.TURNTABLE,
-        });
+        return setState(TURNTABLE_STATE);
       }
 
-      setState({
-        status: Status.LRC_LOADING,
-      });
+      setState(LRC_LOADING_STATE);
       try {
         const lrc = await getMusicLrcRequest(music.id);
 
@@ -52,7 +62,7 @@ export default (music: Music, turntable: boolean) => {
         if (lrc) {
           setState({ status: Status.LRC_SUCCESS, lrc });
         } else {
-          setState({ status: Status.LRC_EMPTY });
+          setState(LRC_EMPTY_STATE);
         }
       } catch (error) {
         if (canceled) {
@@ -67,7 +77,7 @@ export default (music: Music, turntable: boolean) => {
     return () => {
       canceled = true;
     };
-  }, [music, turntable]);
+  }, [turntable, music]);
 
   return state;
 };
