@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { MusicType } from '@/constants/music';
 import { IS_ELECTRON, IS_WINDOWS } from '@/constants';
 import IconButton, { Name } from '@/components/icon_button';
 import {
   minimizePlayerWindow,
   hidePlayerWindow,
 } from '@/platform/electron_new';
+import { Music } from '../constants';
 
 const ACTION_SIZE = 24;
 const Style = styled.div`
@@ -29,9 +31,11 @@ const Style = styled.div`
 `;
 
 const Action = ({
+  music,
   toggleTurntable,
   onClose,
 }: {
+  music: Music;
   toggleTurntable: () => void;
   onClose: () => void;
 }) => (
@@ -41,6 +45,7 @@ const Action = ({
       onClick={toggleTurntable}
       size={ACTION_SIZE}
       className="action"
+      disabled={music.type === MusicType.INSTRUMENT}
     />
     <IconButton
       name={Name.DOWN_OUTLINE}

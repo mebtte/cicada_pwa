@@ -37,7 +37,7 @@ const Lyric = ({
       turntable={turntable}
       toggleTurntable={toggleTurntable}
     />
-    <Action onClose={onClose} toggleTurntable={toggleTurntable} />
+    <Action music={music} onClose={onClose} toggleTurntable={toggleTurntable} />
   </Style>
 );
 
