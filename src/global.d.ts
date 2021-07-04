@@ -16,6 +16,7 @@ interface Config {
   lastCommitMessage: string;
   buildTime: string;
   emptyImageList: string[];
+  errorImageList: string[];
   coverList: string[];
 
   serverOrigin: string;

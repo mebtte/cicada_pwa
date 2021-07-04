@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import PngError from './error.png';
+import config from '@/config';
+import getRandomInteger from '@/utils/get_random_integer';
 import Avatar from '../avatar';
 import IconButton, { Name } from '../icon_button';
 
@@ -36,12 +37,19 @@ const ErrorCard = ({
   /** 重试方法 */
   retry: () => void;
   [key: string]: any;
-}) => (
-  <Style {...props}>
-    <Avatar animated src={PngError} size={PLACEHOLDER_SIZE} />
-    <div className="error-message">{errorMessage}</div>
-    <IconButton name={Name.REFRESH_OUTLINE} onClick={retry} size={24} />
-  </Style>
-);
+}) => {
+  const errorImage = useMemo(
+    () =>
+      config.errorImageList[getRandomInteger(0, config.errorImageList.length)],
+    [],
+  );
+  return (
+    <Style {...props}>
+      <Avatar animated src={errorImage} size={PLACEHOLDER_SIZE} />
+      <div className="error-message">{errorMessage}</div>
+      <IconButton name={Name.REFRESH_OUTLINE} onClick={retry} size={24} />
+    </Style>
+  );
+};
 
 export default React.memo(ErrorCard);

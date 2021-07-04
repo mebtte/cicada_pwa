@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
 import config from '@/config';
@@ -31,12 +31,14 @@ const Empty = ({
   description?: string;
   [key: string]: any;
 }) => {
-  const [placeholder] = useState(
-    config.emptyImageList[getRandomInteger(0, config.emptyImageList.length)],
+  const emptyImage = useMemo(
+    () =>
+      config.emptyImageList[getRandomInteger(0, config.emptyImageList.length)],
+    [],
   );
   return (
     <Style {...props}>
-      <Avatar className="placeholder" animated src={placeholder} size={180} />
+      <Avatar className="placeholder" animated src={emptyImage} size={180} />
       <div className="description">{description}</div>
     </Style>
   );

@@ -1,7 +1,6 @@
 const path = require('path');
 const cp = require('child_process');
 const os = require('os');
-
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -80,9 +79,13 @@ module.exports = {
           .replace(/\s/, ': '),
         buildTime: new Date(),
         emptyImageList: fs
-          .readdirSync(`${STATIC_DIR}/empty`)
+          .readdirSync(`${STATIC_DIR}/empty_image`)
           .filter((f) => !INVALID_FILES.includes(f))
-          .map((f) => `/empty/${f}`),
+          .map((f) => `/empty_image/${f}`),
+        errorImageList: fs
+          .readdirSync(`${STATIC_DIR}/error_image`)
+          .filter((f) => !INVALID_FILES.includes(f))
+          .map((f) => `/error_image/${f}`),
         coverList: fs
           .readdirSync(`${STATIC_DIR}/cover`)
           .filter((f) => !INVALID_FILES.includes(f))
