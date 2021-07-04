@@ -6,8 +6,8 @@ import { BORDER_RADIUS, Shape, CommonProps } from './constant';
 const Style = styled.div<{
   shape: Shape;
 }>`
+  box-sizing: border-box;
   background-size: cover;
-  vertical-align: middle;
   ${({ shape }) => css`
     border-radius: ${shape === Shape.CIRCLE ? '50%' : `${BORDER_RADIUS}px`};
   `}

@@ -8,8 +8,8 @@ import getRandomInteger from '../../utils/get_random_integer';
 const Style = styled.div<{
   shape: Shape;
 }>`
+  box-sizing: border-box;
   display: inline-block;
-  vertical-align: middle;
   position: relative;
   overflow: hidden;
   ${({ shape }) => css`
