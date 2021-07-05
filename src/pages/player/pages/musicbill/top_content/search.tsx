@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
 
+import Avatar from '@/components/avatar';
 import CircularLoader from '@/components/circular_loader';
 import Input from '@/components/input';
 import IconButton, { Name } from '@/components/icon_button';
@@ -18,7 +19,7 @@ const Style = styled(animated.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 10px;
 
   > .input-box {
     position: relative;
@@ -38,7 +39,7 @@ const switchToMusicbillInfo = () =>
     topContent: TopContent.INFO,
   });
 
-const Search = ({ style }: { style: unknown }) => {
+const Search = ({ cover, style }: { cover: string; style: unknown }) => {
   const [loading, setLoading] = useState(false);
 
   const [keyword, setKeyword] = useState('');
@@ -61,6 +62,7 @@ const Search = ({ style }: { style: unknown }) => {
 
   return (
     <Style style={style}>
+      <Avatar animated src={cover} />
       <div className="input-box">
         <Input className="input" value={keyword} onChange={onKeywordChange} />
         {loading ? <CircularLoader className="loader" size={16} /> : null}

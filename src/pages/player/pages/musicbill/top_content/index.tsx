@@ -27,7 +27,7 @@ const Wrapper = ({ musicbill }: { musicbill: Musicbill }) => {
           return <MusicbillInfo musicbill={musicbill} style={style} />;
         }
         if (tc === TopContent.SEARCH) {
-          return <Search style={style} />;
+          return <Search cover={musicbill.cover} style={style} />;
         }
         return null;
       })}
