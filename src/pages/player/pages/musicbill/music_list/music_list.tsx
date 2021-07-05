@@ -32,6 +32,7 @@ const Style = styled(animated.div)`
     width: 100%;
     height: 50px;
     transition: opacity 300ms;
+    pointer-events: none;
   }
   > .top {
     top: 0;
