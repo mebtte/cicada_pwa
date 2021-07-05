@@ -10,9 +10,14 @@ export default () => {
   const onClose = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
+    const closeListener = () => setOpen(false);
     const toggleListener = () => setOpen((o) => !o);
+    eventemitter.on(EventType.CLOSE_LYRIC, closeListener);
     eventemitter.on(EventType.TOGGEL_LYRIC, toggleListener);
-    return () => void eventemitter.off(EventType.TOGGEL_LYRIC, toggleListener);
+    return () => {
+      eventemitter.off(EventType.CLOSE_LYRIC, closeListener);
+      eventemitter.off(EventType.TOGGEL_LYRIC, toggleListener);
+    };
   }, []);
 
   useEffect(() => {

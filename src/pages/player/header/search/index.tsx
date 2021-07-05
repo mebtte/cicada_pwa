@@ -10,6 +10,7 @@ import Input from '@/components/input';
 import Context from '../../context';
 import useKeyboard from './use_keyboard';
 import { Query } from '../../constants';
+import eventemitter, { EventType } from '../../eventemitter';
 
 const Style = styled.div`
   -webkit-app-region: no-drag;
@@ -48,8 +49,10 @@ const Wrapper = ({ keyword: initialKeyword }: { keyword: string }) => {
       onSearch();
     }
   };
-  const onFocus = (event: React.FocusEvent<HTMLInputElement>) =>
-    event.target.select();
+  const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    eventemitter.emit(EventType.CLOSE_LYRIC);
+    return event.target.select();
+  };
   const inputRef = useKeyboard();
 
   return (
