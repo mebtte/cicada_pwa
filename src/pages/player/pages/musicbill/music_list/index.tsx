@@ -9,6 +9,7 @@ import ErrorDisplay from './error_display';
 import Skeleton from './skeleton';
 import Empty from './empty';
 import MusicList from './music_list';
+import useKeyword from './use_keyword';
 
 const Style = styled.div`
   flex: 1;
@@ -17,7 +18,8 @@ const Style = styled.div`
 `;
 
 const Wrapper = ({ musicbill }: { musicbill: Musicbill }) => {
-  const state = useState(musicbill);
+  const keyword = useKeyword();
+  const state = useState(musicbill, keyword);
   const transitions = useTransition(state, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
@@ -36,7 +38,7 @@ const Wrapper = ({ musicbill }: { musicbill: Musicbill }) => {
           );
         }
         if (s.status === Status.EMPTY) {
-          return <Empty style={style} />;
+          return <Empty keyword={keyword} style={style} />;
         }
         if (s.status === Status.LOADING) {
           return <Skeleton style={style} />;

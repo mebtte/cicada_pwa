@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 
 import { MusicWithIndex, Musicbill } from '../../../constants';
 import { Status } from './constants';
+import filterMusicList from './filter_music_list';
 
 interface LoadingState {
   status: Status.LOADING;
@@ -29,11 +30,12 @@ type State =
       status: Status.SUCCESS;
       musicList: MusicWithIndex[];
     };
-const getState = (musicbill: Musicbill): State => {
+const getState = (musicbill: Musicbill, keyword: string): State => {
   const { status, musicList, error } = musicbill;
+  const filteredMusicList = filterMusicList(musicList, keyword);
   if (status === RequestStatus.SUCCESS) {
-    if (musicList.length) {
-      return { status: Status.SUCCESS, musicList };
+    if (filteredMusicList.length) {
+      return { status: Status.SUCCESS, musicList: filteredMusicList };
     }
     return EMPTY_STATE;
   }
@@ -43,7 +45,10 @@ const getState = (musicbill: Musicbill): State => {
   return { status: Status.ERROR, error: error! };
 };
 
-export default (musicbill: Musicbill) => {
-  const state = useMemo<State>(() => getState(musicbill), [musicbill]);
+export default (musicbill: Musicbill, keyword: string) => {
+  const state = useMemo<State>(
+    () => getState(musicbill, keyword),
+    [musicbill, keyword],
+  );
   return state;
 };

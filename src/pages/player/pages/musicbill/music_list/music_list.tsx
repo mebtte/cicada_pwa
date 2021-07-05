@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
 import List from 'react-list';
@@ -7,8 +7,6 @@ import debounce from 'lodash/debounce';
 import { MUSICBILL_SCROLL_TOP } from '@/constants/storage_key';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import { MusicWithIndex } from '../../../constants';
-import eventemitter, { EventType } from '../eventemitter';
-import filterMusicList from './filter_music_list';
 import Music from '../../../components/music';
 
 const Style = styled(animated.div)`
@@ -52,25 +50,6 @@ const Style = styled(animated.div)`
     );
   }
 `;
-
-const useKeyword = () => {
-  const [keyword, setKeyword] = useState('');
-
-  useEffect(() => {
-    const onTopContentChange = () => setKeyword('');
-    const onKeywordChange = ({ keyword: k }: { keyword: string }) =>
-      setKeyword(k);
-
-    eventemitter.on(EventType.TOP_CONTENT_CHANGE, onTopContentChange);
-    eventemitter.on(EventType.KEYWORD_CHANGE, onKeywordChange);
-    return () => {
-      eventemitter.off(EventType.TOP_CONTENT_CHANGE, onTopContentChange);
-      eventemitter.off(EventType.KEYWORD_CHANGE, onKeywordChange);
-    };
-  }, []);
-
-  return keyword;
-};
 
 const useScroll = (id: string) => {
   const ref = useRef<HTMLDivElement>();
@@ -119,19 +98,17 @@ const MusicList = ({
   musicList: MusicWithIndex[];
   style: unknown;
 }) => {
-  const keyword = useKeyword();
   const { ref, onScroll, topMaskVisible, bottomMaskVisible } = useScroll(id);
 
-  const filteredMusicList = filterMusicList(musicList, keyword);
   const musicItemRenderer = (index: number, key: string) => (
-    <Music key={key} musicWithIndex={filteredMusicList[index]} />
+    <Music key={key} musicWithIndex={musicList[index]} />
   );
   return (
     <Style style={style}>
       <div className="list" ref={ref} onScroll={onScroll}>
         <List
           type="uniform"
-          length={filteredMusicList.length}
+          length={musicList.length}
           itemRenderer={musicItemRenderer}
         />
       </div>

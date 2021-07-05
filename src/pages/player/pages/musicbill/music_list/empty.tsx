@@ -16,9 +16,9 @@ const Style = styled(animated.div)`
   justify-content: center;
 `;
 
-const Wrapper = ({ style }: { style: unknown }) => (
+const Wrapper = ({ keyword, style }: { keyword: string; style: unknown }) => (
   <Style style={style}>
-    <Empty description="空的歌单" />
+    <Empty description={keyword ? '未匹配到音乐' : '空的歌单'} />
   </Style>
 );
 
