@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
 
@@ -40,6 +40,7 @@ const switchToMusicbillInfo = () =>
   });
 
 const Search = ({ cover, style }: { cover: string; style: unknown }) => {
+  const inputRef = useRef<HTMLInputElement>();
   const [loading, setLoading] = useState(false);
 
   const [keyword, setKeyword] = useState('');
@@ -60,11 +61,21 @@ const Search = ({ cover, style }: { cover: string; style: unknown }) => {
     eventemitter.emit(EventType.KEYWORD_CHANGE, { keyword: '' });
   }, [keyword]);
 
+  useLayoutEffect(() => {
+    const timer = window.setTimeout(() => inputRef.current.focus(), 1000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <Style style={style}>
       <Avatar animated src={cover} />
       <div className="input-box">
-        <Input className="input" value={keyword} onChange={onKeywordChange} />
+        <Input
+          className="input"
+          value={keyword}
+          onChange={onKeywordChange}
+          ref={inputRef}
+        />
         {loading ? <CircularLoader className="loader" size={16} /> : null}
       </div>
       <IconButton name={Name.DOWN_OUTLINE} onClick={switchToMusicbillInfo} />
