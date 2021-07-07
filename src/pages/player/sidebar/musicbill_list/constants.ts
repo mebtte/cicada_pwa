@@ -13,7 +13,7 @@ export const MusicbillListContainer = styled(animated.div)`
 `;
 export const COVER_SIZE = 28;
 export const CONTAINETR_STYLE = css`
-  padding: 8px 20px;
+  padding: 6px 20px;
   display: flex;
   align-items: center;
 `;
