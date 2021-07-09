@@ -8,6 +8,7 @@ import Label from '@/components/label';
 import Input from '@/components/input';
 import Textarea from '@/components/textarea';
 import { EMAIL } from '@/constants/regexp';
+import { NICKNAME_MAX_LENGTH } from '@/constants/user';
 import Button, { Type as ButtonType } from '@/components/button';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import useHistory from '@/utils/use_history';
@@ -32,6 +33,10 @@ const CreateDialog = ({ open }: { open: boolean }) => {
   const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(event.target.value);
 
+  const [nickname, setNickname] = useState('');
+  const onNicknameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setNickname(event.target.value);
+
   const [remark, setRemark] = useState('');
   const onRemarkChange = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
     setRemark(event.target.value);
@@ -44,6 +49,7 @@ const CreateDialog = ({ open }: { open: boolean }) => {
     });
     setTimeout(() => {
       setEmail('');
+      setNickname('');
       setRemark('');
     }, 1000);
   };
@@ -55,12 +61,15 @@ const CreateDialog = ({ open }: { open: boolean }) => {
     if (!EMAIL.test(email)) {
       return toast.error('邮箱格式错误');
     }
+    if (!nickname) {
+      return toast.error('请输入昵称');
+    }
     if (!remark) {
       return toast.error('请输入备注');
     }
     setLoading(true);
     try {
-      await cmsCreateUser({ email, remark });
+      await cmsCreateUser({ email, nickname, remark });
       eventemitter.emit(EventType.USER_CREATED_OR_UPDATED);
       onClose();
     } catch (error) {
@@ -80,6 +89,15 @@ const CreateDialog = ({ open }: { open: boolean }) => {
             onChange={onEmailChange}
             style={inputStyle}
             disabled={loading}
+          />
+        </Label>
+        <Label label="昵称" style={labelStyle}>
+          <Input
+            value={nickname}
+            onChange={onNicknameChange}
+            style={inputStyle}
+            disabled={loading}
+            maxLength={NICKNAME_MAX_LENGTH}
           />
         </Label>
         <Label label="备注" style={labelStyle}>
