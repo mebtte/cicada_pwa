@@ -31,8 +31,7 @@ const Musicbill = ({ musicbill }: { musicbill: MusicbillType }) => {
         id: musicbill.id,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [musicbill]);
 
   return (
     <Style>
