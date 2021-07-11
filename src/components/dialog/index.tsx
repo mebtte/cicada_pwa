@@ -38,6 +38,11 @@ const Body = styled(animated.div)`
   background-color: white;
   border-radius: 4px;
   transform-origin: bottom;
+
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 /**
@@ -107,20 +112,18 @@ const Dialog = ({
 };
 
 export const Title = styled.div`
+  padding-top: 10px;
   font-size: 20px;
   font-weight: 600;
-  padding: 40px 20px;
   color: rgb(55 55 55);
 `;
 
 export const Content = styled.div`
-  padding: 0 20px;
   font-size: 14px;
   color: rgb(155 155 155);
 `;
 
 export const Action = styled.div`
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: flex-end;

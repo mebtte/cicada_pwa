@@ -55,7 +55,7 @@ const enableStyle = {
 const disableStyle = {
   color: 'rgb(220 0 78)',
 };
-const JoinTime = styled.div`
+const Small = styled.div`
   font-size: 12px;
 `;
 const ACTION_SIZE = 24;
@@ -84,12 +84,12 @@ const UserList = ({ selectedUserList }: { selectedUserList: UserType[] }) => {
         eventemitter.emit(EventType.TOGGLE_SELECT_USER, { user: u })
       }
     />,
-    u.id,
-    u.email,
+    <Small>{u.id}</Small>,
+    <Small>{u.email}</Small>,
     u.nickname,
-    u.condition,
+    <Small>{u.condition}</Small>,
     u.avatar ? <Avatar src={u.avatar} /> : '-',
-    <JoinTime>{day(u.joinTime).format('YYYY-MM-DD HH:mm')}</JoinTime>,
+    <Small>{day(u.joinTime).format('YYYY-MM-DD HH:mm')}</Small>,
     <Icon
       name={u.cms ? IconName.CORRECT_OUTLINE : IconName.WRONG_OUTLINE}
       style={u.cms ? enableStyle : disableStyle}
@@ -98,7 +98,7 @@ const UserList = ({ selectedUserList }: { selectedUserList: UserType[] }) => {
       name={u.disabled ? IconName.WRONG_OUTLINE : IconName.CORRECT_OUTLINE}
       style={u.disabled ? disableStyle : enableStyle}
     />,
-    u.remark,
+    <Small>{u.remark}</Small>,
     <ActionBox>
       <IconButton
         name={IconButtonName.EDIT_OUTLINE}

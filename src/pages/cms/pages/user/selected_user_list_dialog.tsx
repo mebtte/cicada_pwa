@@ -3,9 +3,8 @@ import React from 'react';
 import Empty from '@/components/empty';
 import Checkbox from '@/components/checkbox';
 import Table from '@/components/table';
-import Button from '@/components/button';
 import useHistory from '@/utils/use_history';
-import Dialog, { Title, Content, Action } from '@/components/dialog';
+import Dialog, { Title, Content } from '@/components/dialog';
 import { Query, User } from './constants';
 import eventemitter, { EventType } from './eventemitter';
 
@@ -38,7 +37,7 @@ const SelectedUserListDialog = ({
   const onClose = () =>
     history.push({ query: { [Query.SELECTED_USER_LIST_DIALOG_OPEN]: '' } });
   return (
-    <Dialog open={open} bodyProps={bodyProps}>
+    <Dialog open={open} onClose={onClose} bodyProps={bodyProps}>
       <Title>已选中用户列表</Title>
       <Content>
         {selectedUserList.length ? (
@@ -52,9 +51,6 @@ const SelectedUserListDialog = ({
           <Empty description="未选择任何用户" />
         )}
       </Content>
-      <Action>
-        <Button label="确定" onClick={onClose} />
-      </Action>
     </Dialog>
   );
 };
