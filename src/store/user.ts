@@ -1,5 +1,4 @@
-import format from 'date-fns/format';
-
+import day from '@/utils/day';
 import { USER } from '../constants/storage_key';
 import * as TYPE from './action_type';
 import { getToken, clearToken } from '../platform/token';
@@ -26,7 +25,7 @@ export const reloadUser = () => async (dispatch, getState) => {
       dispatch(
         setUser({
           ...user,
-          joinTimeString: format(user.joinTime, 'yyyy-MM-dd HH:mm'),
+          joinTimeString: day(user.joinTime).format('YYYY-MM-DD HH:mm'),
         }),
       ),
     )

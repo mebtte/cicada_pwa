@@ -1,8 +1,8 @@
 import React from 'react';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
-import format from 'date-fns/format';
 
+import day from '@/utils/day';
 import { RequestStatus } from '@/constants';
 import ellipsis from '@/style/ellipsis';
 import Avatar from '@/components/avatar';
@@ -56,7 +56,7 @@ const MusicbillInfo = ({
         </div>
       ) : null}
       <div className="description">
-        创建于 {format(musicbill.createTime, 'yyyy-MM-dd HH:mm')}
+        创建于 {day(musicbill.createTime).format('YYYY-MM-DD HH:mm')}
         {musicbill.status === RequestStatus.SUCCESS ? (
           <span>, 共 {musicbill.musicList.length} 首音乐</span>
         ) : null}

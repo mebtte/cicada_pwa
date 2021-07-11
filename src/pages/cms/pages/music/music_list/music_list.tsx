@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import format from 'date-fns/format';
 import { Link } from 'react-router-dom';
 
+import day from '@/utils/day';
 import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
 import Tooltip from '@/components/tooltip';
 import Tag, { Type as TagType } from '@/components/tag';
@@ -282,7 +282,7 @@ const MusicList = ({
         />
       </Tooltip>
     </ResourceBox>,
-    <SmallTd>{format(music.createTime, 'yyyy-MM-dd HH:mm')}</SmallTd>,
+    <SmallTd>{day(music.createTime).format('YYYY-MM-DD HH:mm')}</SmallTd>,
     <OperationBox>
       <IconButton
         name={Name.EDIT_OUTLINE}

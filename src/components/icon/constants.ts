@@ -7,7 +7,7 @@ import EditOutline from './edit_outline';
 import GarbageOutline from './garbage_outline';
 import InsertOutline from './insert_outline';
 import LoadingOutline from './loading_outline';
-import MailFill from './mail_fill';
+import EmailFill from './email_fill';
 import MoreOutline from './more_outline';
 import NextFill from './next_fill';
 import NoticeOutline from './notice_outline';
@@ -88,7 +88,7 @@ export enum Name {
   GARBAGE_OUTLINE = 'GarbageOutline',
   INSERT_OUTLINE = 'InsertOutline',
   LOADING_OUTLINE = 'LoadingOutline',
-  MAIL_FILL = 'MailFill',
+  EMAIL_FILL = 'EmailFill',
   MORE_OUTLINE = 'MoreOutline',
   NEXT_FILL = 'NextFill',
   NOTICE_OUTLINE = 'NoticeOutline',
@@ -143,7 +143,7 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.GARBAGE_OUTLINE]: GarbageOutline,
   [Name.INSERT_OUTLINE]: InsertOutline,
   [Name.LOADING_OUTLINE]: LoadingOutline,
-  [Name.MAIL_FILL]: MailFill,
+  [Name.EMAIL_FILL]: EmailFill,
   [Name.MORE_OUTLINE]: MoreOutline,
   [Name.NEXT_FILL]: NextFill,
   [Name.NOTICE_OUTLINE]: NoticeOutline,

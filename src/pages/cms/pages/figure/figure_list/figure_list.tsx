@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import format from 'date-fns/format';
 
+import day from '@/utils/day';
 import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
 import { SearchKey } from '@/apis/cms_get_figure_list';
 import cmsDeleteFigure from '@/apis/cms_delete_figure';
@@ -144,7 +144,7 @@ const FigureList = ({
       </div>
     </AvatarBox>,
     figure.alias || '-',
-    format(figure.createTime, 'yyyy-MM-dd HH:mm'),
+    day(figure.createTime).format('YYYY-MM-DD HH:mm'),
     <OperationBox>
       <IconButton
         name={Name.EDIT_OUTLINE}

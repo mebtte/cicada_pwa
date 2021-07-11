@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import format from 'date-fns/format';
 
+import day from '@/utils/day';
 import Icon, { Name as IconName } from '@/components/icon';
 import Avatar from '@/components/avatar';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
@@ -50,6 +50,9 @@ const enableStyle = {
 const disableStyle = {
   color: 'rgb(220 0 78)',
 };
+const JoinTime = styled.div`
+  font-size: 12px;
+`;
 const ACTION_SIZE = 24;
 const headers = [
   'ID',
@@ -69,7 +72,7 @@ const rowRenderer = (u: UserType) => [
   u.nickname,
   u.condition,
   u.avatar ? <Avatar src={u.avatar} /> : '-',
-  format(u.joinTime, 'yyyy-MM-dd HH:mm'),
+  <JoinTime>{day(u.joinTime).format('YYYY-MM-DD HH:mm')}</JoinTime>,
   <Icon
     name={u.cms ? IconName.CORRECT_OUTLINE : IconName.WRONG_OUTLINE}
     style={u.cms ? enableStyle : disableStyle}

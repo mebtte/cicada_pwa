@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import format from 'date-fns/format';
 
+import day from '@/utils/day';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import Icon, { Name as IconName } from '@/components/icon';
 import { EMAIL } from '@/constants/regexp';
@@ -95,7 +95,7 @@ const Content = () => {
             // @ts-expect-error
             setUser({
               ...user,
-              joinTimeString: format(user.joinTime, 'yyyy-MM-dd HH:mm'),
+              joinTimeString: day(user.joinTime).format('YYYY-MM-DD HH:mm'),
             }),
           ),
         0,
@@ -128,7 +128,7 @@ const Content = () => {
             placeholder="邮箱"
             type="text"
           />
-          <Icon className="icon" name={IconName.MAIL_FILL} size={ICON_SIZE} />
+          <Icon className="icon" name={IconName.EMAIL_FILL} size={ICON_SIZE} />
         </div>
       </div>
       <div className="input-box">
