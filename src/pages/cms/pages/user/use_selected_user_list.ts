@@ -8,7 +8,7 @@ export default () => {
 
   useEffect(() => {
     /**
-     * 用户更新后默认不选择
+     * 用户更新后取消选中
      * 避免选中用户副本数据不一致
      */
     const userUpdated = ({ id }: { id: string }) =>

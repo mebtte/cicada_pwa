@@ -60,15 +60,15 @@ const Small = styled.div`
 `;
 const ACTION_SIZE = 24;
 const headers = [
-  '选择',
+  '选中',
   'ID',
   '邮箱',
   '昵称',
   '状态',
   '头像',
-  '注册时间',
+  '注册',
   'CMS',
-  '账号是否可用',
+  '账号可用',
   '备注',
   '操作',
 ];

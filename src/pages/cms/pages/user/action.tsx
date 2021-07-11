@@ -36,7 +36,7 @@ const Action = ({ selectedUserList }: { selectedUserList: User[] }) => {
 
   return (
     <Style>
-      <Tooltip title="已选择用户列表" placement={Placement.RIGHT}>
+      <Tooltip title="已选中用户列表" placement={Placement.RIGHT}>
         <IconButton
           name={Name.CHECKBOX_FILL}
           onClick={openSelectedUserListDialog}

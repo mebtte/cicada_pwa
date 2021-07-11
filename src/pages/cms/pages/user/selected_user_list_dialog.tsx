@@ -48,7 +48,7 @@ const SelectedUserListDialog = ({
             style={tableStyle}
           />
         ) : (
-          <Empty description="未选择任何用户" />
+          <Empty description="未选中任何用户" />
         )}
       </Content>
     </Dialog>

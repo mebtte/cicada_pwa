@@ -190,7 +190,7 @@ const SendEmailNotificationDialog = ({
           <Button label="预览" type={ButtonType.PRIMARY} onClick={onPreview} />
           {all ? null : (
             <Button
-              label="查看已选择用户列表"
+              label="已选中用户列表"
               type={ButtonType.PRIMARY}
               onClick={onSelectedUserListDialog}
             />
