@@ -70,7 +70,7 @@ const CreateDialog = ({ open }: { open: boolean }) => {
     setLoading(true);
     try {
       await cmsCreateUser({ email, nickname, remark });
-      eventemitter.emit(EventType.USER_CREATED_OR_UPDATED);
+      eventemitter.emit(EventType.USER_CREATED, {});
       onClose();
     } catch (error) {
       logger.error(error, { description: '创建用户失败', report: true });

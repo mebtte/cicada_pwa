@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import Checkbox from '@/components/checkbox';
 import day from '@/utils/day';
 import Icon, { Name as IconName } from '@/components/icon';
 import Avatar from '@/components/avatar';
@@ -44,6 +45,10 @@ const Style = styled.div<{ isLoading: boolean }>`
     }
   `}
 `;
+const ActionBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const enableStyle = {
   color: 'var(--color-primary)',
 };
@@ -55,6 +60,7 @@ const JoinTime = styled.div`
 `;
 const ACTION_SIZE = 24;
 const headers = [
+  '选择',
   'ID',
   '邮箱',
   '昵称',
@@ -66,31 +72,43 @@ const headers = [
   '备注',
   '操作',
 ];
-const rowRenderer = (u: UserType) => [
-  u.id,
-  u.email,
-  u.nickname,
-  u.condition,
-  u.avatar ? <Avatar src={u.avatar} /> : '-',
-  <JoinTime>{day(u.joinTime).format('YYYY-MM-DD HH:mm')}</JoinTime>,
-  <Icon
-    name={u.cms ? IconName.CORRECT_OUTLINE : IconName.WRONG_OUTLINE}
-    style={u.cms ? enableStyle : disableStyle}
-  />,
-  <Icon
-    name={u.disabled ? IconName.WRONG_OUTLINE : IconName.CORRECT_OUTLINE}
-    style={u.disabled ? disableStyle : enableStyle}
-  />,
-  u.remark,
-  <IconButton
-    name={IconButtonName.EDIT_OUTLINE}
-    size={ACTION_SIZE}
-    onClick={() => eventemitter.emit(EventType.OPEN_UPDATE_DIALOG, u)}
-  />,
-];
 
-const UserList = () => {
+const UserList = ({ selectedUserList }: { selectedUserList: UserType[] }) => {
   const { error, retry, loading, userList } = useUserList();
+  const selectedUserIdList = selectedUserList.map((u) => u.id);
+
+  const rowRenderer = (u: UserType) => [
+    <Checkbox
+      checked={selectedUserIdList.includes(u.id)}
+      onChange={() =>
+        eventemitter.emit(EventType.TOGGLE_SELECT_USER, { user: u })
+      }
+    />,
+    u.id,
+    u.email,
+    u.nickname,
+    u.condition,
+    u.avatar ? <Avatar src={u.avatar} /> : '-',
+    <JoinTime>{day(u.joinTime).format('YYYY-MM-DD HH:mm')}</JoinTime>,
+    <Icon
+      name={u.cms ? IconName.CORRECT_OUTLINE : IconName.WRONG_OUTLINE}
+      style={u.cms ? enableStyle : disableStyle}
+    />,
+    <Icon
+      name={u.disabled ? IconName.WRONG_OUTLINE : IconName.CORRECT_OUTLINE}
+      style={u.disabled ? disableStyle : enableStyle}
+    />,
+    u.remark,
+    <ActionBox>
+      <IconButton
+        name={IconButtonName.EDIT_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_UPDATE_DIALOG, { user: u })
+        }
+      />
+    </ActionBox>,
+  ];
   return (
     <Style isLoading={loading}>
       {error ? (

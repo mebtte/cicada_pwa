@@ -66,7 +66,7 @@ const UpdateDialog = () => {
       }
 
       if (updated) {
-        eventemitter.emit(EventType.USER_CREATED_OR_UPDATED);
+        eventemitter.emit(EventType.USER_UPDATED, { id: user.id });
       }
 
       onClose();
@@ -78,7 +78,7 @@ const UpdateDialog = () => {
   };
 
   useEffect(() => {
-    const openListener = (u: User) => {
+    const openListener = ({ user: u }: { user: User }) => {
       setUser(u);
       setRemark(u.remark);
       setDisabled(u.disabled);

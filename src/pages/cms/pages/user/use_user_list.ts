@@ -23,9 +23,12 @@ export default () => {
   useEffect(() => {
     getUserList();
 
-    eventemitter.on(EventType.USER_CREATED_OR_UPDATED, getUserList);
-    return () =>
-      void eventemitter.off(EventType.USER_CREATED_OR_UPDATED, getUserList);
+    eventemitter.on(EventType.USER_CREATED, getUserList);
+    eventemitter.on(EventType.USER_UPDATED, getUserList);
+    return () => {
+      eventemitter.off(EventType.USER_CREATED, getUserList);
+      eventemitter.off(EventType.USER_UPDATED, getUserList);
+    };
   }, [getUserList]);
 
   return { error, loading, userList, retry: getUserList };

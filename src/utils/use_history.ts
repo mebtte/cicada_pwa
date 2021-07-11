@@ -1,10 +1,13 @@
-import { useHistory, useLocation } from 'react-router-dom';
+import {
+  useHistory as useOriginalHistory,
+  useLocation,
+} from 'react-router-dom';
 
 import useQuery from './use_query';
 
-export default () => {
+const useHistory = () => {
   const location = useLocation();
-  const history = useHistory();
+  const history = useOriginalHistory();
   const originalQuery = useQuery();
 
   const push = ({
@@ -29,3 +32,5 @@ export default () => {
     push,
   };
 };
+
+export default useHistory;

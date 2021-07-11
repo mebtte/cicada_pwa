@@ -1,3 +1,4 @@
+import React from 'react';
 import Eventemitter from 'eventemitter3';
 
 const eventemitter = new Eventemitter();

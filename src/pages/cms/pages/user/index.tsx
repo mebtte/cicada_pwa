@@ -8,6 +8,9 @@ import UserList from './user_list';
 import Action from './action';
 import { Query } from './constants';
 import CreateDialog from './create_dialog';
+import SendEmailNotificationDialog from './send_email_notification_dialog';
+import useSelectedUserList from './use_selected_user_list';
+import SelectedUserListDialog from './selected_user_list_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -17,14 +20,27 @@ const Style = styled.div`
 const User = () => {
   const query = useQuery();
   const createDialogOpen = !!query[Query.CREATE_DIALOG_OPEN];
+  const selectedUserListDialogOpen =
+    !!query[Query.SELECTED_USER_LIST_DIALOG_OPEN];
+  const emailNotificationDialog = !!query[Query.EMAIL_NOTIFICATION_DIALOG_OPEN];
+
+  const selectedUserList = useSelectedUserList();
 
   return (
     <Style>
-      <Action />
-      <UserList />
+      <Action selectedUserList={selectedUserList} />
+      <UserList selectedUserList={selectedUserList} />
 
       <CreateDialog open={createDialogOpen} />
       <UpdateDialog />
+      <SendEmailNotificationDialog
+        open={emailNotificationDialog}
+        selectedUserList={selectedUserList}
+      />
+      <SelectedUserListDialog
+        open={selectedUserListDialogOpen}
+        selectedUserList={selectedUserList}
+      />
     </Style>
   );
 };
