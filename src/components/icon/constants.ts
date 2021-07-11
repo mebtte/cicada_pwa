@@ -50,8 +50,10 @@ import MobilephoneFill from './mobilephone_fill';
 import HouseOutline from './house_outline';
 import DashboardOutline from './dashboard_outline';
 import IDFill from './id_fill';
+import EmailListFill from './email_list_fill';
 
 export enum Name {
+  EMAIL_LIST_FILL = 'EmailListFill',
   ID_FILL = 'IDFill',
   DASHBOARD_OUTLINE = 'DashboardOutline',
   HOUSE_OUTLINE = 'HouseOutline',
@@ -107,6 +109,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
+  [Name.EMAIL_LIST_FILL]: EmailListFill,
   [Name.ID_FILL]: IDFill,
   [Name.DASHBOARD_OUTLINE]: DashboardOutline,
   [Name.HOUSE_OUTLINE]: HouseOutline,

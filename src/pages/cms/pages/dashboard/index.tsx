@@ -14,6 +14,7 @@ import UserMusicbillPaper from './user_musicbill_paper';
 import VerifyCodePaper from './verify_code_paper';
 import MusicPlayLogPaper from './music_play_log_paper';
 import Search from './search';
+import EmailNotificationPaper from './email_notification_paper';
 
 const Style = styled.div`
   ${cmsPage};
@@ -44,12 +45,13 @@ const Dashboard = () => {
   if (data.status === RequestStatus.SUCCESS) {
     content = (
       <div className="paper-list">
-        <UserPaper total={data.value.userTotal} />
-        <FigurePaper total={data.value.figureTotal} />
-        <MusicPaper total={data.value.musicTotal} />
-        <MusicPlayLogPaper total={data.value.musicPlayLogTotal} />
-        <UserMusicbillPaper total={data.value.userMusicbillTotal} />
-        <VerifyCodePaper total={data.value.verifyCodeTotal} />
+        <UserPaper total={data.value.user_total} />
+        <FigurePaper total={data.value.figure_total} />
+        <MusicPaper total={data.value.music_total} />
+        <MusicPlayLogPaper total={data.value.music_play_log_total} />
+        <UserMusicbillPaper total={data.value.user_musicbill_total} />
+        <VerifyCodePaper total={data.value.verify_code_total} />
+        <EmailNotificationPaper total={data.value.email_notification_total} />
       </div>
     );
   } else if (data.status === RequestStatus.ERROR) {

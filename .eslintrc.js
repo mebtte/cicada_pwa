@@ -62,5 +62,6 @@ module.exports = {
     ValueOf: 'readonly',
     AsyncReturnType: 'readonly',
     PromiseType: 'readonly',
+    JSX: 'readonly',
   },
 };

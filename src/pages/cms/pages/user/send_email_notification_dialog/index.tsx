@@ -54,7 +54,9 @@ const SendEmailNotificationDialog = ({
   const onSelectedUserListDialog = () =>
     history.push({ query: { [Query.SELECTED_USER_LIST_DIALOG_OPEN]: '1' } });
   const onClose = () =>
-    history.push({ query: { [Query.EMAIL_NOTIFICATION_DIALOG_OPEN]: '' } });
+    history.push({
+      query: { [Query.SEND_EMAIL_NOTIFICATION_DIALOG_OPEN]: '' },
+    });
 
   const [all, setAll] = useState(true);
 

@@ -26,7 +26,13 @@ const Action = ({ selectedUserList }: { selectedUserList: User[] }) => {
   const openSelectedUserListDialog = () =>
     history.push({ query: { [Query.SELECTED_USER_LIST_DIALOG_OPEN]: '1' } });
   const openEmailNotificationDialog = () =>
-    history.push({ query: { [Query.EMAIL_NOTIFICATION_DIALOG_OPEN]: '1' } });
+    history.push({
+      query: { [Query.SEND_EMAIL_NOTIFICATION_DIALOG_OPEN]: '1' },
+    });
+  const openEmailNotificationHistory = () =>
+    history.push({
+      query: { [Query.EMAIL_NOTIFICATION_HISTORY_DIALOG_OPEN]: '1' },
+    });
 
   return (
     <Style>
@@ -44,6 +50,12 @@ const Action = ({ selectedUserList }: { selectedUserList: User[] }) => {
         <IconButton
           name={Name.EMAIL_FILL}
           onClick={openEmailNotificationDialog}
+        />
+      </Tooltip>
+      <Tooltip title="邮件通知记录" placement={Placement.RIGHT}>
+        <IconButton
+          name={Name.EMAIL_LIST_FILL}
+          onClick={openEmailNotificationHistory}
         />
       </Tooltip>
     </Style>

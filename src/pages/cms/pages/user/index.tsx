@@ -11,6 +11,7 @@ import CreateDialog from './create_dialog';
 import SendEmailNotificationDialog from './send_email_notification_dialog';
 import useSelectedUserList from './use_selected_user_list';
 import SelectedUserListDialog from './selected_user_list_dialog';
+import EmailNotificationHistoryDialog from './email_notification_history_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -22,7 +23,10 @@ const User = () => {
   const createDialogOpen = !!query[Query.CREATE_DIALOG_OPEN];
   const selectedUserListDialogOpen =
     !!query[Query.SELECTED_USER_LIST_DIALOG_OPEN];
-  const emailNotificationDialog = !!query[Query.EMAIL_NOTIFICATION_DIALOG_OPEN];
+  const sendEmailNotificationDialog =
+    !!query[Query.SEND_EMAIL_NOTIFICATION_DIALOG_OPEN];
+  const emailNotificationHistoryDialog =
+    !!query[Query.EMAIL_NOTIFICATION_HISTORY_DIALOG_OPEN];
 
   const selectedUserList = useSelectedUserList();
 
@@ -34,9 +38,10 @@ const User = () => {
       <CreateDialog open={createDialogOpen} />
       <UpdateDialog />
       <SendEmailNotificationDialog
-        open={emailNotificationDialog}
+        open={sendEmailNotificationDialog}
         selectedUserList={selectedUserList}
       />
+      <EmailNotificationHistoryDialog open={emailNotificationHistoryDialog} />
       <SelectedUserListDialog
         open={selectedUserListDialogOpen}
         selectedUserList={selectedUserList}
