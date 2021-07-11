@@ -19,8 +19,20 @@ const Style = styled.div`
   padding: 0 20px;
   box-shadow: 0 2px 2px #f6f6f6;
   gap: 20px;
+  > .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    > .icon {
+      height: 28px;
+    }
+    > .text {
+      height: 20px;
+    }
+  }
   > .blank {
     flex: 1;
+    min-width: 0;
   }
 `;
 const avatarStyle = {
@@ -34,12 +46,11 @@ const Header = () => {
   const user = useSelector(({ user: u }: { user: User }) => u, shallowEqual);
   return (
     <Style>
+      <Link className="logo" to={ROOT_PATH.HOME}>
+        <img className="icon" src="/logo.png" alt="logo" />
+        <img className="text" src="/text_logo.png" alt="text logo" />
+      </Link>
       <div className="blank" />
-      <Tooltip title="首页" placement={Placement.BOTTOM}>
-        <Link to={ROOT_PATH.HOME}>
-          <IconButton name={Name.HOUSE_OUTLINE} size={ACTION_SIZE} />
-        </Link>
-      </Tooltip>
       <Tooltip title="播放器" placement={Placement.BOTTOM}>
         <Link to={ROOT_PATH.PLAYER}>
           <IconButton name={Name.MUSIC_FILL} size={ACTION_SIZE} />
