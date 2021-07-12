@@ -5,6 +5,7 @@ import { RequestStatus } from '@/constants';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import Tooltip from '@/components/tooltip';
 import eventemitter, { EventType } from '../../eventemitter';
+import { Musicbill } from '../../constants';
 
 const ACTION_SIZE = 20;
 const Style = styled.div`
@@ -33,10 +34,10 @@ const onReloadMusicbillList = () =>
 
 const Action = ({
   status,
-  musicbillCount,
+  musicbillList,
 }: {
   status: RequestStatus;
-  musicbillCount: number;
+  musicbillList: Musicbill[];
 }) => (
   <Style>
     <div className="label">我的歌单</div>
@@ -48,16 +49,14 @@ const Action = ({
         disabled={status !== RequestStatus.SUCCESS}
       />
     </Tooltip>
-    {musicbillCount ? (
-      <Tooltip title="排序歌单">
-        <IconButton
-          name={IconButtonName.EXCHANGE_OUTLINE}
-          size={ACTION_SIZE}
-          onClick={onOrderMusicbillList}
-          disabled={status !== RequestStatus.SUCCESS}
-        />
-      </Tooltip>
-    ) : null}
+    <Tooltip title="排序歌单">
+      <IconButton
+        name={IconButtonName.EXCHANGE_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={onOrderMusicbillList}
+        disabled={status !== RequestStatus.SUCCESS || !musicbillList.length}
+      />
+    </Tooltip>
     <Tooltip title="重新获取歌单">
       <IconButton
         name={IconButtonName.REFRESH_OUTLINE}

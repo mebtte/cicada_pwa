@@ -100,10 +100,7 @@ const MusicbillList = () => {
   });
   return (
     <Style>
-      <Action
-        status={getMusicbillListStatus}
-        musicbillCount={musicbillList.length}
-      />
+      <Action status={getMusicbillListStatus} musicbillList={musicbillList} />
       <div className="musicbill-list">{animatedContent}</div>
     </Style>
   );
