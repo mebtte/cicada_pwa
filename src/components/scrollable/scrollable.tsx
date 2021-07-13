@@ -131,7 +131,7 @@ const Scollable = React.forwardRef<HTMLDivElement, Props>(
       orientate();
     }, [orientate]);
 
-    const { size = 50, style } = maskProps;
+    const { size = 40, style } = maskProps;
     return (
       <Style {...props} scrollbarType={scrollbarType} ref={ref}>
         <div

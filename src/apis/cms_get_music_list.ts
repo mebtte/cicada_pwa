@@ -31,21 +31,9 @@ async function cmsGetMusicList({
 }: {
   page?: number;
   pageSize?: number;
-  searchKey?: SearchKey;
-  searchValue?: string;
+  searchKey: SearchKey;
+  searchValue: string;
 }) {
-  const params =
-    searchKey && searchValue
-      ? {
-          page,
-          page_size: pageSize,
-          search_key: searchKey,
-          search_value: searchValue,
-        }
-      : {
-          page,
-          page_size: pageSize,
-        };
   const data = await api.get<{
     total: number;
     list: {
@@ -68,8 +56,13 @@ async function cmsGetMusicList({
       fork_from?: string[];
     }[];
   }>('/cms/get_music_list', {
-    params,
     withToken: true,
+    params: {
+      page,
+      page_size: pageSize,
+      search_key: searchKey,
+      search_value: searchValue,
+    },
   });
   return {
     total: data.total,

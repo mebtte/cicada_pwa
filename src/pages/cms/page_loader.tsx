@@ -12,10 +12,13 @@ const Style = styled.div`
   ${cmsPage};
 `;
 
-const PageLoader = ({ error, retry }: { error?: Error; retry: () => void }) => (
+const PageLoader = ({ error }: { error?: Error }) => (
   <Style>
     {error ? (
-      <ErrorCard errorMessage={error.message} retry={retry} />
+      <ErrorCard
+        errorMessage={error.message}
+        retry={() => window.location.reload()}
+      />
     ) : (
       <CircularLoader />
     )}

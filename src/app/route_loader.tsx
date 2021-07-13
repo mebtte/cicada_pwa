@@ -11,9 +11,13 @@ const style = {
   left: 0,
 };
 
-const RouteLoader = ({ error, retry }: { error?: Error; retry: () => void }) =>
+const RouteLoader = ({ error }: { error?: Error }) =>
   error ? (
-    <ErrorCard errorMessage={error.message} retry={retry} style={style} />
+    <ErrorCard
+      errorMessage={error.message}
+      retry={() => window.location.reload()}
+      style={style}
+    />
   ) : (
     <LoadingCard style={style} />
   );

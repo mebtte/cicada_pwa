@@ -63,7 +63,7 @@ const emptyStyle = {
   width: '100%',
   height: '100%',
 };
-const SmallTd = styled.span`
+const Small = styled.span`
   font-size: 12px;
 `;
 const CoverBox = styled.div`
@@ -123,13 +123,6 @@ const OperationBox = styled.div`
   align-items: center;
   gap: 3px;
 `;
-const EmptyTd = styled.span`
-  color: rgb(155 155 155);
-  font-size: 12px;
-  &::after {
-    content: '-';
-  }
-`;
 
 const MusicList = ({
   loading,
@@ -180,10 +173,10 @@ const MusicList = ({
     });
 
   const rowRenderer = (music: Music) => [
-    <SmallTd>{music.id}</SmallTd>,
+    <Small>{music.id}</Small>,
     music.name,
     <CoverBox>
-      {music.cover ? <Avatar src={music.cover} /> : <EmptyTd />}
+      <Small>{music.cover ? <Avatar src={music.cover} /> : '-'}</Small>
       <div className="actions">
         <IconButton
           name={Name.EDIT_OUTLINE}
@@ -202,7 +195,7 @@ const MusicList = ({
         ) : null}
       </div>
     </CoverBox>,
-    <SmallTd>{MUSIC_TYPE_MAP_LABEL[music.type]}</SmallTd>,
+    <Small>{MUSIC_TYPE_MAP_LABEL[music.type]}</Small>,
     <SingerBox>
       <div className="singer-list">
         {music.singers.map((s) => (
@@ -223,7 +216,7 @@ const MusicList = ({
         }
       />
     </SingerBox>,
-    music.alias || <EmptyTd />,
+    <Small>{music.alias || '-'}</Small>,
     <ResourceBox>
       <Tooltip title="标准音质">
         <Tag
@@ -282,7 +275,7 @@ const MusicList = ({
         />
       </Tooltip>
     </ResourceBox>,
-    <SmallTd>{day(music.createTime).format('YYYY-MM-DD HH:mm')}</SmallTd>,
+    <Small>{day(music.createTime).format('YYYY-MM-DD HH:mm')}</Small>,
     <OperationBox>
       <IconButton
         name={Name.EDIT_OUTLINE}

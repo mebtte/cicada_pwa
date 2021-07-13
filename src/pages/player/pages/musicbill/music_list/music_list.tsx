@@ -30,7 +30,7 @@ const Style = styled(animated.div)`
     position: absolute;
     left: 0;
     width: 100%;
-    height: 50px;
+    height: 40px;
     transition: opacity 300ms;
     pointer-events: none;
   }
