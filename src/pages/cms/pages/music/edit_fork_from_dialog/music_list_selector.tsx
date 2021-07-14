@@ -84,6 +84,17 @@ const MusicListSelector = ({
   return (
     <Label {...props} label="音乐列表">
       <Style>
+        <Select
+          className="select"
+          value={null}
+          onChange={onMusicSelect}
+          array={searchMusicList}
+          itemRenderer={itemRenderer}
+          onInputChange={onInputChangeRef.current}
+          loading={loading > 0}
+          placeholder="搜索音乐"
+          disabled={disabled}
+        />
         <div className="music-list">
           {musicList.map((music) => (
             <div className="music" key={music.id}>
@@ -98,17 +109,6 @@ const MusicListSelector = ({
             </div>
           ))}
         </div>
-        <Select
-          className="select"
-          value={null}
-          onChange={onMusicSelect}
-          array={searchMusicList}
-          itemRenderer={itemRenderer}
-          onInputChange={onInputChangeRef.current}
-          loading={loading > 0}
-          placeholder="搜索音乐"
-          disabled={disabled}
-        />
       </Style>
     </Label>
   );
