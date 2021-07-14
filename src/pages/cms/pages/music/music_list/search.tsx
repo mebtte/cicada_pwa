@@ -38,11 +38,9 @@ const itemRenderer = (key: SearchKey | null) => {
 const Search = ({
   searchKey,
   searchValue: initialSearchValue,
-  loading,
 }: {
   searchKey: SearchKey;
   searchValue: string;
-  loading: boolean;
 }) => {
   const history = useHistory();
   const inputRef = useRef<HTMLInputElement>();
@@ -89,7 +87,6 @@ const Search = ({
         onChange={onSearchKeyChange}
         array={SEARCH_KEYS}
         itemRenderer={itemRenderer}
-        disabled={loading}
         customInputDisabled
       />
       <Input
@@ -98,15 +95,10 @@ const Search = ({
         onChange={onSearchValueChange}
         onKeyDown={onKeyDown}
         onFocus={onFocus}
-        disabled={loading}
         ref={inputRef}
         maxLength={SEARCH_VALUE_MAX_LENGTH}
       />
-      <IconButton
-        name={Name.SEARCH_OUTLINE}
-        onClick={onSearch}
-        loading={loading}
-      />
+      <IconButton name={Name.SEARCH_OUTLINE} onClick={onSearch} />
     </Style>
   );
 };
