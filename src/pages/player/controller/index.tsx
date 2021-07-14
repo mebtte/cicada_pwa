@@ -25,6 +25,7 @@ const Style = styled.div`
   &:hover {
     background: rgb(255 255 255 / 1);
   }
+  box-shadow: 0 0 12px rgb(0 0 0 / 0.1);
   > .cover {
     cursor: pointer;
     border: 1px solid var(--color-primary);
@@ -37,7 +38,7 @@ const Style = styled.div`
       display: flex;
       align-items: center;
       gap: 15px;
-      margin: 5px 0 0 0;
+      margin: 2px 0 0 0;
       overflow: visible;
     }
   }

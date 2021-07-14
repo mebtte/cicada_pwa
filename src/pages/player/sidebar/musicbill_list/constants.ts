@@ -11,7 +11,7 @@ export const full = css`
 export const MusicbillListContainer = styled(animated.div)`
   ${full}
 `;
-export const COVER_SIZE = 28;
+export const COVER_SIZE = 32;
 export const CONTAINETR_STYLE = css`
   padding: 6px 20px;
   display: flex;

@@ -20,7 +20,6 @@ const Style = styled(Link)`
       rgb(255 255 255 / 0.3),
       rgb(255 255 255 / 1)
     );
-    backdrop-filter: blur(3px);
     > .name {
       ${ellipsis}
       ${NAME_STYLE}
