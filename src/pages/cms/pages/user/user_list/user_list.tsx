@@ -1,50 +1,58 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 
 import Checkbox from '@/components/checkbox';
 import day from '@/utils/day';
-import Icon, { Name as IconName } from '@/components/icon';
-import Avatar from '@/components/avatar';
+import { SearchKey } from '@/apis/cms_get_user_list';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
-import ErrorCard from '@/components/error_card';
+import Icon, { Name as IconName } from '@/components/icon';
+import Empty from '@/components/empty';
+import CircularLoader from '@/components/circular_loader';
 import Table from '@/components/table';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
-import CircularLoader from '@/components/circular_loader';
-import useUserList from './use_user_list';
-import eventemitter, { EventType } from './eventemitter';
-import { User as UserType } from './constants';
+import Avatar from '@/components/avatar';
+import { User } from '../constants';
+import eventemitter, { EventType } from '../eventemitter';
 
 const Style = styled.div<{ isLoading: boolean }>`
   flex: 1;
-  min-width: 0;
+  min-height: 0;
   position: relative;
-  margin: 20px 20px 20px 0;
-  > .part {
+  > .content {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-  }
-  > .list {
-    ${scrollbarAsNeeded}
     overflow: auto;
-    box-sizing: border-box;
+    ${scrollbarAsNeeded}
     > .table {
       width: 100%;
     }
   }
   > .loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   ${({ isLoading }) => css`
-    > .list {
+    > .content {
       opacity: ${isLoading ? 0.5 : 1};
     }
   `}
 `;
+const emptyStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+};
 const ActionBox = styled.div`
   display: flex;
   align-items: center;
@@ -58,7 +66,7 @@ const disableStyle = {
 const Small = styled.div`
   font-size: 12px;
 `;
-const ACTION_SIZE = 24;
+const ACTION_SIZE = 22;
 const headers = [
   '选中',
   'ID',
@@ -73,11 +81,25 @@ const headers = [
   '操作',
 ];
 
-const UserList = ({ selectedUserList }: { selectedUserList: UserType[] }) => {
-  const { error, retry, loading, userList } = useUserList();
-  const selectedUserIdList = selectedUserList.map((u) => u.id);
+const UserList = ({
+  selectedUserList,
+  userList,
+  loading,
+  page,
+  searchKey,
+  searchValue,
+}: {
+  selectedUserList: User[];
+  userList: User[];
+  loading: boolean;
+  page: number;
+  searchKey: SearchKey;
+  searchValue: string;
+}) => {
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const rowRenderer = (u: UserType) => [
+  const selectedUserIdList = selectedUserList.map((u) => u.id);
+  const rowRenderer = (u: User) => [
     <Checkbox
       checked={selectedUserIdList.includes(u.id)}
       onChange={() =>
@@ -89,7 +111,7 @@ const UserList = ({ selectedUserList }: { selectedUserList: UserType[] }) => {
     u.nickname,
     <Small>{u.condition}</Small>,
     u.avatar ? <Avatar src={u.avatar} /> : '-',
-    <Small>{day(u.joinTime).format('YYYY-MM-DD HH:mm')}</Small>,
+    <Small>{day(u.join_time).format('YYYY-MM-DD HH:mm')}</Small>,
     <Icon
       name={u.cms ? IconName.CORRECT_OUTLINE : IconName.WRONG_OUTLINE}
       style={u.cms ? enableStyle : disableStyle}
@@ -109,31 +131,34 @@ const UserList = ({ selectedUserList }: { selectedUserList: UserType[] }) => {
       />
     </ActionBox>,
   ];
+
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    contentRef.current?.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, [page, searchKey, searchValue]);
+
   return (
     <Style isLoading={loading}>
-      {error ? (
-        <ErrorCard
-          className="part"
-          errorMessage={error.message}
-          retry={retry}
-        />
+      {loading || userList.length ? (
+        <div className="content" ref={contentRef}>
+          <Table
+            className="table"
+            array={userList}
+            headers={headers}
+            rowRenderer={rowRenderer}
+            stickyHeader
+          />
+        </div>
       ) : (
-        <>
-          <div className="part list">
-            <Table
-              className="table"
-              headers={headers}
-              array={userList}
-              rowRenderer={rowRenderer}
-              stickyHeader
-            />
-          </div>
-          {loading ? (
-            <div className="part loading">
-              <CircularLoader />
-            </div>
-          ) : null}
-        </>
+        <Empty style={emptyStyle} />
+      )}
+      {loading && (
+        <div className="loading">
+          <CircularLoader />
+        </div>
       )}
     </Style>
   );
