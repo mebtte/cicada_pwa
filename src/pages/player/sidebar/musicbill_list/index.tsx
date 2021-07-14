@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useTransition } from 'react-spring';
 
-import Scrollable, { ScrollbarType } from '@/components/scrollable';
 import { PLAYER_PATH } from '@/constants/route';
 import { RequestStatus } from '@/constants';
 import ErrorCard from '@/components/error_card';
@@ -14,7 +13,8 @@ import eventemitter, { EventType } from '../../eventemitter';
 import Context from '../../context';
 import Action from './action';
 import useKeyboard from './use_keyboard';
-import { MusicbillListContainer, full } from './constants';
+import { MusicbillListContainer } from './constants';
+import MusicbillList from './styled_musicbill_list';
 
 const Style = styled.div`
   flex: 1;
@@ -27,13 +27,6 @@ const Style = styled.div`
     position: relative;
   }
 `;
-const StyledScrollable = styled(Scrollable)`
-  ${full}
-`;
-const scrollableMaskProps = {
-  size: 50,
-  style: { zIndex: 3 },
-};
 const CenterBox = styled(MusicbillListContainer)`
   display: flex;
   align-items: center;
@@ -42,7 +35,7 @@ const CenterBox = styled(MusicbillListContainer)`
 const onReloadMusicbillList = () =>
   eventemitter.emit(EventType.RELOAD_MUSICBILL_LIST);
 
-const MusicbillList = () => {
+const Wrapper = () => {
   const location = useLocation();
   const { getMusicbillListStatus, musicbillList } = useContext(Context);
 
@@ -59,25 +52,20 @@ const MusicbillList = () => {
       if (musicbillList.length) {
         const { pathname } = location;
         return (
-          <MusicbillListContainer style={style}>
-            <StyledScrollable
-              scrollbarType={ScrollbarType.NEVER}
-              maskProps={scrollableMaskProps}
-            >
-              {musicbillList.map((mb) => {
-                const { id } = mb;
-                const to = PLAYER_PATH.MUSICBILL.replace(':id', id);
-                return (
-                  <Musicbill
-                    key={id}
-                    musicbill={mb}
-                    to={to}
-                    active={to === pathname}
-                  />
-                );
-              })}
-            </StyledScrollable>
-          </MusicbillListContainer>
+          <MusicbillList style={style}>
+            {musicbillList.map((mb) => {
+              const { id } = mb;
+              const to = PLAYER_PATH.MUSICBILL.replace(':id', id);
+              return (
+                <Musicbill
+                  key={id}
+                  musicbill={mb}
+                  to={to}
+                  active={to === pathname}
+                />
+              );
+            })}
+          </MusicbillList>
         );
       }
       return (
@@ -106,4 +94,4 @@ const MusicbillList = () => {
   );
 };
 
-export default React.memo(MusicbillList);
+export default React.memo(Wrapper);

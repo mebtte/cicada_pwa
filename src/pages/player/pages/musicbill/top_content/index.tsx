@@ -10,7 +10,7 @@ import { Musicbill } from '../../../constants';
 
 const Style = styled.div`
   position: relative;
-  height: 100px;
+  height: 90px;
 `;
 
 const Wrapper = ({ musicbill }: { musicbill: Musicbill }) => {

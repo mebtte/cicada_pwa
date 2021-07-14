@@ -21,10 +21,9 @@ const Style = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 20px;
+  gap: 10px;
+  padding: 10px 0;
 `;
-const actionStyle = {
-  margin: '5px 0',
-};
 const onSearch = () =>
   eventemitter.emit(EventType.TOP_CONTENT_CHANGE, {
     topContent: TopContent.SEARCH,
@@ -86,7 +85,6 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
               id: musicbill.id,
             })
           }
-          style={actionStyle}
         />
       </Tooltip>
       <Tooltip title="全部添加到播放列表" placement={Placement.LEFT}>
@@ -94,7 +92,6 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
           name={Name.PLUS_OUTLINE}
           size={ACTION_SIZE}
           onClick={onAddToPlaylist}
-          style={actionStyle}
           disabled={status !== RequestStatus.SUCCESS}
         />
       </Tooltip>
@@ -103,7 +100,6 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
           onClick={onSearch}
           size={ACTION_SIZE}
           name={Name.SEARCH_LIST_OUTLINE}
-          style={actionStyle}
         />
       </Tooltip>
       <Tooltip title="更新歌单信息" placement={Placement.LEFT}>
@@ -111,7 +107,6 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
           name={Name.EDIT_OUTLINE}
           size={ACTION_SIZE}
           onClick={openTextEditDialog}
-          style={actionStyle}
         />
       </Tooltip>
       <Tooltip title="删除歌单" placement={Placement.LEFT}>
@@ -119,7 +114,6 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
           name={Name.GARBAGE_OUTLINE}
           size={ACTION_SIZE}
           onClick={onDelete}
-          style={actionStyle}
         />
       </Tooltip>
     </Style>

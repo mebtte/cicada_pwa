@@ -13,7 +13,6 @@ const Style = styled(Link)`
   position: relative;
   > .content {
     ${CONTAINETR_STYLE}
-    z-index: 2;
     position: relative;
     background: linear-gradient(
       to right,
@@ -28,7 +27,6 @@ const Style = styled(Link)`
     }
   }
   > .background {
-    z-index: 1;
     position: absolute;
     top: 0;
     left: 0;
@@ -36,9 +34,6 @@ const Style = styled(Link)`
     height: 100%;
     background-size: cover;
     background-position: center;
-  }
-  &:hover {
-    background: linear-gradient(to right, rgb(0 0 0 / 0.1), rgb(0 0 0 / 0));
   }
 `;
 

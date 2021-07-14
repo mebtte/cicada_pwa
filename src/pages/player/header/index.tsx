@@ -17,7 +17,7 @@ import { Query } from '../constants';
 
 const Style = styled.div`
   z-index: 2;
-  height: 64px;
+  height: 60px;
   display: flex;
   align-items: flex-end;
   padding: 0 20px 10px 20px;
