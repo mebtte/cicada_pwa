@@ -63,13 +63,13 @@ const UpdateDialog = () => {
       <Title>更新公共配置</Title>
       <Content>
         <Label label="键" style={labelStyle}>
-          <Input value={publicConfig?.key || ''} style={inputStyle} readOnly />
+          <Input value={publicConfig?.key || ''} style={inputStyle} disabled />
         </Label>
         <Label label="描述" style={labelStyle}>
           <Input
             value={publicConfig?.description || ''}
             style={inputStyle}
-            readOnly
+            disabled
           />
         </Label>
         <Label label="值" style={labelStyle}>
