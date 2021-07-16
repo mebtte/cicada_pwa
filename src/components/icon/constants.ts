@@ -1,4 +1,4 @@
-import BranchOutline from './branch_outline';
+import ViewOutline from './icons/view_outline';
 import CheckboxFill from './checkbox_fill';
 import CheckboxOutline from './checkbox_outline';
 import CorrectOutline from './correct_outline';
@@ -12,7 +12,7 @@ import MoreOutline from './more_outline';
 import NextFill from './next_fill';
 import NoticeOutline from './notice_outline';
 import PlayOutline from './play_outline';
-import AddToOutline from './add_to_outline';
+import AddToOutline from './icons/add_to_outline';
 import PlusOutline from './plus_outline';
 import PreviousFill from './previous_fill';
 import QuestionFill from './question_fill';
@@ -25,7 +25,7 @@ import SearchOutline from './search_outline';
 import VideoOutline from './video_outline';
 import UpOutline from './up_outline';
 import DownOutline from './down_outline';
-import AimOutline from './aim_outline';
+import AimOutline from './icons/aim_outline';
 import UploadOutline from './upload_outline';
 import OrderedListOutline from './ordered_list_outline';
 import ListOutline from './list_outline';
@@ -45,14 +45,17 @@ import LyricOutline from './lyric_outline';
 import GithubFill from './github_fill';
 import RecommendOutline from './recommend_outline';
 import CloudOutline from './cloud_outline';
-import BrowserFill from './browser_fill';
+import BrowserFill from './icons/browser_fill';
 import MobilephoneFill from './mobilephone_fill';
 import HouseOutline from './house_outline';
 import DashboardOutline from './dashboard_outline';
 import IDFill from './id_fill';
 import EmailListFill from './email_list_fill';
+import HistoryOutline from './icons/history_outline';
 
 export enum Name {
+  VIEW_OUTLINE = 'ViewOutline',
+  HISTORY_OUTLINE = 'HistoryOutline',
   EMAIL_LIST_FILL = 'EmailListFill',
   ID_FILL = 'IDFill',
   DASHBOARD_OUTLINE = 'DashboardOutline',
@@ -81,7 +84,6 @@ export enum Name {
   AIM_OUTLINE = 'AimOutline',
   UP_OUTLINE = 'UpOutline',
   DOWN_OUTLINE = 'DownOutline',
-  BRANCH_OUTLINE = 'BranchOutline',
   CHECKBOX_OUTLINE = 'CheckboxOutline',
   CHECKBOX_FILL = 'CheckboxFill',
   CORRECT_OUTLINE = 'CorrectOutline',
@@ -109,6 +111,8 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
+  [Name.VIEW_OUTLINE]: ViewOutline,
+  [Name.HISTORY_OUTLINE]: HistoryOutline,
   [Name.EMAIL_LIST_FILL]: EmailListFill,
   [Name.ID_FILL]: IDFill,
   [Name.DASHBOARD_OUTLINE]: DashboardOutline,
@@ -137,7 +141,6 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.AIM_OUTLINE]: AimOutline,
   [Name.DOWN_OUTLINE]: DownOutline,
   [Name.UP_OUTLINE]: UpOutline,
-  [Name.BRANCH_OUTLINE]: BranchOutline,
   [Name.CHECKBOX_OUTLINE]: CheckboxOutline,
   [Name.CHECKBOX_FILL]: CheckboxFill,
   [Name.CORRECT_OUTLINE]: CorrectOutline,

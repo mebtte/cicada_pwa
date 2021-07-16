@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { DIALOG_TYPE } from '../../platform/dialog';
 
 export interface Dialog {

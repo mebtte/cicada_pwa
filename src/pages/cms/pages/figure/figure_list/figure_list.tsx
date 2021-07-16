@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 
+import useHistory from '@/utils/use_history';
 import day from '@/utils/day';
 import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
 import { SearchKey } from '@/apis/cms_get_figure_list';
@@ -14,7 +15,7 @@ import CircularLoader from '@/components/circular_loader';
 import Table from '@/components/table';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import Avatar from '@/components/avatar';
-import { Figure } from '../constants';
+import { Figure, Query } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 
 const Style = styled.div<{ isLoading: boolean }>`
@@ -87,6 +88,7 @@ const FigureList = ({
   searchKey: SearchKey;
   searchValue: string;
 }) => {
+  const history = useHistory();
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   const onDelete = (figure: Figure) =>
@@ -136,12 +138,14 @@ const FigureList = ({
             eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
           }
         />
-        <IconButton
-          name={Name.GARBAGE_OUTLINE}
-          size={ACTION_SIZE}
-          type={Type.DANGER}
-          onClick={() => onDeleteAvatar(figure)}
-        />
+        {figure.avatar ? (
+          <IconButton
+            name={Name.GARBAGE_OUTLINE}
+            size={ACTION_SIZE}
+            type={Type.DANGER}
+            onClick={() => onDeleteAvatar(figure)}
+          />
+        ) : null}
       </div>
     </AvatarBox>,
     figure.alias || '-',
@@ -152,6 +156,18 @@ const FigureList = ({
         size={ACTION_SIZE}
         onClick={() =>
           eventemitter.emit(EventType.OPEN_EDIT_FIGURE_DIALOG, figure)
+        }
+      />
+      <IconButton
+        name={Name.HISTORY_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() =>
+          history.push({
+            query: {
+              [Query.OPERATE_RECORD_DIALOG_OPEN]: '1',
+              [Query.OPERATE_RECORD_DIALOG_SEARCH_FIGURE_ID]: figure.id,
+            },
+          })
         }
       />
       <IconButton

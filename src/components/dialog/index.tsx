@@ -121,6 +121,7 @@ export const Title = styled.div`
 export const Content = styled.div`
   font-size: 14px;
   color: rgb(155 155 155);
+  line-height: 1.5;
 `;
 
 export const Action = styled.div`

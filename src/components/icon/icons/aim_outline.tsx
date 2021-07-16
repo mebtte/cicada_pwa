@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Path } from './base';
+import { Path } from '../base';
 
 const AimOutline = () => (
   <>

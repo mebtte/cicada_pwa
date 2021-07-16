@@ -1,6 +1,6 @@
 {
   "name": "cicada_pwa",
-  "version": "3.110.229",
+  "version": "3.111.229",
   "private": true,
   "author": {
     "name": "mebtte",
@@ -99,6 +99,7 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
-    "dayjs": "^1.10.6"
+    "dayjs": "^1.10.6",
+    "react-json-view": "^1.21.3"
   }
 }

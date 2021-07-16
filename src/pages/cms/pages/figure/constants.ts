@@ -12,6 +12,11 @@ export enum Query {
   SEARCH_VALUE = 'search_value',
 
   CREATE_DIALOG_OPEN = 'create_dialog_open',
+
+  OPERATE_RECORD_DIALOG_OPEN = 'operate_record_dialog_open',
+  OPERATE_RECORD_DIALOG_SEARCH_FIGURE_ID = 'operate_record_dialog_search_figure_id',
+
+  JSON_VIEW_STRING = 'json_view_string',
 }
 
 export const PAGE_SIZE = 30;
