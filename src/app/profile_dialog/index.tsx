@@ -16,7 +16,7 @@ import {
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import globalEventemitter, { EventType } from '@/platform/global_eventemitter';
 import Button, { Type as ButtonType } from '@/components/button';
-import updateProfile, { Key } from '@/apis/update_profile';
+import updateUser, { Key } from '@/apis/update_user';
 import Avatar from './avatar';
 import { PART_SPACE } from './constants';
 
@@ -59,12 +59,12 @@ const ProfileDialog = ({ user }: { user: User }) => {
       let needUpdate = false;
 
       if (nickname !== user.nickname) {
-        await updateProfile({ key: Key.NICKNAME, value: nickname });
+        await updateUser({ key: Key.NICKNAME, value: nickname });
         needUpdate = true;
       }
 
       if (condition !== user.condition) {
-        await updateProfile({ key: Key.CONDITION, value: condition });
+        await updateUser({ key: Key.CONDITION, value: condition });
         needUpdate = true;
       }
 

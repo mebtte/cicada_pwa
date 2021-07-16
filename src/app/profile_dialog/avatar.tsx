@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import store from '@/store';
 import { reloadUser } from '@/store/user';
-import updateProfile, { Key } from '@/apis/update_profile';
+import updateUser, { Key } from '@/apis/update_user';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import IconButton, { Name } from '@/components/icon_button';
 import Avatar from '@/components/avatar';
@@ -26,9 +26,9 @@ const Style = styled.div`
 const Wrapper = ({ user }: { user: User }) => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const onUpdateAvatar = async (file: File) => {
-    await updateProfile({ key: Key.AVATAR, value: file });
+    await updateUser({ key: Key.AVATAR, value: file });
     // @ts-expect-error
-    store.dispatch(reloadUser());
+    return store.dispatch(reloadUser());
   };
   return (
     <Style>

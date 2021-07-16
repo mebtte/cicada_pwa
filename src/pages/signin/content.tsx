@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
-import day from '@/utils/day';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import Icon, { Name as IconName } from '@/components/icon';
 import { EMAIL } from '@/constants/regexp';
@@ -13,7 +12,7 @@ import {
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import signin from '@/apis/signin';
-import getProfile from '@/apis/get_profile';
+import getUser from '@/apis/get_user';
 import store from '@/store';
 import { setUser } from '@/store/user';
 import dialog from '@/platform/dialog';
@@ -88,18 +87,9 @@ const Content = () => {
       localStorage.setItem(TOKEN_EXPIRED_AT, tokenExpiredAt);
       localStorage.setItem(TOKEN, token);
       localStorage.setItem(LAST_SIGNIN_EMAIL, email);
-      const user = await getProfile();
-      setTimeout(
-        () =>
-          store.dispatch(
-            // @ts-expect-error
-            setUser({
-              ...user,
-              joinTimeString: day(user.joinTime).format('YYYY-MM-DD HH:mm'),
-            }),
-          ),
-        0,
-      );
+      const user = await getUser();
+      // @ts-expect-error
+      setTimeout(() => store.dispatch(setUser(user)), 0);
     } catch (error) {
       logger.error(error, { description: '登录失败', report: true });
       dialog.alert({

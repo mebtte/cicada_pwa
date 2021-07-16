@@ -1,13 +1,27 @@
 import day from '@/utils/day';
+import getRandomCover from '@/utils/get_random_cover';
 import { USER } from '../constants/storage_key';
 import * as TYPE from './action_type';
 import { getToken, clearToken } from '../platform/token';
 import { User } from '../constants/user';
-import getProfile from '../apis/get_profile';
+import getUser from '../apis/get_user';
 import logger from '../platform/logger';
 import dialog from '../platform/dialog';
 
-export const setUser = (user: User) => (dispatch) => {
+type ApiUser = AsyncReturnType<typeof getUser>;
+
+export const setUser = (apiUser: ApiUser) => (dispatch) => {
+  const joinTime = new Date(apiUser.join_time);
+  const user: User = {
+    id: apiUser.id,
+    email: apiUser.email,
+    avatar: apiUser.avatar || getRandomCover(),
+    nickname: apiUser.nickname,
+    condition: apiUser.condition,
+    cms: !!apiUser.cms,
+    joinTime,
+    joinTimeString: day(joinTime).format('YYYY-MM-DD HH:mm'),
+  };
   localStorage.setItem(USER, JSON.stringify(user));
   dispatch({
     type: TYPE.SET_USER,
@@ -15,20 +29,9 @@ export const setUser = (user: User) => (dispatch) => {
   });
 };
 
-export const reloadUser = () => async (dispatch, getState) => {
-  if (!getState().user) {
-    return;
-  }
-
-  return getProfile()
-    .then((user) =>
-      dispatch(
-        setUser({
-          ...user,
-          joinTimeString: day(user.joinTime).format('YYYY-MM-DD HH:mm'),
-        }),
-      ),
-    )
+export const reloadUser = () => async (dispatch) =>
+  getUser()
+    .then((user) => dispatch(setUser(user)))
     .catch((error) => {
       logger.error(error, {
         description: '加载用户信息失败',
@@ -39,7 +42,6 @@ export const reloadUser = () => async (dispatch, getState) => {
         content: error.message,
       });
     });
-};
 
 export const clearUser = () => (dispatch) => {
   clearToken();

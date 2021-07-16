@@ -7,7 +7,7 @@ export enum Key {
 }
 
 /**
- * 更新用户资料
+ * 更新用户
  * @author mebtte<hi@mebtte.com>
  */
 async function updateProfile({
@@ -20,7 +20,7 @@ async function updateProfile({
   const form = new FormData();
   form.append('key', key);
   form.append('value', value);
-  return api.post<void>('/update_profile', {
+  return api.post<void>('/update_user', {
     withToken: true,
     data: form,
   });
