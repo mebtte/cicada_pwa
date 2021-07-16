@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import JSONView from 'react-json-view';
 
 import Dialog, { Content } from '@/components/dialog';
@@ -20,10 +20,13 @@ const JsonViewDialog = ({ jsonString }: { jsonString?: string }) => {
       }),
     [history],
   );
-  const json = useMemo(
-    () => (jsonString ? JSON.parse(jsonString) : {}),
-    [jsonString],
-  );
+
+  const [json, setJson] = useState({});
+  useEffect(() => {
+    if (jsonString) {
+      setJson(JSON.parse(jsonString));
+    }
+  }, [jsonString]);
   return (
     <Dialog open={!!jsonString} onClose={onClose} bodyProps={bodyProps}>
       <Content>
