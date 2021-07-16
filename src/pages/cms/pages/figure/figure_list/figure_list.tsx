@@ -92,7 +92,8 @@ const FigureList = ({
   const onDelete = (figure: Figure) =>
     dialog.confirm({
       title: `确定删除"${figure.name}"?`,
-      content: '当角色仍挂载音乐时无法被删除, 如若需要删除请先解除关系.',
+      content:
+        '当角色仍挂载音乐时无法被删除, 如若需要删除请先解除关系. 此外, 删除角色会以邮件方式发送当前角色备份给其他 CMS 用户.',
       onConfirm: async () => {
         try {
           await cmsDeleteFigure(figure.id);
