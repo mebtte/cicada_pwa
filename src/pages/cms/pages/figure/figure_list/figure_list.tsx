@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 
 import useHistory from '@/utils/use_history';
 import day from '@/utils/day';
-import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
 import { SearchKey } from '@/apis/cms_get_figure_list';
 import cmsDeleteFigure from '@/apis/cms_delete_figure';
 import toast from '@/platform/toast';
@@ -107,23 +106,6 @@ const FigureList = ({
         }
       },
     });
-  const onDeleteAvatar = (figure: Figure) =>
-    dialog.confirm({
-      title: `确定删除"${figure.name}"头像?`,
-      onConfirm: async () => {
-        try {
-          await cmsUpdateFigure({ id: figure.id, key: Key.AVATAR, value: '' });
-          toast.success(`"${figure.name}"头像已删除`);
-          eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
-        } catch (error) {
-          logger.error(error, {
-            description: '删除角色头像失败',
-            report: true,
-          });
-          toast.error(error.message);
-        }
-      },
-    });
 
   const rowRenderer = (figure: Figure) => [
     figure.id,
@@ -138,14 +120,6 @@ const FigureList = ({
             eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
           }
         />
-        {figure.avatar ? (
-          <IconButton
-            name={Name.GARBAGE_OUTLINE}
-            size={ACTION_SIZE}
-            type={Type.DANGER}
-            onClick={() => onDeleteAvatar(figure)}
-          />
-        ) : null}
       </div>
     </AvatarBox>,
     figure.alias || '-',
