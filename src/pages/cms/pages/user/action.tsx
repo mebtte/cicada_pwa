@@ -36,6 +36,13 @@ const Action = ({ selectedUserList }: { selectedUserList: User[] }) => {
         [Query.EMAIL_NOTIFICATION_HISTORY_TO_USRE_ID]: '',
       },
     });
+  const openUserOpreateRecordDialog = () =>
+    history.push({
+      query: {
+        [Query.OPERATE_RECORD_DIALOG_OPEN]: '1',
+        [Query.OPERATE_RECORD_TARGET_USER_ID]: '',
+      },
+    });
 
   return (
     <Style>
@@ -48,6 +55,12 @@ const Action = ({ selectedUserList }: { selectedUserList: User[] }) => {
       </Tooltip>
       <Tooltip title="创建用户" placement={Placement.RIGHT}>
         <IconButton name={Name.PLUS_OUTLINE} onClick={openCreateDialog} />
+      </Tooltip>
+      <Tooltip title="用户操作记录" placement={Placement.RIGHT}>
+        <IconButton
+          name={Name.HISTORY_OUTLINE}
+          onClick={openUserOpreateRecordDialog}
+        />
       </Tooltip>
       <Tooltip title="发送邮件通知" placement={Placement.RIGHT}>
         <IconButton

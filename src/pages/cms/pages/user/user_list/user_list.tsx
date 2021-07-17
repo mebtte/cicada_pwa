@@ -126,13 +126,29 @@ const UserList = ({
     />,
     <Small>{u.remark}</Small>,
     <ActionBox>
-      <IconButton
-        name={IconButtonName.EDIT_OUTLINE}
-        size={ACTION_SIZE}
-        onClick={() =>
-          eventemitter.emit(EventType.OPEN_UPDATE_DIALOG, { user: u })
-        }
-      />
+      <Tooltip title="编辑">
+        <IconButton
+          name={IconButtonName.EDIT_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={() =>
+            eventemitter.emit(EventType.OPEN_UPDATE_DIALOG, { user: u })
+          }
+        />
+      </Tooltip>
+      <Tooltip title="操作记录">
+        <IconButton
+          name={IconButtonName.HISTORY_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={() =>
+            history.push({
+              query: {
+                [Query.OPERATE_RECORD_DIALOG_OPEN]: '1',
+                [Query.OPERATE_RECORD_TARGET_USER_ID]: u.id,
+              },
+            })
+          }
+        />
+      </Tooltip>
       <Tooltip title="邮件通知记录">
         <IconButton
           name={IconButtonName.EMAIL_LIST_FILL}

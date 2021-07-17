@@ -13,6 +13,7 @@ import SendEmailNotificationDialog from './send_email_notification_dialog';
 import useSelectedUserList from './use_selected_user_list';
 import SelectedUserListDialog from './selected_user_list_dialog';
 import EmailNotificationHistoryDialog from './email_notification_history_dialog';
+import OpreateRecordDialog from './operate_record_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -39,6 +40,9 @@ const User = () => {
   const emailNotificationHistoryToUserId =
     query[Query.EMAIL_NOTIFICATION_HISTORY_TO_USRE_ID];
 
+  const operateRecordDialogOpen = !!query[Query.OPERATE_RECORD_DIALOG_OPEN];
+  const operateRecordTargetUserId = query[Query.OPERATE_RECORD_TARGET_USER_ID];
+
   const selectedUserList = useSelectedUserList();
 
   return (
@@ -64,6 +68,10 @@ const User = () => {
       <SelectedUserListDialog
         open={selectedUserListDialogOpen}
         selectedUserList={selectedUserList}
+      />
+      <OpreateRecordDialog
+        open={operateRecordDialogOpen}
+        targetUserId={operateRecordTargetUserId}
       />
     </Style>
   );

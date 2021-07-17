@@ -15,4 +15,7 @@ export enum Query {
 
   EMAIL_NOTIFICATION_HISTORY_DIALOG_OPEN = 'email_notification_history_dialog_oepn',
   EMAIL_NOTIFICATION_HISTORY_TO_USRE_ID = 'email_notification_history_to_user_id',
+
+  OPERATE_RECORD_DIALOG_OPEN = 'operate_record_dialog_open',
+  OPERATE_RECORD_TARGET_USER_ID = 'operate_record_target_user_id',
 }
