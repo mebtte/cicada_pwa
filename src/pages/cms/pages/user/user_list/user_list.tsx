@@ -15,6 +15,9 @@ import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import Avatar from '@/components/avatar';
 import { Query, User } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
+import CMSEventemitter, {
+  EventType as CMSEventType,
+} from '../../../eventemitter';
 
 const Style = styled.div<{ isLoading: boolean }>`
   flex: 1;
@@ -75,7 +78,6 @@ const headers = [
   'ID',
   '邮箱',
   '昵称',
-  '状态',
   '头像',
   '注册',
   'CMS',
@@ -113,7 +115,6 @@ const UserList = ({
     <Small>{u.id}</Small>,
     <Small>{u.email}</Small>,
     u.nickname,
-    <Small>{u.condition}</Small>,
     u.avatar ? <Avatar src={u.avatar} /> : '-',
     <Small>{day(u.join_time).format('YYYY-MM-DD HH:mm')}</Small>,
     <Icon
@@ -132,6 +133,15 @@ const UserList = ({
           size={ACTION_SIZE}
           onClick={() =>
             eventemitter.emit(EventType.OPEN_UPDATE_DIALOG, { user: u })
+          }
+        />
+      </Tooltip>
+      <Tooltip title="详情">
+        <IconButton
+          name={IconButtonName.VIEW_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={() =>
+            CMSEventemitter.emit(CMSEventType.VIEW_JSON, { json: u })
           }
         />
       </Tooltip>

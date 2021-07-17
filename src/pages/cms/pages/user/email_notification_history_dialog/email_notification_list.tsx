@@ -11,7 +11,7 @@ import CMSEventemitter, {
 } from '../../../eventemitter';
 
 const headers = [
-  '用户 ID',
+  '目标用户 ID',
   '发送用户',
   '标题',
   '创建时间',
@@ -34,7 +34,9 @@ const EmailNotificationList = ({
 }) => {
   const rowRenderer = (emailNotification: EmailNotification) => [
     emailNotification.to_user_id,
-    emailNotification.send_user.nickname,
+    <span title={`ID:${emailNotification.send_user.id}`}>
+      {emailNotification.send_user.nickname}
+    </span>,
     <Ellipsis>{emailNotification.title}</Ellipsis>,
     <Small>
       {day(emailNotification.create_time).format('YYYY-MM-DD HH:mm')}

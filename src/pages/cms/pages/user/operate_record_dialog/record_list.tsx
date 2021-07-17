@@ -15,12 +15,14 @@ const RECORD_TYPE_MAP_LABEL = {
 const style = {
   width: '100%',
 };
-const headers = ['用户 ID', '操作用户', '类型', '操作时间', '详情'];
+const headers = ['目标用户 ID', '操作用户', '类型', '操作时间', '详情'];
 
 const RecordList = ({ recordList }: { recordList: RecordType[] }) => {
   const rowRenderer = (record: RecordType) => [
     record.target_user_id,
-    <span title={record.operate_user.id}>{record.operate_user.nickname}</span>,
+    <span title={`ID:${record.operate_user.id}`}>
+      {record.operate_user.nickname}
+    </span>,
     RECORD_TYPE_MAP_LABEL[record.type] || '未知类型',
     day(record.operate_time).format('YYYY-MM-DD HH:mm'),
     <IconButton
