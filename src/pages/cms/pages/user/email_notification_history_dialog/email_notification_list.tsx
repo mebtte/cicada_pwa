@@ -14,14 +14,13 @@ const headers = [
   '用户 ID',
   '发送用户',
   '标题',
-  'HTML',
   '创建时间',
   '发送时间',
   '尝试发送次数',
   '详情',
 ];
 const Ellipsis = styled.div`
-  max-width: 100px;
+  max-width: 150px;
   ${ellipsis}
 `;
 const Small = styled.div`
@@ -37,7 +36,6 @@ const EmailNotificationList = ({
     emailNotification.to_user_id,
     emailNotification.send_user.nickname,
     <Ellipsis>{emailNotification.title}</Ellipsis>,
-    <Ellipsis>{emailNotification.html}</Ellipsis>,
     <Small>
       {day(emailNotification.create_time).format('YYYY-MM-DD HH:mm')}
     </Small>,
