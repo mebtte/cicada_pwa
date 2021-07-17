@@ -42,7 +42,7 @@ const SelectedUserListDialog = ({
       <Content>
         {selectedUserList.length ? (
           <Table
-            array={selectedUserList}
+            list={selectedUserList}
             headers={headers}
             rowRenderer={rowRenderer}
             style={tableStyle}

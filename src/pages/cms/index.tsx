@@ -13,6 +13,7 @@ import PageContainer from '../page_container';
 import PageLoader from './page_loader';
 import Header from './header';
 import Sidebar from './sidebar';
+import JSONViewDialog from './json_view_dialog';
 
 const ROUTE = {
   [CMS_PATH.DASHBOARD]: loadable({
@@ -99,6 +100,8 @@ const Dashboard = () => {
           </Switch>
         </div>
       </Style>
+
+      <JSONViewDialog />
     </Scrollable>
   );
 };

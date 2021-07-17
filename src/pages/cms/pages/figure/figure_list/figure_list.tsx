@@ -193,7 +193,7 @@ const FigureList = ({
         <div className="content" ref={contentRef}>
           <Table
             className="table"
-            array={figureList}
+            list={figureList}
             headers={headers}
             rowRenderer={rowRenderer}
             stickyHeader

@@ -22,6 +22,9 @@ const TableBox = styled.div<{ isLoading: boolean }>`
   position: relative;
   min-height: 150px;
   margin-bottom: 10px;
+  table {
+    width: 100%;
+  }
   > .loader {
     position: absolute;
     top: 50%;

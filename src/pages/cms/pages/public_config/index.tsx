@@ -74,7 +74,7 @@ const PublicConfig = () => {
             <Table
               className="table"
               headers={headers}
-              array={publicConfigList}
+              list={publicConfigList}
               rowRenderer={rowRenderer}
               stickyHeader
             />

@@ -34,13 +34,13 @@ const Style = styled.table<{ stickyHeader: boolean }>`
 `;
 
 function Table<Row>({
-  array,
+  list,
   headers,
   rowRenderer,
   stickyHeader = false,
   ...props
 }: {
-  array: Array<Row>;
+  list: Array<Row>;
   headers: ReactNode[];
   rowRenderer: (row: Row) => ReactNode[];
   stickyHeader?: boolean;
@@ -56,7 +56,7 @@ function Table<Row>({
         </tr>
       </thead>
       <tbody>
-        {array.map((row, i) => (
+        {list.map((row, i) => (
           <tr key={i}>
             {rowRenderer(row).map((d, j) => (
               <td key={j}>{d}</td>

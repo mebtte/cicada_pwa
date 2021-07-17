@@ -8,6 +8,7 @@ import IconButton, { Name } from '@/components/icon_button';
 import { CMS_PATH } from '@/constants/route';
 import { Query as MusicQuery } from '../music/constants';
 import { Query as FigureQuery } from '../figure/constants';
+import { Query as UserQuery } from '../user/constants';
 
 const Style = styled.div`
   padding: 0 20px;
@@ -28,18 +29,13 @@ const Search = () => {
   const history = useHistory();
 
   const musicRef = useRef<HTMLInputElement>();
-  const onMusicSearch = () => {
-    const { value } = musicRef.current;
-    if (value) {
-      return history.push({
-        pathname: CMS_PATH.MUSIC,
-        query: {
-          [MusicQuery.SEARCH_VALUE]: value,
-        },
-      });
-    }
-    return history.push({ pathname: CMS_PATH.MUSIC });
-  };
+  const onMusicSearch = () =>
+    history.push({
+      pathname: CMS_PATH.MUSIC,
+      query: {
+        [MusicQuery.SEARCH_VALUE]: musicRef.current.value,
+      },
+    });
   const onMusicKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       onMusicSearch();
@@ -47,21 +43,30 @@ const Search = () => {
   };
 
   const figureRef = useRef<HTMLInputElement>();
-  const onFigureSearch = () => {
-    const { value } = figureRef.current;
-    if (value) {
-      return history.push({
-        pathname: CMS_PATH.FIGURE,
-        query: {
-          [FigureQuery.SEARCH_VALUE]: value,
-        },
-      });
-    }
-    return history.push({ pathname: CMS_PATH.MUSIC });
-  };
+  const onFigureSearch = () =>
+    history.push({
+      pathname: CMS_PATH.FIGURE,
+      query: {
+        [FigureQuery.SEARCH_VALUE]: figureRef.current.value,
+      },
+    });
   const onFigureKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       onFigureSearch();
+    }
+  };
+
+  const userRef = useRef<HTMLInputElement>();
+  const onUserSearch = () =>
+    history.push({
+      pathname: CMS_PATH.USER,
+      query: {
+        [UserQuery.SEARCH_VALUE]: userRef.current.value,
+      },
+    });
+  const onUserKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      onUserSearch();
     }
   };
 
@@ -84,6 +89,12 @@ const Search = () => {
             ref={figureRef}
             onKeyDown={onFigureKeyDown}
           />
+          <IconButton name={Name.SEARCH_OUTLINE} onClick={onFigureSearch} />
+        </InputBox>
+      </Label>
+      <Label label="搜索用户">
+        <InputBox>
+          <Input className="input" ref={userRef} onKeyDown={onUserKeyDown} />
           <IconButton name={Name.SEARCH_OUTLINE} onClick={onFigureSearch} />
         </InputBox>
       </Label>

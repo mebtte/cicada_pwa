@@ -31,7 +31,10 @@ const Action = ({ selectedUserList }: { selectedUserList: User[] }) => {
     });
   const openEmailNotificationHistory = () =>
     history.push({
-      query: { [Query.EMAIL_NOTIFICATION_HISTORY_DIALOG_OPEN]: '1' },
+      query: {
+        [Query.EMAIL_NOTIFICATION_HISTORY_DIALOG_OPEN]: '1',
+        [Query.EMAIL_NOTIFICATION_HISTORY_TO_USRE_ID]: '',
+      },
     });
 
   return (

@@ -5,6 +5,7 @@ import logger from '@/platform/logger';
 import { PAGE_SIZE, Record } from './constants';
 
 const INITIAL_PAGE = 1;
+const INITIAL_TOTAL = 0;
 
 export default ({
   open,
@@ -15,13 +16,13 @@ export default ({
 }) => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(INITIAL_TOTAL);
   const [recordList, setRecordList] = useState<Record[]>([]);
-
   const [page, setPage] = useState(INITIAL_PAGE);
-  const onPageChange = (p: number) => setPage(p);
-
   const getRecordList = useCallback(async () => {
+    if (!open) {
+      return;
+    }
     setError(null);
     setLoading(true);
     try {
@@ -40,16 +41,11 @@ export default ({
       setError(e);
     }
     setLoading(false);
-  }, [searchFigureId, page]);
+  }, [open, searchFigureId, page]);
 
   useEffect(() => {
-    if (open) {
-      setPage(INITIAL_PAGE);
-    }
-  }, [open]);
-
-  useEffect(() => {
-    setTotal(0);
+    setPage(INITIAL_PAGE);
+    setTotal(INITIAL_TOTAL);
     setRecordList([]);
   }, [searchFigureId]);
 
@@ -61,7 +57,7 @@ export default ({
     error,
     loading,
     page,
-    onPageChange,
+    onPageChange: setPage,
     total,
     recordList,
     retry: getRecordList,

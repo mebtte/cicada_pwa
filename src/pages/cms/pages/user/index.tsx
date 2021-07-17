@@ -33,8 +33,11 @@ const User = () => {
     !!query[Query.SELECTED_USER_LIST_DIALOG_OPEN];
   const sendEmailNotificationDialog =
     !!query[Query.SEND_EMAIL_NOTIFICATION_DIALOG_OPEN];
+
   const emailNotificationHistoryDialog =
     !!query[Query.EMAIL_NOTIFICATION_HISTORY_DIALOG_OPEN];
+  const emailNotificationHistoryToUserId =
+    query[Query.EMAIL_NOTIFICATION_HISTORY_TO_USRE_ID];
 
   const selectedUserList = useSelectedUserList();
 
@@ -54,7 +57,10 @@ const User = () => {
         open={sendEmailNotificationDialog}
         selectedUserList={selectedUserList}
       />
-      <EmailNotificationHistoryDialog open={emailNotificationHistoryDialog} />
+      <EmailNotificationHistoryDialog
+        open={emailNotificationHistoryDialog}
+        toUserId={emailNotificationHistoryToUserId}
+      />
       <SelectedUserListDialog
         open={selectedUserListDialogOpen}
         selectedUserList={selectedUserList}

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 
+import Tooltip from '@/components/tooltip';
+import useHistory from '@/utils/use_history';
 import Checkbox from '@/components/checkbox';
 import day from '@/utils/day';
 import { SearchKey } from '@/apis/cms_get_user_list';
@@ -11,7 +13,7 @@ import CircularLoader from '@/components/circular_loader';
 import Table from '@/components/table';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import Avatar from '@/components/avatar';
-import { User } from '../constants';
+import { Query, User } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 
 const Style = styled.div<{ isLoading: boolean }>`
@@ -56,6 +58,7 @@ const emptyStyle = {
 const ActionBox = styled.div`
   display: flex;
   align-items: center;
+  gap: 2px;
 `;
 const enableStyle = {
   color: 'var(--color-primary)',
@@ -96,6 +99,7 @@ const UserList = ({
   searchKey: SearchKey;
   searchValue: string;
 }) => {
+  const history = useHistory();
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   const selectedUserIdList = selectedUserList.map((u) => u.id);
@@ -129,6 +133,20 @@ const UserList = ({
           eventemitter.emit(EventType.OPEN_UPDATE_DIALOG, { user: u })
         }
       />
+      <Tooltip title="邮件通知记录">
+        <IconButton
+          name={IconButtonName.EMAIL_LIST_FILL}
+          size={ACTION_SIZE}
+          onClick={() =>
+            history.push({
+              query: {
+                [Query.EMAIL_NOTIFICATION_HISTORY_DIALOG_OPEN]: '1',
+                [Query.EMAIL_NOTIFICATION_HISTORY_TO_USRE_ID]: u.id,
+              },
+            })
+          }
+        />
+      </Tooltip>
     </ActionBox>,
   ];
 
@@ -146,7 +164,7 @@ const UserList = ({
         <div className="content" ref={contentRef}>
           <Table
             className="table"
-            array={userList}
+            list={userList}
             headers={headers}
             rowRenderer={rowRenderer}
             stickyHeader

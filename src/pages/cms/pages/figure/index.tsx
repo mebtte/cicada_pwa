@@ -11,7 +11,6 @@ import EditFigureAvatarDialog from './edit_figure_avatar_dialog';
 import EditFigureDialog from './edit_figure_dialog';
 import { Query } from './constants';
 import OperateRecordDialog from './operate_record_dialog';
-import JSONViewDialog from './json_view_dialog';
 
 const Style = styled.div`
   ${cmsPage};
@@ -31,7 +30,6 @@ const Figure = () => {
   const operateRecordDialogOpen = !!query[Query.OPERATE_RECORD_DIALOG_OPEN];
   const operateRecordDialogSearchFigureId =
     query[Query.OPERATE_RECORD_DIALOG_SEARCH_FIGURE_ID];
-  const jsonViewString = query[Query.JSON_VIEW_STRING];
 
   return (
     <Style>
@@ -45,7 +43,6 @@ const Figure = () => {
         open={operateRecordDialogOpen}
         searchFigureId={operateRecordDialogSearchFigureId}
       />
-      <JSONViewDialog jsonString={jsonViewString} />
     </Style>
   );
 };

@@ -314,7 +314,7 @@ const MusicList = ({
         <div className="content" ref={contentRef}>
           <Table
             className="table"
-            array={musicList}
+            list={musicList}
             headers={headers}
             rowRenderer={rowRenderer}
             stickyHeader
