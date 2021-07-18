@@ -4,7 +4,10 @@ import styled, { css } from 'styled-components';
 import scrollbarNever from '@/style/scrollbar_never';
 import { MusicbillListContainer } from './constants';
 
-const Style = styled(MusicbillListContainer)<{
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Style = styled(({ topBoxShadow, ...props }: any) => (
+  <MusicbillListContainer {...props} />
+))<{
   topBoxShadow: number;
 }>`
   overflow: auto;
@@ -12,7 +15,7 @@ const Style = styled(MusicbillListContainer)<{
 
   ${({ topBoxShadow }) => css`
     box-shadow: ${topBoxShadow
-      ? 'inset 0px 15px 15px -15px rgb(0 0 0 / 40%)'
+      ? 'inset 0px 5px 5px -5px rgb(0 0 0 / 40%)'
       : 'none'};
   `}
 `;

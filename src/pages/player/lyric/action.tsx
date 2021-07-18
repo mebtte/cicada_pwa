@@ -2,13 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { MusicType } from '@/constants/music';
-import { IS_ELECTRON, IS_WINDOWS } from '@/constants';
 import IconButton, { Name } from '@/components/icon_button';
-import {
-  minimizePlayerWindow,
-  hidePlayerWindow,
-} from '@/platform/electron_new';
 import { Music } from '../constants';
+import eventemitter, { EventType } from './eventemitter';
 
 const ACTION_SIZE = 24;
 const Style = styled.div`
@@ -30,6 +26,8 @@ const Style = styled.div`
     -webkit-app-region: no-drag;
   }
 `;
+const scrollToCurrentLine = () =>
+  eventemitter.emit(EventType.SCROLL_TO_CURRENT_LINE);
 
 const Action = ({
   music,
@@ -41,6 +39,13 @@ const Action = ({
   onClose: () => void;
 }) => (
   <Style>
+    <IconButton
+      name={Name.AIM_OUTLINE}
+      onClick={scrollToCurrentLine}
+      size={ACTION_SIZE}
+      className="action"
+      disabled={music.type === MusicType.INSTRUMENT}
+    />
     <IconButton
       name={Name.EXCHANGE_OUTLINE}
       onClick={toggleTurntable}
@@ -54,22 +59,6 @@ const Action = ({
       size={ACTION_SIZE}
       className="action"
     />
-    {IS_ELECTRON && IS_WINDOWS ? (
-      <>
-        <IconButton
-          name={Name.MINIMIZE_OUTLINE}
-          onClick={minimizePlayerWindow}
-          size={ACTION_SIZE}
-          className="action"
-        />
-        <IconButton
-          name={Name.WRONG_OUTLINE}
-          onClick={hidePlayerWindow}
-          size={ACTION_SIZE}
-          className="action"
-        />
-      </>
-    ) : null}
   </Style>
 );
 

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { Lrc, LyricLine as LyricLineType } from 'react-lrc';
+import { LrcInstance, Lrc, LyricLine as LyricLineType } from 'react-lrc';
 
 import scrollbarNever from '@/style/scrollbar_never';
 import useAudioCurrentMillisecond from '../use_audio_current_millisecond';
+import eventemitter, { EventType } from './eventemitter';
 
 const StyledLrc = styled(Lrc)`
   position: absolute;
@@ -46,9 +47,22 @@ const lrcLineRenderer = ({
 );
 
 const LrcDisplay = ({ lrc }: { lrc: string }) => {
+  const lrcRef = useRef<LrcInstance>();
   const currentMillisecond = useAudioCurrentMillisecond();
+
+  useEffect(() => {
+    const onScrollToCurrentLine = () => lrcRef.current.scrollToCurrentLine();
+    eventemitter.on(EventType.SCROLL_TO_CURRENT_LINE, onScrollToCurrentLine);
+    return () =>
+      void eventemitter.off(
+        EventType.SCROLL_TO_CURRENT_LINE,
+        onScrollToCurrentLine,
+      );
+  }, []);
+
   return (
     <StyledLrc
+      ref={lrcRef}
       lrc={lrc}
       lineRenderer={lrcLineRenderer}
       currentMillisecond={currentMillisecond}

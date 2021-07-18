@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { animated } from 'react-spring';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import List from 'react-list';
 
 import { MUSICBILL_SCROLL_TOP } from '@/constants/storage_key';
@@ -8,7 +8,7 @@ import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import { MusicWithIndex } from '../../../constants';
 import Music from '../../../components/music';
 
-const Style = styled(animated.div)<{ topBoxShadow: number }>`
+const Style = styled(animated.div)`
   position: absolute;
   top: 0;
   left: 0;
@@ -17,12 +17,6 @@ const Style = styled(animated.div)<{ topBoxShadow: number }>`
 
   overflow: auto;
   ${scrollbarAsNeeded}
-
-  ${({ topBoxShadow }) => css`
-    box-shadow: ${topBoxShadow
-      ? 'inset 0px 10px 10px -10px rgb(0 0 0 / 10%)'
-      : 'none'};
-  `}
 `;
 
 const MusicList = ({
@@ -67,8 +61,13 @@ const MusicList = ({
   );
   return (
     <Style
-      topBoxShadow={topBoxShadow}
-      style={style}
+      style={{
+        // @ts-expect-error
+        ...style,
+        boxShadow: topBoxShadow
+          ? 'inset 0px 5px 5px -5px rgb(0 0 0 / 10%)'
+          : 'none',
+      }}
       onScroll={onScroll}
       ref={ref}
     >

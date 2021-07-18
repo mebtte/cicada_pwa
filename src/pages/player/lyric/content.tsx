@@ -60,7 +60,13 @@ const Content = ({
   return transitions((style, s) => {
     let content: ReactNode = null;
     if (s.status === Status.TURNTABLE) {
-      content = <TurnTable paused={audioPaused} cover={music.cover} />;
+      content = (
+        <TurnTable
+          paused={audioPaused}
+          cover={music.cover}
+          toggleTurntable={toggleTurntable}
+        />
+      );
     } else if (s.status === Status.LRC_SUCCESS) {
       content = <LrcDisplay lrc={s.lrc} />;
     } else if (s.status === Status.LRC_EMPTY) {

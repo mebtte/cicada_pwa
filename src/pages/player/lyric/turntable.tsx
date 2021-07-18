@@ -24,6 +24,7 @@ const Style = styled.div<{
   animation: ${rotate} 48s linear infinite;
 
   > .cover {
+    cursor: pointer;
     border: 30px solid #000;
   }
 
@@ -32,7 +33,15 @@ const Style = styled.div<{
   `}
 `;
 
-const Turntable = ({ paused, cover }: { paused: boolean; cover: string }) => (
+const Turntable = ({
+  paused,
+  cover,
+  toggleTurntable,
+}: {
+  paused: boolean;
+  cover: string;
+  toggleTurntable: () => void;
+}) => (
   <Style paused={paused}>
     <Avatar
       className="cover"
@@ -40,6 +49,7 @@ const Turntable = ({ paused, cover }: { paused: boolean; cover: string }) => (
       src={cover}
       size={COVER_SIZE}
       shape={Shape.CIRCLE}
+      onClick={toggleTurntable}
     />
   </Style>
 );
