@@ -5,7 +5,7 @@ import Dialog, { Content } from '@/components/dialog';
 import eventemitter, { EventType } from './eventemitter';
 
 const bodyProps = {
-  style: { width: 650 },
+  style: { width: 750 },
 };
 
 const JsonViewDialog = () => {

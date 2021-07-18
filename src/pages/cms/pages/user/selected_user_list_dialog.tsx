@@ -38,7 +38,7 @@ const SelectedUserListDialog = ({
     history.push({ query: { [Query.SELECTED_USER_LIST_DIALOG_OPEN]: '' } });
   return (
     <Dialog open={open} onClose={onClose} bodyProps={bodyProps}>
-      <Title>已选中用户列表</Title>
+      <Title>已选中 {selectedUserList.length} 个用户</Title>
       <Content>
         {selectedUserList.length ? (
           <Table
