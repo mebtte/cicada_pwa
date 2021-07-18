@@ -1,14 +1,15 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import Empty from '@/components/empty';
-import Pagination from '@/components/pagination';
 import CircularLoader from '@/components/circular_loader';
+import Pagination from '@/components/pagination';
+import Empty from '@/components/empty';
 import ErrorCard from '@/components/error_card';
 import useHistory from '@/utils/use_history';
 import Dialog, { Title, Content } from '@/components/dialog';
+import { PublicConfigKey } from '@/constants/public_config';
 import { Query } from '../constants';
-import useRecordList from './use_record_list';
+import useOperateRecordList from './use_operate_record_list';
 import RecordList from './record_list';
 import { PAGE_SIZE } from './constants';
 
@@ -40,10 +41,10 @@ const TableBox = styled.div<{ isLoading: boolean }>`
 
 const OperateRecordDialog = ({
   open,
-  targetUserId,
+  key,
 }: {
   open: boolean;
-  targetUserId?: string;
+  key?: PublicConfigKey;
 }) => {
   const history = useHistory();
   const onClose = () =>
@@ -53,10 +54,10 @@ const OperateRecordDialog = ({
       },
     });
 
-  const { error, loading, page, onPageChange, total, recordList, retry } =
-    useRecordList({
+  const { error, retry, loading, recordList, page, onPageChange, total } =
+    useOperateRecordList({
       open,
-      targetUserId,
+      key,
     });
 
   let content: ReactNode;
@@ -89,4 +90,4 @@ const OperateRecordDialog = ({
   );
 };
 
-export default OperateRecordDialog;
+export default React.memo(OperateRecordDialog);

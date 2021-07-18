@@ -83,7 +83,7 @@ const OperateRecordDialog = ({
   }
   return (
     <Dialog open={open} onClose={onClose} bodyProps={bodyProps}>
-      <Title>角色操作记录</Title>
+      <Title>操作记录</Title>
       <Content>{content}</Content>
     </Dialog>
   );

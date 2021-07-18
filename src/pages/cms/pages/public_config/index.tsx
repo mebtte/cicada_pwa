@@ -1,93 +1,37 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import IconButton, { Name } from '@/components/icon_button';
-import ErrorCard from '@/components/error_card';
-import Table from '@/components/table';
-import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
-import CircularLoader from '@/components/circular_loader';
+import { PublicConfigKey } from '@/constants/public_config';
+import useQuery from '@/utils/use_query';
 import { cmsPage } from '../../style';
-import usePublicConfigList from './use_public_config_list';
-import { PublicConfig as PublicConfigType } from './constants';
-import eventemitter, { EventType } from './eventemitter';
+import { Query } from './constants';
 import UpdateDialog from './update_dialog';
+import Action from './action';
+import OperateRecordDialog from './operate_record_dialog';
+import PublicConfigList from './public_config_list';
 
-const Style = styled.div<{
-  isLoading: boolean;
-}>`
+const Style = styled.div`
   ${cmsPage};
-  position: relative;
-  > .part {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-  > .list {
-    ${scrollbarAsNeeded}
-    overflow: auto;
-    padding: 20px;
-    box-sizing: border-box;
-    > .table {
-      width: 100%;
-    }
-  }
-  > .loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  ${({ isLoading }) => css`
-    > .list {
-      opacity: ${isLoading ? 0.5 : 1};
-    }
-  `}
+  display: flex;
 `;
-const ACTION_SIZE = 24;
-const headers = ['键', '描述', '值', '操作'];
-const rowRenderer = (pc: PublicConfigType) => [
-  pc.key,
-  pc.description,
-  pc.value,
-  <IconButton
-    name={Name.EDIT_OUTLINE}
-    size={ACTION_SIZE}
-    onClick={() => eventemitter.emit(EventType.OPEN_UPDATE_DIALOG, pc)}
-  />,
-];
 
 const PublicConfig = () => {
-  const { error, retry, loading, publicConfigList } = usePublicConfigList();
+  const query = useQuery<Query>();
+  const operateRecordDialogOpen = !!query[Query.OPERATE_RECORD_DIALOG_OPEN];
+  const operateRecordDialogKey = query[
+    Query.OPERATE_RECORD_DIALOG_KEY
+  ] as PublicConfigKey;
 
   return (
-    <Style isLoading={loading}>
-      {error ? (
-        <ErrorCard
-          className="part"
-          errorMessage={error.message}
-          retry={retry}
-        />
-      ) : (
-        <>
-          <div className="part list">
-            <Table
-              className="table"
-              headers={headers}
-              list={publicConfigList}
-              rowRenderer={rowRenderer}
-              stickyHeader
-            />
-          </div>
-          {loading ? (
-            <div className="part loading">
-              <CircularLoader />
-            </div>
-          ) : null}
-        </>
-      )}
+    <Style>
+      <Action />
+      <PublicConfigList />
 
       <UpdateDialog />
+      <OperateRecordDialog
+        open={operateRecordDialogOpen}
+        key={operateRecordDialogKey}
+      />
     </Style>
   );
 };

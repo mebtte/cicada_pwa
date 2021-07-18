@@ -56,7 +56,7 @@ const Action = ({ selectedUserList }: { selectedUserList: User[] }) => {
       <Tooltip title="创建用户" placement={Placement.RIGHT}>
         <IconButton name={Name.PLUS_OUTLINE} onClick={openCreateDialog} />
       </Tooltip>
-      <Tooltip title="用户操作记录" placement={Placement.RIGHT}>
+      <Tooltip title="操作记录" placement={Placement.RIGHT}>
         <IconButton
           name={Name.HISTORY_OUTLINE}
           onClick={openUserOpreateRecordDialog}

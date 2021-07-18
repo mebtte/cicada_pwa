@@ -94,4 +94,4 @@ const UpdateDialog = () => {
   );
 };
 
-export default UpdateDialog;
+export default React.memo(UpdateDialog);
