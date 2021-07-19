@@ -1,7 +1,7 @@
 import logger from '@/platform/logger';
 import { useCallback, useEffect, useState } from 'react';
 
-import cmsGetMusicList, { SearchKey } from '@/apis/cms_get_music_list';
+import cmsGetMusicList, { SearchKey } from '@/server/cms_get_music_list';
 import { Music, PAGE_SIZE } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 

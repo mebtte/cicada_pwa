@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import cmsGetSummaryData from '@/apis/cms_get_summary_data';
+import cmsGetSummaryData from '@/server/cms_get_summary_data';
 import { RequestStatus } from '@/constants';
 import { Data } from './constants';
 

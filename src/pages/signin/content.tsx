@@ -11,8 +11,8 @@ import {
 } from '@/constants/storage_key';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import signin from '@/apis/signin';
-import getUser from '@/apis/get_user';
+import signin from '@/server/signin';
+import getUser from '@/server/get_user';
 import store from '@/store';
 import { setUser } from '@/store/user';
 import dialog from '@/platform/dialog';

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import cmsGetPublicConfigList from '@/apis/cms_get_public_config_list';
+import cmsGetPublicConfigList from '@/server/cms_get_public_config_list';
 import { PublicConfig } from './constants';
 import eventemitter, { EventType } from './eventemitter';
 

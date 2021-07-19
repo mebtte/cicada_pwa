@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import useMusicLrc from '@/utils/use_music_lrc';
 import { RequestStatus } from '@/constants';
-import cmsUdpateMusic, { Key } from '@/apis/cms_update_music';
+import cmsUdpateMusic, { Key } from '@/server/cms_update_music';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
 import ErrorCard from '@/components/error_card';

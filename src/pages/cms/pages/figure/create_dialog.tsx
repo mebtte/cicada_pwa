@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import useHistory from '@/utils/use_history';
-import cmsCreateFigure from '@/apis/cms_create_figure';
+import cmsCreateFigure from '@/server/cms_create_figure';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import toast from '@/platform/toast';

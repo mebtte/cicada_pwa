@@ -3,12 +3,12 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import day from '@/utils/day';
-import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
+import cmsUpdateMusic, { Key } from '@/server/cms_update_music';
 import Tooltip from '@/components/tooltip';
 import Tag, { Type as TagType } from '@/components/tag';
-import { SearchKey as FigureSearchKey } from '@/apis/cms_get_figure_list';
-import { SearchKey } from '@/apis/cms_get_music_list';
-import cmsDeleteMusic from '@/apis/cms_delete_music';
+import { SearchKey as FigureSearchKey } from '@/server/cms_get_figure_list';
+import { SearchKey } from '@/server/cms_get_music_list';
+import cmsDeleteMusic from '@/server/cms_delete_music';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';

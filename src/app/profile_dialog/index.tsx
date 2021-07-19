@@ -16,7 +16,7 @@ import {
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import globalEventemitter, { EventType } from '@/platform/global_eventemitter';
 import Button, { Type as ButtonType } from '@/components/button';
-import updateUser, { Key } from '@/apis/update_user';
+import updateUser, { Key } from '@/server/update_user';
 import Avatar from './avatar';
 import { PART_SPACE } from './constants';
 

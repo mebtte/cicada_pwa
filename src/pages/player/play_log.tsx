@@ -1,8 +1,7 @@
 import React from 'react';
 
-import recordPlayLog from '@/apis/record_play_log';
+import createMusicPlayRecord from '@/server/create_music_play_record';
 import { QueueMusic } from './constants';
-import logger from '../../platform/logger';
 import eventemitter, { EventType } from './eventemitter';
 import Context from './context';
 
@@ -27,12 +26,10 @@ class PlayLog extends React.PureComponent<Props> {
   componentDidUpdate(prevProps: Props) {
     const { queueMusic, duration } = prevProps;
     if (queueMusic.pid !== this.props.queueMusic.pid) {
-      recordPlayLog({
-        id: queueMusic.music.id,
+      createMusicPlayRecord({
+        musicId: queueMusic.music.id,
         percent: duration ? this.currentMillisecond / 1000 / duration : 0,
-      }).catch((error) =>
-        logger.error(error, { description: '音乐播放记录失败', report: true }),
-      );
+      });
     }
   }
 
@@ -49,12 +46,10 @@ class PlayLog extends React.PureComponent<Props> {
     } = this.context;
     const queueMusic = playqueue[currentPlayqueuePosition] as QueueMusic | null;
     if (queueMusic) {
-      recordPlayLog({
-        id: queueMusic.music.id,
+      createMusicPlayRecord({
+        musicId: queueMusic.music.id,
         percent: duration ? this.currentMillisecond / 1000 / duration : 0,
-      }).catch((error) =>
-        logger.error(error, { description: '音乐播放记录失败', report: true }),
-      );
+      });
     }
   };
 

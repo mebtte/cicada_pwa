@@ -1,4 +1,4 @@
-import cmsGetPublicConfigRecordList from '@/apis/cms_get_public_config_record_list';
+import cmsGetPublicConfigRecordList from '@/server/cms_get_public_config_record_list';
 
 export type Record = AsyncReturnType<
   typeof cmsGetPublicConfigRecordList

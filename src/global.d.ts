@@ -39,7 +39,6 @@ declare global {
   type PromiseType<T> = T extends PromiseLike<infer U> ? U : T;
 
   interface Window {
-    __CONFIG__?: Config;
     requestIdleCallback: (
       callback: (deadline: RequestIdleCallbackDeadline) => void,
       opts?: RequestIdleCallbackOptions,

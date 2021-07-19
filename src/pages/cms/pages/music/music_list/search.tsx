@@ -8,7 +8,7 @@ import {
   SEARCH_KEY_MAP_LABEL,
   SEARCH_KEYS,
   SEARCH_VALUE_MAX_LENGTH,
-} from '@/apis/cms_get_music_list';
+} from '@/server/cms_get_music_list';
 import Input from '@/components/input';
 import IconButton, { Name } from '@/components/icon_button';
 import useHistory from '@/utils/use_history';

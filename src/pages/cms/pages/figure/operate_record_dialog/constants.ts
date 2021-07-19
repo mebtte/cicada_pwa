@@ -1,4 +1,4 @@
-import cmsGetFigureOperateRecordList from '@/apis/cms_get_figure_operate_record_list';
+import cmsGetFigureOperateRecordList from '@/server/cms_get_figure_operate_record_list';
 
 export type Record = AsyncReturnType<
   typeof cmsGetFigureOperateRecordList

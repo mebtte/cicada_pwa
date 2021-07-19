@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 
-import getMusicLrc from '@/apis/get_music_lrc';
+import getMusicLrc from '@/server/get_music_lrc';
 import logger from '@/platform/logger';
 import { RequestStatus } from '@/constants';
 

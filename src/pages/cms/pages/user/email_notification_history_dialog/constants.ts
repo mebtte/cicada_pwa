@@ -1,4 +1,4 @@
-import cmsGetEmailNotificationList from '@/apis/cms_get_email_notification_list';
+import cmsGetEmailNotificationList from '@/server/cms_get_email_notification_list';
 
 export type EmailNotification = AsyncReturnType<
   typeof cmsGetEmailNotificationList

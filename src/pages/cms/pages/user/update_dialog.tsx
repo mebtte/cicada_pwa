@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { REMARK_MAX_LENGTH } from '@/constants/user';
 import Select from '@/components/select';
-import cmsUpdateUser, { Key } from '@/apis/cms_update_user';
+import cmsUpdateUser, { Key } from '@/server/cms_update_user';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
 import Label from '@/components/label';

@@ -8,7 +8,7 @@ import {
   SEARCH_KEYS,
   SEARCH_KEY_MAP_LABEL,
   SEARCH_VALUE_MAX_LENGTH,
-} from '@/apis/cms_get_figure_list';
+} from '@/server/cms_get_figure_list';
 import Select from '@/components/select';
 import useHistory from '@/utils/use_history';
 import Input from '@/components/input';

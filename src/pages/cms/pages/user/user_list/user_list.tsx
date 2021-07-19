@@ -5,7 +5,7 @@ import Tooltip from '@/components/tooltip';
 import useHistory from '@/utils/use_history';
 import Checkbox from '@/components/checkbox';
 import day from '@/utils/day';
-import { SearchKey } from '@/apis/cms_get_user_list';
+import { SearchKey } from '@/server/cms_get_user_list';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import Icon, { Name as IconName } from '@/components/icon';
 import Empty from '@/components/empty';

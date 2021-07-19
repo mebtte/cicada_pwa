@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import store from '@/store';
 import { reloadUser } from '@/store/user';
-import updateUser, { Key } from '@/apis/update_user';
+import updateUser, { Key } from '@/server/update_user';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import IconButton, { Name } from '@/components/icon_button';
 import Avatar from '@/components/avatar';

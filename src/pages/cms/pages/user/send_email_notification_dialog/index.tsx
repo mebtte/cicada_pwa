@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import logger from '@/platform/logger';
 import store from '@/store';
-import cmsSendEmailNotification from '@/apis/cms_send_email_notication';
-import cmsCreateEmailNotification from '@/apis/cms_create_email_notification';
+import cmsSendEmailNotification from '@/server/cms_send_email_notication';
+import cmsCreateEmailNotification from '@/server/cms_create_email_notification';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import useHistory from '@/utils/use_history';

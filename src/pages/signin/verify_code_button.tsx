@@ -3,7 +3,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { EMAIL } from '@/constants/regexp';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import getSigninVerifyCode from '@/apis/get_signin_verify_code';
+import getSigninVerifyCode from '@/server/get_signin_verify_code';
 import formatSecond from '@/utils/format_second';
 import dialog from '@/platform/dialog';
 import Button, { Type } from '@/components/button';

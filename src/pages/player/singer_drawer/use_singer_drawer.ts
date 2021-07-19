@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import getSingerMusicList from '@/apis/get_singer_music_list';
+import getSingerMusicList from '@/server/get_singer_music_list';
 import logger from '@/platform/logger';
 import { RequestStatus } from '@/constants';
 import openLink from '@/utils/open_link';

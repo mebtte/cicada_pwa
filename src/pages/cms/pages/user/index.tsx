@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { SearchKey, SEARCH_KEYS } from '@/apis/cms_get_user_list';
+import { SearchKey, SEARCH_KEYS } from '@/server/cms_get_user_list';
 import useQuery from '@/utils/use_query';
 import { cmsPage } from '../../style';
 import UpdateDialog from './update_dialog';

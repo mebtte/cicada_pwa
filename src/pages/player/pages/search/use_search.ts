@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import useQuery from '@/utils/use_query';
-import searchMusic from '@/apis/search_music';
+import searchMusic from '@/server/search_music';
 import logger from '@/platform/logger';
 import { MusicWithIndex, Query } from '../../constants';
 import { PAGE_SIZE } from './constants';

@@ -2,7 +2,7 @@ import React, { HTMLAttributes, useRef, useState } from 'react';
 import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 
-import searchMusic, { KEYWORD_MAX_LENGTH } from '@/apis/search_music';
+import searchMusic, { KEYWORD_MAX_LENGTH } from '@/server/search_music';
 import ellipsis from '@/style/ellipsis';
 import IconButton, { Name, Type } from '@/components/icon_button';
 import logger from '@/platform/logger';

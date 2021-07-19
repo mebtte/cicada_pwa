@@ -1,4 +1,4 @@
-import cmsGetUserList from '@/apis/cms_get_user_list';
+import cmsGetUserList from '@/server/cms_get_user_list';
 
 export const PAGE_SIZE = 20;
 

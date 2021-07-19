@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import logger from '@/platform/logger';
-import getMusicLrcRequest from '@/apis/get_music_lrc';
+import getMusicLrcRequest from '@/server/get_music_lrc';
 import { MusicType } from '@/constants/music';
 import { Music } from '../constants';
 import { Status } from './constants';

@@ -5,7 +5,7 @@ import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
 import { RequestStatus, IS_MAC_OS, IS_WINDOWS } from '@/constants';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
-import searchMusicByLrc from '@/apis/search_music_by_lrc';
+import searchMusicByLrc from '@/server/search_music_by_lrc';
 import Input from '@/components/input';
 import Dialog from '@/components/dialog';
 import IconButton, { Name } from '@/components/icon_button';

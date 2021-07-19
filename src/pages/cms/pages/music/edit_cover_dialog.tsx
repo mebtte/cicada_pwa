@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
+import cmsUpdateMusic, { Key } from '@/server/cms_update_music';
 import { COVER_MAX_SIZE } from '@/constants/music';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import eventemitter, { EventType } from './eventemitter';

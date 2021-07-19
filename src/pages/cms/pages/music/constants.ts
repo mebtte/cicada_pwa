@@ -1,5 +1,5 @@
 import { MusicType } from '@/constants/music';
-import { Key } from '@/apis/cms_update_music';
+import { Key } from '@/server/cms_update_music';
 
 export interface Figure {
   id: string;

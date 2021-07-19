@@ -11,7 +11,7 @@ import logger from '@/platform/logger';
 import toast from '@/platform/toast';
 import cmsSearchFigureList, {
   KEYWORD_MAX_LENGTH,
-} from '@/apis/cms_search_figure_list';
+} from '@/server/cms_search_figure_list';
 import Select from '@/components/select';
 import Label from '@/components/label';
 import { Figure } from './constants';

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import useHistory from '@/utils/use_history';
 import Select from '@/components/select';
-import cmsCreateMusic from '@/apis/cms_create_music';
+import cmsCreateMusic from '@/server/cms_create_music';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
