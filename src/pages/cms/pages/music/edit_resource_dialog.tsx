@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import dialog from '@/platform/dialog';
-import cmsUpdateMusic from '@/apis/cms_update_music';
+import cmsUpdateMusic from '@/server/cms_update_music';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
 import selectFile from '@/utils/select_file';

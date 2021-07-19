@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 
 import useHistory from '@/utils/use_history';
 import day from '@/utils/day';
-import { SearchKey } from '@/apis/cms_get_figure_list';
-import cmsDeleteFigure from '@/apis/cms_delete_figure';
+import { SearchKey } from '@/server/cms_get_figure_list';
+import cmsDeleteFigure from '@/server/cms_delete_figure';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';

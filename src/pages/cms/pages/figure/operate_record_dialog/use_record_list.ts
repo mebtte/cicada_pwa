@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import cmsGetFigureOperateRecordList from '@/apis/cms_get_figure_operate_record_list';
+import cmsGetFigureOperateRecordList from '@/server/cms_get_figure_operate_record_list';
 import logger from '@/platform/logger';
 import { PAGE_SIZE, Record } from './constants';
 

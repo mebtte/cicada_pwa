@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { PublicConfigKey } from '@/constants/public_config';
 import { REMOTE_CONFIG_SEARCH_WORD } from '@/constants/storage_key';
-import getPublicConfig from '@/apis/get_public_config';
+import getPublicConfig from '@/server/get_public_config';
 import logger from '@/platform/logger';
 
 const UPDATE_SEARCH_WORD_INTERVAL = 1000 * 60 * 15;

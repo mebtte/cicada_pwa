@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import useHistory from '@/utils/use_history';
 import Select from '@/components/select';
-import cmsCreateMusic from '@/apis/cms_create_music';
+import cmsCreateMusic from '@/server/cms_create_music';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
@@ -67,16 +67,14 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
   const [musicType, setMusicType] = useState<MusicType>(MusicType.NORMAL);
   const onMusicTypeChange = (t: MusicType) => setMusicType(t);
 
-  const [file, setFile] = useState<File | null>(null);
-  const onSelectFile = () =>
+  const [sq, setSq] = useState<File | null>(null);
+  const onSelectSq = () =>
     selectFile({
       acceptTypes: MUSIC_SQ.ACCEPT_MIMES,
       onSelect: (f) => {
         if (!MUSIC_SQ.ACCEPT_MIMES.includes(f.type)) {
           return toast.error(
-            `不支持的文件类型, 支持的文件类型为 ${MUSIC_SQ.ACCEPT_MIMES.join(
-              ',',
-            )}`,
+            `标准音质支持的文件类型为 ${MUSIC_SQ.ACCEPT_MIMES.join(',')}`,
           );
         }
         if (f.size > MUSIC_SQ.MAX_SIZE) {
@@ -84,7 +82,7 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
             `文件过大, 最大不超过 ${MUSIC_SQ.MAX_SIZE / 1024 / 1024}MB`,
           );
         }
-        return setFile(f);
+        return setSq(f);
       },
     });
 
@@ -97,7 +95,7 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
     setTimeout(() => {
       setSingerList([]);
       setName('');
-      setFile(null);
+      setSq(null);
     }, 1000);
   };
 
@@ -109,8 +107,8 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
     if (!name) {
       return toast.error('请输入音乐名字');
     }
-    if (!file) {
-      return toast.error('请选择音乐文件');
+    if (!sq) {
+      return toast.error('请选择标准音质');
     }
     setLoading(true);
     try {
@@ -118,7 +116,7 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
         singerIdList: singerList.map((s) => s.id),
         name,
         type: musicType,
-        file,
+        sq,
       });
       toast.success(`音乐"${name}"已创建`);
       eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
@@ -161,15 +159,15 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
             customInputDisabled
           />
         </Label>
-        <Label label="音乐文件" style={labelStyle}>
+        <Label label="标准音质" style={labelStyle}>
           <FileBox>
             <Button
               label="选取文件"
               type={Type.PRIMARY}
-              onClick={onSelectFile}
+              onClick={onSelectSq}
               disabled={loading}
             />
-            {file ? <Input value={file.name} readOnly /> : null}
+            {sq ? <Input value={sq.name} readOnly /> : null}
           </FileBox>
         </Label>
       </Content>

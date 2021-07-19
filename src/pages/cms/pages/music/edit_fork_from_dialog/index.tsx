@@ -1,11 +1,11 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 
-import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
+import cmsUpdateMusic, { Key } from '@/server/cms_update_music';
 import dialog from '@/platform/dialog';
 import LoadingCard from '@/components/loading_card';
 import ErrorCard from '@/components/error_card';
 import logger from '@/platform/logger';
-import getMusicForkFromRequest from '@/apis/get_music_fork_from';
+import getMusicForkFromRequest from '@/server/get_music_fork_from';
 import Button, { Type } from '@/components/button';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import eventemitter, { EventType } from '../eventemitter';

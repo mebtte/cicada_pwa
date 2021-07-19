@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 import IconButton, { Name } from '@/components/icon_button';
 import Avatar from '@/components/avatar';
-import updateUserMusicbillRequest, { Key } from '@/apis/update_user_musicbill';
+import updateUserMusicbillRequest, {
+  Key,
+} from '@/server/update_user_musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import { NAME, DESCRIPTION } from '@/constants/musicbill';

@@ -4,7 +4,7 @@ import { easeCubicInOut } from 'd3-ease';
 
 import { RequestStatus } from '@/constants';
 import getRandomCover from '@/utils/get_random_cover';
-import createUserMusicbill from '@/apis/create_user_musicbill';
+import createUserMusicbill from '@/server/create_user_musicbill';
 import { PLAYER_PATH } from '@/constants/route';
 import { NAME } from '@/constants/musicbill';
 import toast from '@/platform/toast';

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
-import cmsCreateUser from '@/apis/cms_create_user';
+import cmsCreateUser from '@/server/cms_create_user';
 import Label from '@/components/label';
 import Input from '@/components/input';
 import Textarea from '@/components/textarea';

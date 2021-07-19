@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import getMusicFork from '@/apis/get_music_fork';
-import getMusicForkFrom from '@/apis/get_music_fork_from';
+import getMusicFork from '@/server/get_music_fork';
+import getMusicForkFrom from '@/server/get_music_fork_from';
 import logger from '@/platform/logger';
 import { Music } from '../../constants';
 import { transformMusic } from '../../utils';

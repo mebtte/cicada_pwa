@@ -4,7 +4,7 @@ import { USER } from '../constants/storage_key';
 import * as TYPE from './action_type';
 import { getToken, clearToken } from '../platform/token';
 import { User } from '../constants/user';
-import getUser from '../apis/get_user';
+import getUser from '../server/get_user';
 import logger from '../platform/logger';
 import dialog from '../platform/dialog';
 

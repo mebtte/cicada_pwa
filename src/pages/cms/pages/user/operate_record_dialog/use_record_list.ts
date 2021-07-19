@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import cmsGetUserOperateRecordList from '@/apis/cms_get_user_operate_record_list';
+import cmsGetUserOperateRecordList from '@/server/cms_get_user_operate_record_list';
 import logger from '@/platform/logger';
 import { PAGE_SIZE, Record } from './constants';
 

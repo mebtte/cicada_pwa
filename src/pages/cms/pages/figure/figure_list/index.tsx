@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { SearchKey } from '@/apis/cms_get_figure_list';
+import { SearchKey } from '@/server/cms_get_figure_list';
 import ErrorCard from '@/components/error_card';
 import useFigureList from './use_figure_list';
 import Search from './search';

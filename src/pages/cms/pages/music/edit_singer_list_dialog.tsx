@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
+import cmsUpdateMusic, { Key } from '@/server/cms_update_music';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import Button, { Type } from '@/components/button';

@@ -8,7 +8,7 @@ import {
   SEARCH_KEY_MAP,
   SEARCH_KEYS,
   SEARCH_VALUE_MAX_LENGTH,
-} from '@/apis/cms_get_user_list';
+} from '@/server/cms_get_user_list';
 import Select from '@/components/select';
 import useHistory from '@/utils/use_history';
 import Input from '@/components/input';

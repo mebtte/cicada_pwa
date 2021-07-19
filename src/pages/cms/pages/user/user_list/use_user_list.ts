@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import logger from '@/platform/logger';
-import cmsGetUserList, { SearchKey } from '@/apis/cms_get_user_list';
+import cmsGetUserList, { SearchKey } from '@/server/cms_get_user_list';
 import { PAGE_SIZE, User } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 

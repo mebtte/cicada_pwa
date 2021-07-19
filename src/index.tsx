@@ -11,6 +11,7 @@ import logger from './platform/logger';
 import App from './app';
 import ErrorCard from './components/error_card';
 import { reloadUser } from './store/user';
+import config from './config';
 
 const mountNode = document.querySelector('#root');
 
@@ -51,3 +52,7 @@ window.requestIdleCallback(() => store.dispatch(reloadUser()));
 window.requestIdleCallback(() =>
   document.querySelector('#loading-script')?.remove(),
 );
+
+// @ts-expect-error
+// eslint-disable-next-line no-underscore-dangle
+window.__CONFIG__ = config;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import cmsUpdatePublicConfig from '@/apis/cms_update_public_config';
+import cmsUpdatePublicConfig from '@/server/cms_update_public_config';
 import logger from '@/platform/logger';
 import toast from '@/platform/toast';
 import Label from '@/components/label';

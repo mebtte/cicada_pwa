@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { PublicConfigKey } from '@/constants/public_config';
-import cmsGetPublicConfigRecordList from '@/apis/cms_get_public_config_record_list';
+import cmsGetPublicConfigRecordList from '@/server/cms_get_public_config_record_list';
 import logger from '@/platform/logger';
 import { PAGE_SIZE, Record } from './constants';
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { NAME_MAX_LENGTH, ALIAS_MAX_LENGTH } from '@/constants/figure';
 import Label from '@/components/label';
 import Input from '@/components/input';
-import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
+import cmsUpdateFigure, { Key } from '@/server/cms_update_figure';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';

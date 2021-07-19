@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
-import { KEYWORD_MAX_LENGTH } from '@/apis/search_music';
+import { KEYWORD_MAX_LENGTH } from '@/server/search_music';
 import IconButton, { Name } from '@/components/icon_button';
 import useHistory from '@/utils/use_history';
 import { PLAYER_PATH } from '@/constants/route';

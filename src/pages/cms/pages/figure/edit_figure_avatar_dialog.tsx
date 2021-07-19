@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import cmsUpdateFigure, { Key } from '@/apis/cms_update_figure';
+import cmsUpdateFigure, { Key } from '@/server/cms_update_figure';
 import { AVATAR_MAX_SIZE } from '@/constants/figure';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import eventemitter, { EventType } from './eventemitter';

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { RequestStatus } from '@/constants';
-import getLatestMusicList from '@/apis/get_latest_music_list';
+import getLatestMusicList from '@/server/get_latest_music_list';
 import eventemitter, { Type } from './eventemitter';
 import { PAGE_SIZE } from './constant';
 import { Music } from '../../constants';

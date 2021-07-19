@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { COVER_MAX_SIZE } from '@/constants/musicbill';
-import updateUserMusicbill, { Key } from '@/apis/update_user_musicbill';
+import updateUserMusicbill, { Key } from '@/server/update_user_musicbill';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import playerEventemitter, {
   EventType as PlayerEventType,

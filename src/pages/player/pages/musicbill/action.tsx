@@ -5,7 +5,7 @@ import { RequestStatus } from '@/constants';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
-import removeMusicbillRequest from '@/apis/remove_musicbill';
+import removeMusicbillRequest from '@/server/remove_musicbill';
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
 import eventemitter, { EventType } from './eventemitter';

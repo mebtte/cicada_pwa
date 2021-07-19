@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { URL } from '@/constants/regexp';
 import Select from '@/components/select';
-import cmsUpdateMusic, { Key } from '@/apis/cms_update_music';
+import cmsUpdateMusic, { Key } from '@/server/cms_update_music';
 import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';

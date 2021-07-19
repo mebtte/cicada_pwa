@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback } from 'react';
 
 import getRandomCover from '@/utils/get_random_cover';
 import { RequestStatus } from '@/constants';
-import getUserMusicbillListRequest from '@/apis/get_user_musicbill_list';
-import getUserMusicbillDetail from '@/apis/get_user_musicbill_detail';
-import addMusicToMusicbill from '@/apis/add_music_to_musicbill';
-import removeMusicFromMusicbill from '@/apis/remove_music_from_musicbill';
+import getUserMusicbillListRequest from '@/server/get_user_musicbill_list';
+import getUserMusicbillDetail from '@/server/get_user_musicbill_detail';
+import addMusicToMusicbill from '@/server/add_music_to_musicbill';
+import removeMusicFromMusicbill from '@/server/remove_music_from_musicbill';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import eventemitter, { EventType } from './eventemitter';

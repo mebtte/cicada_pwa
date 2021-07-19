@@ -1,4 +1,4 @@
-import cmsGetUserOperateRecordList from '@/apis/cms_get_user_operate_record_list';
+import cmsGetUserOperateRecordList from '@/server/cms_get_user_operate_record_list';
 
 export type Record = AsyncReturnType<
   typeof cmsGetUserOperateRecordList

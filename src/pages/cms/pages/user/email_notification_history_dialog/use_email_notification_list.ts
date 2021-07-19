@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import cmsGetEmailNotificationList from '@/apis/cms_get_email_notification_list';
+import cmsGetEmailNotificationList from '@/server/cms_get_email_notification_list';
 import logger from '@/platform/logger';
 import { EmailNotification, PAGE_SIZE } from './constants';
 
