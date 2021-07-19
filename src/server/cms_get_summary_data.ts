@@ -10,7 +10,7 @@ function cmsGetSummaryData() {
     user_total: number;
     figure_total: number;
     music_total: number;
-    music_play_log_total: number;
+    music_play_record_total: number;
     user_musicbill_total: number;
     verify_code_total: number;
     email_notification_total: number;

@@ -48,7 +48,7 @@ const Dashboard = () => {
         <UserPaper total={data.value.user_total} />
         <FigurePaper total={data.value.figure_total} />
         <MusicPaper total={data.value.music_total} />
-        <MusicPlayLogPaper total={data.value.music_play_log_total} />
+        <MusicPlayLogPaper total={data.value.music_play_record_total} />
         <UserMusicbillPaper total={data.value.user_musicbill_total} />
         <VerifyCodePaper total={data.value.verify_code_total} />
         <EmailNotificationPaper total={data.value.email_notification_total} />
