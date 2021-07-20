@@ -13,8 +13,6 @@ const DO_AUTHORIZE_CODES = [100004];
 enum METHOD {
   GET = 'get',
   POST = 'post',
-  PUT = 'put',
-  DELETE = 'delete',
 }
 
 function generateMethod(method: METHOD) {
@@ -63,6 +61,9 @@ function generateMethod(method: METHOD) {
       ]);
     } catch (error) {
       ({ response } = error);
+      if (!response) {
+        throw error;
+      }
     }
     const { status, statusText } = response;
     if (status !== 200) {
@@ -96,6 +97,4 @@ function generateMethod(method: METHOD) {
 export default {
   get: generateMethod(METHOD.GET),
   post: generateMethod(METHOD.POST),
-  delete: generateMethod(METHOD.DELETE),
-  put: generateMethod(METHOD.PUT),
 };

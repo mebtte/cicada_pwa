@@ -5,7 +5,7 @@ import api from '.';
  * @author mebtte<hi@mebtte.com>
  */
 function updateMusicbillOrder(orderMap: { [key: string]: number }) {
-  return api.put<void>('/api/musicbill/order', {
+  return api.post<void>('/api/musicbill/order', {
     data: {
       order_map: orderMap,
     },

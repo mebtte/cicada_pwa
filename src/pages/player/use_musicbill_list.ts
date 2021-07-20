@@ -4,8 +4,8 @@ import getRandomCover from '@/utils/get_random_cover';
 import { RequestStatus } from '@/constants';
 import getUserMusicbillListRequest from '@/server/get_user_musicbill_list';
 import getUserMusicbillDetail from '@/server/get_user_musicbill_detail';
-import addMusicToMusicbill from '@/server/add_music_to_musicbill';
-import removeMusicFromMusicbill from '@/server/remove_music_from_musicbill';
+import addMusicToUserMusicbill from '@/server/add_music_to_user_musicbill';
+import removeMusicFromUserMusicbill from '@/server/remove_music_from_user_musicbill';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import eventemitter, { EventType } from './eventemitter';
@@ -141,9 +141,9 @@ export default () => {
         }),
       );
       try {
-        await addMusicToMusicbill({
+        await addMusicToUserMusicbill({
           musicId,
-          musicbillId,
+          userMusicbillId: musicbillId,
         });
       } catch (error) {
         const description = `添加音乐"${musicName}"到歌单"${musicbillName}"失败`;
@@ -203,9 +203,9 @@ export default () => {
         }),
       );
       try {
-        await removeMusicFromMusicbill({
+        await removeMusicFromUserMusicbill({
           musicId,
-          musicbillId,
+          userMusicbillId: musicbillId,
         });
       } catch (error) {
         const description = `从歌单"${musicbillName}"移除音乐"${musicName}"失败`;
