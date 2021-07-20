@@ -1,10 +1,10 @@
-import React, { useState, useCallback, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styled from 'styled-components';
 
 import Drawer, { Title } from '@/components/drawer';
-import updateMusicbillOrder from '@/server/update_musicbill_order';
+import updateUserMusicbillOrder from '@/server/update_user_musicbill_order';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
@@ -29,61 +29,63 @@ const List = styled.div`
 
 const MusicbillOrderDrawer = () => {
   const { musicbillList } = useContext(Context);
+
   const [localMusicbillList, setLocalMusicbillList] = useState<MusicbillType[]>(
-    musicbillList.map((m) => ({
-      id: m.id,
-      cover: m.cover,
-      name: m.name,
-    })),
-  );
-  const [open, setOpen] = useState(false);
-  const onClose = useCallback(() => {
-    setOpen(false);
-    const orderMap = {};
-    localMusicbillList.forEach((mb, index) => {
-      orderMap[mb.id] = index;
-    });
-    eventemitter.emit(EventType.UPDATE_MUSICBILL_ORDER, orderMap);
-    updateMusicbillOrder(orderMap).catch((error) => {
-      logger.error(error, {
-        description: '更新歌单顺序失败',
-        report: true,
-      });
-      dialog.alert({
-        title: '更新歌单顺序失败',
-        content: error.message,
-      });
-    });
-  }, [localMusicbillList]);
-  const move = useCallback(
-    (dragIndex: number, hoverIndex: number) =>
-      setLocalMusicbillList((lmbl) => {
-        const newMusicbillList = [...lmbl];
-        const [dragMusicbill] = newMusicbillList.splice(dragIndex, 1);
-        newMusicbillList.splice(hoverIndex, 0, dragMusicbill);
-        return newMusicbillList;
-      }),
     [],
   );
 
+  const [open, setOpen] = useState(false);
+  const onClose = () => {
+    setOpen(false);
+
+    const originaMusicbillIds = musicbillList.map((m) => m.id).join(',');
+    const orderedMusicbillIdList = localMusicbillList.map((m) => m.id);
+    const orderedMusicbillIds = orderedMusicbillIdList.join(',');
+
+    if (originaMusicbillIds === orderedMusicbillIds) {
+      return;
+    }
+
+    return updateUserMusicbillOrder(orderedMusicbillIdList)
+      .then(() => eventemitter.emit(EventType.RELOAD_MUSICBILL_LIST))
+      .catch((error) => {
+        logger.error(error, {
+          description: '更新歌单顺序失败',
+          report: true,
+        });
+        dialog.alert({
+          title: '更新歌单顺序失败',
+          content: error.message,
+        });
+      });
+  };
+
+  const move = (dragIndex: number, hoverIndex: number) =>
+    setLocalMusicbillList((lmbl) => {
+      const newMusicbillList = [...lmbl];
+      const [dragMusicbill] = newMusicbillList.splice(dragIndex, 1);
+      newMusicbillList.splice(hoverIndex, 0, dragMusicbill);
+      return newMusicbillList;
+    });
+
   useEffect(() => {
-    setLocalMusicbillList(
-      musicbillList.map((m) => ({
-        id: m.id,
-        cover: m.cover,
-        name: m.name,
-      })),
-    );
-  }, [musicbillList]);
-  useEffect(() => {
-    const openListener = () => setOpen(true);
+    const openListener = () => {
+      setLocalMusicbillList(
+        musicbillList.map((m) => ({
+          id: m.id,
+          cover: m.cover,
+          name: m.name,
+        })),
+      );
+      return setOpen(true);
+    };
     eventemitter.on(EventType.OPEN_MUSICBILL_ORDER_DRAWER, openListener);
     return () =>
       void eventemitter.off(
         EventType.OPEN_MUSICBILL_ORDER_DRAWER,
         openListener,
       );
-  }, []);
+  }, [musicbillList]);
 
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>

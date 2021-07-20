@@ -235,12 +235,6 @@ export default () => {
         );
       }
     };
-    const updateMusicbillOrderListener = (orderMap: {
-      [key: string]: number;
-    }) =>
-      setMusicbillList((mbl) =>
-        [...mbl].sort((a, b) => orderMap[a.id] - orderMap[b.id]),
-      );
 
     eventemitter.on(EventType.FETCH_MUSICBILL, getMusicbillDetail);
     eventemitter.on(EventType.USER_MUSICBILL_UPDATED, getMusicbillDetail);
@@ -253,10 +247,6 @@ export default () => {
     eventemitter.on(
       EventType.REMOVE_MUSIC_FROM_MUSICBILL,
       removeMusicFromMusicbillListener,
-    );
-    eventemitter.on(
-      EventType.UPDATE_MUSICBILL_ORDER,
-      updateMusicbillOrderListener,
     );
     return () => {
       eventemitter.off(EventType.FETCH_MUSICBILL, getMusicbillDetail);
@@ -276,10 +266,6 @@ export default () => {
       eventemitter.off(
         EventType.REMOVE_MUSIC_FROM_MUSICBILL,
         removeMusicFromMusicbillListener,
-      );
-      eventemitter.off(
-        EventType.UPDATE_MUSICBILL_ORDER,
-        updateMusicbillOrderListener,
       );
     };
   }, []);
