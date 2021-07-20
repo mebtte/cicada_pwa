@@ -50,7 +50,7 @@ export enum EventType {
 
   USER_MUSICBILL_CREATED = 'user_musicbill_created', // 用户歌单已创建, { id: string }
   USER_MUSICBILL_UPDATED = 'user_musicbill_update', // 用户歌单已更新, { id: string }
-  USER_MUSICBILL_REMOVED = 'user_musicbill_removed', // 用户歌单已被移除, { id: string }
+  USER_MUSICBILL_DELETED = 'user_musicbill_deleted', // 用户歌单被删除, { id: string }
 }
 
 export default new Eventemitter();

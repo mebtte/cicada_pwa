@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import config from '@/config';
 import store from '@/store';
@@ -6,6 +6,7 @@ import { clearUser } from '@/store/user';
 import sleep from '@/utils/sleep';
 import toast from '@/platform/toast';
 import { getToken, clearToken } from '@/platform/token';
+import ErrorWithCode from '@/utils/error_with_code';
 
 const DO_AUTHORIZE_CODES = [100004];
 
@@ -14,9 +15,6 @@ enum METHOD {
   POST = 'post',
   PUT = 'put',
   DELETE = 'delete',
-}
-class CustomError extends Error {
-  code: number;
 }
 
 function generateMethod(method: METHOD) {
@@ -50,22 +48,28 @@ function generateMethod(method: METHOD) {
         authorization: token,
       };
     }
-    const [response] = await Promise.all([
-      axios({
-        url: `${config.serverOrigin}${path}`,
-        method,
-        timeout,
-        params,
-        data,
-        headers,
-      }),
-      sleep(noDefer ? 0 : 1200),
-    ]);
+    let response: AxiosResponse;
+    try {
+      [response] = await Promise.all([
+        axios({
+          url: `${config.serverOrigin}${path}`,
+          method,
+          timeout,
+          params,
+          data,
+          headers,
+        }),
+        sleep(noDefer ? 0 : 1200),
+      ]);
+    } catch (error) {
+      ({ response } = error);
+    }
     const { status, statusText } = response;
     if (status !== 200) {
-      const error = new CustomError(`${status}:${statusText}`);
-      error.code = status;
-      throw error;
+      throw new ErrorWithCode(
+        `${status === 404 ? '请升级客户端到最新版本' : statusText}(#${status})`,
+        status,
+      );
     }
     const {
       code,
@@ -83,9 +87,7 @@ function generateMethod(method: METHOD) {
         // @ts-ignore
         store.dispatch(clearUser());
       }
-      const error = new CustomError(`${message}(#${code})`);
-      error.code = code;
-      throw error;
+      throw new ErrorWithCode(`${message}(#${code})`, code);
     }
     return responseData;
   };

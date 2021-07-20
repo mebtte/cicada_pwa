@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { RequestStatus } from '@/constants';
-import toast from '@/platform/toast';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
-import removeMusicbillRequest from '@/server/remove_musicbill';
+import deleteUserMusicbill from '@/server/delete_user_musicbill';
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
 import eventemitter, { EventType } from './eventemitter';
@@ -33,9 +32,6 @@ const openTextEditDialog = () => eventemitter.emit(EventType.OPEN_EDIT_DIALOG);
 const Action = ({ musicbill }: { musicbill: Musicbill }) => {
   const onAddToPlaylist = () => {
     const { musicList } = musicbill;
-    if (!musicList.length) {
-      return toast.info('这是空的歌单');
-    }
     return playerEventemitter.emit(
       PlayerEventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
       musicList.map((m) => m.music),
@@ -52,9 +48,8 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
             '注意, 歌单删除后无法恢复. 现在是第二次确认, 也是最后一次确认.',
           onConfirm: async () => {
             try {
-              await removeMusicbillRequest(musicbill.id);
-              toast.success(`歌单"${musicbill.name}"已删除`);
-              playerEventemitter.emit(PlayerEventType.USER_MUSICBILL_REMOVED, {
+              await deleteUserMusicbill(musicbill.id);
+              playerEventemitter.emit(PlayerEventType.USER_MUSICBILL_DELETED, {
                 id: musicbill.id,
               });
             } catch (error) {
@@ -92,7 +87,9 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
           name={Name.PLUS_OUTLINE}
           size={ACTION_SIZE}
           onClick={onAddToPlaylist}
-          disabled={status !== RequestStatus.SUCCESS}
+          disabled={
+            status !== RequestStatus.SUCCESS || !musicbill.musicList.length
+          }
         />
       </Tooltip>
       <Tooltip title="歌单内查找" placement={Placement.LEFT}>

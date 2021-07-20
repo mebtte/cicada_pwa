@@ -23,7 +23,7 @@ const Music = ({
   const { name, alias, singers } = music;
   return (
     <Container style={style}>
-      <div className="index">{index}.</div>
+      <div className="index">{index}</div>
       <div className="info">
         <div className="top">
           <div className="text">

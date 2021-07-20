@@ -245,7 +245,7 @@ export default () => {
     eventemitter.on(EventType.FETCH_MUSICBILL, getMusicbillDetail);
     eventemitter.on(EventType.USER_MUSICBILL_UPDATED, getMusicbillDetail);
     eventemitter.on(EventType.USER_MUSICBILL_CREATED, musicbillCreatedListener);
-    eventemitter.on(EventType.USER_MUSICBILL_REMOVED, onUserMusicbillRemoved);
+    eventemitter.on(EventType.USER_MUSICBILL_DELETED, onUserMusicbillRemoved);
     eventemitter.on(
       EventType.ADD_MUSIC_TO_MUSICBILL,
       addMusicToMusicbillListener,
@@ -266,7 +266,7 @@ export default () => {
         musicbillCreatedListener,
       );
       eventemitter.off(
-        EventType.USER_MUSICBILL_REMOVED,
+        EventType.USER_MUSICBILL_DELETED,
         onUserMusicbillRemoved,
       );
       eventemitter.off(
