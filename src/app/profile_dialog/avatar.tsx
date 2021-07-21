@@ -18,8 +18,9 @@ const Style = styled.div`
   margin-bottom: ${PART_SPACE}px;
   display: flex;
   align-items: center;
+  gap: 20px;
   > .avatar {
-    margin-right: 20px;
+    border: 1px solid var(--color-primary);
   }
 `;
 
