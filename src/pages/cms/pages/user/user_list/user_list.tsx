@@ -153,7 +153,7 @@ const UserList = ({
             history.push({
               query: {
                 [Query.OPERATE_RECORD_DIALOG_OPEN]: '1',
-                [Query.OPERATE_RECORD_TARGET_USER_ID]: u.id,
+                [Query.OPERATE_RECORD_DIALOG_USER_ID]: u.id,
               },
             })
           }

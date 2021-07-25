@@ -41,7 +41,7 @@ const User = () => {
     query[Query.EMAIL_NOTIFICATION_HISTORY_TO_USRE_ID];
 
   const operateRecordDialogOpen = !!query[Query.OPERATE_RECORD_DIALOG_OPEN];
-  const operateRecordTargetUserId = query[Query.OPERATE_RECORD_TARGET_USER_ID];
+  const operateRecordDialogUserId = query[Query.OPERATE_RECORD_DIALOG_USER_ID];
 
   const selectedUserList = useSelectedUserList();
 
@@ -71,7 +71,7 @@ const User = () => {
       />
       <OpreateRecordDialog
         open={operateRecordDialogOpen}
-        targetUserId={operateRecordTargetUserId}
+        userId={operateRecordDialogUserId}
       />
     </Style>
   );

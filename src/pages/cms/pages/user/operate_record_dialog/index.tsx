@@ -40,10 +40,10 @@ const TableBox = styled.div<{ isLoading: boolean }>`
 
 const OperateRecordDialog = ({
   open,
-  targetUserId,
+  userId,
 }: {
   open: boolean;
-  targetUserId?: string;
+  userId?: string;
 }) => {
   const history = useHistory();
   const onClose = () =>
@@ -56,7 +56,7 @@ const OperateRecordDialog = ({
   const { error, loading, page, onPageChange, total, recordList, retry } =
     useRecordList({
       open,
-      targetUserId,
+      userId,
     });
 
   let content: ReactNode;

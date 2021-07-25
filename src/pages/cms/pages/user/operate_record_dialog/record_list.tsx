@@ -19,7 +19,7 @@ const headers = ['目标用户 ID', '操作用户', '类型', '操作时间', '�
 
 const RecordList = ({ recordList }: { recordList: RecordType[] }) => {
   const rowRenderer = (record: RecordType) => [
-    record.target_user_id,
+    record.user_id,
     <span title={`ID:${record.operate_user.id}`}>
       {record.operate_user.nickname}
     </span>,
@@ -32,7 +32,7 @@ const RecordList = ({ recordList }: { recordList: RecordType[] }) => {
         CMSEventemitter.emit(CMSEventType.VIEW_JSON, {
           json: {
             ...record,
-            content: record.content ? JSON.parse(record.content) : null,
+            content: JSON.parse(record.content),
           },
         })
       }

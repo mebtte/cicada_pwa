@@ -6,11 +6,11 @@ import api from '.';
  * @author mebtte<hi@mebtte.com>
  */
 function cmsGetUserOperateRecordList({
-  targetUserId,
+  userId,
   page = 1,
   pageSize = 20,
 }: {
-  targetUserId?: string;
+  userId?: string;
   page?: number;
   pageSize?: number;
 }) {
@@ -20,13 +20,13 @@ function cmsGetUserOperateRecordList({
       id: number;
       type: 'modify' | 'create';
       operate_user: { id: string; nickname: string };
-      target_user_id: string;
-      content?: string;
+      user_id: string;
+      content: string;
       operate_time: string;
     }[];
   }>('/api/cms/get_user_operate_record_list', {
     withToken: true,
-    params: { target_user_id: targetUserId, page, page_size: pageSize },
+    params: { user_id: userId, page, page_size: pageSize },
   });
 }
 

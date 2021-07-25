@@ -7,13 +7,7 @@ import { PAGE_SIZE, Record } from './constants';
 const INITIAL_PAGE = 1;
 const INITIAL_TOTAL = 0;
 
-export default ({
-  open,
-  targetUserId,
-}: {
-  open: boolean;
-  targetUserId: string;
-}) => {
+export default ({ open, userId }: { open: boolean; userId?: string }) => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(INITIAL_TOTAL);
@@ -27,7 +21,7 @@ export default ({
     setLoading(true);
     try {
       const data = await cmsGetUserOperateRecordList({
-        targetUserId,
+        userId,
         page,
         pageSize: PAGE_SIZE,
       });
@@ -41,13 +35,13 @@ export default ({
       setError(e);
     }
     setLoading(false);
-  }, [open, targetUserId, page]);
+  }, [open, userId, page]);
 
   useEffect(() => {
     setPage(INITIAL_PAGE);
     setTotal(INITIAL_TOTAL);
     setRecordList([]);
-  }, [targetUserId]);
+  }, [userId]);
 
   useEffect(() => {
     getRecordList();
