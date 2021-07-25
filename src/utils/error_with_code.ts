@@ -1,7 +1,7 @@
-class ErrorWithCode extends Error {
-  code: number;
+class ErrorWithCode<Code extends number> extends Error {
+  code: Code;
 
-  constructor(message: string, code: number) {
+  constructor(message: string, code: Code) {
     super(message);
     this.code = code;
   }

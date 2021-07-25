@@ -8,7 +8,10 @@ import toast from '@/platform/toast';
 import { getToken, clearToken } from '@/platform/token';
 import ErrorWithCode from '@/utils/error_with_code';
 
-const DO_AUTHORIZE_CODES = [100004];
+export enum Code {
+  SUCCESS = 0,
+  NOT_AUTHORIZE = 100004,
+}
 
 enum METHOD {
   GET = 'get',
@@ -77,13 +80,13 @@ function generateMethod(method: METHOD) {
       message,
       data: responseData,
     } = response.data as {
-      code: number;
+      code: Code;
       message: string;
       data: DataType;
     };
-    if (code !== 0) {
+    if (code !== Code.SUCCESS) {
       // 未登录/登录过期
-      if (DO_AUTHORIZE_CODES.includes(code)) {
+      if (code === Code.NOT_AUTHORIZE) {
         toast.error('登录过期, 请重新登录');
         // @ts-ignore
         store.dispatch(clearUser());
