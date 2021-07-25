@@ -53,11 +53,7 @@ const AvatarBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  > .actions {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }
+  color: var(--text-color-secondary);
 `;
 const emptyStyle = {
   position: 'absolute',
@@ -112,15 +108,13 @@ const FigureList = ({
     figure.name,
     <AvatarBox>
       {figure.avatar ? <Avatar src={figure.avatar} /> : '-'}
-      <div className="actions">
-        <IconButton
-          name={Name.EDIT_OUTLINE}
-          size={ACTION_SIZE}
-          onClick={() =>
-            eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
-          }
-        />
-      </div>
+      <IconButton
+        name={Name.EDIT_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_EDIT_FIGURE_AVATAR_DIALOG, figure)
+        }
+      />
     </AvatarBox>,
     figure.alias || '-',
     day(figure.createTime).format('YYYY-MM-DD HH:mm'),

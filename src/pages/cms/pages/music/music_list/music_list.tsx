@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import useHistory from '@/utils/use_history';
 import day from '@/utils/day';
-import cmsUpdateMusic, { Key } from '@/server/cms_update_music';
 import Tooltip from '@/components/tooltip';
 import Tag, { Type as TagType } from '@/components/tag';
 import { SearchKey as FigureSearchKey } from '@/server/cms_get_figure_list';
@@ -70,11 +69,7 @@ const CoverBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  > .actions {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }
+  color: var(--text-color-secondary);
 `;
 const ACTION_SIZE = 22;
 const SingerBox = styled.div`
@@ -155,46 +150,19 @@ const MusicList = ({
         }
       },
     });
-  const onDeleteCover = (music: Music) =>
-    dialog.confirm({
-      title: `确定删除"${music.name}"封面?`,
-      onConfirm: async () => {
-        try {
-          await cmsUpdateMusic({ id: music.id, key: Key.COVER, value: '' });
-          toast.success(`"${music.name}"封面已被删除`);
-          eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
-        } catch (error) {
-          logger.error(error, {
-            description: '删除音乐封面失败',
-            report: true,
-          });
-          toast.error(error.message);
-        }
-      },
-    });
 
   const rowRenderer = (music: Music) => [
     <Small>{music.id}</Small>,
     music.name,
     <CoverBox>
-      <Small>{music.cover ? <Avatar src={music.cover} /> : '-'}</Small>
-      <div className="actions">
-        <IconButton
-          name={Name.EDIT_OUTLINE}
-          size={ACTION_SIZE}
-          onClick={() =>
-            eventemitter.emit(EventType.OPEN_EDIT_COVER_DIALOG, music)
-          }
-        />
-        {music.cover ? (
-          <IconButton
-            name={Name.GARBAGE_OUTLINE}
-            type={Type.DANGER}
-            size={ACTION_SIZE}
-            onClick={() => onDeleteCover(music)}
-          />
-        ) : null}
-      </div>
+      {music.cover ? <Avatar src={music.cover} /> : '-'}
+      <IconButton
+        name={Name.EDIT_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_EDIT_COVER_DIALOG, music)
+        }
+      />
     </CoverBox>,
     <Small>{MUSIC_TYPE_MAP_LABEL[music.type]}</Small>,
     <SingerBox>
