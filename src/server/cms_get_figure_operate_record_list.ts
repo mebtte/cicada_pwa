@@ -21,7 +21,7 @@ function cmsGetFigureOperateRecordList({
       type: 'create' | 'modify';
       operate_user: { id: string; nickname: string };
       figure_id: string;
-      content?: string;
+      content: string;
       operate_time: string;
     }[];
   }>('/api/cms/get_figure_operate_record_list', {
