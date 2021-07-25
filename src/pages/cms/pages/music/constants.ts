@@ -28,6 +28,9 @@ export enum Query {
   PAGE = 'page',
 
   CREATE_DIALOG_OPEN = 'create_dialog_open',
+
+  OPERATE_RECORD_DIALOG_OPEN = 'operate_record_dialog_open',
+  OPERATE_RECORD_DIALOG_MUSIC_ID = 'operate_record_dialog_music_id',
 }
 
 export const PAGE_SIZE = 20;

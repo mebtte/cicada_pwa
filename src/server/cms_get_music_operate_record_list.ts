@@ -2,15 +2,15 @@
 import api from '.';
 
 /**
- * CMS 获取角色操作记录列表
+ * CMS 获取音乐操作记录列表
  * @author mebtte<hi@mebtte.com>
  */
-function cmsGetFigureOperateRecordList({
-  figureId,
+function cmsGetMusicOperateRecordList({
+  musicId,
   page = 1,
   pageSize = 20,
 }: {
-  figureId?: string;
+  musicId?: string;
   page?: number;
   pageSize?: number;
 } = {}) {
@@ -20,14 +20,14 @@ function cmsGetFigureOperateRecordList({
       id: number;
       type: 'create' | 'modify';
       operate_user: { id: string; nickname: string };
-      figure_id: string;
-      content?: string;
+      music_id: string;
+      content: string;
       operate_time: string;
     }[];
-  }>('/api/cms/get_figure_operate_record_list', {
+  }>('/api/cms/get_music_operate_record_list', {
     withToken: true,
-    params: { figure_id: figureId, page, page_size: pageSize },
+    params: { music_id: musicId, page, page_size: pageSize },
   });
 }
 
-export default cmsGetFigureOperateRecordList;
+export default cmsGetMusicOperateRecordList;

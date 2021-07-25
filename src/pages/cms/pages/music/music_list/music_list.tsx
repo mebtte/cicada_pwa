@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import useHistory from '@/utils/use_history';
 import day from '@/utils/day';
 import cmsUpdateMusic, { Key } from '@/server/cms_update_music';
 import Tooltip from '@/components/tooltip';
@@ -20,9 +21,8 @@ import CircularLoader from '@/components/circular_loader';
 import Empty from '@/components/empty';
 import Table from '@/components/table';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
-import { EditMusicResourceType, Music } from '../constants';
+import { EditMusicResourceType, Music, Query } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
-import { Query } from '../../figure/constants';
 
 const Style = styled.div<{ isLoading: boolean }>`
   flex: 1;
@@ -137,6 +137,7 @@ const MusicList = ({
   searchKey: SearchKey;
   searchValue: string;
 }) => {
+  const history = useHistory();
   const contentRef = useRef<HTMLDivElement>();
   const onDelete = (music: Music) =>
     dialog.confirm({
@@ -281,6 +282,18 @@ const MusicList = ({
         name={Name.EDIT_OUTLINE}
         size={ACTION_SIZE}
         onClick={() => eventemitter.emit(EventType.OPEN_EDIT_DIALOG, music)}
+      />
+      <IconButton
+        name={Name.HISTORY_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={() =>
+          history.push({
+            query: {
+              [Query.OPERATE_RECORD_DIALOG_OPEN]: '1',
+              [Query.OPERATE_RECORD_DIALOG_MUSIC_ID]: music.id,
+            },
+          })
+        }
       />
       {music.type === MusicType.NORMAL ? (
         <IconButton
