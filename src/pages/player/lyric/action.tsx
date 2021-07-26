@@ -31,10 +31,12 @@ const scrollToCurrentLine = () =>
 
 const Action = ({
   music,
+  turntable,
   toggleTurntable,
   onClose,
 }: {
   music: Music;
+  turntable: boolean;
   toggleTurntable: () => void;
   onClose: () => void;
 }) => (
@@ -44,7 +46,7 @@ const Action = ({
       onClick={scrollToCurrentLine}
       size={ACTION_SIZE}
       className="action"
-      disabled={music.type === MusicType.INSTRUMENT}
+      disabled={turntable || music.type === MusicType.INSTRUMENT}
     />
     <IconButton
       name={Name.EXCHANGE_OUTLINE}
