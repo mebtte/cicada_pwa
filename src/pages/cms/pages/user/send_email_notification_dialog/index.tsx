@@ -37,6 +37,7 @@ const StyledContent = styled(Content)`
   }
   .textarea {
     height: 150px;
+    resize: vertical;
   }
 `;
 const bodyProps = {
