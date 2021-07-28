@@ -1,6 +1,7 @@
 import ViewOutline from './icons/view_outline';
-import CheckboxFill from './checkbox_fill';
-import CheckboxOutline from './checkbox_outline';
+import CheckboxFill from './icons/checkbox_fill';
+import CheckboxOutline from './icons/checkbox_outline';
+import CopyOutline from './icons/copy_outline';
 import CorrectOutline from './correct_outline';
 import DownloadOutline from './download_outline';
 import EditOutline from './edit_outline';
@@ -37,14 +38,14 @@ import FigureFill from './figure_fill';
 import MinimizeOutline from './minimize_outline';
 import MacOSColorful from './mac_os_colorful';
 import WindowsColorful from './windows_colorful';
-import ComputerFill from './computer_fill';
+import ComputerFill from './icons/computer_fill';
 import JumpFill from './jump_fill';
 import GotoOutline from './goto_outline';
-import CmsOutline from './cms_outline';
+import CmsOutline from './icons/cms_outline';
 import LyricOutline from './lyric_outline';
 import GithubFill from './github_fill';
 import RecommendOutline from './recommend_outline';
-import CloudOutline from './cloud_outline';
+import CloudOutline from './icons/cloud_outline';
 import BrowserFill from './icons/browser_fill';
 import MobilephoneFill from './mobilephone_fill';
 import HouseOutline from './house_outline';
@@ -54,6 +55,7 @@ import EmailListFill from './email_list_fill';
 import HistoryOutline from './icons/history_outline';
 
 export enum Name {
+  COPY_OUTLINE = 'CopyOutline',
   VIEW_OUTLINE = 'ViewOutline',
   HISTORY_OUTLINE = 'HistoryOutline',
   EMAIL_LIST_FILL = 'EmailListFill',
@@ -111,6 +113,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
+  [Name.COPY_OUTLINE]: CopyOutline,
   [Name.VIEW_OUTLINE]: ViewOutline,
   [Name.HISTORY_OUTLINE]: HistoryOutline,
   [Name.EMAIL_LIST_FILL]: EmailListFill,

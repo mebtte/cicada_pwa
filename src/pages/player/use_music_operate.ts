@@ -61,6 +61,12 @@ export default (music?: MusicType, afterOperate?: (...params: any) => any) => {
     }
     return eventemitter.emit(EventType.OPEN_MUSIC_OPERATE_POPUP, music);
   }, [music]);
+  const onCopyID = useCallback(() => {
+    window.navigator.clipboard.writeText(music.id);
+    if (afterOperate) {
+      afterOperate();
+    }
+  }, [music, afterOperate]);
 
   return {
     onView,
@@ -70,5 +76,6 @@ export default (music?: MusicType, afterOperate?: (...params: any) => any) => {
     onAddToPlaylist,
     onWatchMv,
     onOperate,
+    onCopyID,
   };
 };

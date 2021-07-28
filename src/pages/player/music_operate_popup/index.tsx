@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
+import { shallowEqual, useSelector } from 'react-redux';
 
+import { User } from '@/constants/user';
 import Popup from '@/components/popup';
 import { Name } from '@/components/icon';
 import { Music as MusicType } from '../constants';
@@ -19,6 +21,8 @@ const bodyProps = {
 };
 
 const MusicOperateDrawer = () => {
+  const user = useSelector((state: { user: User }) => state.user, shallowEqual);
+
   const [open, setOpen] = useState(false);
   const [music, setMusic] = useState<MusicType>(null);
   const onClose = useCallback(() => setOpen(false), []);
@@ -28,6 +32,7 @@ const MusicOperateDrawer = () => {
     onAddToMusicbill,
     onAddToPlaylist,
     onWatchMv,
+    onCopyID,
   } = useMusicOperate(music, onClose);
 
   useEffect(() => {
@@ -75,6 +80,9 @@ const MusicOperateDrawer = () => {
           label="观看MV"
           onClick={onWatchMv}
         />
+      ) : null}
+      {user.cms ? (
+        <MenuItem icon={Name.COPY_OUTLINE} label="复制 ID" onClick={onCopyID} />
       ) : null}
     </Popup>
   );
