@@ -25,5 +25,17 @@ export default () => {
     return unlisten;
   }, [history]);
 
+  useEffect(() => {
+    if (open) {
+      const keydownListener = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          setOpen(false);
+        }
+      };
+      document.addEventListener('keydown', keydownListener);
+      return () => document.removeEventListener('keydown', keydownListener);
+    }
+  }, [open]);
+
   return { open, onClose };
 };
