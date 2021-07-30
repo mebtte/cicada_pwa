@@ -3,10 +3,10 @@ import { MusicType } from '@/constants/music';
 import api from '.';
 
 /**
- * 获取最新音乐列表
+ * 获取推荐音乐列表
  * @author mebtte<hi@mebtte.com>
  */
-function getLatestMusicList({
+function getRecommendatoryMusicList({
   page = 1,
   pageSize = 30,
 }: {
@@ -34,10 +34,10 @@ function getLatestMusicList({
       fork?: string[];
       fork_from?: string[];
     }[];
-  }>('/api/get_latest_music_list', {
+  }>('/api/get_recommendatory_music_list', {
     params: { page, page_size: pageSize },
     withToken: true,
   });
 }
 
-export default getLatestMusicList;
+export default getRecommendatoryMusicList;

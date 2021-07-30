@@ -9,7 +9,7 @@ import ErrorCard from '@/components/error_card';
 import Skeleton from './skeleton';
 import MusicList from './music_list';
 import eventemitter, { Type as EventType } from './eventemitter';
-import useLastestMusicList from './use_latest_music_list';
+import useRecommendatoryMusicList from './use_recommendatory_music_list';
 
 const Style = styled(WidthResizeDetector)`
   width: 100%;
@@ -30,7 +30,7 @@ const paginationStyle = {
 const Home = () => {
   const rootRef = useRef<HTMLDivElement>();
   const { status, error, retry, page, pageCount, onPageChange, musicList } =
-    useLastestMusicList();
+    useRecommendatoryMusicList();
 
   useEffect(() => {
     const scrollToTopListener = () =>

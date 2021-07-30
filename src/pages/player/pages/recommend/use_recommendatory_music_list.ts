@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { RequestStatus } from '@/constants';
-import getLatestMusicList from '@/server/get_latest_music_list';
+import getRecommendatoryMusicList from '@/server/get_recommendatory_music_list';
 import eventemitter, { Type } from './eventemitter';
 import { PAGE_SIZE } from './constant';
 import { Music } from '../../constants';
@@ -22,7 +22,7 @@ export default () => {
   const getMusicListOfPage = useCallback(async () => {
     setStatus(RequestStatus.LOADING);
     try {
-      const { count, music_list: ml } = await getLatestMusicList({
+      const { count, music_list: ml } = await getRecommendatoryMusicList({
         page,
         pageSize: PAGE_SIZE,
       });
