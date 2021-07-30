@@ -1,0 +1,33 @@
+name: deploy to pages
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy_to_pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+        with:
+          node-version: lts/*
+
+      - run: |
+          echo '{ "server_origin": "${{secrets.SERVER_ORIGIN}}", "pwa_origin": "${{secrets.PWA_ORIGIN}}" }' > config.json
+
+      - run: npm install
+      - run: npm run build
+      # - run: npm run styleguide:build
+
+      - run: echo ${{secrets.PWA_ORIGIN}} > build/CNAME
+
+      - run: |
+          cd build
+          git init
+          git config --local user.name mebtte
+          git config --local user.email hi@mebtte.com
+          git remote add origin https://${{secrets.ACCESS_TOKEN}}@github.com/${{github.respository}}
+          git switch -c gh-pages
+          git add -A
+          git commit -m "auto deloy to pages"
+          git push origin gh-pages -f
