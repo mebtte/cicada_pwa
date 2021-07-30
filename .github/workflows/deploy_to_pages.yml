@@ -12,21 +12,23 @@ jobs:
         with:
           node-version: lts/*
 
-      - run: |
+      - name: create config.json
+        run: |
           echo '{ "server_origin": "${{secrets.SERVER_ORIGIN}}", "pwa_origin": "${{secrets.PWA_ORIGIN}}" }' > config.json
 
       - run: npm install
       - run: npm run build
       # - run: npm run styleguide:build
 
-      - run: echo ${{secrets.PWA_ORIGIN}} > build/CNAME
+      - name: create CNAME
+        run: echo ${{secrets.PWA_ORIGIN}} > build/CNAME
 
       - run: |
           cd build
           git init
           git config --local user.name mebtte
           git config --local user.email hi@mebtte.com
-          git remote add origin https://${{secrets.ACCESS_TOKEN}}@github.com/${{github.respository}}
+          git remote add origin https://${{secrets.ACCESS_TOKEN}}@github.com/$GITHUB_REPOSITORY.git
           git switch -c gh-pages
           git add -A
           git commit -m "auto deloy to pages"
