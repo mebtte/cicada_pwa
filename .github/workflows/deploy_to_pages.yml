@@ -15,19 +15,22 @@ jobs:
         run: |
           echo '{ "server_origin": "${{secrets.SERVER_ORIGIN}}", "pwa_origin": "${{secrets.PWA_ORIGIN}}" }' > config.json
 
-      - run: npm install
-      - run: npm run build
-      # - run: npm run styleguide:build
+      - name: build
+        run: |
+          npm install
+          npm run build
+        # npm run styleguide:build
 
       - name: create CNAME
         run: echo ${{secrets.PWA_ORIGIN}} > build/CNAME
 
-      - run: |
+      - name: deploy to pages
+        run: |
           cd build
           git init
           git config --local user.name mebtte
           git config --local user.email hi@mebtte.com
-          git remote add origin https://${{secrets.ACCESS_TOKEN}}@github.com/$GITHUB_REPOSITORY.git
+          git remote add origin https://${{secrets.ACCESS_TOKEN}}@github.com/mebtte/cicada_pwa.git
           git switch -c gh-pages
           git add -A
           git commit -m "auto deloy to pages"
