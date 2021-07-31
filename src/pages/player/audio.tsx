@@ -1,5 +1,5 @@
 import React from 'react';
-import debounce from 'lodash/debounce';
+import throttle from 'lodash/throttle';
 
 import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
 import createMusicPlayRecord from '@/server/create_music_play_record';
@@ -133,7 +133,7 @@ class Audio extends React.PureComponent<Props, {}> {
 
   onActionPause = () => this.audioRef.current.pause();
 
-  onTimeUpdate = debounce(() => {
+  onTimeUpdate = throttle(() => {
     const { currentTime } = this.audioRef.current;
     return eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
       currentMillisecond: currentTime * 1000,
@@ -169,13 +169,10 @@ class Audio extends React.PureComponent<Props, {}> {
   };
 
   uploadPlayRecord = (music: Music) => {
-    const { id, name } = music;
     const { duration } = this.audioRef.current;
     const playedSeconds = this.getPlayedSeconeds();
-    // todo(mebtte): 移除 log
-    console.log(name, duration, playedSeconds);
     return createMusicPlayRecord({
-      musicId: id,
+      musicId: music.id,
       percent: duration ? playedSeconds / duration : 0,
     });
   };
