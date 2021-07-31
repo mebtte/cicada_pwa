@@ -138,7 +138,7 @@ class Audio extends React.PureComponent<Props, {}> {
     return eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
       currentMillisecond: currentTime * 1000,
     });
-  });
+  }, 300);
 
   getAudioSrc = () => {
     const { queueMusic, playMode } = this.props;
