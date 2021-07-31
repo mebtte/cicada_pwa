@@ -39,6 +39,7 @@ const SingerDrawer = () => {
           reload={reload}
         />
         <Action
+          singer={singer}
           status={status}
           reload={reload}
           addAllToPlaylist={addAllToPlaylist}
