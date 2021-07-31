@@ -43,12 +43,13 @@ const Progress = () => {
   );
 
   const currentMillisecond = useAudioCurrentMillisecond();
-  const setTime = (p) => {
+  const setTime = (p: number) => {
     if (!audioDuration) {
-      return;
+      return eventemitter.emit(EventType.ACTION_SET_TIME, { second: 0 });
     }
-    const time = audioDuration * p;
-    eventemitter.emit(EventType.ACTION_SET_TIME, time);
+    return eventemitter.emit(EventType.ACTION_SET_TIME, {
+      second: audioDuration * p,
+    });
   };
 
   const percent = audioDuration ? currentMillisecond / 1000 / audioDuration : 0;

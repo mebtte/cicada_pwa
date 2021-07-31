@@ -21,7 +21,6 @@ import Context from './context';
 import Audio from './audio';
 import Electron from './electron';
 import MediaSession from './media_session';
-import PlayLog from './play_log';
 import SingerDrawer from './singer_drawer';
 import MusicOperatePopup from './music_operate_popup';
 import MusicDrawer from './music_drawer';
@@ -126,7 +125,6 @@ const Wrapper = () => {
         <>
           <Audio volume={volume} playMode={playMode} queueMusic={queueMusic} />
           <MediaSession music={queueMusic.music} />
-          <PlayLog queueMusic={queueMusic} duration={audioDuration} />
         </>
       ) : null}
 
