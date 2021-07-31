@@ -1,4 +1,4 @@
-# 知了
+# [知了](https://cicada.mebtte.com)
 
 知了 PWA 客户端, 支持 Web 浏览器.
 
@@ -29,4 +29,4 @@ npm run build # 构建后资源位于 build 目录
 
 ## 开源协议
 
-[GPL](./LICENSE)
+[GPL](./license)
