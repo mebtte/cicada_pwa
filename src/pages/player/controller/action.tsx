@@ -39,30 +39,24 @@ const Action = ({
   const { onTogglePlay, onPrevious, onNext } = useAudioControl(audioLoading);
   return (
     <Style>
-      <Tooltip title="下一首播放">
-        <IconButton
-          className="action"
-          name={IconButtonName.INSERT_OUTLINE}
-          size={ACTION_SIZE}
-          onClick={onAddToPlayqueue}
-        />
-      </Tooltip>
-      <Tooltip title="添加到歌单">
-        <IconButton
-          className="action"
-          name={IconButtonName.ADD_TO_OUTLINE}
-          size={ACTION_SIZE}
-          onClick={onAddToMusicbill}
-        />
-      </Tooltip>
-      <Tooltip title="更多操作">
-        <IconButton
-          className="action"
-          name={IconButtonName.MORE_OUTLINE}
-          size={ACTION_SIZE}
-          onClick={onOperate}
-        />
-      </Tooltip>
+      <IconButton
+        className="action"
+        name={IconButtonName.INSERT_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={onAddToPlayqueue}
+      />
+      <IconButton
+        className="action"
+        name={IconButtonName.ADD_TO_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={onAddToMusicbill}
+      />
+      <IconButton
+        className="action"
+        name={IconButtonName.MORE_OUTLINE}
+        size={ACTION_SIZE}
+        onClick={onOperate}
+      />
       <div className="line" />
       <Tooltip title="播放列表 | 播放队列">
         <IconButton

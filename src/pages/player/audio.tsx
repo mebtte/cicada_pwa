@@ -1,12 +1,14 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React from 'react';
+import debounce from 'lodash/debounce';
 
+import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
+import createMusicPlayRecord from '@/server/create_music_play_record';
 import eventemitter, { EventType } from './eventemitter';
 import logger from '../../platform/logger';
 import dialog from '../../platform/dialog';
-import { QueueMusic, PlayMode } from './constants';
+import { QueueMusic, PlayMode, Music } from './constants';
 
-const TIME_UPDATE_INTERVAL = 1000 * 0.5; // timeUpdate最大时间间隔
-
+const JUMP_STEP = 5;
 const style = {
   display: 'none',
 };
@@ -27,91 +29,181 @@ const onError = (e) => {
   return eventemitter.emit(EventType.AUDIO_ERROR);
 };
 
-const Audio = ({
-  playMode,
-  queueMusic,
-  volume,
-}: {
+interface Props {
   playMode: PlayMode;
   queueMusic: QueueMusic;
   volume: number;
-}) => {
-  const { pid, music } = queueMusic;
+}
 
-  const audioRef = useRef<HTMLAudioElement>();
-  const lastUpdateTime = useRef(0);
-  const onTimeUpdate = useCallback((event) => {
-    const { duration, currentTime } = event.target;
-    const now = Date.now();
-    if (
-      now - lastUpdateTime.current >= TIME_UPDATE_INTERVAL ||
-      duration - currentTime < TIME_UPDATE_INTERVAL
-    ) {
-      lastUpdateTime.current = now;
-      return eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
-        currentMillisecond: currentTime * 1000,
+class Audio extends React.PureComponent<Props, {}> {
+  audioRef: React.RefObject<HTMLAudioElement>;
+
+  constructor(props: Props) {
+    super(props);
+    this.audioRef = React.createRef<HTMLAudioElement>();
+  }
+
+  componentDidMount() {
+    this.audioRef.current.volume = this.props.volume;
+
+    eventemitter.on(EventType.ACTION_SET_TIME, this.onActionSetTime);
+    eventemitter.on(EventType.ACTION_TOGGLE_PLAY, this.onActionTogglePlay);
+    eventemitter.on(EventType.ACTION_PLAY, this.onActionPlay);
+    eventemitter.on(EventType.ACTION_PAUSE, this.onActionPause);
+    eventemitter.on(EventType.OPEN_MV_DIALOG, this.onActionPause);
+
+    document.addEventListener('keydown', this.onKeyDown);
+    window.addEventListener('beforeunload', this.beforeUnload);
+  }
+
+  getSnapshotBeforeUpdate(prevProps: Props) {
+    const { queueMusic } = this.props;
+    if (prevProps.queueMusic.pid !== queueMusic.pid) {
+      this.uploadPlayRecord(prevProps.queueMusic.music);
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { volume, queueMusic } = this.props;
+
+    if (prevProps.volume !== volume) {
+      this.audioRef.current.volume = volume;
+    }
+
+    if (prevProps.queueMusic.pid !== queueMusic.pid) {
+      this.audioRef.current.currentTime = 0;
+      this.audioRef.current.play();
+      eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
+        currentMillisecond: 0,
       });
     }
-  }, []);
+  }
 
-  useEffect(() => {
-    audioRef.current.volume = volume;
-  }, [volume]);
-  useEffect(() => {
-    audioRef.current.currentTime = 0;
-    eventemitter.emit(EventType.AUDIO_TIME_UPDATED, { currentMillisecond: 0 });
-    audioRef.current.play();
-  }, [pid]);
-  useEffect(() => {
-    const setTimeListener = (time: number) => {
-      onWaiting();
-      setTimeout(() => {
-        audioRef.current.currentTime = time;
-        audioRef.current.play();
-        eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
-          currentMillisecond: time * 1000,
-        });
-      }, 0);
-    };
-    const togglePlayListener = () => {
-      if (audioRef.current.paused) {
-        return audioRef.current.play();
+  componentWillUnmount() {
+    eventemitter.off(EventType.ACTION_SET_TIME, this.onActionSetTime);
+    eventemitter.off(EventType.ACTION_TOGGLE_PLAY, this.onActionTogglePlay);
+    eventemitter.off(EventType.ACTION_PLAY, this.onActionPlay);
+    eventemitter.off(EventType.ACTION_PAUSE, this.onActionPause);
+    eventemitter.off(EventType.OPEN_MV_DIALOG, this.onActionPause);
+
+    document.removeEventListener('keydown', this.onKeyDown);
+    window.removeEventListener('beforeunload', this.beforeUnload);
+
+    this.uploadPlayRecord(this.props.queueMusic.music);
+  }
+
+  onActionSetTime = ({ second }: { second: number }) => {
+    onWaiting();
+    return window.setTimeout(() => {
+      this.audioRef.current.currentTime = second;
+      this.audioRef.current.play();
+      eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
+        currentMillisecond: second * 1000,
+      });
+    }, 0);
+  };
+
+  onKeyDown = keyboardHandlerWrapper((event: KeyboardEvent) => {
+    const { key } = event;
+    // eslint-disable-next-line default-case
+    switch (key) {
+      case ' ': {
+        event.preventDefault();
+        this.onActionTogglePlay();
+        break;
       }
-      return audioRef.current.pause();
-    };
-    const playListener = () => audioRef.current.play();
-    const pauseListener = () => audioRef.current.pause();
-    eventemitter.on(EventType.ACTION_SET_TIME, setTimeListener);
-    eventemitter.on(EventType.ACTION_TOGGLE_PLAY, togglePlayListener);
-    eventemitter.on(EventType.ACTION_PLAY, playListener);
-    eventemitter.on(EventType.ACTION_PAUSE, pauseListener);
-    eventemitter.on(EventType.OPEN_MV_DIALOG, pauseListener);
-    return () => {
-      eventemitter.off(EventType.ACTION_SET_TIME, setTimeListener);
-      eventemitter.off(EventType.ACTION_TOGGLE_PLAY, togglePlayListener);
-      eventemitter.off(EventType.ACTION_PLAY, playListener);
-      eventemitter.off(EventType.ACTION_PAUSE, pauseListener);
-      eventemitter.off(EventType.OPEN_MV_DIALOG, pauseListener);
-    };
-  }, []);
+      case 'ArrowLeft': {
+        this.audioRef.current.currentTime -= JUMP_STEP;
+        break;
+      }
+      case 'ArrowRight': {
+        this.audioRef.current.currentTime += JUMP_STEP;
+        break;
+      }
+    }
+  });
 
-  return (
-    // eslint-disable-next-line jsx-a11y/media-has-caption
-    <audio
-      ref={audioRef}
-      style={style}
-      src={(music[playMode] || music.sq) as string}
-      autoPlay
-      onPlay={onPlay}
-      onPause={onPause}
-      onEnded={onEnded}
-      onWaiting={onWaiting}
-      onCanPlayThrough={onCanPlayThrough}
-      onTimeUpdate={onTimeUpdate}
-      onError={onError}
-      preload="auto"
-    />
-  );
-};
+  onActionTogglePlay = () =>
+    this.audioRef.current.paused
+      ? this.audioRef.current.play()
+      : this.audioRef.current.pause();
 
-export default React.memo(Audio);
+  onActionPlay = () => this.audioRef.current.play();
+
+  onActionPause = () => this.audioRef.current.pause();
+
+  onTimeUpdate = debounce(() => {
+    const { currentTime } = this.audioRef.current;
+    return eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
+      currentMillisecond: currentTime * 1000,
+    });
+  });
+
+  getAudioSrc = () => {
+    const { queueMusic, playMode } = this.props;
+    const { music } = queueMusic;
+
+    switch (playMode) {
+      case PlayMode.HQ: {
+        return music.hq;
+      }
+      case PlayMode.AC: {
+        return music.ac;
+      }
+      default: {
+        return music.sq;
+      }
+    }
+  };
+
+  getPlayedSeconeds = () => {
+    const { played } = this.audioRef.current;
+    let playedSeconeds = 0;
+    for (let i = 0, { length } = played; i < length; i += 1) {
+      const start = played.start(i);
+      const end = played.end(i);
+      playedSeconeds += end - start;
+    }
+    return playedSeconeds;
+  };
+
+  uploadPlayRecord = (music: Music) => {
+    const { id, name } = music;
+    const { duration } = this.audioRef.current;
+    const playedSeconds = this.getPlayedSeconeds();
+    // todo(mebtte): 移除 log
+    console.log(name, duration, playedSeconds);
+    return createMusicPlayRecord({
+      musicId: id,
+      percent: duration ? playedSeconds / duration : 0,
+    });
+  };
+
+  beforeUnload = () => this.uploadPlayRecord(this.props.queueMusic.music);
+
+  render() {
+    const { pid } = this.props.queueMusic;
+    const audioSrc = this.getAudioSrc();
+    return (
+      // eslint-disable-next-line jsx-a11y/media-has-caption
+      <audio
+        key={pid}
+        ref={this.audioRef}
+        style={style}
+        src={audioSrc}
+        autoPlay
+        onPlay={onPlay}
+        onPause={onPause}
+        onEnded={onEnded}
+        onWaiting={onWaiting}
+        onCanPlayThrough={onCanPlayThrough}
+        onTimeUpdate={this.onTimeUpdate}
+        onError={onError}
+        preload="auto"
+      />
+    );
+  }
+}
+
+export default Audio;
