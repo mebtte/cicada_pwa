@@ -15,7 +15,7 @@ export enum EventType {
   ACTION_PREVIOUS = 'action_previous', // 上一首
   ACTION_NEXT = 'action_next', // 下一首
   ACTION_PLAY_MUSIC = 'action_play_music', // 播放指定音乐
-  ACTION_ADD_MUSIC_LIST_TO_PLAYLIST = 'action_add_music_list_to_playlist',
+  ACTION_ADD_MUSIC_LIST_TO_PLAYLIST = 'action_add_music_list_to_playlist', // 添加音乐列表到播放列表, { musicList: Music[] }
   ACTION_INSERT_MUSIC_TO_PLAYQUEUE = 'action_insert_music_to_playqueue',
   ACTION_PLAY_PLAYQUEUE_INDEX = 'action_playqueue_index',
   ACTION_CLEAR_PLAYLIST = 'action_clear_playlist',

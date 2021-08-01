@@ -34,7 +34,7 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
     const { musicList } = musicbill;
     return playerEventemitter.emit(
       PlayerEventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
-      musicList.map((m) => m.music),
+      { musicList: musicList.map((m) => m.music) },
     );
   };
   const onDelete = () =>

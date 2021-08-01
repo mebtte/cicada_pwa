@@ -53,7 +53,11 @@ export default (playlist: MusicWithIndex[]) => {
       });
 
     // 添加音乐列表到播放列表
-    const onAddMusicListToPlaylistListener = (musicList: Music[]) =>
+    const onAddMusicListToPlaylistListener = ({
+      musicList,
+    }: {
+      musicList: Music[];
+    }) =>
       setPlayqueue((pq) => {
         if (pq.length) {
           return pq;

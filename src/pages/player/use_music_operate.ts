@@ -43,7 +43,9 @@ export default (music?: MusicType, afterOperate?: (...params: any) => any) => {
     if (!music) {
       return;
     }
-    eventemitter.emit(EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST, [music]);
+    eventemitter.emit(EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST, {
+      musicList: [music],
+    });
     if (afterOperate) {
       afterOperate();
     }

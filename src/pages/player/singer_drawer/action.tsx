@@ -9,6 +9,8 @@ import { User } from '@/constants/user';
 import dialog from '@/platform/dialog';
 import toast from '@/platform/toast';
 import { Figure } from '../constants';
+import { MusicList } from './constants';
+import eventemitter, { EventType } from '../eventemitter';
 
 const ACTION_SIZE = 28;
 const Style = styled.div`
@@ -23,14 +25,12 @@ const iconButtonStyle = {
 
 const Action = ({
   singer,
-  status,
   reload,
-  addAllToPlaylist,
+  musicList,
 }: {
   singer: Figure;
-  status: RequestStatus;
   reload: () => void;
-  addAllToPlaylist: () => void;
+  musicList: MusicList;
 }) => {
   const user = useSelector((state: { user: User }) => state.user, shallowEqual);
   const copySingerID = useCallback(
@@ -53,7 +53,7 @@ const Action = ({
           name={Name.REFRESH_OUTLINE}
           size={ACTION_SIZE}
           onClick={reload}
-          loading={status === RequestStatus.LOADING}
+          loading={musicList.status === RequestStatus.LOADING}
           style={iconButtonStyle}
         />
       </Tooltip>
@@ -61,8 +61,13 @@ const Action = ({
         <IconButton
           name={Name.PLUS_OUTLINE}
           size={ACTION_SIZE}
-          onClick={addAllToPlaylist}
-          disabled={status !== RequestStatus.SUCCESS}
+          onClick={() =>
+            eventemitter.emit(EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST, {
+              // @ts-expect-error
+              musicList: musicList.value.map((m) => m.music),
+            })
+          }
+          disabled={musicList.status !== RequestStatus.SUCCESS}
           style={iconButtonStyle}
         />
       </Tooltip>

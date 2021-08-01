@@ -24,7 +24,11 @@ export default () => {
       });
 
     // 添加音乐列表到播放列表
-    const onAddMusicListToPlaylistListener = (musicList: Music[]) =>
+    const onAddMusicListToPlaylistListener = ({
+      musicList,
+    }: {
+      musicList: Music[];
+    }) =>
       setPlaylist((pl) => {
         const currentMusicIdList = pl.map((m) => m.music.id);
         const newMusicList = musicList.filter(

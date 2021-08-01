@@ -1,52 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import Drawer from '@/components/drawer';
-import useSingerDrawer from './use_singer_drawer';
-import SingerInfo from './singer_info';
-import MusicList from '../components/music_list';
-import Action from './action';
+import SingerDrawer from './singer_drawer';
+import useSinger from './use_singer';
 
-const Content = styled.div`
-  flex: 1;
-  min-height: 0;
-  display: flex;
-`;
-const bodyProps = {
-  style: {
-    width: 550,
-    display: 'flex',
-    flexDirection: 'column' as 'column',
-    padding: 0,
-  },
-};
-const musicListStyle = {
-  flex: 1,
-  minWidth: 0,
+const Wrapper = () => {
+  const { open, onClose, singer } = useSinger();
+
+  if (!singer) {
+    return null;
+  }
+  return <SingerDrawer open={open} onClose={onClose} singer={singer} />;
 };
 
-const SingerDrawer = () => {
-  const { open, onClose, singer, status, musicList, reload, addAllToPlaylist } =
-    useSingerDrawer();
-  return (
-    <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
-      {singer ? <SingerInfo singer={singer} /> : null}
-      <Content>
-        <MusicList
-          style={musicListStyle}
-          status={status}
-          musicList={musicList}
-          reload={reload}
-        />
-        <Action
-          singer={singer}
-          status={status}
-          reload={reload}
-          addAllToPlaylist={addAllToPlaylist}
-        />
-      </Content>
-    </Drawer>
-  );
-};
-
-export default React.memo(SingerDrawer);
+export default React.memo(Wrapper);

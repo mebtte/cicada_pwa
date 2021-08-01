@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { animated } from 'react-spring';
 import styled, { css } from 'styled-components';
 
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
-import Page from '../page';
+import { MusicWithIndex } from '../../constants';
+import Music from '../../components/music';
+import { containerStyle } from './constants';
 
-const Style = styled(Page)<{ topBoxShadow: number }>`
+const Style = styled(animated.div)<{ topBoxShadow: number }>`
+  ${containerStyle}
+
   overflow: auto;
   ${scrollbarAsNeeded}
 
@@ -15,20 +20,25 @@ const Style = styled(Page)<{ topBoxShadow: number }>`
   `}
 `;
 
-const ScrollablePage = ({
-  children,
-  ...props
-}: React.PropsWithChildren<{}>) => {
+const MusicList = ({
+  style,
+  musicList,
+}: {
+  style: unknown;
+  musicList: MusicWithIndex[];
+}) => {
   const [topBoxShadow, setTopBoxShadow] = useState(0);
   const onScroll: React.UIEventHandler<HTMLDivElement> = (event) => {
     const { scrollTop } = event.target as HTMLDivElement;
     return setTopBoxShadow(scrollTop === 0 ? 0 : 1);
   };
   return (
-    <Style {...props} onScroll={onScroll} topBoxShadow={topBoxShadow}>
-      {children}
+    <Style style={style} topBoxShadow={topBoxShadow} onScroll={onScroll}>
+      {musicList.map((m) => (
+        <Music key={m.index} musicWithIndex={m} />
+      ))}
     </Style>
   );
 };
 
-export default ScrollablePage;
+export default MusicList;
