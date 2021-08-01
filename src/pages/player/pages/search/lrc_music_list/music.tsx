@@ -19,8 +19,10 @@ const Style = styled.div`
     color: var(--text-color-primary);
     ${ellipsis}
     > .line {
-      &:not(:last-child) {
-        margin-right: 10px;
+      margin-right: 10px;
+      &:last-child,
+      &:empty {
+        margin-right: 0;
       }
       > .highlight {
         color: var(--color-primary);
@@ -79,7 +81,8 @@ const Wrapper = ({
                   `<span class="line">${replaceIgnoreCase(
                     l.content,
                     keyword,
-                    (match) => `<span class="highlight">${match}</span>`,
+                    (match) =>
+                      match ? `<span class="highlight">${match}</span>` : '',
                   )}</span>`,
               )
               .join(''),
