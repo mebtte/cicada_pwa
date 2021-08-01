@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 import Icon, { Name } from '@/components/icon';
-import { TAB, TABS } from './constant';
+import { Tab as TabType, TABS, TAB_MAP } from './constant';
 
 const Style = styled.div`
   height: 60px;
@@ -43,11 +43,11 @@ const Tab = styled.div<{ active: boolean }>`
   `}
 `;
 const ICON_SIZE = 16;
-const TAB_MAP_ICON = {
-  [TAB.PLAYLIST]: (
+const TAB_MAP_ICON: Record<TabType, ReactNode> = {
+  [TabType.PLAYLIST]: (
     <Icon className="icon" name={Name.LIST_OUTLINE} size={ICON_SIZE} />
   ),
-  [TAB.PLAYQUEUE]: (
+  [TabType.PLAYQUEUE]: (
     <Icon className="icon" name={Name.ORDERED_LIST_OUTLINE} size={ICON_SIZE} />
   ),
 };
@@ -56,8 +56,8 @@ const Wrapper = ({
   tab,
   onChange,
 }: {
-  tab: string;
-  onChange: (tab: string) => void;
+  tab: TabType;
+  onChange: (tab: TabType) => void;
 }) => (
   <Style>
     {TABS.map((t) => {
@@ -65,7 +65,7 @@ const Wrapper = ({
       return (
         <Tab key={t} active={active} onClick={() => onChange(t)}>
           {TAB_MAP_ICON[t]}
-          <span className="text">{t}</span>
+          <span className="text">{TAB_MAP[t].label}</span>
         </Tab>
       );
     })}

@@ -1,57 +1,70 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import { RequestStatus } from '@/constants';
-import useSearch from './use_search';
-import MusicList from '../../components/music_list';
-import Action from './action';
-import Pagination from './pagination';
-import LrcSearchDialog from './lrc_search_dialog';
-
-const Style = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  > .content {
-    flex: 1;
-    min-width: 0;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-`;
-const musicListStyle = {
-  flex: 1,
-  minHeight: 0,
-};
+import Empty from '@/components/empty';
+import CircularLoader from '@/components/circular_loader';
+import ErrorCard from '@/components/error_card';
+import useQuery from '@/utils/use_query';
+import {
+  SearchType,
+  SEARCH_TYPES,
+  Query,
+  MusicWithIndexAndLrc,
+} from './constants';
+import useMusicList from './use_music_list';
+import MusicList from './music_list';
+import CenteredPage from './centered_page';
+import LrcMusicList from './lrc_music_list';
 
 const Wrapper = () => {
-  const { keyword, error, loading, total, musicList, page, reload } =
-    useSearch();
-  // eslint-disable-next-line no-nested-ternary
-  const status = error
-    ? RequestStatus.ERROR
-    : loading
-    ? RequestStatus.LOADING
-    : RequestStatus.SUCCESS;
-  return (
-    <Style>
-      <div className="content">
-        <MusicList
-          status={status}
-          musicList={musicList}
-          reload={reload}
-          emptyDescription="未找到相关音乐"
-          errorMessage={error ? error.message : ''}
-          style={musicListStyle}
-        />
-        <Pagination total={total} page={page} />
-      </div>
-      <Action loading={status === RequestStatus.LOADING} reload={reload} />
+  const query = useQuery<Query>();
+  let searchType = query[Query.SEARCH_TYPE] as SearchType;
+  if (!SEARCH_TYPES.includes(searchType)) {
+    searchType = SearchType.COMPOSITE;
+  }
+  const searchValue = query[Query.SEARCH_VALUE] || '';
+  const page = (query[Query.PAGE] ? Number(query[Query.PAGE]) : 1) || 1;
 
-      <LrcSearchDialog keyword={keyword} />
-    </Style>
-  );
+  const { error, loading, musicList, total, retry } = useMusicList({
+    page,
+    searchType,
+    searchValue,
+  });
+
+  if (error) {
+    return (
+      <CenteredPage>
+        <ErrorCard errorMessage={error.message} retry={retry} />
+      </CenteredPage>
+    );
+  }
+  if (loading) {
+    return (
+      <CenteredPage>
+        <CircularLoader />
+      </CenteredPage>
+    );
+  }
+  if (!musicList.length) {
+    return (
+      <CenteredPage>
+        <Empty description="未找到相关音乐" />
+      </CenteredPage>
+    );
+  }
+  if (searchType === SearchType.COMPOSITE) {
+    return <MusicList page={page} musicList={musicList} total={total} />;
+  }
+  if (searchType === SearchType.LYRIC) {
+    return (
+      <LrcMusicList
+        searchValue={searchValue}
+        page={page}
+        musicList={musicList as MusicWithIndexAndLrc[]}
+        total={total}
+      />
+    );
+  }
+  return null;
 };
 
 export default Wrapper;

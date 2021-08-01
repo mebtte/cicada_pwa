@@ -33,11 +33,6 @@ export const PLAY_MODE_MAP: Record<
 
 export const PLAY_MODES = Object.keys(PLAY_MODE_MAP) as PlayMode[];
 
-export enum Query {
-  KEYWORD = 'keyword',
-  PAGE = 'page',
-}
-
 export interface Figure {
   id: string;
   name: string;

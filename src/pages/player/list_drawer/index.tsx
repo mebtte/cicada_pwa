@@ -11,7 +11,7 @@ import { useTransition, animated } from 'react-spring';
 import dialog from '@/platform/dialog';
 import Drawer from '@/components/drawer';
 import eventemitter, { EventType } from '../eventemitter';
-import { TAB } from './constant';
+import { Tab as TabType } from './constant';
 import Context from '../context';
 import Tab from './tab';
 import Playlist from './playlist';
@@ -64,8 +64,9 @@ const MusicDrawer = () => {
       );
     };
   }, []);
-  const [tab, setTab] = useState(TAB.PLAYQUEUE);
-  const onTabChange = useCallback((t) => setTab(t), []);
+
+  const [tab, setTab] = useState(TabType.PLAYQUEUE);
+
   const transtions = useTransition(tab, {
     from: { opacity: 0, transform: 'translate(100%)' },
     enter: { opacity: 1, transform: 'translate(0%)' },
@@ -73,18 +74,18 @@ const MusicDrawer = () => {
   });
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
-      <Tab tab={tab} onChange={onTabChange} />
+      <Tab tab={tab} onChange={setTab} />
       <Container>
         {transtions((style, t) => {
           let content: ReactNode = null;
           switch (t) {
-            case TAB.PLAYLIST: {
+            case TabType.PLAYLIST: {
               content = (
                 <Playlist playlist={playlist} onClear={onClearPlaylist} />
               );
               break;
             }
-            case TAB.PLAYQUEUE: {
+            case TabType.PLAYQUEUE: {
               content = <Playqueue />;
               break;
             }

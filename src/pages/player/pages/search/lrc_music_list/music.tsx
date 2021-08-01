@@ -5,17 +5,18 @@ import dompurify from 'dompurify';
 
 import ellipsis from '@/style/ellipsis';
 import Music from '../../../components/music';
-import { Music as MusicType } from './constants';
+import { MusicWithIndexAndLrc } from '../constants';
 
 const Style = styled.div`
-  padding: 10px 20px;
+  padding: 12px 20px;
   &:hover {
     background-color: #f9f9f9;
   }
   > .lyric {
+    padding-left: 50px;
     margin-top: 10px;
     font-size: 12px;
-    color: rgb(155 155 155);
+    color: var(--text-color-primary);
     ${ellipsis}
     > .line {
       &:not(:last-child) {
@@ -46,7 +47,13 @@ const replaceIgnoreCase = (
   return original.slice(0, start) + handler(match) + original.slice(end);
 };
 
-const Wrapper = ({ keyword, music }: { keyword: string; music: MusicType }) => {
+const Wrapper = ({
+  keyword,
+  music,
+}: {
+  keyword: string;
+  music: MusicWithIndexAndLrc;
+}) => {
   const {
     music: { lrc },
   } = music;

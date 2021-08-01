@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import useQuery from '@/utils/use_query';
 import Avatar from '@/components/avatar';
 import { PLAYER_PATH } from '@/constants/route';
 import { IS_ELECTRON, IS_WINDOWS } from '@/constants';
@@ -13,7 +12,6 @@ import {
 import IconButton, { Name } from '@/components/icon_button';
 import Search from './search';
 import Title from './title';
-import { Query } from '../constants';
 
 const Style = styled.div`
   z-index: 2;
@@ -32,14 +30,11 @@ const actionStyle = {
 const Header = () => {
   const { pathname } = useLocation();
 
-  const query = useQuery<Query>();
-  const keyword = query[Query.KEYWORD] || '';
-
   let title = null;
   // eslint-disable-next-line default-case
   switch (pathname) {
     case PLAYER_PATH.SEARCH: {
-      title = `搜索"${keyword}"`;
+      title = '搜索';
       break;
     }
     case PLAYER_PATH.SETTING: {
@@ -52,7 +47,7 @@ const Header = () => {
     <Style>
       <Avatar animated src="/logo.png" size={32} />
       <Title title={title} />
-      <Search keyword={keyword} />
+      <Search />
       {IS_ELECTRON && IS_WINDOWS ? (
         <>
           <IconButton

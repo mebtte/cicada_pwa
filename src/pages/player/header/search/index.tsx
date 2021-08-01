@@ -9,7 +9,7 @@ import toast from '@/platform/toast';
 import Input from '@/components/input';
 import Context from '../../context';
 import useKeyboard from './use_keyboard';
-import { Query } from '../../constants';
+import { Query, SearchType } from '../../pages/search/constants';
 import eventemitter, { EventType } from '../../eventemitter';
 
 const Style = styled.div`
@@ -23,23 +23,33 @@ const Style = styled.div`
   }
 `;
 
-const Wrapper = ({ keyword: initialKeyword }: { keyword: string }) => {
+const Wrapper = () => {
   const history = useHistory();
   const { searchWord } = useContext(Context);
 
-  const [keyword, setKeyword] = useState(initialKeyword);
+  const [keyword, setKeyword] = useState('');
   const onKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setKeyword(event.target.value);
 
-  const onSearch = () => {
+  const onSearch = (searchType?: SearchType) => {
     const trimKeyword = keyword.trim() || searchWord;
     if (!trimKeyword) {
       return toast.error('请输入关键字');
     }
+    if (searchType) {
+      return history.push({
+        pathname: PLAYER_PATH.SEARCH,
+        query: {
+          [Query.SEARCH_TYPE]: searchType,
+          [Query.SEARCH_VALUE]: trimKeyword,
+          [Query.PAGE]: '1',
+        },
+      });
+    }
     return history.push({
       pathname: PLAYER_PATH.SEARCH,
       query: {
-        [Query.KEYWORD]: trimKeyword,
+        [Query.SEARCH_VALUE]: trimKeyword,
         [Query.PAGE]: '1',
       },
     });
@@ -68,9 +78,16 @@ const Wrapper = ({ keyword: initialKeyword }: { keyword: string }) => {
         ref={inputRef}
         maxLength={KEYWORD_MAX_LENGTH}
       />
-      <IconButton name={Name.SEARCH_OUTLINE} onClick={onSearch} />
+      <IconButton
+        name={Name.SEARCH_OUTLINE}
+        onClick={() => onSearch(SearchType.COMPOSITE)}
+      />
+      <IconButton
+        name={Name.LYRIC_OUTLINE}
+        onClick={() => onSearch(SearchType.LYRIC)}
+      />
     </Style>
   );
 };
 
-export default Wrapper;
+export default React.memo(Wrapper);
