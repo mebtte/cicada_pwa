@@ -1,4 +1,4 @@
-# [知了](https://cicada.mebtte.com)
+# [知了](https://cicada.mebtte.com) [![.github/workflows/deploy_to_pages.yml](https://github.com/mebtte/cicada_pwa/actions/workflows/deploy_to_pages.yml/badge.svg)](https://github.com/mebtte/cicada_pwa/actions/workflows/deploy_to_pages.yml)
 
 知了 PWA 客户端, 支持 Web 浏览器.
 
