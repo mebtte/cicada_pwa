@@ -10,7 +10,7 @@ import useSummaryData from './use_summary_data';
 import UserPaper from './user_paper';
 import FigurePaper from './figure_paper';
 import MusicPaper from './music_paper';
-import UserMusicbillPaper from './user_musicbill_paper';
+import MusicbillPaper from './musicbill_paper';
 import VerifyCodePaper from './verify_code_paper';
 import MusicPlayLogPaper from './music_play_log_paper';
 import Search from './search';
@@ -49,7 +49,7 @@ const Dashboard = () => {
         <FigurePaper total={data.value.figure_total} />
         <MusicPaper total={data.value.music_total} />
         <MusicPlayLogPaper total={data.value.music_play_record_total} />
-        <UserMusicbillPaper total={data.value.user_musicbill_total} />
+        <MusicbillPaper total={data.value.musicbill_total} />
         <VerifyCodePaper total={data.value.verify_code_total} />
         <EmailNotificationPaper total={data.value.email_notification_total} />
       </div>

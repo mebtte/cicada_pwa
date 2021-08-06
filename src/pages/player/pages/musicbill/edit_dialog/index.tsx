@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 import IconButton, { Name } from '@/components/icon_button';
 import Avatar from '@/components/avatar';
-import updateUserMusicbillRequest, {
-  Key,
-} from '@/server/update_user_musicbill';
+import updateMusicbillRequest, { Key } from '@/server/update_musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import { NAME, DESCRIPTION } from '@/constants/musicbill';
@@ -72,7 +70,7 @@ const TextEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
       let updated = false;
 
       if (musicbill.name !== name) {
-        await updateUserMusicbillRequest({
+        await updateMusicbillRequest({
           id: musicbill.id,
           key: Key.NAME,
           value: name,
@@ -81,7 +79,7 @@ const TextEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
       }
 
       if (musicbill.description !== description) {
-        await updateUserMusicbillRequest({
+        await updateMusicbillRequest({
           id: musicbill.id,
           key: Key.DESCRIPTION,
           value: description,
@@ -90,7 +88,7 @@ const TextEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
       }
 
       if (updated) {
-        playerEventemitter.emit(PlayerEventType.USER_MUSICBILL_UPDATED, {
+        playerEventemitter.emit(PlayerEventType.MUSICBILL_UPDATED, {
           id: musicbill.id,
         });
       }

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { COVER_MAX_SIZE } from '@/constants/musicbill';
-import updateUserMusicbill, { Key } from '@/server/update_user_musicbill';
+import updateMusicbill, { Key } from '@/server/update_musicbill';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import playerEventemitter, {
   EventType as PlayerEventType,
@@ -19,12 +19,12 @@ const CoverEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
 
   const onUpdate = useCallback(
     async (image: File) => {
-      await updateUserMusicbill({
+      await updateMusicbill({
         id: musicbill.id,
         key: Key.COVER,
         value: image,
       });
-      playerEventemitter.emit(PlayerEventType.USER_MUSICBILL_UPDATED, {
+      playerEventemitter.emit(PlayerEventType.MUSICBILL_UPDATED, {
         id: musicbill.id,
       });
     },

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { RequestStatus } from '@/constants';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
-import deleteUserMusicbill from '@/server/delete_user_musicbill';
+import deleteMusicbill from '@/server/delete_musicbill';
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
 import eventemitter, { EventType } from './eventemitter';
@@ -48,8 +48,8 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
             '注意, 歌单删除后无法恢复. 现在是第二次确认, 也是最后一次确认.',
           onConfirm: async () => {
             try {
-              await deleteUserMusicbill(musicbill.id);
-              playerEventemitter.emit(PlayerEventType.USER_MUSICBILL_DELETED, {
+              await deleteMusicbill(musicbill.id);
+              playerEventemitter.emit(PlayerEventType.MUSICBILL_DELETED, {
                 id: musicbill.id,
               });
             } catch (error) {

@@ -3,10 +3,10 @@ import api from '.';
 import getRandomCover from '../utils/get_random_cover';
 
 /**
- * 获取用户歌单列表
+ * 获取歌单列表
  * @author mebtte<hi@mebtte.com>
  */
-async function getUserMusicbillList() {
+async function getMusicbillList() {
   const data = await api.get<
     {
       cover?: string;
@@ -16,7 +16,7 @@ async function getUserMusicbillList() {
       order: number;
       create_time: string;
     }[]
-  >('/api/get_user_musicbill_list', { withToken: true });
+  >('/api/get_musicbill_list', { withToken: true });
   return data.map(
     ({ cover, id, name, order, description, create_time: createTime }) => ({
       cover: cover || getRandomCover(),
@@ -29,4 +29,4 @@ async function getUserMusicbillList() {
   );
 }
 
-export default getUserMusicbillList;
+export default getMusicbillList;

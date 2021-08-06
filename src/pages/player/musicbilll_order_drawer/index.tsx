@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import styled from 'styled-components';
 
 import Drawer, { Title } from '@/components/drawer';
-import updateUserMusicbillOrder from '@/server/update_user_musicbill_order';
+import updateMusicbillOrder from '@/server/update_musicbill_order';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
@@ -46,7 +46,7 @@ const MusicbillOrderDrawer = () => {
       return;
     }
 
-    return updateUserMusicbillOrder(orderedMusicbillIdList)
+    return updateMusicbillOrder(orderedMusicbillIdList)
       .then(() => eventemitter.emit(EventType.RELOAD_MUSICBILL_LIST))
       .catch((error) => {
         logger.error(error, {

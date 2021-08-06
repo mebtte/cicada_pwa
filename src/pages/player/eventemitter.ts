@@ -47,9 +47,9 @@ export enum EventType {
   OPEN_PLAYLIST_PLAYQUEUE_DRAWER = 'open_playlist_playqueue_drawer',
   TOGGLE_PLAYLIST_PLAYQUEUE_DRAWER = 'toggle_playlist_playqueue_drawer',
 
-  USER_MUSICBILL_CREATED = 'user_musicbill_created', // 用户歌单已创建, { id: string }
-  USER_MUSICBILL_UPDATED = 'user_musicbill_update', // 用户歌单已更新, { id: string }
-  USER_MUSICBILL_DELETED = 'user_musicbill_deleted', // 用户歌单被删除, { id: string }
+  MUSICBILL_CREATED = 'musicbill_created', // 歌单已创建, { id: string }
+  MUSICBILL_UPDATED = 'musicbill_updated', // 歌单已更新, { id: string }
+  MUSICBILL_DELETED = 'musicbill_deleted', // 歌单已删除, { id: string }
 }
 
 export default new Eventemitter();

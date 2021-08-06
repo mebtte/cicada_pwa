@@ -10,7 +10,7 @@ export enum Key {
  * 更新歌单
  * @author mebtte<hi@mebtte.com>
  */
-async function updateUserMusicbill({
+async function updateMusicbill({
   id,
   key,
   value,
@@ -23,10 +23,10 @@ async function updateUserMusicbill({
   form.append('id', id);
   form.append('key', key);
   form.append('value', value);
-  return api.post<void>('/api/update_user_musicbill', {
+  return api.post<void>('/api/update_musicbill', {
     data: form,
     withToken: true,
   });
 }
 
-export default updateUserMusicbill;
+export default updateMusicbill;
