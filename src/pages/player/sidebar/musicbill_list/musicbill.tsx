@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import Avatar from '@/components/avatar';
@@ -35,6 +35,21 @@ const Style = styled(Link)`
     background-size: cover;
     background-position: center;
   }
+
+  &:hover {
+    > .content {
+      > .name {
+        color: var(--color-primary);
+      }
+    }
+  }
+`;
+const Cover = styled(Avatar)<{ publiz: boolean }>`
+  border-width: 3px;
+  border-style: solid;
+  ${({ publiz }) => css`
+    border-color: ${publiz ? 'var(--color-primary)' : 'transparent'};
+  `}
 `;
 
 const Musicbill = ({
@@ -46,7 +61,7 @@ const Musicbill = ({
   to: string;
   active: boolean;
 }) => {
-  const { name, cover } = musicbill;
+  const { name, cover, public: publiz } = musicbill;
   return (
     <Style to={to}>
       {active && (
@@ -56,7 +71,7 @@ const Musicbill = ({
         />
       )}
       <div className="content">
-        <Avatar src={cover} size={COVER_SIZE} />
+        <Cover src={cover} size={COVER_SIZE} publiz={publiz} />
         <div className="name">{name}</div>
       </div>
     </Style>

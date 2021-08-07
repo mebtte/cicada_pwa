@@ -1,6 +1,6 @@
 import React from 'react';
 import { animated } from 'react-spring';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import day from '@/utils/day';
 import { RequestStatus } from '@/constants';
@@ -38,6 +38,13 @@ const Style = styled(animated.div)`
     }
   }
 `;
+const Cover = styled(Avatar)<{ publiz: boolean }>`
+  border-width: 3px;
+  border-style: solid;
+  ${({ publiz }) => css`
+    border-color: ${publiz ? 'var(--color-primary)' : 'transparent'};
+  `}
+`;
 
 const MusicbillInfo = ({
   musicbill,
@@ -47,7 +54,7 @@ const MusicbillInfo = ({
   style: unknown;
 }) => (
   <Style style={style}>
-    <Avatar animated src={musicbill.cover} size={70} />
+    <Cover animated src={musicbill.cover} size={70} publiz={musicbill.public} />
     <div className="info">
       <div className="name">{musicbill.name}</div>
       {musicbill.description ? (
