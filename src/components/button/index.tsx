@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { Type } from './constant';
+import { Type } from './constants';
 import CircularLoader from '../circular_loader';
 
 const TYPE_MAP = {

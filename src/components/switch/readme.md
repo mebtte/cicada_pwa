@@ -13,27 +13,14 @@ const Demo = () => {
 Disabled:
 
 ```jsx
-import { useState } from 'react';
-
-const Demo = () => {
-  const [open, setOpen] = useState(false);
-
-  return <Switch open={open} onChange={setOpen} disabled />;
-};
-
-<Demo />;
+<>
+  <Switch open disabled />
+  <Switch open={false} disabled />
+</>
 ```
 
 Loading:
 
 ```jsx
-import { useState } from 'react';
-
-const Demo = () => {
-  const [open, setOpen] = useState(false);
-
-  return <Switch open={open} onChange={setOpen} loading={loading} />;
-};
-
-<Demo />;
+<Switch open loading />
 ```

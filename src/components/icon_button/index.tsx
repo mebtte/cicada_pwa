@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { ComponentSize } from '@/constants/style';
 import Icon, { Name } from '../icon';
 import CircularLoader from '../circular_loader';
-import { Type } from './constant';
+import { Type } from './constants';
 
 const TYPE_MAP = {
   [Type.NORMAL]: {

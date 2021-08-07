@@ -34,7 +34,7 @@ const Switch = ({
   style,
 }: {
   open: boolean;
-  onChange: (open: boolean) => void;
+  onChange?: (open: boolean) => void;
   disabled?: boolean;
   loading?: boolean;
   size?: number;

@@ -1,7 +1,7 @@
 ```jsx
 import styled from 'styled-components';
 
-import { Name } from './constant';
+import { Name } from '.';
 
 const IconWrapper = styled.div`
   display: inline-flex;

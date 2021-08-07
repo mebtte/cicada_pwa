@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { BORDER_RADIUS, Shape, CommonProps } from './constant';
+import { BORDER_RADIUS, Shape, CommonProps } from './constants';
 
 const Style = styled.div<{
   shape: Shape;

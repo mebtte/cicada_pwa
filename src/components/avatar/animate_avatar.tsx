@@ -2,7 +2,12 @@ import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import { BORDER_RADIUS, Shape, CommonProps, TRANSITION_LIST } from './constant';
+import {
+  BORDER_RADIUS,
+  Shape,
+  CommonProps,
+  TRANSITION_LIST,
+} from './constants';
 import getRandomInteger from '../../utils/get_random_integer';
 
 const Style = styled.div<{
@@ -46,7 +51,7 @@ const AnimatedAvatar = ({ src, size, shape, style, ...props }: CommonProps) => {
         <Img
           style={{
             ...imgStyle,
-            backgroundImage: `url("${s}")`,
+            backgroundImage: `url(${s})`,
           }}
         />
       ))}

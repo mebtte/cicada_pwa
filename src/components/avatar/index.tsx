@@ -4,7 +4,7 @@ import useImage from '@/utils/use_image';
 import Avatar from './avatar';
 import AnimatedAvatar from './animate_avatar';
 import JpegDefaultAvatar from './default_avatar.jpeg';
-import { CommonProps, Shape } from './constant';
+import { CommonProps, Shape } from './constants';
 
 const Wrapper = ({
   src = JpegDefaultAvatar,

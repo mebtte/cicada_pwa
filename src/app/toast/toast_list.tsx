@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ZIndex } from '../../constants/style';
 import { eventemitter, EVENT_TYPE } from '../../platform/toast';
 import getRandomString from '../../utils/get_random_string';
-import { Toast as ToastType, TOAST_ANIMATION_DURATION } from './constant';
+import { Toast as ToastType, TOAST_ANIMATION_DURATION } from './constants';
 import Toast from './toast';
 
 const TOAST_SPACE = 20;

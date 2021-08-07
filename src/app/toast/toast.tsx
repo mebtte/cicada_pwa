@@ -3,7 +3,7 @@ import styled, { keyframes, css } from 'styled-components';
 
 import { TOAST_TYPE } from '@/platform/toast';
 import Icon, { Name } from '@/components/icon';
-import { Toast as ToastType, TOAST_ANIMATION_DURATION } from './constant';
+import { Toast as ToastType, TOAST_ANIMATION_DURATION } from './constants';
 
 const TYPE_MAP_COLOR = {
   [TOAST_TYPE.SUCCESS]: '82, 196, 26',
