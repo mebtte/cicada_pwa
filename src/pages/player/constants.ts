@@ -72,6 +72,8 @@ export interface Musicbill {
   description: string;
   createTime: Date;
   musicList: MusicWithIndex[];
+  public: boolean;
+
   status: RequestStatus;
   error: Error | null;
 }

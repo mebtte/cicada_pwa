@@ -56,6 +56,8 @@ const CreateMusicbillDialog = () => {
         description: '',
         createTime: new Date(data.create_time),
         musicList: [],
+        public: false,
+
         status: RequestStatus.SUCCESS,
         error: null,
       };

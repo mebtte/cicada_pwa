@@ -4,6 +4,7 @@ export enum Key {
   NAME = 'name',
   DESCRIPTION = 'description',
   COVER = 'cover',
+  PUBLIC = 'public',
 }
 
 /**

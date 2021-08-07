@@ -20,12 +20,21 @@ export default () => {
     try {
       const mbl = await getMusicbillListRequest();
       setMusicbillList(
-        mbl.map((mb) => ({
-          ...mb,
-          musicList: [],
-          status: RequestStatus.NOT_START,
-          error: null,
-        })),
+        mbl
+          .map((mb) => ({
+            id: mb.id,
+            name: mb.name,
+            cover: mb.cover || getRandomCover(),
+            order: mb.order,
+            description: mb.description,
+            createTime: new Date(mb.create_time),
+            musicList: [],
+            public: !!mb.public,
+
+            status: RequestStatus.NOT_START,
+            error: null,
+          }))
+          .sort((a, b) => a.order - b.order),
       );
       setStatus(RequestStatus.SUCCESS);
     } catch (error) {
@@ -77,6 +86,8 @@ export default () => {
                   music: transformMusic(m),
                   index: data.music_list.length - index,
                 })),
+                public: !!data.public,
+
                 status: RequestStatus.SUCCESS,
               };
             }

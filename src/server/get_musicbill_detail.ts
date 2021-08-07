@@ -32,6 +32,7 @@ function getMusicbillDetail(id: string) {
       fork?: string[];
       fork_from?: string[];
     }[];
+    public: boolean;
   }>('/api/get_musicbill_detail', {
     params: { id },
     withToken: true,

@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import Switch from '@/components/switch';
+import Label from '@/components/label';
 import IconButton, { Name } from '@/components/icon_button';
 import Avatar from '@/components/avatar';
 import updateMusicbillRequest, { Key } from '@/server/update_musicbill';
@@ -21,41 +23,41 @@ import eventemitter, { EventType } from '../eventemitter';
 
 const openCoverEditDialog = () =>
   eventemitter.emit(EventType.OPEN_COVER_EDIT_DIALOG);
-const Part = styled.div`
-  margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
-  }
-  > .label {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-  > .textarea {
-    display: block;
-    width: 100%;
-    height: 120px;
-    resize: vertical;
-  }
+const StyledContent = styled(Content)`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
-const CoverBox = styled(Part)`
+const CoverBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
 `;
 const inputStyle = {
-  display: 'block',
   width: '100%',
 };
+const textareaStyle = {
+  ...inputStyle,
+  height: 75,
+  resize: 'vertical' as 'vertical',
+};
 
-const TextEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
+const EditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
   const { open, onClose } = useOpen();
 
-  const nameRef = useRef<HTMLInputElement>();
-  const descriptionRef = useRef<HTMLTextAreaElement>();
+  const [name, setName] = useState('');
+  const onNameChange: React.ChangeEventHandler<HTMLInputElement> = (event) =>
+    setName(event.target.value);
+
+  const [description, setDescription] = useState('');
+  const onDescriptionChange: React.ChangeEventHandler<HTMLTextAreaElement> = (
+    event,
+  ) => setDescription(event.target.value);
+
+  const [publiz, setPubliz] = useState(false);
+
   const [saving, setSaving] = useState(false);
   const onSave = async () => {
-    const name = nameRef.current.value;
-    const description = descriptionRef.current.value;
     if (name.length < NAME.MIN_LENGTH) {
       return toast.error(`"歌单名字"长度应大于等于${NAME.MIN_LENGTH}`);
     }
@@ -87,6 +89,15 @@ const TextEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
         updated = true;
       }
 
+      if (musicbill.public !== publiz) {
+        await updateMusicbillRequest({
+          id: musicbill.id,
+          key: Key.PUBLIC,
+          value: publiz ? '1' : '0',
+        });
+        updated = true;
+      }
+
       if (updated) {
         playerEventemitter.emit(PlayerEventType.MUSICBILL_UPDATED, {
           id: musicbill.id,
@@ -103,42 +114,49 @@ const TextEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
 
   useEffect(() => {
     if (open) {
-      nameRef.current.value = musicbill.name;
-      descriptionRef.current.value = musicbill.description;
+      setName(musicbill.name);
+      setDescription(musicbill.description);
+      setPubliz(musicbill.public);
     }
   }, [open, musicbill]);
   return (
     <Dialog open={open}>
-      <Title>{`更新歌单"${musicbill.name}"`}</Title>
-      <Content>
-        <CoverBox>
-          <Avatar animated src={musicbill.cover} size={120} />
-          <IconButton
-            name={Name.EDIT_OUTLINE}
-            onClick={openCoverEditDialog}
-            disabled={saving}
-          />
-        </CoverBox>
-        <Part>
-          <div className="label">名字</div>
+      <Title>更新歌单</Title>
+      <StyledContent>
+        <Label label="封面">
+          <CoverBox>
+            <Avatar animated src={musicbill.cover} size={80} />
+            <IconButton
+              name={Name.EDIT_OUTLINE}
+              onClick={openCoverEditDialog}
+              disabled={saving}
+            />
+          </CoverBox>
+        </Label>
+        <Label label="名字">
           <Input
-            ref={nameRef}
+            value={name}
+            onChange={onNameChange}
             style={inputStyle}
             maxLength={NAME.MAX_LENGTH}
             disabled={saving}
             type="text"
           />
-        </Part>
-        <Part>
-          <div className="label">描述</div>
+        </Label>
+        <Label label="描述">
           <Textarea
+            value={description}
+            onChange={onDescriptionChange}
             className="textarea"
-            ref={descriptionRef}
             maxLength={DESCRIPTION.MAX_LENGTH}
             disabled={saving}
+            style={textareaStyle}
           />
-        </Part>
-      </Content>
+        </Label>
+        <Label label="公开">
+          <Switch open={publiz} onChange={setPubliz} disabled={saving} />
+        </Label>
+      </StyledContent>
       <Action>
         <Button label="取消" onClick={onClose} disabled={saving} />
         <Button
@@ -152,4 +170,4 @@ const TextEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
   );
 };
 
-export default React.memo(TextEditDialog);
+export default React.memo(EditDialog);
