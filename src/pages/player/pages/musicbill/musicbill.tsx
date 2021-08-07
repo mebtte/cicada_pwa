@@ -6,7 +6,7 @@ import playerEventemitter, {
   EventType as PlayerEventType,
 } from '../../eventemitter';
 import Action from './action';
-import TextEditDialog from './edit_dialog';
+import EditDialog from './edit_dialog';
 import CoverEditDialog from './cover_edit_dialog';
 import { Musicbill as MusicbillType } from '../../constants';
 import TopContent from './top_content';
@@ -40,7 +40,7 @@ const Musicbill = ({ musicbill }: { musicbill: MusicbillType }) => {
         <MusicList musicbill={musicbill} />
         <Action musicbill={musicbill} />
       </div>
-      <TextEditDialog musicbill={musicbill} />
+      <EditDialog musicbill={musicbill} />
       <CoverEditDialog musicbill={musicbill} />
     </Style>
   );

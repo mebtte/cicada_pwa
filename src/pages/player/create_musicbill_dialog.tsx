@@ -4,7 +4,7 @@ import { easeCubicInOut } from 'd3-ease';
 
 import { RequestStatus } from '@/constants';
 import getRandomCover from '@/utils/get_random_cover';
-import createUserMusicbill from '@/server/create_user_musicbill';
+import createMusicbill from '@/server/create_musicbill';
 import { PLAYER_PATH } from '@/constants/route';
 import { NAME } from '@/constants/musicbill';
 import toast from '@/platform/toast';
@@ -47,7 +47,7 @@ const CreateMusicbillDialog = () => {
     }
     setCreating(true);
     try {
-      const data = await createUserMusicbill(name);
+      const data = await createMusicbill(name);
       const musicbill: Musicbill = {
         id: data.id,
         name: data.name,
@@ -56,10 +56,12 @@ const CreateMusicbillDialog = () => {
         description: '',
         createTime: new Date(data.create_time),
         musicList: [],
+        public: false,
+
         status: RequestStatus.SUCCESS,
         error: null,
       };
-      eventemitter.emit(EventType.USER_MUSICBILL_CREATED, { musicbill });
+      eventemitter.emit(EventType.MUSICBILL_CREATED, { musicbill });
       onClose();
 
       setTimeout(

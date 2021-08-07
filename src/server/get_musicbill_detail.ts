@@ -3,10 +3,10 @@ import api from '.';
 import { MusicType } from '../constants/music';
 
 /**
- * 获取用户歌单详情
+ * 获取歌单详情
  * @author mebtte<hi@mebtte.com>
  */
-function getUserMusicbillDetail(id: string) {
+function getMusicbillDetail(id: string) {
   return api.get<{
     id: string;
     cover: string;
@@ -32,10 +32,11 @@ function getUserMusicbillDetail(id: string) {
       fork?: string[];
       fork_from?: string[];
     }[];
-  }>('/api/get_user_musicbill_detail', {
+    public: boolean;
+  }>('/api/get_musicbill_detail', {
     params: { id },
     withToken: true,
   });
 }
 
-export default getUserMusicbillDetail;
+export default getMusicbillDetail;

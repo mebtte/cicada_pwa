@@ -11,7 +11,7 @@ function cmsGetSummaryData() {
     figure_total: number;
     music_total: number;
     music_play_record_total: number;
-    user_musicbill_total: number;
+    musicbill_total: number;
     verify_code_total: number;
     email_notification_total: number;
   }>('/api/cms/get_summary_data', {
