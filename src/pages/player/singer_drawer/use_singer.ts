@@ -1,34 +1,56 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-import eventemitter, { EventType } from '../eventemitter';
-import { Figure } from '../constants';
+import getRandomCover from '@/utils/get_random_cover';
+import getSingerDetail from '@/server/get_singer_detail';
+import logger from '@/platform/logger';
+import { Data } from './constants';
+import { transformMusic } from '../utils';
 
-export default () => {
-  const [open, setOpen] = useState(false);
-  const onClose = useCallback(() => setOpen(false), []);
+export default ({ id }: { id: string }) => {
+  const [data, setData] = useState<Data>({
+    error: null,
+    loading: true,
+    singer: null,
+  });
 
-  const [singer, setSinger] = useState<Figure | null>(null);
+  const getSinger = useCallback(async () => {
+    setData({
+      error: null,
+      loading: true,
+      singer: null,
+    });
+    try {
+      const detail = await getSingerDetail(id);
+      setData({
+        error: null,
+        loading: false,
+        singer: {
+          id: detail.id,
+          avatar: detail.avatar || getRandomCover(),
+          name: detail.name,
+          alias: detail.alias,
+          musicList: detail.music_list.map((m, i) => ({
+            index: detail.music_list.length - i,
+            music: transformMusic(m),
+          })),
+        },
+      });
+    } catch (error) {
+      logger.error(error, {
+        description: '获取歌手音乐列表失败',
+        report: true,
+      });
+      setData({
+        error,
+        loading: false,
+        singer: null,
+      });
+    }
+  }, [id]);
 
   useEffect(() => {
-    const openListener = ({ singer: s }: { singer: Figure }) => {
-      setSinger(s);
-      return setOpen(true);
-    };
-    const closeListener = () => setOpen(false);
+    getSinger();
+  }, [getSinger]);
 
-    eventemitter.on(EventType.OPEN_SINGER_DRAWER, openListener);
-
-    eventemitter.on(EventType.OPEN_MUSIC_DRAWER, closeListener);
-    eventemitter.on(EventType.OPEN_MUSICBILL_LIST_DRAWER, closeListener);
-    eventemitter.on(EventType.OPEN_MUSIC_OPERATE_POPUP, closeListener);
-    return () => {
-      eventemitter.off(EventType.OPEN_SINGER_DRAWER, openListener);
-
-      eventemitter.off(EventType.OPEN_MUSIC_DRAWER, closeListener);
-      eventemitter.off(EventType.OPEN_MUSICBILL_LIST_DRAWER, closeListener);
-      eventemitter.off(EventType.OPEN_MUSIC_OPERATE_POPUP, closeListener);
-    };
-  }, []);
-
-  return { open, onClose, singer };
+  return { data, reload: getSinger };
 };

@@ -1,15 +1,15 @@
 import React from 'react';
 
 import SingerDrawer from './singer_drawer';
-import useSinger from './use_singer';
+import useOpen from './use_open';
 
 const Wrapper = () => {
-  const { open, onClose, singer } = useSinger();
+  const { open, onClose, id } = useOpen();
 
-  if (!singer) {
+  if (!id) {
     return null;
   }
-  return <SingerDrawer open={open} onClose={onClose} singer={singer} />;
+  return <SingerDrawer open={open} onClose={onClose} id={id} />;
 };
 
 export default React.memo(Wrapper);

@@ -2,14 +2,12 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useSelector, shallowEqual } from 'react-redux';
 
-import { RequestStatus } from '@/constants';
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
 import { User } from '@/constants/user';
 import dialog from '@/platform/dialog';
 import toast from '@/platform/toast';
-import { Figure } from '../constants';
-import { MusicList } from './constants';
+import { Singer } from './constants';
 import eventemitter, { EventType } from '../eventemitter';
 
 const ACTION_SIZE = 28;
@@ -23,15 +21,7 @@ const iconButtonStyle = {
   margin: '5px 0',
 };
 
-const Action = ({
-  singer,
-  reload,
-  musicList,
-}: {
-  singer: Figure;
-  reload: () => void;
-  musicList: MusicList;
-}) => {
+const Action = ({ singer, reload }: { singer: Singer; reload: () => void }) => {
   const user = useSelector((state: { user: User }) => state.user, shallowEqual);
   const copySingerID = useCallback(
     () =>
@@ -53,7 +43,6 @@ const Action = ({
           name={Name.REFRESH_OUTLINE}
           size={ACTION_SIZE}
           onClick={reload}
-          loading={musicList.status === RequestStatus.LOADING}
           style={iconButtonStyle}
         />
       </Tooltip>
@@ -63,11 +52,9 @@ const Action = ({
           size={ACTION_SIZE}
           onClick={() =>
             eventemitter.emit(EventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST, {
-              // @ts-expect-error
-              musicList: musicList.value.map((m) => m.music),
+              musicList: singer.musicList.map((m) => m.music),
             })
           }
-          disabled={musicList.status !== RequestStatus.SUCCESS}
           style={iconButtonStyle}
         />
       </Tooltip>

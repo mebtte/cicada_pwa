@@ -1,14 +1,18 @@
 /* eslint-disable camelcase */
-import api from '.';
-import { MusicType } from '../constants/music';
+import { MusicType } from '@/constants/music';
+import server from '.';
 
 /**
- * 获取歌手音乐列表
+ * 获取歌手详情
  * @author mebtte<hi@mebtte.com>
  */
-function getSingerMusicList(singerId: string) {
-  return api.get<
-    {
+function getSingerDetail(id: string) {
+  return server.get<{
+    id: string;
+    avatar: string;
+    name: string;
+    alias: string;
+    music_list: {
       id: string;
       cover: string;
       name: string;
@@ -26,11 +30,11 @@ function getSingerMusicList(singerId: string) {
       }[];
       fork?: string[];
       fork_from?: string[];
-    }[]
-  >('/api/get_singer_music_list', {
-    params: { singer_id: singerId },
+    }[];
+  }>('/api/get_singer_detail', {
     withToken: true,
+    params: { id },
   });
 }
 
-export default getSingerMusicList;
+export default getSingerDetail;

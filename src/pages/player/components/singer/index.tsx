@@ -30,7 +30,7 @@ const Style = styled.span`
 
 const Singer = ({ singer }: { singer?: Figure }) => {
   const onViewSinger = useCallback(
-    () => eventemitter.emit(EventType.OPEN_SINGER_DRAWER, { singer }),
+    () => eventemitter.emit(EventType.OPEN_SINGER_DRAWER, { id: singer.id }),
     [singer],
   );
   return (

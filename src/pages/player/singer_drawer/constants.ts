@@ -1,11 +1,26 @@
-import { RequestStatus } from '@/constants';
-
 import { MusicWithIndex } from '../constants';
 
-export type MusicList =
-  | { status: RequestStatus.LOADING }
-  | { status: RequestStatus.ERROR; error: Error }
+export interface Singer {
+  id: string;
+  avatar: string;
+  name: string;
+  alias: string;
+  musicList: MusicWithIndex[];
+}
+
+export type Data =
   | {
-      status: RequestStatus.SUCCESS;
-      value: MusicWithIndex[];
+      error: Error;
+      loading: false;
+      singer: null;
+    }
+  | {
+      error: null;
+      loading: true;
+      singer: null;
+    }
+  | {
+      error: null;
+      loading: false;
+      singer: Singer;
     };
