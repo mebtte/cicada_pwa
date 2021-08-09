@@ -28,7 +28,6 @@ const EditFigureAvatarDialog = () => {
 
   return (
     <ImageCutterDialog
-      title={music ? `编辑"${music.name}"封面` : '编辑音乐封面'}
       open={!!music}
       onClose={onClose}
       imageSize={COVER_SIZE}

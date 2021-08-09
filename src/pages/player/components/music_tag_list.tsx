@@ -8,6 +8,10 @@ const Style = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+
+  &:empty {
+    display: none;
+  }
 `;
 
 const MusicTagList = ({

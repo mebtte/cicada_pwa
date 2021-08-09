@@ -5,7 +5,7 @@ import dialog from '@/platform/dialog';
 import LoadingCard from '@/components/loading_card';
 import ErrorCard from '@/components/error_card';
 import logger from '@/platform/logger';
-import getMusicForkFromRequest from '@/server/get_music_fork_from';
+import getMusicDetail from '@/server/get_music_detail';
 import Button, { Type } from '@/components/button';
 import Dialog, { Title, Content, Action } from '@/components/dialog';
 import eventemitter, { EventType } from '../eventemitter';
@@ -47,8 +47,8 @@ const EditForkFromDialog = () => {
     }
     setGetting(true);
     try {
-      const ffl = await getMusicForkFromRequest(music.id);
-      setForkFromList(ffl);
+      const data = await getMusicDetail(music.id);
+      setForkFromList(data.fork_from);
     } catch (e) {
       logger.error(e, {
         description: '获取音乐二次创作来源失败',

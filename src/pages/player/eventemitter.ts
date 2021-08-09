@@ -40,7 +40,7 @@ export enum EventType {
   OPEN_MUSIC_OPERATE_POPUP = 'open_music_operate_popup',
   OPEN_MUSICBILL_LIST_DRAWER = 'open_musicbill_list_drawer',
   OPEN_SINGER_DRAWER = 'open_singer_drawer', // 打开歌手面板, { id: string }
-  OPEN_MUSIC_DRAWER = 'open_music_drawer',
+  OPEN_MUSIC_DRAWER = 'open_music_drawer', // 打开音乐面板, { id: string }
   OPEN_MV_DIALOG = 'open_mv_dialog',
   OPEN_ORIGINAL_MUSIC_DIALOG = 'open_original_music_dialog',
   OPEN_MUSICBILL_ORDER_DRAWER = 'open_musicbill_order_drawer',
