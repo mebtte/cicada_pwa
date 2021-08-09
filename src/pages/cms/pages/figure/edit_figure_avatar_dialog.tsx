@@ -31,7 +31,6 @@ const EditFigureAvatarDialog = () => {
 
   return (
     <ImageCutterDialog
-      title={figure ? `编辑"${figure.name}"头像` : '编辑角色头像'}
       open={!!figure}
       onClose={onClose}
       imageSize={AVATAR_SIZE}

@@ -10,7 +10,7 @@ import toast from '@/platform/toast';
 import logger from '@/platform/logger';
 import { NAME, DESCRIPTION } from '@/constants/musicbill';
 import dialog from '@/platform/dialog';
-import Dialog, { Title, Content, Action } from '@/components/dialog';
+import Dialog, { Content, Action } from '@/components/dialog';
 import Button, { Type } from '@/components/button';
 import Input from '@/components/input';
 import Textarea from '@/components/textarea';
@@ -121,7 +121,6 @@ const EditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
   }, [open, musicbill]);
   return (
     <Dialog open={open}>
-      <Title>更新歌单</Title>
       <StyledContent>
         <Label label="封面">
           <CoverBox>

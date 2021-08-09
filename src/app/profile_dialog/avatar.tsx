@@ -41,7 +41,6 @@ const Wrapper = ({ user }: { user: User }) => {
       <ImageCutterDialog
         open={editDialogOpen}
         onClose={() => setEditDialogOpen(false)}
-        title="编辑头像"
         imageSize={avatarSize}
         onUpdate={onUpdateAvatar}
       />

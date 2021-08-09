@@ -6,7 +6,7 @@ import selectFile from '../utils/select_file';
 import loadImage from '../utils/load_image';
 import logger from '../platform/logger';
 import dialog from '../platform/dialog';
-import Dialog, { Title, Content, Action } from './dialog';
+import Dialog, { Content, Action } from './dialog';
 import Button, { Type } from './button';
 
 const Empty = styled.div`
@@ -23,13 +23,11 @@ const ImgBox = styled.div`
 const ImageCutterDialog = ({
   open,
   onClose,
-  title,
   onUpdate,
   imageSize,
 }: {
   open: boolean;
   onClose: () => void;
-  title: string;
   onUpdate: (image: File) => void;
   imageSize: {
     width: number;
@@ -118,7 +116,6 @@ const ImageCutterDialog = ({
 
   return (
     <Dialog open={open}>
-      <Title>{title}</Title>
       <Content>
         {imageUrl ? (
           <ImgBox>

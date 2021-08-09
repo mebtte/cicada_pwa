@@ -1,17 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { Music as MusicType } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 
 export default () => {
   const [open, setOpen] = useState(false);
-  const [music, setMusic] = useState<MusicType | null>(null);
   const onClose = useCallback(() => setOpen(false), []);
 
+  const [id, setId] = useState('');
+
   useEffect(() => {
-    const openListener = (m: MusicType) => {
-      setMusic(m);
-      setOpen(true);
+    const openListener = (data: { id: string }) => {
+      setId(data.id);
+      return setOpen(true);
     };
     const closeListener = () => setOpen(false);
     eventemitter.on(EventType.OPEN_MUSIC_DRAWER, openListener);
@@ -29,6 +29,6 @@ export default () => {
   return {
     open,
     onClose,
-    music,
+    id,
   };
 };

@@ -34,7 +34,6 @@ const CoverEditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
     <ImageCutterDialog
       open={open}
       onClose={onClose}
-      title="更换封面"
       onUpdate={onUpdate}
       imageSize={COVER_SIZE}
     />
