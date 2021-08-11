@@ -39,10 +39,8 @@ const Style = styled(animated.div)`
   }
 `;
 const Cover = styled(Avatar)<{ publiz: boolean }>`
-  border-width: 3px;
-  border-style: solid;
   ${({ publiz }) => css`
-    border-color: ${publiz ? 'var(--color-primary)' : 'transparent'};
+    border: ${publiz ? '3px solid var(--color-primary)' : 'none'};
   `}
 `;
 

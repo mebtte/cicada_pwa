@@ -30,7 +30,7 @@ const MusicList = ({
 }) => {
   const ref = useRef<HTMLDivElement>();
   const [topBoxShadow, setTopBoxShadow] = useState(0);
-  const timer = useRef<number>();
+  const timer = useRef<number>(0);
   const onScroll = () => {
     const { scrollTop } = ref.current;
     setTopBoxShadow(scrollTop === 0 ? 0 : 1);

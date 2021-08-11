@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import styled, { css } from 'styled-components';
 
 import { RequestStatus } from '@/constants';
 import toast from '@/platform/toast';
@@ -10,9 +11,14 @@ import playerEventemitter, {
   EventType as PlayerEventType,
 } from '../eventemitter';
 import MusicbillContainer from './musicbill_container';
-import { COVER_SIZE, COVER_STYLE, ICON_SIZE, ICON_STYLE } from './constant';
+import { COVER_SIZE, ICON_SIZE, ICON_STYLE } from './constants';
 import { Music as MusicType, Musicbill as MusicbillType } from '../constants';
 
+const Cover = styled(Avatar)<{ publiz: boolean }>`
+  ${({ publiz }) => css`
+    border: ${publiz ? '3px solid var(--color-primary)' : 'none'};
+  `}
+`;
 const Musicbill = ({
   music,
   musicbill,
@@ -58,7 +64,7 @@ const Musicbill = ({
   return (
     <MusicbillContainer onClick={onToggleMusicbill}>
       {icon}
-      <Avatar src={cover} size={COVER_SIZE} style={COVER_STYLE} />
+      <Cover src={cover} size={COVER_SIZE} publiz={musicbill.public} />
       <div className="name">{name}</div>
     </MusicbillContainer>
   );

@@ -1,7 +1,4 @@
-export const COVER_SIZE = 20;
-export const COVER_STYLE = {
-  marginLeft: 10,
-};
+export const COVER_SIZE = 24;
 
 export const ICON_SIZE = 20;
 export const ICON_STYLE = {
