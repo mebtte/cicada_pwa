@@ -8,14 +8,10 @@ import Tooltip from '@/components/tooltip';
 import Tag, { Type as TagType } from '@/components/tag';
 import { SearchKey as FigureSearchKey } from '@/server/cms_get_figure_list';
 import { SearchKey } from '@/server/cms_get_music_list';
-import cmsDeleteMusic from '@/server/cms_delete_music';
-import toast from '@/platform/toast';
-import dialog from '@/platform/dialog';
-import logger from '@/platform/logger';
 import { CMS_PATH } from '@/constants/route';
 import { MusicType, MUSIC_TYPE_MAP_LABEL } from '@/constants/music';
 import Avatar from '@/components/avatar';
-import IconButton, { Name, Type } from '@/components/icon_button';
+import IconButton, { Name } from '@/components/icon_button';
 import CircularLoader from '@/components/circular_loader';
 import Empty from '@/components/empty';
 import Table from '@/components/table';
@@ -134,22 +130,6 @@ const MusicList = ({
 }) => {
   const history = useHistory();
   const contentRef = useRef<HTMLDivElement>();
-  const onDelete = (music: Music) =>
-    dialog.confirm({
-      title: `确定删除"${music.name}"?`,
-      content:
-        '当音乐仍挂载有角色或存在二次创作版本时无法被删除, 如若需要删除请先解除关系.',
-      onConfirm: async () => {
-        try {
-          await cmsDeleteMusic(music.id);
-          toast.success(`"${music.name}"已被删除`);
-          eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
-        } catch (error) {
-          logger.error(error, { description: '删除音乐失败', report: true });
-          toast.error(error.message);
-        }
-      },
-    });
 
   const rowRenderer = (music: Music) => [
     <Small>{music.id}</Small>,
@@ -272,12 +252,6 @@ const MusicList = ({
           }
         />
       ) : null}
-      <IconButton
-        name={Name.GARBAGE_OUTLINE}
-        type={Type.DANGER}
-        size={ACTION_SIZE}
-        onClick={() => onDelete(music)}
-      />
     </OperationBox>,
   ];
 

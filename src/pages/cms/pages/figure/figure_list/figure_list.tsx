@@ -4,11 +4,7 @@ import styled, { css } from 'styled-components';
 import useHistory from '@/utils/use_history';
 import day from '@/utils/day';
 import { SearchKey } from '@/server/cms_get_figure_list';
-import cmsDeleteFigure from '@/server/cms_delete_figure';
-import toast from '@/platform/toast';
-import logger from '@/platform/logger';
-import dialog from '@/platform/dialog';
-import IconButton, { Name, Type } from '@/components/icon_button';
+import IconButton, { Name } from '@/components/icon_button';
 import Empty from '@/components/empty';
 import CircularLoader from '@/components/circular_loader';
 import Table from '@/components/table';
@@ -86,23 +82,6 @@ const FigureList = ({
   const history = useHistory();
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const onDelete = (figure: Figure) =>
-    dialog.confirm({
-      title: `确定删除"${figure.name}"?`,
-      content:
-        '当角色仍挂载音乐时无法被删除, 如若需要删除请先解除关系. 此外, 删除角色会以邮件方式发送当前角色备份给其他 CMS 用户.',
-      onConfirm: async () => {
-        try {
-          await cmsDeleteFigure(figure.id);
-          toast.success(`"${figure.name}"已删除`);
-          eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
-        } catch (error) {
-          logger.error(error, { description: '删除角色失败', report: true });
-          toast.error(error.message);
-        }
-      },
-    });
-
   const rowRenderer = (figure: Figure) => [
     figure.id,
     figure.name,
@@ -137,12 +116,6 @@ const FigureList = ({
             },
           })
         }
-      />
-      <IconButton
-        name={Name.GARBAGE_OUTLINE}
-        type={Type.DANGER}
-        size={ACTION_SIZE}
-        onClick={() => onDelete(figure)}
       />
     </OperationBox>,
   ];
