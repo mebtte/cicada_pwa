@@ -14,13 +14,7 @@ const Style = styled.div`
   overflow: visible;
 `;
 
-const Wrapper = ({
-  music,
-  onViewMusic,
-}: {
-  music?: MusicType;
-  onViewMusic: () => void;
-}) => {
+const Wrapper = ({ music }: { music?: MusicType }) => {
   const transitions = useTransition(music, {
     from: { opacity: 0, transform: 'translate(0, -150%)' },
     enter: { opacity: 1, transform: 'translate(0, -50%)' },
@@ -28,14 +22,9 @@ const Wrapper = ({
   });
   return (
     <Style>
-      {transitions((style, m) => {
-        if (m) {
-          return (
-            <MusicInfo style={style} music={m} onViewMusic={onViewMusic} />
-          );
-        }
-        return <Skeleton style={style} />;
-      })}
+      {transitions((style, m) =>
+        m ? <MusicInfo style={style} music={m} /> : <Skeleton style={style} />,
+      )}
     </Style>
   );
 };

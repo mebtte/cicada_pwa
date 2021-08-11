@@ -27,14 +27,13 @@ const Iframe = styled.iframe`
 const MvDialog = () => {
   const { open, onClose, music } = useMvPopup();
 
+  if (!music) {
+    return null;
+  }
   return (
     <Dialog open={open} onClose={onClose} bodyProps={bodyProps}>
-      {music ? (
-        <>
-          <MusicInfo music={music} style={musicInfoStyle} />
-          <Iframe src={music.mvLink} allowFullScreen />
-        </>
-      ) : null}
+      <MusicInfo music={music} style={musicInfoStyle} />
+      <Iframe src={music.mvLink} allowFullScreen />
     </Dialog>
   );
 };

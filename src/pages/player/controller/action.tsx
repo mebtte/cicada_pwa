@@ -6,6 +6,7 @@ import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import useAudioControl from '../use_audio_control';
 import eventemitter, { EventType } from '../eventemitter';
 import Context from '../context';
+import { Music } from '../constants';
 
 const ACTION_SPACE = 15;
 const ACTION_SIZE = 24;
@@ -26,17 +27,20 @@ const Style = styled.div`
 const onOpenList = () =>
   eventemitter.emit(EventType.OPEN_PLAYLIST_PLAYQUEUE_DRAWER);
 
-const Action = ({
-  onAddToMusicbill,
-  onAddToPlayqueue,
-  onOperate,
-}: {
-  onAddToMusicbill: () => void;
-  onAddToPlayqueue: () => void;
-  onOperate: () => void;
-}) => {
+const Action = ({ music }: { music: Music | null }) => {
   const { audioLoading, audioPaused } = useContext(Context);
   const { onTogglePlay, onPrevious, onNext } = useAudioControl(audioLoading);
+
+  const onAddToPlayqueue = () =>
+    music
+      ? eventemitter.emit(EventType.ACTION_INSERT_MUSIC_TO_PLAYQUEUE, music)
+      : null;
+  const onAddToMusicbill = () =>
+    music
+      ? eventemitter.emit(EventType.OPEN_MUSICBILL_LIST_DRAWER, music)
+      : null;
+  const onOperate = () =>
+    music ? eventemitter.emit(EventType.OPEN_MUSIC_OPERATE_POPUP, music) : null;
   return (
     <Style>
       <IconButton

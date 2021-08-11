@@ -159,7 +159,7 @@ const MusicDrawer = ({
                   ))}
                 </div>
               ) : null}
-              <Action music={music} />
+              <Action music={music} onClose={onClose} />
               <Fork music={music} />
               {music.lrc && music.type === MusicType.NORMAL ? (
                 <Lyric lrc={music.lrc} />
@@ -172,4 +172,4 @@ const MusicDrawer = ({
   );
 };
 
-export default React.memo(MusicDrawer);
+export default MusicDrawer;

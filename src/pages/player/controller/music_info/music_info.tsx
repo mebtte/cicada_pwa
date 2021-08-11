@@ -4,21 +4,21 @@ import Container from './container';
 import Singer from '../../components/singer';
 import MusicTagList from '../../components/music_tag_list';
 import { Music as MusicType } from '../../constants';
+import eventemitter, { EventType } from '../../eventemitter';
 
 const MusicInfo = ({
   music,
-  onViewMusic,
   ...props
 }: {
   music: MusicType;
-  onViewMusic: () => void;
   [key: string]: any;
 }) => {
+  const onView = () => eventemitter.emit(EventType.OPEN_MUSIC_DRAWER, music);
   const { name, singers } = music;
   return (
     <Container {...props}>
       <div className="text">
-        <span className="name" onClick={onViewMusic}>
+        <span className="name" onClick={onView}>
           {name}
         </span>
         <span className="singers">

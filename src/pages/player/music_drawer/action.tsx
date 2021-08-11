@@ -14,7 +14,7 @@ const Style = styled.div`
   gap: 5px;
 `;
 
-const Action = ({ music }: { music: Music }) => {
+const Action = ({ music, onClose }: { music: Music; onClose: () => void }) => {
   const baseMusic = useMemo<BaseMusic>(
     () => ({
       ...music,
@@ -50,7 +50,10 @@ const Action = ({ music }: { music: Music }) => {
         <Tooltip title="观看MV">
           <IconButton
             name={Name.VIDEO_OUTLINE}
-            onClick={onWatchMv}
+            onClick={() => {
+              onWatchMv();
+              onClose();
+            }}
             size={ACTION_SIZE}
           />
         </Tooltip>

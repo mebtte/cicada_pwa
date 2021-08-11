@@ -6,7 +6,7 @@ import { Music as MusicType } from '../constants';
 export default () => {
   const [open, setOpen] = useState(false);
   const onClose = useCallback(() => setOpen(false), []);
-  const [music, setMusic] = useState<MusicType>(null);
+  const [music, setMusic] = useState<MusicType | null>(null);
 
   useEffect(() => {
     const openListener = (m: MusicType) => {
