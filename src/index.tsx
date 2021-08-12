@@ -15,7 +15,7 @@ import ErrorCard from './components/error_card';
 import { reloadUser } from './store/user';
 
 async function initialize() {
-  if (process.env.NODE_ENV === 'producation' && config.sentryDSN) {
+  if (process.env.NODE_ENV === 'production' && config.sentryDSN) {
     Sentry.init({
       dsn: config.sentryDSN,
       integrations: [new Integrations.BrowserTracing()],
