@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
+import * as Sentry from '@sentry/browser';
+
 function error(e: Error, { description = e.message, report = false } = {}) {
-  // todo(mebtte): 错误上报
   if (process.env.NODE_ENV === 'producation' && report) {
-    console.log('假装错误上报');
+    Sentry.captureException(e);
   }
   console.group(description);
   console.error(e);

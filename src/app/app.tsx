@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import loadable from 'react-loadable';
 import { shallowEqual, useSelector } from 'react-redux';
+import * as Sentry from '@sentry/browser';
 
 import { User } from '@/constants/user';
 import { ROOT_PATH } from '@/constants/route';
@@ -64,6 +65,13 @@ const App = () => {
     ({ user: u }: { user: User | null }) => u,
     shallowEqual,
   );
+
+  useEffect(() => {
+    if (user) {
+      Sentry.configureScope((scope) => scope.setUser({ id: user.id }));
+    }
+  }, [user]);
+
   return (
     <>
       <GlobalStyle />

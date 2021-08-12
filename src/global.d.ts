@@ -21,6 +21,8 @@ interface Config {
 
   serverOrigin: string;
   pwaOrigin: string;
+
+  sentryDSN?: string;
 }
 
 declare global {

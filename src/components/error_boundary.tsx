@@ -10,11 +10,21 @@ class ErrorBoundary extends React.PureComponent<
   React.PropsWithChildren<{
     /** 发生错误后的替补渲染方案 */
     fallback: (error: Error) => ReactNode;
+    /** 错误回调 */
+    onError?: (error: Error) => void;
   }>,
   {
     error: Error | null;
   }
 > {
+  static defaultProps = {
+    onError: (error: Error) =>
+      logger.error(error, {
+        description: '渲染发生错误',
+        report: true,
+      }),
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -23,11 +33,8 @@ class ErrorBoundary extends React.PureComponent<
   }
 
   componentDidCatch(error: Error) {
-    logger.error(error, {
-      description: '渲染发生错误',
-      report: true,
-    });
     this.setState({ error });
+    this.props.onError(error);
   }
 
   render() {

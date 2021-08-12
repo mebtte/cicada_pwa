@@ -4,18 +4,33 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import 'cropperjs/dist/cropper.min.css';
+import * as Sentry from '@sentry/browser';
+import { Integrations } from '@sentry/tracing';
 
-import initial from './initial';
+import config from './config';
 import store from './store';
 import logger from './platform/logger';
 import App from './app';
 import ErrorCard from './components/error_card';
 import { reloadUser } from './store/user';
-import config from './config';
 
-const mountNode = document.querySelector('#root');
+async function initialize() {
+  if (process.env.NODE_ENV === 'producation' && config.sentryDSN) {
+    Sentry.init({
+      dsn: config.sentryDSN,
+      integrations: [new Integrations.BrowserTracing()],
+      tracesSampleRate: 1.0,
+    });
+    Sentry.configureScope((scope) => {
+      scope.setExtra('version', config.version);
+    });
+  }
 
-initial()
+  // @ts-expect-error
+  window.requestIdleCallback(() => store.dispatch(reloadUser()));
+}
+
+initialize()
   .then(
     () =>
       void ReactDOM.render(
@@ -24,7 +39,7 @@ initial()
             <App />
           </Provider>
         </HashRouter>,
-        mountNode,
+        document.querySelector('#root'),
       ),
   )
   .catch((error) => {
@@ -41,18 +56,6 @@ initial()
           top: 0,
         }}
       />,
-      mountNode,
+      document.querySelector('#root'),
     );
   });
-
-// @ts-ignore
-window.requestIdleCallback(() => store.dispatch(reloadUser()));
-
-// 移除 loading-script
-window.requestIdleCallback(() =>
-  document.querySelector('#loading-script')?.remove(),
-);
-
-// @ts-expect-error
-// eslint-disable-next-line no-underscore-dangle
-window.__CONFIG__ = config;

@@ -13,7 +13,7 @@ jobs:
 
       - name: create config.json
         run: |
-          echo '{ "server_origin": "${{secrets.SERVER_ORIGIN}}", "pwa_origin": "${{secrets.PWA_ORIGIN}}" }' > config.json
+          echo '{ "server_origin": "${{secrets.SERVER_ORIGIN}}", "pwa_origin": "${{secrets.PWA_ORIGIN}}", "sentry_dsn": "${{secrets.SENTRY_DSN}}" }' > config.json
 
       - name: build
         run: |

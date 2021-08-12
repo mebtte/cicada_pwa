@@ -92,6 +92,7 @@ module.exports = {
           .map((f) => `/cover/${f}`),
         serverOrigin: config.server_origin,
         pwaOrigin: config.pwa_origin,
+        sentryDSN: config.sentry_dsn,
       }),
     }),
     new CopyPlugin({
