@@ -1,6 +1,5 @@
 {
   "name": "cicada_pwa",
-  "version": "3.129.245",
   "private": true,
   "author": {
     "name": "mebtte",
@@ -99,9 +98,7 @@
     "typescript-styled-plugin": "^0.15.0",
     "webpack": "^5.49.0",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.11.2",
     "dayjs": "^1.10.6",
     "react-json-view": "^1.21.3"
   }

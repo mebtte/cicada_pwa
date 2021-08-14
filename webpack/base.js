@@ -6,7 +6,6 @@ const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
-const pkg = require('../package.json');
 const configSchema = require('./config_schema');
 const config = require('../config.json');
 
@@ -71,7 +70,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __CONFIG__: JSON.stringify({
-        version: pkg.version,
+        version: cp.execSync('git describe --abbrev=0').toString().trim(),
         lastCommitMessage: cp
           .execSync('git log --oneline')
           .toString()
