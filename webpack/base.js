@@ -70,12 +70,10 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __CONFIG__: JSON.stringify({
-        version: cp.execSync('git describe --abbrev=0').toString().trim(),
-        lastCommitMessage: cp
-          .execSync('git log --oneline')
+        version: cp
+          .execSync('git tag --sort=-taggerdate | head -n 1')
           .toString()
-          .split('\n')[0]
-          .replace(/\s/, ': '),
+          .trim(),
         buildTime: new Date(),
         emptyImageList: fs
           .readdirSync(`${STATIC_DIR}/empty_image`)

@@ -5,7 +5,6 @@ export {};
 
 interface Config {
   version: string;
-  lastCommitMessage: string;
   buildTime: string;
   emptyImageList: string[];
   errorImageList: string[];
