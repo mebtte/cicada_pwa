@@ -7,7 +7,7 @@ import ellipsis from '@/style/ellipsis';
 import { CONTAINETR_STYLE, NAME_STYLE, COVER_SIZE } from './constants';
 import { Musicbill as MusicbillType } from '../../constants';
 
-const Style = styled(Link)`
+const Style = styled(Link)<{ active: boolean }>`
   display: block;
   text-decoration: none;
   position: relative;
@@ -23,7 +23,7 @@ const Style = styled(Link)`
       ${ellipsis}
       ${NAME_STYLE}
       user-select: none;
-      color: rgb(55 55 55);
+      color: var(--text-color-primary);
     }
   }
   > .background {
@@ -36,13 +36,17 @@ const Style = styled(Link)`
     background-position: center;
   }
 
-  &:hover {
-    > .content {
-      > .name {
-        color: var(--color-primary);
+  ${({ active }) => css`
+    &:hover {
+      > .content {
+        > .name {
+          color: ${active
+            ? 'var(--text-color-primary)'
+            : 'var(--color-primary)'};
+        }
       }
     }
-  }
+  `}
 `;
 const Cover = styled(Avatar)<{ publiz: boolean }>`
   border-width: 3px;
@@ -63,7 +67,7 @@ const Musicbill = ({
 }) => {
   const { name, cover, public: publiz } = musicbill;
   return (
-    <Style to={to}>
+    <Style to={to} active={active}>
       {active && (
         <div
           className="background"

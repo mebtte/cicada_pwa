@@ -41,7 +41,7 @@ function generateMethod(method: METHOD) {
       const token = getToken();
       if (!token) {
         clearToken();
-        throw new Error('登录过期');
+        throw new ErrorWithCode('登录过期', Code.NOT_AUTHORIZE);
       }
       // eslint-disable-next-line no-param-reassign
       headers = {
