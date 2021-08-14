@@ -44,7 +44,7 @@ import GotoOutline from './goto_outline';
 import CmsOutline from './icons/cms_outline';
 import LyricOutline from './lyric_outline';
 import GithubFill from './github_fill';
-import RecommendOutline from './recommend_outline';
+import RecommendFill from './icons/recommend_fill';
 import CloudOutline from './icons/cloud_outline';
 import BrowserFill from './icons/browser_fill';
 import MobilephoneFill from './mobilephone_fill';
@@ -65,7 +65,7 @@ export enum Name {
   MOBILEPHONE_FILL = 'MobilephoneFill',
   BROWSER_FILL = 'BrowserFill',
   CLOUD_OUTLINE = 'CloudOutline',
-  RECOMMEND_OUTLINE = 'RecommendOutline',
+  RECOMMEND_FILL = 'RecommendFill',
   GITHUB_FILL = 'GithubFill',
   LYRIC_OUTLINE = 'LyricOutline',
   CMS_OUTLINE = 'CmsOutline',
@@ -123,7 +123,7 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.MOBILEPHONE_FILL]: MobilephoneFill,
   [Name.BROWSER_FILL]: BrowserFill,
   [Name.CLOUD_OUTLINE]: CloudOutline,
-  [Name.RECOMMEND_OUTLINE]: RecommendOutline,
+  [Name.RECOMMEND_FILL]: RecommendFill,
   [Name.GITHUB_FILL]: GithubFill,
   [Name.LYRIC_OUTLINE]: LyricOutline,
   [Name.CMS_OUTLINE]: CmsOutline,
