@@ -7,6 +7,7 @@ import 'cropperjs/dist/cropper.min.css';
 import * as Sentry from '@sentry/browser';
 import { Integrations } from '@sentry/tracing';
 
+import { getToken } from './platform/token';
 import config from './config';
 import store from './store';
 import logger from './platform/logger';
@@ -26,8 +27,10 @@ async function initialize() {
     });
   }
 
-  // @ts-expect-error
-  window.requestIdleCallback(() => store.dispatch(reloadUser()));
+  if (getToken()) {
+    // @ts-expect-error
+    window.requestIdleCallback(() => store.dispatch(reloadUser()));
+  }
 }
 
 initialize()
