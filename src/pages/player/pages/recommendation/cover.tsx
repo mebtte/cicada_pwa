@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Waypoint } from 'react-waypoint';
 import styled from 'styled-components';
 
@@ -19,13 +19,31 @@ const Style = styled.div`
 `;
 
 const Cover = ({ src, onClick }: { src: string; onClick: () => void }) => {
+  const abortRef = useRef<() => void | null>(null);
+
   const [currentSrc, setCurrentSrc] = useState('');
   const onEnter = () => {
     if (currentSrc === src) {
       return;
     }
-    queue.run(() => loadImage(src)).promise.then(() => setCurrentSrc(src));
+    const { promise, abort, finished } = queue.run(() => loadImage(src));
+    promise.then(() => setCurrentSrc(src));
+    abortRef.current = () => {
+      if (finished()) {
+        return;
+      }
+      return abort();
+    };
   };
+
+  useEffect(
+    () => () => {
+      if (abortRef.current) {
+        abortRef.current();
+      }
+    },
+    [],
+  );
 
   return (
     <Waypoint onEnter={onEnter} horizontal>
