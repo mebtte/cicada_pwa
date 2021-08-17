@@ -61,14 +61,18 @@ const Wrapper = ({
   } = music;
   const lrcNode = useMemo(() => {
     const { lyrics } = parse(lrc, { trimStart: true, trimEnd: true });
+    const notEmptyLyrics = lyrics.filter((l) => !!l.content);
+
     const lowerCaseKeyword = keyword.toLowerCase();
-    const matchIndex = lyrics.findIndex((l) =>
+    const matchIndex = notEmptyLyrics.findIndex((l) =>
       l.content.toLowerCase().includes(lowerCaseKeyword),
     );
     const start = matchIndex - 1 < 0 ? 0 : matchIndex - 1;
     const end =
-      matchIndex + 1 >= lyrics.length ? lyrics.length : matchIndex + 1;
-    const matchLyrics = lyrics.slice(start, end + 1);
+      matchIndex + 1 >= notEmptyLyrics.length
+        ? notEmptyLyrics.length
+        : matchIndex + 1;
+    const matchLyrics = notEmptyLyrics.slice(start, end + 1);
     return (
       <div
         className="lyric"

@@ -10,10 +10,10 @@ import { Integrations } from '@sentry/tracing';
 import { getToken } from './platform/token';
 import config from './config';
 import store from './store';
+import { reloadUser } from './store/user';
 import logger from './platform/logger';
 import App from './app';
 import ErrorCard from './components/error_card';
-import { reloadUser } from './store/user';
 
 async function initialize() {
   if (process.env.NODE_ENV === 'production' && config.sentryDSN) {

@@ -17,17 +17,20 @@ const Style = styled.div<{
  * 头像
  * @author mebtte<hi@mebtte.com>
  */
-const Avatar = ({ src, size, shape, style, ...props }: CommonProps) => (
-  <Style
-    {...props}
-    shape={shape}
-    style={{
-      ...style,
-      width: size,
-      height: size,
-      backgroundImage: `url("${src}")`,
-    }}
-  />
+const Avatar = React.forwardRef<HTMLDivElement, CommonProps>(
+  ({ src, size, shape, style, ...props }: CommonProps, ref) => (
+    <Style
+      {...props}
+      shape={shape}
+      style={{
+        ...style,
+        width: size,
+        height: size,
+        backgroundImage: `url("${src}")`,
+      }}
+      ref={ref}
+    />
+  ),
 );
 
 export default Avatar;

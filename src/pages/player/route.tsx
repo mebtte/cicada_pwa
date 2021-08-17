@@ -4,7 +4,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
 
 import { PLAYER_PATH } from '@/constants/route';
-import Recommend from './pages/recommend';
+import Recommendation from './pages/recommendation';
 import Search from './pages/search';
 import Musicbill from './pages/musicbill';
 import Setting from './pages/setting';
@@ -38,7 +38,7 @@ const Wrapper = () => {
             <Route path={PLAYER_PATH.SEARCH} component={Search} />
             <Route path={PLAYER_PATH.MUSICBILL} component={Musicbill} />
             <Route path={PLAYER_PATH.SETTING} component={Setting} />
-            <Route path="*" component={Recommend} />
+            <Route path="*" component={Recommendation} />
           </Switch>
         </AnimatedDiv>
       ))}

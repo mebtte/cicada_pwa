@@ -6,34 +6,43 @@ import AnimatedAvatar from './animate_avatar';
 import JpegDefaultAvatar from './default_avatar.jpeg';
 import { CommonProps, Shape } from './constants';
 
-const Wrapper = ({
-  src = JpegDefaultAvatar,
-  size = 32,
-  shape = Shape.SQUARE,
-  animated = false,
-  ...props
-}: Partial<CommonProps> & {
+type Props = Partial<CommonProps> & {
   animated?: boolean;
-}) => {
-  const currentSrc = useImage(src, JpegDefaultAvatar);
-  return animated ? (
-    <AnimatedAvatar
-      {...props}
-      src={currentSrc}
-      data-src={src}
-      size={size}
-      shape={shape}
-    />
-  ) : (
-    <Avatar
-      {...props}
-      src={currentSrc}
-      data-src={src}
-      size={size}
-      shape={shape}
-    />
-  );
 };
+
+const Wrapper = React.forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      src = JpegDefaultAvatar,
+      size = 32,
+      shape = Shape.SQUARE,
+      animated = false,
+      ...props
+    }: Props,
+    ref,
+  ) => {
+    const currentSrc = useImage(src, JpegDefaultAvatar);
+    return animated ? (
+      <AnimatedAvatar
+        {...props}
+        src={currentSrc}
+        data-src={src}
+        size={size}
+        shape={shape}
+        ref={ref}
+      />
+    ) : (
+      <Avatar
+        {...props}
+        src={currentSrc}
+        data-src={src}
+        size={size}
+        shape={shape}
+        ref={ref}
+      />
+    );
+  },
+);
 
 export { Shape };
 export default React.memo(Wrapper);

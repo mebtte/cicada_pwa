@@ -8,7 +8,7 @@ import EditOutline from './icons/edit_outline';
 import GarbageOutline from './garbage_outline';
 import InsertOutline from './insert_outline';
 import LoadingOutline from './loading_outline';
-import EmailFill from './email_fill';
+import EmailFill from './icons/email_fill';
 import MoreOutline from './more_outline';
 import NextFill from './next_fill';
 import NoticeOutline from './notice_outline';
@@ -51,10 +51,14 @@ import MobilephoneFill from './mobilephone_fill';
 import HouseOutline from './house_outline';
 import DashboardOutline from './icons/dashboard_outline';
 import IDFill from './id_fill';
-import EmailListFill from './email_list_fill';
+import EmailListFill from './icons/email_list_fill';
 import HistoryOutline from './icons/history_outline';
+import LeftOutline from './icons/left_outline';
+import RightOutline from './icons/right_outline';
 
 export enum Name {
+  LEFT_OUTLINE = 'LeftOutline',
+  RIGHT_OUTLINE = 'RightOutline',
   COPY_OUTLINE = 'CopyOutline',
   VIEW_OUTLINE = 'ViewOutline',
   HISTORY_OUTLINE = 'HistoryOutline',
@@ -113,6 +117,8 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
+  [Name.LEFT_OUTLINE]: LeftOutline,
+  [Name.RIGHT_OUTLINE]: RightOutline,
   [Name.COPY_OUTLINE]: CopyOutline,
   [Name.VIEW_OUTLINE]: ViewOutline,
   [Name.HISTORY_OUTLINE]: HistoryOutline,

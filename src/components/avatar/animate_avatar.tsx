@@ -31,32 +31,35 @@ const Img = styled(animated.div)`
   background-position: center;
 `;
 
-const AnimatedAvatar = ({ src, size, shape, style, ...props }: CommonProps) => {
-  const transtion = useMemo(
-    () => TRANSITION_LIST[getRandomInteger(0, TRANSITION_LIST.length)],
-    [],
-  );
-  const transitions = useTransition(src, transtion);
-  return (
-    <Style
-      {...props}
-      shape={shape}
-      style={{
-        ...style,
-        width: size,
-        height: size,
-      }}
-    >
-      {transitions((imgStyle, s) => (
-        <Img
-          style={{
-            ...imgStyle,
-            backgroundImage: `url(${s})`,
-          }}
-        />
-      ))}
-    </Style>
-  );
-};
+const AnimatedAvatar = React.forwardRef<HTMLDivElement, CommonProps>(
+  ({ src, size, shape, style, ...props }: CommonProps, ref) => {
+    const transtion = useMemo(
+      () => TRANSITION_LIST[getRandomInteger(0, TRANSITION_LIST.length)],
+      [],
+    );
+    const transitions = useTransition(src, transtion);
+    return (
+      <Style
+        {...props}
+        shape={shape}
+        style={{
+          ...style,
+          width: size,
+          height: size,
+        }}
+        ref={ref}
+      >
+        {transitions((imgStyle, s) => (
+          <Img
+            style={{
+              ...imgStyle,
+              backgroundImage: `url(${s})`,
+            }}
+          />
+        ))}
+      </Style>
+    );
+  },
+);
 
 export default AnimatedAvatar;

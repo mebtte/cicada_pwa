@@ -6,16 +6,9 @@ import api from '.';
  * 获取推荐音乐列表
  * @author mebtte<hi@mebtte.com>
  */
-function getRecommendatoryMusicList({
-  page = 1,
-  pageSize = 30,
-}: {
-  page?: number;
-  pageSize?: number;
-} = {}) {
-  return api.get<{
-    count: number;
-    music_list: {
+function getRecommendatoryMusicList() {
+  return api.get<
+    {
       id: string;
       cover: string;
       name: string;
@@ -33,9 +26,8 @@ function getRecommendatoryMusicList({
       }[];
       fork?: string[];
       fork_from?: string[];
-    }[];
-  }>('/api/get_recommendatory_music_list', {
-    params: { page, page_size: pageSize },
+    }[]
+  >('/api/get_recommendatory_music_list', {
     withToken: true,
   });
 }

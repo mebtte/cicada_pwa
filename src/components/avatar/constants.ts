@@ -19,11 +19,13 @@ export type CommonProps = {
 
 export const TRANSITION_LIST = [
   {
+    initial: { opacity: 1, transform: 'translate(0%)' },
     from: { opacity: 0, transform: 'translate(100%)' },
     enter: { opacity: 1, transform: 'translate(0%)' },
     leave: { opacity: 0, transform: 'translate(-100%)' },
   },
   {
+    initial: { opacity: 1, transform: 'translate(0%)' },
     from: { opacity: 0, transform: 'translate(-100%)' },
     enter: { opacity: 1, transform: 'translate(0%)' },
     leave: { opacity: 0, transform: 'translate(100%)' },

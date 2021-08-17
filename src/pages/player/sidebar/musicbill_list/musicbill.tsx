@@ -7,7 +7,10 @@ import ellipsis from '@/style/ellipsis';
 import { CONTAINETR_STYLE, NAME_STYLE, COVER_SIZE } from './constants';
 import { Musicbill as MusicbillType } from '../../constants';
 
-const Style = styled(Link)<{ active: boolean }>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Style = styled(({ active, ...props }: any) => <Link {...props} />)<{
+  active: boolean;
+}>`
   display: block;
   text-decoration: none;
   position: relative;
