@@ -11,7 +11,9 @@ const Wrapper = () => (
     {new Array(30).fill(0).map((_, index) => (
       // eslint-disable-next-line react/no-array-index-key
       <Style key={index}>
-        <Avatar size={COVER_SIZE} />
+        <div className="cover-box">
+          <Avatar size={COVER_SIZE} />
+        </div>
         <div className="name">
           <Skeleton width={getRandomInteger(30, COVER_SIZE)} />
         </div>

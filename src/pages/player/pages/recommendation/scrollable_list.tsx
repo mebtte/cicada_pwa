@@ -27,7 +27,7 @@ const List = styled.div`
   ${scrollbarNever}
   scroll-behavior: smooth;
 
-  padding: ${ITEM_SPACE}px 0;
+  margin-top: ${ITEM_SPACE}px;
 
   display: flex;
   align-items: center;
