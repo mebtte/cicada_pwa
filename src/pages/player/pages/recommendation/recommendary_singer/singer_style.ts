@@ -7,10 +7,12 @@ export default styled.div`
   width: ${COVER_SIZE}px;
 
   > .name {
-    margin: 5px 0;
+    margin: 5px 0 0 0;
+
+    font-size: 14px;
+    line-height: 1.3;
 
     cursor: pointer;
-    font-size: 14px;
     color: var(--text-color-primary);
     ${ellipsis}
 

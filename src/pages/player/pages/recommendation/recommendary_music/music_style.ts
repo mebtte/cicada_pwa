@@ -38,9 +38,8 @@ export default styled.div`
   > .name {
     margin: 5px 0 2px 0;
 
-    height: 20px;
-    line-height: 20px;
     font-size: 14px;
+    line-height: 1.3;
 
     cursor: pointer;
     color: var(--text-color-primary);
@@ -52,8 +51,7 @@ export default styled.div`
   }
 
   > .singers {
-    height: 16px;
-    line-height: 16px;
+    line-height: 1.3;
     font-size: 12px;
 
     ${ellipsis}
