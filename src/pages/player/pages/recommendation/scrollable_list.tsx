@@ -2,7 +2,7 @@ import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import IconButton, { Name } from '@/components/icon_button';
-import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
+import scrollbarNever from '@/style/scrollbar_never';
 import { COVER_SIZE } from './constants';
 
 const BUTTON_SIZE = 24;
@@ -24,7 +24,7 @@ const List = styled.div`
   min-width: 0;
 
   overflow: auto;
-  ${scrollbarAsNeeded}
+  ${scrollbarNever}
   scroll-behavior: smooth;
 
   padding: ${ITEM_SPACE}px 0;

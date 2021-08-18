@@ -1,9 +1,9 @@
 import React from 'react';
 
-import getRandomInteger from '@/utils/get_random_integer';
 import Avatar from '@/components/avatar';
+import getRandomInteger from '@/utils/get_random_integer';
 import Skeleton from '@/components/skeleton';
-import Style from './music_style';
+import Style from './singer_style';
 import { COVER_SIZE } from '../constants';
 
 const Wrapper = () => (
@@ -13,9 +13,6 @@ const Wrapper = () => (
       <Style key={index}>
         <Avatar size={COVER_SIZE} />
         <div className="name">
-          <Skeleton width={getRandomInteger(30, COVER_SIZE)} />
-        </div>
-        <div className="singers">
           <Skeleton width={getRandomInteger(30, COVER_SIZE)} />
         </div>
       </Style>
