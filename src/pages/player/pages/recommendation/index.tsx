@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import Page from '../page';
 import RecommendaryMusic from './recommendary_music';
+import RecommendaryMusicbill from './recommendary_musicbill';
 import RecommendarySinger from './recommendary_singer';
 
 const Style = styled(Page)<{ topBoxShadow: number }>`
@@ -26,6 +27,7 @@ const Recommendation = () => {
   return (
     <Style onScroll={onScroll} topBoxShadow={topBoxShadow}>
       <RecommendaryMusic />
+      <RecommendaryMusicbill />
       <RecommendarySinger />
     </Style>
   );
