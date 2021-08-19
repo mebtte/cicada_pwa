@@ -31,6 +31,7 @@ import CreateMusicbillDialog from './create_musicbill_dialog';
 import MvDialog from './mv_dialog';
 import { QueueMusic } from './constants';
 import Lyric from './lyric';
+import UserDrawer from './user_drawer';
 
 const Scrollable = styled(PageContainer)`
   overflow: auto;
@@ -115,6 +116,7 @@ const Wrapper = () => {
       <ListDrawer />
       <MusicbillListDrawer />
       <MusicbillOrderDrawer />
+      <UserDrawer />
 
       <MvDialog />
       <CreateMusicbillDialog />

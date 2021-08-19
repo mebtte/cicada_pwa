@@ -3,7 +3,10 @@ import styled from 'styled-components';
 
 import { User as UserType } from '@/constants/user';
 import Avatar, { Shape } from '@/components/avatar';
-import globalEventemitter, { EventType } from '@/platform/global_eventemitter';
+import globalEventemitter, {
+  EventType as GlobalEventType,
+} from '@/platform/global_eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 
 const AVATAR_SIZE = 100;
 const Style = styled.div`
@@ -17,12 +20,16 @@ const Style = styled.div`
     border: 1px solid var(--color-primary);
   }
   > .nickname {
+    cursor: pointer;
     font-size: 14px;
     color: rgb(55 55 55);
+    &:hover {
+      color: #000;
+    }
   }
 `;
 const openProfileDialog = () =>
-  globalEventemitter.emit(EventType.OPEN_PROFILE_DIALOG);
+  globalEventemitter.emit(GlobalEventType.OPEN_PROFILE_DIALOG);
 
 const User = ({ user }: { user: UserType }) => (
   <Style>
@@ -34,7 +41,14 @@ const User = ({ user }: { user: UserType }) => (
       shape={Shape.CIRCLE}
       onClick={openProfileDialog}
     />
-    <div className="nickname">{user.nickname}</div>
+    <div
+      className="nickname"
+      onClick={() =>
+        eventemitter.emit(EventType.OPEN_USER_DRAWER, { id: user.id })
+      }
+    >
+      {user.nickname}
+    </div>
   </Style>
 );
 
