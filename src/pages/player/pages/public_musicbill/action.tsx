@@ -20,34 +20,21 @@ const Style = styled.div`
   padding: 10px 0;
 `;
 
-const Action = ({
-  musicbill,
-  reload,
-}: {
-  musicbill: Musicbill;
-  reload: () => void;
-}) => {
-  const onAddToPlaylist = () => {
-    const { musicList } = musicbill;
-    return playerEventemitter.emit(
-      PlayerEventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
-      { musicList: musicList.map((m) => m.music) },
-    );
-  };
+const Action = ({ musicbill }: { musicbill: Musicbill }) => {
+  const { id, musicList } = musicbill;
   return (
     <Style>
-      <Tooltip title="重新加载" placement={Placement.LEFT}>
-        <IconButton
-          name={Name.REFRESH_OUTLINE}
-          size={ACTION_SIZE}
-          onClick={reload}
-        />
-      </Tooltip>
       <Tooltip title="全部添加到播放列表" placement={Placement.LEFT}>
         <IconButton
           name={Name.PLUS_OUTLINE}
           size={ACTION_SIZE}
-          onClick={onAddToPlaylist}
+          onClick={() =>
+            playerEventemitter.emit(
+              PlayerEventType.ACTION_ADD_MUSIC_LIST_TO_PLAYLIST,
+              { musicList: musicList.map((m) => m.music) },
+            )
+          }
+          disabled={!musicList.length}
         />
       </Tooltip>
       <Tooltip title="复制歌单 ID" placement={Placement.LEFT}>
@@ -56,8 +43,8 @@ const Action = ({
           size={ACTION_SIZE}
           onClick={() =>
             navigator.clipboard
-              .writeText(musicbill.id)
-              .then(() => toast.success(`已复制「${musicbill.id}」`))
+              .writeText(id)
+              .then(() => toast.success(`已复制「${id}」`))
               .catch((error) =>
                 dialog.alert({
                   title: '复制失败',

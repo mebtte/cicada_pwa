@@ -31,9 +31,7 @@ const RecommendaryMusic = () => {
   }
   return (
     <Part>
-      <Label loading={loading} onReload={reload}>
-        推荐歌手
-      </Label>
+      <Label>推荐歌手</Label>
       <ScrollableList className="list">{content}</ScrollableList>
     </Part>
   );

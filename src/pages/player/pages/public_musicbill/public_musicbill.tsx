@@ -69,7 +69,7 @@ const PublicMusicbill = ({ id }: { id: string }) => {
             <Top musicbill={d.musicbill} />
             <div className="bottom">
               <MusicList musicbill={d.musicbill} />
-              <Action musicbill={d.musicbill} reload={reload} />
+              <Action musicbill={d.musicbill} />
             </div>
           </Container>
         );
