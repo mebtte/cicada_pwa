@@ -7,7 +7,7 @@ export default createGlobalStyle`
 
     --color-primary: rgb(49 194 124);
 
-    --text-color-primary: rgb(55 55 55);
+    --text-color-primary: rgb(88 88 88);
     --text-color-secondary: rgb(155 155 155);
   }
 

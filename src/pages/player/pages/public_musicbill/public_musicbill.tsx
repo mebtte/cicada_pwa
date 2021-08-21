@@ -8,6 +8,9 @@ import useData from './use_data';
 import { containerStyle } from './constants';
 import Top from './top';
 import TopSkeleton from './top/skeleton';
+import Action from './action';
+import MusicListSkeleton from './music_list/skeleton';
+import MusicList from './music_list';
 
 const Style = styled(Page)`
   position: relative;
@@ -24,6 +27,13 @@ const Container = styled(animated.div)`
 
   display: flex;
   flex-direction: column;
+
+  > .bottom {
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+  }
 `;
 
 const PublicMusicbill = ({ id }: { id: string }) => {
@@ -48,12 +58,19 @@ const PublicMusicbill = ({ id }: { id: string }) => {
           return (
             <Container style={style}>
               <TopSkeleton />
+              <div className="bottom">
+                <MusicListSkeleton />
+              </div>
             </Container>
           );
         }
         return (
           <Container style={style}>
             <Top musicbill={d.musicbill} />
+            <div className="bottom">
+              <MusicList musicbill={d.musicbill} />
+              <Action musicbill={d.musicbill} reload={reload} />
+            </div>
           </Container>
         );
       })}

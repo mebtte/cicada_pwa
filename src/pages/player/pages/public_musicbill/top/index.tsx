@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Input from '@/components/input';
 import Avatar, { Shape } from '@/components/avatar';
 import { Musicbill } from '../constants';
 import Container from './container';
@@ -22,7 +21,7 @@ const Nickname = styled.span`
 `;
 
 const Top = ({ musicbill }: { musicbill: Musicbill }) => {
-  const { cover, name, user, description, musicList } = musicbill;
+  const { cover, name, user, description } = musicbill;
   const onViewUser = () =>
     playerEventemitter.emit(PlayerEventType.OPEN_USER_DRAWER, { id: user.id });
   return (
@@ -49,14 +48,6 @@ const Top = ({ musicbill }: { musicbill: Musicbill }) => {
             <Nickname onClick={onViewUser}>{user.nickname}</Nickname>
           </div>
         </div>
-        {musicList.length ? (
-          <div className="search-box">
-            <Input
-              className="search"
-              placeholder={`搜索歌单内的 ${musicList.length} 首音乐`}
-            />
-          </div>
-        ) : null}
       </div>
     </Container>
   );

@@ -44,12 +44,5 @@ export default styled.div`
       color: var(--text-color-secondary);
       ${ellipsis}
     }
-
-    > .search-box {
-      position: relative;
-      > .search {
-        width: 100%;
-      }
-    }
   }
 `;

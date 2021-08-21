@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-import { Music } from '../../constants';
+import { MusicWithIndex } from '../../constants';
 
 export interface Musicbill {
   id: string;
@@ -13,7 +13,7 @@ export interface Musicbill {
     condition: string;
     avatar: string;
   };
-  musicList: Music[];
+  musicList: MusicWithIndex[];
 }
 
 export type Data =

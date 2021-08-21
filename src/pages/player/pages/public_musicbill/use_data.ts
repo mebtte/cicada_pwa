@@ -31,7 +31,10 @@ export default (id: string) => {
             ...pm.user,
             avatar: pm.user.avatar || getRandomCover(),
           },
-          musicList: pm.music_list.map(transformMusic),
+          musicList: pm.music_list.map((m, index) => ({
+            index: pm.music_list.length - index,
+            music: transformMusic(m),
+          })),
         },
         error: null,
       });
