@@ -1,15 +1,21 @@
+/* eslint-disable max-classes-per-file */
 import React, { useRef, useState, useEffect } from 'react';
 import { Waypoint } from 'react-waypoint';
 import styled from 'styled-components';
 
+import logger from '@/platform/logger';
 import loadImage from '@/utils/load_image';
 import AsyncQueue from '@/utils/async_queue';
 import Avatar from '@/components/avatar';
 import { COVER_SIZE } from './constants';
 
+class AbortError extends Error {}
+class TimeoutError extends Error {}
 const queue = new AsyncQueue({
   taskMinDuration: 0.5 * 1000,
   taskTimeout: 10 * 1000,
+  abortErrorGenerator: () => new AbortError('队列加载图片被主动阻断.'),
+  timeoutErrorGenerator: (ms) => new TimeoutError(`队列加载图片超时 ${ms}ms.`),
 });
 const Style = styled.div`
   font-size: 0;
@@ -27,7 +33,15 @@ const Cover = ({ src, onClick }: { src: string; onClick: () => void }) => {
       return;
     }
     const { promise, abort, finished } = queue.run(() => loadImage(src));
-    promise.then(() => setCurrentSrc(src));
+    promise
+      .then(() => setCurrentSrc(src))
+      .catch((error) =>
+        logger.error(error, {
+          description: '加载图片失败',
+          report:
+            !(error instanceof AbortError) && !(error instanceof TimeoutError),
+        }),
+      );
     abortRef.current = () => {
       if (finished()) {
         return;

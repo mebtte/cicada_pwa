@@ -16,11 +16,12 @@ import App from './app';
 import ErrorCard from './components/error_card';
 
 async function initialize() {
-  if (process.env.NODE_ENV === 'production' && config.sentryDSN) {
+  if (config.sentryDSN) {
     Sentry.init({
       dsn: config.sentryDSN,
       integrations: [new Integrations.BrowserTracing()],
       tracesSampleRate: 1.0,
+      enabled: process.env.NODE_ENV === 'production',
     });
     Sentry.configureScope((scope) => {
       scope.setExtra('version', config.version);

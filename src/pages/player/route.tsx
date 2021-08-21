@@ -7,6 +7,7 @@ import { PLAYER_PATH } from '@/constants/route';
 import Recommendation from './pages/recommendation';
 import Search from './pages/search';
 import Musicbill from './pages/musicbill';
+import PublicMusicbill from './pages/public_musicbill';
 import Setting from './pages/setting';
 
 const Style = styled.div`
@@ -37,6 +38,10 @@ const Wrapper = () => {
           <Switch location={l}>
             <Route path={PLAYER_PATH.SEARCH} component={Search} />
             <Route path={PLAYER_PATH.MUSICBILL} component={Musicbill} />
+            <Route
+              path={PLAYER_PATH.PUBLIC_MUSICBILL}
+              component={PublicMusicbill}
+            />
             <Route path={PLAYER_PATH.SETTING} component={Setting} />
             <Route path="*" component={Recommendation} />
           </Switch>

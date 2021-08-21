@@ -18,7 +18,7 @@ class AsyncQueue {
 
   abortErrorGenerator?: () => Error;
 
-  timeoutErrorGenerator?: () => Error;
+  timeoutErrorGenerator?: (ms: number) => Error;
 
   running: boolean;
 
@@ -35,7 +35,7 @@ class AsyncQueue {
     taskTimeout?: number;
     taskInterval?: number;
     abortErrorGenerator?: () => Error;
-    timeoutErrorGenerator?: () => Error;
+    timeoutErrorGenerator?: (ms: number) => Error;
   }) {
     this.taskMinDuration = taskMinDuration;
     this.taskTimeout = taskTimeout;

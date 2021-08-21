@@ -1,10 +1,8 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { useSelector, shallowEqual } from 'react-redux';
 
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
-import { User } from '@/constants/user';
 import dialog from '@/platform/dialog';
 import toast from '@/platform/toast';
 import { Singer } from './constants';
@@ -22,7 +20,6 @@ const iconButtonStyle = {
 };
 
 const Action = ({ singer, reload }: { singer: Singer; reload: () => void }) => {
-  const user = useSelector((state: { user: User }) => state.user, shallowEqual);
   const copySingerID = useCallback(
     () =>
       window.navigator.clipboard
@@ -58,16 +55,14 @@ const Action = ({ singer, reload }: { singer: Singer; reload: () => void }) => {
           style={iconButtonStyle}
         />
       </Tooltip>
-      {user.cms ? (
-        <Tooltip title="复制歌手 ID" placement={Placement.LEFT}>
-          <IconButton
-            name={Name.COPY_OUTLINE}
-            size={ACTION_SIZE}
-            onClick={copySingerID}
-            style={iconButtonStyle}
-          />
-        </Tooltip>
-      ) : null}
+      <Tooltip title="复制歌手 ID" placement={Placement.LEFT}>
+        <IconButton
+          name={Name.COPY_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={copySingerID}
+          style={iconButtonStyle}
+        />
+      </Tooltip>
     </Style>
   );
 };
