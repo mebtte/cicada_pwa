@@ -17,12 +17,12 @@ export default (src: string, defaultImage: string) => {
           return setCurrentSrc(src);
         })
         .catch((error) => {
-          logger.error(error, {
-            report: true,
-          });
           if (canceled) {
             return;
           }
+          logger.error(error, {
+            description: '加载图片失败',
+          });
           return setCurrentSrc(defaultImage);
         });
       return () => {

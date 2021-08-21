@@ -49,7 +49,6 @@ const Top = ({ musicbill }: { musicbill: Musicbill }) => {
             <Nickname onClick={onViewUser}>{user.nickname}</Nickname>
           </div>
         </div>
-
         {musicList.length ? (
           <div className="search-box">
             <Input

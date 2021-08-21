@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Empty from '@/components/empty';
 import Drawer from '@/components/drawer';
 
 const bodyProps = {
@@ -18,7 +19,7 @@ const UserDrawer = ({
 }) => {
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
-      即将开放
+      <Empty description="Coming soon" style={{ padding: '50px 0' }} />
     </Drawer>
   );
 };

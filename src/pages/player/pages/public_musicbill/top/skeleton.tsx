@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Input from '@/components/input';
 import getRandomInteger from '@/utils/get_random_integer';
 import Skeleton from '@/components/skeleton';
 import Container from './container';
@@ -28,6 +29,9 @@ const Wrapper = () => (
         <div className="name">
           <Skeleton width={getRandomInteger(100, 250)} />
         </div>
+      </div>
+      <div className="search-box">
+        <Input className="search" placeholder="搜索歌单内的音乐" disabled />
       </div>
     </div>
   </Container>

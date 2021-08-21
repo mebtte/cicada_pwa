@@ -73,7 +73,9 @@ class Audio extends React.PureComponent<Props, {}> {
 
     if (prevProps.queueMusic.pid !== queueMusic.pid) {
       this.audioRef.current.currentTime = 0;
-      this.audioRef.current.play();
+      this.audioRef.current
+        .play()
+        .catch((error) => logger.error(error, { description: '音频播放失败' }));
       eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
         currentMillisecond: 0,
       });
@@ -97,7 +99,9 @@ class Audio extends React.PureComponent<Props, {}> {
     onWaiting();
     return window.setTimeout(() => {
       this.audioRef.current.currentTime = second;
-      this.audioRef.current.play();
+      this.audioRef.current
+        .play()
+        .catch((error) => logger.error(error, { description: '音频播放失败' }));
       eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
         currentMillisecond: second * 1000,
       });
@@ -126,10 +130,17 @@ class Audio extends React.PureComponent<Props, {}> {
 
   onActionTogglePlay = () =>
     this.audioRef.current.paused
-      ? this.audioRef.current.play()
+      ? this.audioRef.current
+          .play()
+          .catch((error) =>
+            logger.error(error, { description: '音频播放失败' }),
+          )
       : this.audioRef.current.pause();
 
-  onActionPlay = () => this.audioRef.current.play();
+  onActionPlay = () =>
+    this.audioRef.current
+      .play()
+      .catch((error) => logger.error(error, { description: '音频播放失败' }));
 
   onActionPause = () => this.audioRef.current.pause();
 
