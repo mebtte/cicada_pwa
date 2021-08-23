@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import toast from '@/platform/toast';
 import { RequestStatus } from '@/constants';
 import dialog from '@/platform/dialog';
 import logger from '@/platform/logger';
@@ -37,6 +38,16 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
       { musicList: musicList.map((m) => m.music) },
     );
   };
+  const onCopyID = () =>
+    window.navigator.clipboard
+      .writeText(musicbill.id)
+      .then(() => toast.success(`已复制「${musicbill.id}」`))
+      .catch((error) =>
+        dialog.alert({
+          title: '复制失败',
+          content: error.message,
+        }),
+      );
   const onDelete = () =>
     dialog.confirm({
       title: `确定删除歌单"${musicbill.name}"?`,
@@ -104,6 +115,13 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
           name={Name.EDIT_OUTLINE}
           size={ACTION_SIZE}
           onClick={openTextEditDialog}
+        />
+      </Tooltip>
+      <Tooltip title="复制歌单 ID" placement={Placement.LEFT}>
+        <IconButton
+          name={Name.COPY_OUTLINE}
+          size={ACTION_SIZE}
+          onClick={onCopyID}
         />
       </Tooltip>
       <Tooltip title="删除歌单" placement={Placement.LEFT}>
