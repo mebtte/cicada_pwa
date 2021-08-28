@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Drawer, { Title } from '@/components/drawer';
 import updateMusicbillOrder from '@/server/update_musicbill_order';
@@ -20,11 +20,20 @@ const bodyProps = {
     flexDirection: 'column' as 'column',
   },
 };
-const List = styled.div`
+const List = styled.div<{ topBoxShadow: boolean }>`
   flex: 1;
   min-height: 0;
+
+  padding-bottom: 10px;
+
   overflow: auto;
   ${scrollbarAsNeeded}
+
+  ${({ topBoxShadow }) => css`
+    box-shadow: ${topBoxShadow
+      ? 'inset 0px 5px 5px -5px rgb(0 0 0 / 15%)'
+      : 'none'};
+  `}
 `;
 
 const MusicbillOrderDrawer = () => {
@@ -68,6 +77,12 @@ const MusicbillOrderDrawer = () => {
       return newMusicbillList;
     });
 
+  const [topBoxShadow, setTopBoxShadow] = useState(false);
+  const onListScroll: React.UIEventHandler<HTMLDivElement> = (event) => {
+    const { scrollTop } = event.target as HTMLDivElement;
+    return setTopBoxShadow(scrollTop !== 0);
+  };
+
   useEffect(() => {
     const openListener = () => {
       setLocalMusicbillList(
@@ -91,7 +106,7 @@ const MusicbillOrderDrawer = () => {
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
       <Title>排序歌单</Title>
       <DndProvider backend={HTML5Backend}>
-        <List>
+        <List onScroll={onListScroll} topBoxShadow={topBoxShadow}>
           {localMusicbillList.map((mb, index) => (
             <Musicbill key={mb.id} index={index} musicbill={mb} move={move} />
           ))}

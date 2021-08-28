@@ -3,21 +3,22 @@ import styled from 'styled-components';
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 import { XYCoord } from 'dnd-core';
 
+import ellipsis from '@/style/ellipsis';
 import Avatar from '@/components/avatar';
 import { Musicbill as MusicbillType } from './constant';
 
 const Style = styled.div`
   padding: 5px 20px;
+
   display: flex;
   align-items: center;
+  gap: 10px;
+
   cursor: move;
   > .name {
     flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    margin-left: 10px;
+
+    ${ellipsis}
     font-size: 14px;
     color: rgb(55 55 55);
   }
@@ -82,7 +83,6 @@ const Musicbill = ({
       ref={ref}
       style={{
         opacity: isDragging ? 0 : 1,
-        backgroundColor: isDragging ? 'red' : '#fff',
       }}
     >
       <Avatar src={cover} size={24} />
