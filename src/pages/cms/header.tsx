@@ -37,7 +37,6 @@ const Style = styled.div`
 `;
 const avatarStyle = {
   cursor: 'pointer',
-  marginLeft: 20,
 };
 const openProfileDialog = () =>
   globalEentemitter.emit(EventType.OPEN_PROFILE_DIALOG);

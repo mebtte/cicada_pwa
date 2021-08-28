@@ -26,7 +26,6 @@ const Style = styled(({ active, ...props }: any) => <Link {...props} />)<{
       ${ellipsis}
       ${NAME_STYLE}
       user-select: none;
-      color: var(--text-color-primary);
     }
   }
   > .background {
@@ -39,14 +38,19 @@ const Style = styled(({ active, ...props }: any) => <Link {...props} />)<{
     background-position: center;
   }
 
+  &:hover {
+    > .content {
+      > .name {
+        color: var(--color-primary);
+      }
+    }
+  }
+
   ${({ active }) => css`
-    &:hover {
-      > .content {
-        > .name {
-          color: ${active
-            ? 'var(--text-color-primary)'
-            : 'var(--color-primary)'};
-        }
+    > .content {
+      > .name {
+        color: ${active ? 'var(--color-primary)' : 'var(--text-color-primary)'};
+        text-shadow: ${active ? '1px 1px 1px rgb(255 255 255 / 0.5)' : 'none'};
       }
     }
   `}

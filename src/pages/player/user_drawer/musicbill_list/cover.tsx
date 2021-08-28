@@ -7,7 +7,7 @@ import logger from '@/platform/logger';
 import loadImage from '@/utils/load_image';
 import AsyncQueue from '@/utils/async_queue';
 import Avatar from '@/components/avatar';
-import { COVER_SIZE } from './constants';
+import { MUSICBILL_COVER_SIZE } from '../constants';
 
 class AbortError extends Error {}
 class TimeoutError extends Error {}
@@ -18,10 +18,7 @@ const queue = new AsyncQueue({
   timeoutErrorGenerator: (ms) => new TimeoutError(`队列加载图片超时 ${ms}ms.`),
 });
 const Style = styled.div`
-  font-size: 0;
-  > .cover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 const Cover = ({ src, onClick }: { src: string; onClick: () => void }) => {
@@ -62,12 +59,11 @@ const Cover = ({ src, onClick }: { src: string; onClick: () => void }) => {
   );
 
   return (
-    <Waypoint onEnter={onEnter} horizontal>
+    <Waypoint onEnter={onEnter}>
       <Style>
         <Avatar
-          className="cover"
           src={currentSrc}
-          size={COVER_SIZE}
+          size={MUSICBILL_COVER_SIZE}
           onClick={onClick}
           animated
         />
