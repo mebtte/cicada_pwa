@@ -49,6 +49,7 @@ function generateMethod(method: METHOD) {
         authorization: token,
       };
     }
+
     let response: AxiosResponse;
     try {
       [response] = await Promise.all([
@@ -68,6 +69,7 @@ function generateMethod(method: METHOD) {
         throw error;
       }
     }
+
     const { status, statusText } = response;
     if (status !== 200 && !response.data) {
       throw new ErrorWithCode(
@@ -75,6 +77,7 @@ function generateMethod(method: METHOD) {
         status,
       );
     }
+
     const {
       code,
       message,

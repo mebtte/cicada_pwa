@@ -13,7 +13,7 @@ const StyledContainer = styled(Container)<{
 }>`
   ${({ topBoxShadow }) => css`
     box-shadow: ${topBoxShadow
-      ? 'inset 0px 5px 5px -5px rgb(0 0 0 / 10%)'
+      ? 'inset 0px 5px 5px -5px rgb(0 0 0 / 15%)'
       : 'none'};
   `}
 `;
