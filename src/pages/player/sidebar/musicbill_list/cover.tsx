@@ -67,7 +67,7 @@ const Cover = ({ src, publiz }: { src: string; publiz: boolean }) => {
   );
 
   return (
-    <Waypoint onEnter={onEnter} horizontal>
+    <Waypoint onEnter={onEnter}>
       <Style publiz={publiz}>
         <Avatar className="cover" src={currentSrc} size={COVER_SIZE} animated />
       </Style>
