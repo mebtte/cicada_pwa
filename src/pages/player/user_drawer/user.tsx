@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Avatar from '@/components/avatar';
+import Avatar, { Shape } from '@/components/avatar';
 import { MUSICBILL_COVER_SIZE, User as UserType } from './constants';
 import Container from './container';
 import MusicbillList from './musicbill_list';
@@ -16,7 +16,12 @@ const User = ({
 }) => (
   <Container style={style}>
     <div className="top">
-      <Avatar animated src={user.avatar} size={MUSICBILL_COVER_SIZE} />
+      <Avatar
+        animated
+        src={user.avatar}
+        size={MUSICBILL_COVER_SIZE}
+        shape={Shape.CIRCLE}
+      />
       <div className="info">
         <div className="name">{user.nickname}</div>
         <div className="join-time">于 {user.joinTimeString} 加入</div>

@@ -18,7 +18,7 @@ function getUserDetail(id: string) {
       id: string;
       name: string;
     }[];
-  }>('/api/get_user_detail1', {
+  }>('/api/get_user_detail', {
     withToken: true,
     params: { id },
   });
