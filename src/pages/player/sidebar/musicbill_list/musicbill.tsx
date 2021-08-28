@@ -2,10 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import Avatar from '@/components/avatar';
 import ellipsis from '@/style/ellipsis';
-import { CONTAINETR_STYLE, NAME_STYLE, COVER_SIZE } from './constants';
+import { CONTAINETR_STYLE, NAME_STYLE } from './constants';
 import { Musicbill as MusicbillType } from '../../constants';
+import Cover from './cover';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Style = styled(({ active, ...props }: any) => <Link {...props} />)<{
@@ -55,13 +55,6 @@ const Style = styled(({ active, ...props }: any) => <Link {...props} />)<{
     }
   `}
 `;
-const Cover = styled(Avatar)<{ publiz: boolean }>`
-  border-width: 3px;
-  border-style: solid;
-  ${({ publiz }) => css`
-    border-color: ${publiz ? 'var(--color-primary)' : 'transparent'};
-  `}
-`;
 
 const Musicbill = ({
   musicbill,
@@ -82,7 +75,7 @@ const Musicbill = ({
         />
       )}
       <div className="content">
-        <Cover src={cover} size={COVER_SIZE} publiz={publiz} />
+        <Cover src={cover} publiz={publiz} />
         <div className="name">{name}</div>
       </div>
     </Style>
