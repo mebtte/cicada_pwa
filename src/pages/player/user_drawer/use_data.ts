@@ -25,7 +25,7 @@ export default ({ id }: { id: string }) => {
         user: {
           id: user.id,
           nickname: user.nickname,
-          avatar: user.avatar,
+          avatar: user.avatar || getRandomCover(),
           condition: user.condition,
           joinTimeString: day(new Date(user.join_time)).format('YYYY-MM-DD'),
           musicbillList: user.musicbill_list.map((mb) => ({
