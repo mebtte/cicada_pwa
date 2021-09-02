@@ -28,7 +28,8 @@ const Style = styled(animated.div)`
     flex-direction: column;
     gap: 5px;
     > .name {
-      font-size: 14px;
+      font-size: 16px;
+      font-weight: bold;
       color: var(--text-color-primary);
     }
     > .description {
