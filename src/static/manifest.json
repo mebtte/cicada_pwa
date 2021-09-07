@@ -16,5 +16,5 @@
   "start_url": "/player",
   "background_color": "#ffffff",
   "display": "standalone",
-  "theme_color": "rgb(49, 194, 124)"
+  "theme_color": "#ffffff"
 }
