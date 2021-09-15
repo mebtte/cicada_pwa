@@ -12,6 +12,7 @@ export enum Key {
   AC = 'ac',
   MV_LINK = 'mv_link',
   FORK_FROM = 'fork_from',
+  RECOMMENDABLE = 'recommendable',
 }
 
 /**

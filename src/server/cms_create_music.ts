@@ -10,17 +10,20 @@ function cmsCreateMusic({
   name,
   type,
   sq,
+  recommendable,
 }: {
   singerIdList: string[];
   name: string;
   type: MusicType;
   sq: File;
+  recommendable: boolean;
 }) {
   const form = new FormData();
   form.append('singer_ids', singerIdList.join(','));
   form.append('name', name);
   form.append('type', type.toString());
   form.append('sq', sq);
+  form.append('recommendable', (recommendable ? 1 : 0).toString());
   return api.post('/api/cms/create_music', {
     data: form,
     withToken: true,

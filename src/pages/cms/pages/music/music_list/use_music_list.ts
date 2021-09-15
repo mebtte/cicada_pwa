@@ -1,6 +1,6 @@
-import logger from '@/platform/logger';
 import { useCallback, useEffect, useState } from 'react';
 
+import logger from '@/platform/logger';
 import cmsGetMusicList, { SearchKey } from '@/server/cms_get_music_list';
 import { Music, PAGE_SIZE } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
@@ -29,7 +29,23 @@ export default ({
         searchValue,
       });
       setTotal(data.total);
-      setMusicList(data.list);
+      setMusicList(
+        data.list.map((m) => ({
+          id: m.id,
+          cover: m.cover,
+          name: m.name,
+          alias: m.alias,
+          type: m.type,
+          singers: m.singers,
+          createTime: new Date(m.create_time),
+          sq: m.sq,
+          hq: m.hq,
+          ac: m.ac,
+          mvLink: m.mv_link,
+          forkFrom: m.fork_from,
+          recommendable: !!m.recommendable,
+        })),
+      );
     } catch (e) {
       logger.error(e, { description: '获取音乐列表失败', report: true });
       setError(e);

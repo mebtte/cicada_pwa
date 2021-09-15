@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import Checkbox from '@/components/checkbox';
 import useHistory from '@/utils/use_history';
 import Select from '@/components/select';
 import cmsCreateMusic from '@/server/cms_create_music';
@@ -67,6 +68,9 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
   const [musicType, setMusicType] = useState<MusicType>(MusicType.NORMAL);
   const onMusicTypeChange = (t: MusicType) => setMusicType(t);
 
+  const [recommendable, setRecommendable] = useState(false);
+  const onRecommendableChange = (r: boolean) => setRecommendable(r);
+
   const [sq, setSq] = useState<File | null>(null);
   const onSelectSq = () =>
     selectFile({
@@ -117,6 +121,7 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
         name,
         type: musicType,
         sq,
+        recommendable,
       });
       toast.success(`音乐"${name}"已创建`);
       eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
@@ -158,6 +163,9 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
             disabled={loading}
             customInputDisabled
           />
+        </Label>
+        <Label label="是否可推荐" style={labelStyle}>
+          <Checkbox checked={recommendable} onChange={onRecommendableChange} />
         </Label>
         <Label label="标准音质" style={labelStyle}>
           <FileBox>

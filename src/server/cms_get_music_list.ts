@@ -23,7 +23,7 @@ export const SEARCH_KEY_MAP_LABEL: Record<SearchKey, string> = {
 export const SEARCH_KEYS = Object.keys(SEARCH_KEY_MAP_LABEL);
 export const SEARCH_VALUE_MAX_LENGTH = 50;
 
-async function cmsGetMusicList({
+function cmsGetMusicList({
   page = 1,
   pageSize = 30,
   searchKey,
@@ -34,7 +34,7 @@ async function cmsGetMusicList({
   searchKey: SearchKey;
   searchValue: string;
 }) {
-  const data = await api.get<{
+  return api.get<{
     total: number;
     list: {
       id: string;
@@ -54,6 +54,7 @@ async function cmsGetMusicList({
       ac: string;
       mv_link: string;
       fork_from?: string[];
+      recommendable: 0 | 1;
     }[];
   }>('/api/cms/get_music_list', {
     withToken: true,
@@ -64,38 +65,6 @@ async function cmsGetMusicList({
       search_value: searchValue,
     },
   });
-  return {
-    total: data.total,
-    list: data.list.map(
-      ({
-        id: musicId,
-        cover,
-        name: musicName,
-        alias: musicAlias,
-        type,
-        singers,
-        create_time: createTime,
-        sq,
-        hq,
-        ac,
-        mv_link: mvLink,
-        fork_from: forkFrom,
-      }) => ({
-        id: musicId,
-        cover,
-        name: musicName,
-        alias: musicAlias,
-        type,
-        singers,
-        createTime: new Date(createTime),
-        sq,
-        hq,
-        ac,
-        mvLink,
-        forkFrom: forkFrom || [],
-      }),
-    ),
-  };
 }
 
 export default cmsGetMusicList;

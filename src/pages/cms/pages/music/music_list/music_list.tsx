@@ -98,6 +98,7 @@ const headers = [
   '歌手',
   '别名',
   '资源',
+  '是否可推荐',
   '创建时间',
   '操作',
 ];
@@ -224,6 +225,7 @@ const MusicList = ({
         />
       </Tooltip>
     </ResourceBox>,
+    <Small>{music.recommendable ? '√' : '×'}</Small>,
     <Small>{day(music.createTime).format('YYYY-MM-DD HH:mm')}</Small>,
     <OperationBox>
       <IconButton

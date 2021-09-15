@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import Checkbox from '@/components/checkbox';
 import { URL } from '@/constants/regexp';
 import Select from '@/components/select';
 import cmsUpdateMusic, { Key } from '@/server/cms_update_music';
@@ -44,6 +45,9 @@ const EditMusicDialog = () => {
   const [type, setType] = useState(MusicType.NORMAL);
   const onTypeChange = (t: MusicType) => setType(t);
 
+  const [recommendable, setRecommendable] = useState(false);
+  const onRecommendableChange = (r: boolean) => setRecommendable(r);
+
   const [alias, setAlias] = useState('');
   const onAliasChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setAlias(event.target.value);
@@ -58,6 +62,7 @@ const EditMusicDialog = () => {
       setMusic(m);
       setName(m.name);
       setType(m.type);
+      setRecommendable(m.recommendable);
       setAlias(m.alias);
       setMvLink(m.mvLink);
     };
@@ -93,6 +98,15 @@ const EditMusicDialog = () => {
           id: music.id,
           key: Key.TYPE,
           value: type.toString(),
+        });
+      }
+
+      if (music.recommendable !== recommendable) {
+        needUpdate = true;
+        await cmsUpdateMusic({
+          id: music.id,
+          key: Key.RECOMMENDABLE,
+          value: recommendable ? '1' : '0',
         });
       }
 
@@ -154,6 +168,9 @@ const EditMusicDialog = () => {
             style={inputStyle}
             customInputDisabled
           />
+        </Label>
+        <Label label="是否可推荐" style={labelStyle}>
+          <Checkbox checked={recommendable} onChange={onRecommendableChange} />
         </Label>
         <Label label="别名" style={labelStyle}>
           <Input

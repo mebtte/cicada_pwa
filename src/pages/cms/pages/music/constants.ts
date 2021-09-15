@@ -20,6 +20,7 @@ export interface Music {
   ac: string;
   mvLink: string;
   forkFrom: string[];
+  recommendable: boolean;
 }
 
 export enum Query {
