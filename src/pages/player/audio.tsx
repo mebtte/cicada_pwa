@@ -50,7 +50,6 @@ class Audio extends React.PureComponent<Props, {}> {
     eventemitter.on(EventType.ACTION_TOGGLE_PLAY, this.onActionTogglePlay);
     eventemitter.on(EventType.ACTION_PLAY, this.onActionPlay);
     eventemitter.on(EventType.ACTION_PAUSE, this.onActionPause);
-    eventemitter.on(EventType.OPEN_MV_DIALOG, this.onActionPause);
 
     document.addEventListener('keydown', this.onKeyDown);
     window.addEventListener('beforeunload', this.beforeUnload);
@@ -87,7 +86,6 @@ class Audio extends React.PureComponent<Props, {}> {
     eventemitter.off(EventType.ACTION_TOGGLE_PLAY, this.onActionTogglePlay);
     eventemitter.off(EventType.ACTION_PLAY, this.onActionPlay);
     eventemitter.off(EventType.ACTION_PAUSE, this.onActionPause);
-    eventemitter.off(EventType.OPEN_MV_DIALOG, this.onActionPause);
 
     document.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('beforeunload', this.beforeUnload);

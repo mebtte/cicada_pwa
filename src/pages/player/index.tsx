@@ -28,7 +28,6 @@ import ListDrawer from './list_drawer';
 import MusicbillListDrawer from './musicbill_list_drawer';
 import MusicbillOrderDrawer from './musicbilll_order_drawer';
 import CreateMusicbillDialog from './create_musicbill_dialog';
-import MvDialog from './mv_dialog';
 import { QueueMusic } from './constants';
 import Lyric from './lyric';
 import UserDrawer from './user_drawer';
@@ -118,7 +117,6 @@ const Wrapper = () => {
       <MusicbillOrderDrawer />
       <UserDrawer />
 
-      <MvDialog />
       <CreateMusicbillDialog />
 
       <MusicOperatePopup />

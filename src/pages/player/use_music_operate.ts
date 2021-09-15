@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 
+import openLink from '@/utils/open_link';
 import dialog from '@/platform/dialog';
 import toast from '@/platform/toast';
 import { Music as MusicType } from './constants';
@@ -37,7 +38,7 @@ export default (music: MusicType, afterOperate?: (...params: any[]) => any) => {
     }
   }, [music, afterOperate]);
   const onWatchMv = useCallback(() => {
-    eventemitter.emit(EventType.OPEN_MV_DIALOG, music);
+    openLink(music.mvLink);
     if (afterOperate) {
       afterOperate();
     }
