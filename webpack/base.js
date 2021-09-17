@@ -1,6 +1,5 @@
 const path = require('path');
 const cp = require('child_process');
-const os = require('os');
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -19,12 +18,6 @@ if (error) {
 
 module.exports = {
   entry: path.join(__dirname, '../src/index.tsx'),
-  output: {
-    path: path.join(__dirname, '../build'),
-    filename: '[name]_[hash].js',
-    chunkFilename: '[name]_[hash].js',
-    publicPath: '/',
-  },
   module: {
     rules: [
       {
@@ -38,17 +31,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: [
-          {
-            loader: 'thread-loader',
-            options: {
-              workers: os.cpus().length,
-              poolTimeout:
-                process.env.NODE_ENV === 'production' ? 500 : Infinity,
-            },
-          },
-          'babel-loader',
-        ],
+        use: ['babel-loader'],
         exclude: [/node_modules/],
       },
       {
@@ -57,7 +40,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|svg|gif)$/,
-        use: ['file-loader'],
+        type: 'asset/resource',
       },
     ],
   },
@@ -66,6 +49,7 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, '..', 'src'),
     },
+    symlinks: false,
   },
   plugins: [
     new webpack.DefinePlugin({
