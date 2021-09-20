@@ -22,7 +22,7 @@ export default (id: string) => {
   const getLrc = useCallback(async () => {
     setLrc({ status: RequestStatus.LOADING });
     try {
-      const l = await getMusicLrc(id);
+      const l = await getMusicLrc({ musicId: id });
 
       if (idRef.current === id) {
         setLrc({ status: RequestStatus.SUCCESS, value: l });

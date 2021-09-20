@@ -53,7 +53,7 @@ export default (music: Music, turntable: boolean) => {
 
       setState(LRC_LOADING_STATE);
       try {
-        const lrc = await getMusicLrcRequest(music.id);
+        const lrc = await getMusicLrcRequest({ musicId: music.id, defer: 0 });
 
         if (canceled) {
           return;

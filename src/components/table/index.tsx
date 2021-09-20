@@ -21,6 +21,7 @@ const Style = styled.table<{ stickyHeader: boolean }>`
     background-color: #f6f6f6;
     font-weight: bold;
     top: 0;
+    white-space: nowrap;
   }
   td {
     padding: 10px 20px;

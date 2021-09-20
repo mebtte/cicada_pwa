@@ -26,14 +26,15 @@ function generateMethod(method: METHOD) {
       data,
       timeout = 1000 * 30,
       withToken = false,
-      noDefer = false,
+      defer = 1000,
       headers,
     }: {
       params?: { [key: string]: string | number };
       data?: any;
       timeout?: number;
       withToken?: boolean;
-      noDefer?: boolean;
+      /** 请求最短持续时间 */
+      defer?: number;
       headers?: { [key: string]: string };
     } = {},
   ) => {
@@ -61,7 +62,7 @@ function generateMethod(method: METHOD) {
           data,
           headers,
         }),
-        sleep(noDefer ? 0 : 1200),
+        sleep(defer),
       ]);
     } catch (error) {
       ({ response } = error);

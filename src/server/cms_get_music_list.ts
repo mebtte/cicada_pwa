@@ -58,6 +58,7 @@ function cmsGetMusicList({
     }[];
   }>('/api/cms/get_music_list', {
     withToken: true,
+    defer: 0,
     params: {
       page,
       page_size: pageSize,
