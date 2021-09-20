@@ -13,7 +13,7 @@ jobs:
 
       - name: create config.json
         run: |
-          echo '{ "server_origin": "${{secrets.SERVER_ORIGIN}}", "pwa_origin": "${{secrets.PWA_ORIGIN}}", "sentry_dsn": "${{secrets.SENTRY_DSN}}" }' > config.json
+          echo '{ "server_origin": "${{secrets.SERVER_ORIGIN}}",  "sentry_dsn": "${{secrets.SENTRY_DSN}}" }' > config.json
 
       - name: build
         run: |
@@ -21,7 +21,7 @@ jobs:
           npm run build
 
       - name: create CNAME
-        run: echo ${{secrets.PWA_ORIGIN}} > build/CNAME
+        run: echo 'https://cicada.mebtte.com' > build/CNAME
 
       - name: deploy to pages
         run: |

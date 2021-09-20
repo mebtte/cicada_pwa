@@ -72,7 +72,6 @@ module.exports = {
           .filter((f) => !INVALID_FILES.includes(f))
           .map((f) => `/cover/${f}`),
         serverOrigin: config.server_origin,
-        pwaOrigin: config.pwa_origin,
         sentryDSN: config.sentry_dsn,
       }),
     }),
@@ -86,9 +85,6 @@ module.exports = {
     }),
     new HtmlPlugin({
       template: path.join(__dirname, '../src/index.html'),
-      templateParameters: {
-        PWA_ORIGIN: config.pwa_origin,
-      },
     }),
   ],
 };
