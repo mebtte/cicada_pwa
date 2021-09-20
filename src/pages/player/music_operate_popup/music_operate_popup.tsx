@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Popup from '@/components/popup';
+import VerticalDrawer from '@/components/vertical_drawer';
 import { Name } from '@/components/icon';
 import { Music as MusicType } from '../constants';
 import useMusicOperate from '../use_music_operate';
@@ -36,7 +36,7 @@ const MusicOperateDrawer = ({
   } = useMusicOperate(music, onClose);
 
   return (
-    <Popup open={open} onClose={onClose} bodyProps={bodyProps}>
+    <VerticalDrawer open={open} onClose={onClose} bodyProps={bodyProps}>
       {music ? (
         <MusicInfoWrapper>
           <MusicInfo music={music} />
@@ -66,7 +66,7 @@ const MusicOperateDrawer = ({
         />
       ) : null}
       <MenuItem icon={Name.COPY_OUTLINE} label="复制 ID" onClick={onCopyID} />
-    </Popup>
+    </VerticalDrawer>
   );
 };
 
