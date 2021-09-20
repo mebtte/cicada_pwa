@@ -90,12 +90,11 @@ const Tooltip = ({
 }) => {
   const option = PLACEMENT_MAP_OPTION[placement];
   const [spring, setSpring] = useSpring(() => option.spring);
-  const onMount = useCallback(
+  const onShow = useCallback(
     () =>
       void setSpring({
         ...TARGET_SPRING,
-        config: SPRING_CONFIG,
-        onRest: () => {},
+        config: { ...SPRING_CONFIG, clamp: false },
       }),
     [setSpring],
   );
@@ -117,7 +116,7 @@ const Tooltip = ({
         </Message>
       )}
       animation
-      onMount={onMount}
+      onShow={onShow}
       onHide={onHide}
     >
       {children}
