@@ -5,16 +5,8 @@ const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
-const configSchema = require('./config_schema');
-const config = require('../config.json');
-
 const INVALID_FILES = ['.DS_Store'];
 const STATIC_DIR = path.join(__dirname, '../src/static');
-
-const { error } = configSchema.validate(config, { allowUnknown: true });
-if (error) {
-  throw error;
-}
 
 module.exports = {
   entry: path.join(__dirname, '../src/index.tsx'),
@@ -71,8 +63,6 @@ module.exports = {
           .readdirSync(`${STATIC_DIR}/cover`)
           .filter((f) => !INVALID_FILES.includes(f))
           .map((f) => `/cover/${f}`),
-        serverOrigin: config.server_origin,
-        sentryDSN: config.sentry_dsn,
       }),
     }),
     new CopyPlugin({

@@ -10,10 +10,6 @@
 
 ## 开发/构建
 
-### 配置
-
-开发/构建之前需要进行配置, 在项目根目录创建配置文件 `config.json`, 支持的配置项请查看 [schema](./webpack/config_schema.js).
-
 ### 开发
 
 ```bash

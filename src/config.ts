@@ -2,7 +2,7 @@ import { SERVER_ORIGIN } from './constants/storage_key';
 
 const config = {
   ...__CONFIG__,
-  serverOrigin: localStorage.getItem(SERVER_ORIGIN) || __CONFIG__.serverOrigin,
+  serverOrigin: localStorage.getItem(SERVER_ORIGIN) || '',
   buildTime: new Date(__CONFIG__.buildTime),
 };
 
