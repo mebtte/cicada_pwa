@@ -38,6 +38,7 @@ export default (music: MusicType, afterOperate?: (...params: any[]) => any) => {
     }
   }, [music, afterOperate]);
   const onWatchMv = useCallback(() => {
+    eventemitter.emit(EventType.ACTION_PAUSE, {});
     openLink(music.mvLink);
     if (afterOperate) {
       afterOperate();

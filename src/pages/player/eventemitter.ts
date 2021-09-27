@@ -8,9 +8,9 @@ export enum EventType {
   AUDIO_TIME_UPDATED = 'audio_time_updated', // 音频当前时间更新 { currentMillisecond: number }
   AUDIO_ERROR = 'audio_error', // 音频发生错误
 
-  ACTION_TOGGLE_PLAY = 'action_toggle_play', // 播放/暂停
-  ACTION_PLAY = 'action_play', // 播放
-  ACTION_PAUSE = 'action_pause', // 暂停
+  ACTION_TOGGLE_PLAY = 'action_toggle_play', // 播放/暂停, { }
+  ACTION_PLAY = 'action_play', // 播放, { }
+  ACTION_PAUSE = 'action_pause', // 暂停, { }
   ACTION_SET_TIME = 'action_set_time', // 跳转时间, { second: number }
   ACTION_PREVIOUS = 'action_previous', // 上一首
   ACTION_NEXT = 'action_next', // 下一首
