@@ -1,4 +1,4 @@
-# [知了](https://cicada.mebtte.com) [![.github/workflows/deploy_to_pages.yml](https://github.com/mebtte/cicada_pwa/actions/workflows/deploy_to_pages.yml/badge.svg)](https://github.com/mebtte/cicada_pwa/actions/workflows/deploy_to_pages.yml)
+# 知了
 
 知了 PWA 客户端, 支持 Web 浏览器.
 
@@ -6,7 +6,6 @@
 
 - cicada_server: 知了服务器端, 即将开源
 - [cicada_electron](https://github.com/mebtte/cicada_electron): 知了 Electron 客户端, 支持 macOS/Windows
-- [cicada_expo](https://github.com/mebtte/cicada_expo): 知了 Expo 客户端, 支持 Android/iOS/Web 浏览器
 
 ## 开发/构建
 
