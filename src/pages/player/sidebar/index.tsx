@@ -24,7 +24,7 @@ const Sidebar = () => {
   return (
     <Style>
       <User user={user} />
-      <Menu user={user} />
+      <Menu />
       <MusicbillList />
     </Style>
   );

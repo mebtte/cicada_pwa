@@ -11,7 +11,6 @@ interface Config {
   coverList: string[];
 
   serverOrigin: string;
-  pwaOrigin: string;
 
   sentryDSN?: string;
 }
