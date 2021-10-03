@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import { ZIndex } from '../constants/style';
-import scrollbarAsNeeded from '../style/scrollbar_as_needed';
+import { ZIndex } from '../../constants/style';
+import scrollbarAsNeeded from '../../style/scrollbar_as_needed';
 
 const Mask = styled(animated.div)`
   z-index: ${ZIndex.DRAWER};
@@ -92,13 +92,6 @@ const Drawer = ({
     document.body,
   );
 };
-
-export const Title = styled.div`
-  font-size: 20px;
-  font-weight: 600;
-  padding: 40px 20px 20px 20px;
-  color: rgb(55 55 55);
-`;
 
 export default React.memo(Drawer, (prevProps, props) => {
   if (prevProps.open || props.open) {
