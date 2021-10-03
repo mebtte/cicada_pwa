@@ -45,7 +45,6 @@ import GithubFill from './github_fill';
 import RecommendFill from './icons/recommend_fill';
 import CloudOutline from './icons/cloud_outline';
 import BrowserFill from './icons/browser_fill';
-import MobilephoneFill from './mobilephone_fill';
 import HouseOutline from './house_outline';
 import DashboardOutline from './icons/dashboard_outline';
 import IDFill from './id_fill';
@@ -54,8 +53,10 @@ import HistoryOutline from './icons/history_outline';
 import LeftOutline from './icons/left_outline';
 import RightOutline from './icons/right_outline';
 import MenuOutline from './icons/menu_outline';
+import PcOutline from './icons/pc_outline';
 
 export enum Name {
+  PC_OUTLINE = 'PcOutline',
   MENU_OUTLINE = 'MenuOutline',
   LEFT_OUTLINE = 'LeftOutline',
   RIGHT_OUTLINE = 'RightOutline',
@@ -66,7 +67,6 @@ export enum Name {
   ID_FILL = 'IDFill',
   DASHBOARD_OUTLINE = 'DashboardOutline',
   HOUSE_OUTLINE = 'HouseOutline',
-  MOBILEPHONE_FILL = 'MobilephoneFill',
   BROWSER_FILL = 'BrowserFill',
   CLOUD_OUTLINE = 'CloudOutline',
   RECOMMEND_FILL = 'RecommendFill',
@@ -115,6 +115,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
+  [Name.PC_OUTLINE]: PcOutline,
   [Name.MENU_OUTLINE]: MenuOutline,
   [Name.LEFT_OUTLINE]: LeftOutline,
   [Name.RIGHT_OUTLINE]: RightOutline,
@@ -125,7 +126,6 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.ID_FILL]: IDFill,
   [Name.DASHBOARD_OUTLINE]: DashboardOutline,
   [Name.HOUSE_OUTLINE]: HouseOutline,
-  [Name.MOBILEPHONE_FILL]: MobilephoneFill,
   [Name.BROWSER_FILL]: BrowserFill,
   [Name.CLOUD_OUTLINE]: CloudOutline,
   [Name.RECOMMEND_FILL]: RecommendFill,

@@ -6,6 +6,7 @@ import Avatar, { Shape } from '@/components/avatar';
 import { User as UserType } from '@/constants/user';
 import useHistory from '@/utils/use_history';
 import { PLAYER_PATH } from '@/constants/route';
+import ellipsis from '@/style/ellipsis';
 
 const Style = styled.div`
   display: flex;
@@ -13,8 +14,6 @@ const Style = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-
-  padding: 30px 0;
 
   > .avatar {
     cursor: pointer;
@@ -24,6 +23,9 @@ const Style = styled.div`
     font-size: 14px;
     color: var(--text-color-primary);
     cursor: pointer;
+
+    padding: 0 15px;
+    ${ellipsis}
 
     &:hover {
       color: var(--color-primary);

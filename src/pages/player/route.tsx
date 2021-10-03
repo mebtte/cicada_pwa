@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, Redirect } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
 
 import { PLAYER_PATH } from '@/constants/route';
-import Recommendation from './pages/recommendation';
+import Discover from './pages/discover';
 import Search from './pages/search';
 import Musicbill from './pages/musicbill';
 import PublicMusicbill from './pages/public_musicbill';
@@ -37,6 +37,7 @@ const Wrapper = () => {
       {transitions((style, l) => (
         <AnimatedDiv style={style}>
           <Switch location={l}>
+            <Route path={PLAYER_PATH.DISCOVER} component={Discover} />
             <Route path={PLAYER_PATH.SEARCH} component={Search} />
             <Route path={PLAYER_PATH.MUSICBILL} component={Musicbill} />
             <Route
@@ -45,7 +46,7 @@ const Wrapper = () => {
             />
             <Route path={PLAYER_PATH.SETTING} component={Setting} />
             <Route path={PLAYER_PATH.PROFILE} component={Profile} />
-            <Route path="*" component={Recommendation} />
+            <Redirect to={PLAYER_PATH.DISCOVER} />
           </Switch>
         </AnimatedDiv>
       ))}
