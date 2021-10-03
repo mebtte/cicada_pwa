@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
-import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import withSignin from '@/platform/with_signin';
 import electron from '@/platform/electron';
 import PageContainer from '../page_container';
@@ -31,26 +30,23 @@ import CreateMusicbillDialog from './create_musicbill_dialog';
 import { QueueMusic } from './constants';
 import Lyric from './lyric';
 import UserDrawer from './user_drawer';
+import useSmallView from './use_small_view';
 
-const Scrollable = styled(PageContainer)`
-  overflow: auto;
-  ${scrollbarAsNeeded};
-`;
-const Style = styled.div`
-  min-width: 900px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+const Style = styled(PageContainer)`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
   > .container {
     flex: 1;
     min-height: 0;
+
     display: flex;
+
     > .content {
       flex: 1;
       min-width: 0;
+
       display: flex;
       flex-direction: column;
     }
@@ -58,6 +54,8 @@ const Style = styled.div`
 `;
 
 const Wrapper = () => {
+  const smallView = useSmallView();
+
   const { status: getMusicbillListStatus, musicbillList } = useMusicbillList();
   const playMode = usePlayMode();
   const {
@@ -75,6 +73,8 @@ const Wrapper = () => {
   return (
     <Context.Provider
       value={{
+        smallView,
+
         getMusicbillListStatus,
         musicbillList,
 
@@ -95,20 +95,18 @@ const Wrapper = () => {
       <Helmet>
         <title>知了</title>
       </Helmet>
-      <Scrollable>
-        <Style>
-          <div className="container">
-            <Sidebar />
-            <div className="content">
-              <Header />
-              <Route />
-            </div>
+      <Style>
+        <div className="container">
+          <Sidebar />
+          <div className="content">
+            <Header />
+            <Route />
           </div>
-          <Controller />
+        </div>
+        <Controller />
 
-          <Lyric music={queueMusic ? queueMusic.music : null} />
-        </Style>
-      </Scrollable>
+        <Lyric music={queueMusic ? queueMusic.music : null} />
+      </Style>
 
       <SingerDrawer />
       <MusicDrawer />

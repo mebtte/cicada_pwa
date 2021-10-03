@@ -4,6 +4,8 @@ import { RequestStatus } from '@/constants';
 import { PlayMode, MusicWithIndex, QueueMusic, Musicbill } from './constants';
 
 interface Context {
+  smallView: boolean;
+
   getMusicbillListStatus: RequestStatus;
   musicbillList: Musicbill[];
 
@@ -24,6 +26,8 @@ interface Context {
 }
 
 const context = createContext<Context>({
+  smallView: true,
+
   getMusicbillListStatus: RequestStatus.LOADING,
   musicbillList: [],
 
