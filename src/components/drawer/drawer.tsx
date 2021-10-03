@@ -1,13 +1,52 @@
 import React, { HTMLAttributes, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import { ZIndex } from '../../constants/style';
-import scrollbarAsNeeded from '../../style/scrollbar_as_needed';
+import { Direction } from './constants';
+
+const DIRECTION_MAP: Record<
+  Direction,
+  {
+    transition: unknown;
+    bodyCSS: ReturnType<typeof css>;
+  }
+> = {
+  [Direction.LEFT]: {
+    transition: {
+      from: {
+        opacity: 0,
+        transform: 'translate(-100%)',
+      },
+      enter: { opacity: 1, transform: 'translate(0%)' },
+      leave: {
+        opacity: 0,
+        transform: 'translate(-100%)',
+      },
+    },
+    bodyCSS: css`
+      left: 0;
+    `,
+  },
+  [Direction.RIGHT]: {
+    transition: {
+      from: {
+        opacity: 0,
+        transform: 'translate(100%)',
+      },
+      enter: { opacity: 1, transform: 'translate(0%)' },
+      leave: {
+        opacity: 0,
+        transform: 'translate(100%)',
+      },
+    },
+    bodyCSS: css`
+      right: 0;
+    `,
+  },
+};
 
 const Mask = styled(animated.div)`
-  z-index: ${ZIndex.DRAWER};
   position: fixed;
   width: 100%;
   height: 100%;
@@ -16,84 +55,79 @@ const Mask = styled(animated.div)`
   background-color: rgb(0 0 0 / 0.5);
   -webkit-app-region: no-drag;
 `;
-const Body = styled(animated.div)`
-  ${scrollbarAsNeeded}
+const Body = styled(animated.div)<{ direction: Direction }>`
   position: absolute;
   top: 0;
-  right: 0;
   height: 100%;
   background-color: white;
-  overflow: hidden;
-  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
-    0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
+
+  ${({ direction }) => DIRECTION_MAP[direction].bodyCSS}
 `;
+
+type Props = React.PropsWithChildren<{
+  open: boolean;
+  onClose: () => void;
+
+  direction?: Direction;
+
+  maskProps?: HTMLAttributes<HTMLDivElement>;
+  bodyProps?: HTMLAttributes<HTMLDivElement>;
+}>;
 
 const Drawer = ({
   open,
   onClose,
 
+  direction = Direction.RIGHT,
+
   maskProps = {},
   bodyProps = {},
 
   children,
-}: React.PropsWithChildren<{
-  open: boolean;
-  onClose: () => void;
-
-  maskProps?: HTMLAttributes<HTMLDivElement>;
-  bodyProps?: HTMLAttributes<HTMLDivElement>;
-}>) => {
+}: Props) => {
   const bodyRef = useRef<HTMLDivElement>();
-  const onRequestClose = (event) => {
-    // eslint-disable-next-line no-unused-expressions
-    maskProps.onClick && maskProps.onClick(event);
+  const onRequestClose: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    if (maskProps.onClick) {
+      maskProps.onClick(event);
+    }
 
-    if (onClose && !bodyRef.current.contains(event.target)) {
+    if (onClose && !bodyRef.current.contains(event.target as Node)) {
       onClose();
     }
   };
 
-  const transitions = useTransition(open, {
-    from: {
-      opacity: 0,
-      transform: 'translate(120%)',
-    },
-    enter: { opacity: 1, transform: 'translate(0%)' },
-    leave: {
-      opacity: 0,
-      transform: 'translate(120%)',
-    },
-  });
-  return ReactDOM.createPortal(
-    transitions(({ opacity, transform }, o) =>
-      o ? (
-        <Mask
-          {...maskProps}
+  const transitions = useTransition(open, DIRECTION_MAP[direction].transition);
+  return transitions(({ opacity, transform }, o) =>
+    o ? (
+      <Mask
+        {...maskProps}
+        style={{
+          opacity,
+          ...maskProps.style,
+        }}
+        onClick={onRequestClose}
+      >
+        <Body
+          {...bodyProps}
+          ref={bodyRef}
+          direction={direction}
           style={{
-            opacity,
-            ...maskProps.style,
+            transform,
+            ...bodyProps.style,
           }}
-          onClick={onRequestClose}
         >
-          <Body
-            {...bodyProps}
-            ref={bodyRef}
-            style={{
-              transform,
-              ...bodyProps.style,
-            }}
-          >
-            {children}
-          </Body>
-        </Mask>
-      ) : null,
-    ),
-    document.body,
+          {children}
+        </Body>
+      </Mask>
+    ) : null,
   );
 };
 
-export default React.memo(Drawer, (prevProps, props) => {
+const Portal = (props: Props) =>
+  ReactDOM.createPortal(<Drawer {...props} />, document.body);
+
+export default React.memo(Portal, (prevProps, props) => {
   if (prevProps.open || props.open) {
     return false;
   }
