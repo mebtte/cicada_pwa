@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { useTransition, animated, SpringConfig } from 'react-spring';
 
-import { ZIndex } from '@/constants/style';
 import scrollbarNever from '@/style/scrollbar_never';
 
 const TRANSITION = {
@@ -22,7 +21,6 @@ const TRANSITION = {
 };
 
 const Mask = styled(animated.div)`
-  z-index: ${ZIndex.DIALOG};
   position: fixed;
   width: 100%;
   height: 100%;
