@@ -12,6 +12,7 @@ export const PLAYER_PATH = {
   PUBLIC_MUSICBILL: `${ROOT_PATH.PLAYER}/public_musicbill`,
   SETTING: `${ROOT_PATH.PLAYER}/setting`,
   SEARCH: `${ROOT_PATH.PLAYER}/search`,
+  PROFILE: `${ROOT_PATH.PLAYER}/profile`,
 };
 
 export const CMS_PATH = {

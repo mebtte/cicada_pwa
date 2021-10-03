@@ -6,7 +6,7 @@ import withSignin from '@/platform/with_signin';
 import electron from '@/platform/electron';
 import PageContainer from '../page_container';
 import Sidebar from './sidebar';
-import Header from './header';
+import Nav from './nav';
 import Controller from './controller';
 import Route from './route';
 import useMusicbillList from './use_musicbill_list';
@@ -99,7 +99,7 @@ const Wrapper = () => {
         <div className="container">
           <Sidebar />
           <div className="content">
-            <Header />
+            <Nav />
             <Route />
           </div>
         </div>

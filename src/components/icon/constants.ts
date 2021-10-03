@@ -36,8 +36,6 @@ import SearchListOutline from './search_list_outline';
 import MusicFill from './music_fill';
 import FigureFill from './figure_fill';
 import MinimizeOutline from './minimize_outline';
-import MacOSColorful from './mac_os_colorful';
-import WindowsColorful from './windows_colorful';
 import ComputerFill from './icons/computer_fill';
 import JumpFill from './jump_fill';
 import GotoOutline from './goto_outline';
@@ -55,8 +53,10 @@ import EmailListFill from './icons/email_list_fill';
 import HistoryOutline from './icons/history_outline';
 import LeftOutline from './icons/left_outline';
 import RightOutline from './icons/right_outline';
+import MenuOutline from './icons/menu_outline';
 
 export enum Name {
+  MENU_OUTLINE = 'MenuOutline',
   LEFT_OUTLINE = 'LeftOutline',
   RIGHT_OUTLINE = 'RightOutline',
   COPY_OUTLINE = 'CopyOutline',
@@ -76,8 +76,6 @@ export enum Name {
   GOTO_OUTLINE = 'GotoOutline',
   JUMP_FILL = 'JumpFill',
   COMPUTER_FILL = 'ComputerFill',
-  WINDOW_COLORFULE = 'WindowsColorful',
-  MAC_OS_COLORFULE = 'MacOSColorful',
   MINIMIZE_OUTLINE = 'MinimizeOutline',
   FIGURE_FILL = 'FigureFill',
   MUSIC_FILL = 'MusicFill',
@@ -117,6 +115,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
+  [Name.MENU_OUTLINE]: MenuOutline,
   [Name.LEFT_OUTLINE]: LeftOutline,
   [Name.RIGHT_OUTLINE]: RightOutline,
   [Name.COPY_OUTLINE]: CopyOutline,
@@ -135,8 +134,6 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.CMS_OUTLINE]: CmsOutline,
   [Name.JUMP_FILL]: JumpFill,
   [Name.COMPUTER_FILL]: ComputerFill,
-  [Name.WINDOW_COLORFULE]: WindowsColorful,
-  [Name.MAC_OS_COLORFULE]: MacOSColorful,
   [Name.MINIMIZE_OUTLINE]: MinimizeOutline,
   [Name.FIGURE_FILL]: FigureFill,
   [Name.MUSIC_FILL]: MusicFill,

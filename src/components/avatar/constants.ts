@@ -13,7 +13,7 @@ export type CommonProps = {
   /** 尺寸, 数字单位 px 或者字符串 */
   size: number;
   /** 形状 */
-  shape: Shape;
+  shape?: Shape;
   style?: React.CSSProperties;
 } & HTMLAttributes<HTMLDivElement>;
 

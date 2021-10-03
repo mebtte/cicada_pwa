@@ -1,33 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import React, { useContext } from 'react';
 
-import { User as UserType } from '@/constants/user';
-import User from './user';
-import MusicbillList from './musicbill_list';
-import Menu from './menu';
-
-const Style = styled.div`
-  z-index: 2;
-  position: relative;
-  width: 240px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding-top: 30px;
-`;
+import Context from '../context';
+import Big from './big';
+import Small from './small';
 
 const Sidebar = () => {
-  const { user } = useSelector(({ user: u }: { user: UserType }) => ({
-    user: u,
-  }));
-  return (
-    <Style>
-      <User user={user} />
-      <Menu />
-      <MusicbillList />
-    </Style>
-  );
+  const { smallView } = useContext(Context);
+  return smallView ? <Small /> : <Big />;
 };
 
-export default React.memo(Sidebar);
+export default Sidebar;
