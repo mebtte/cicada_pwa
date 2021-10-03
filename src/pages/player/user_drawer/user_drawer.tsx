@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
 
-import Drawer from '@/components/drawer';
+import Drawer from '@/components/horizontal_drawer';
 import useData from './use_data';
 import ErrorDisplay from './error_display';
 import Skeleton from './skeleton';

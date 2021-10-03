@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
 import dialog from '@/platform/dialog';
-import Drawer from '@/components/drawer';
+import Drawer from '@/components/horizontal_drawer';
 import eventemitter, { EventType } from '../eventemitter';
 import { Tab as TabType } from './constant';
 import Context from '../context';

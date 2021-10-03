@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { RequestStatus } from '@/constants';
 import LoadingCard from '@/components/loading_card';
 import ErrorCard from '@/components/error_card';
-import Drawer, { Title } from '@/components/drawer';
+import Drawer, { Title } from '@/components/horizontal_drawer';
 import MusicbillList from './musicbill_list';
 import eventemitter, { EventType } from '../eventemitter';
 import Context from '../context';

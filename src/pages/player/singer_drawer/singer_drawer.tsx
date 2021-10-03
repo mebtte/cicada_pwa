@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
 import ErrorCard from '@/components/error_card';
-import Drawer from '@/components/drawer';
+import Drawer from '@/components/horizontal_drawer';
 import useSinger from './use_singer';
 import SingerInfo, { Skeleton as SingerInfoSkeleton } from './singer_info';
 import Action from './action';

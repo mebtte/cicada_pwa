@@ -7,7 +7,7 @@ import Skeleton from '@/components/skeleton';
 import Avatar from '@/components/avatar';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import ErrorCard from '@/components/error_card';
-import Drawer from '@/components/drawer';
+import Drawer from '@/components/horizontal_drawer';
 import { COVER_SIZE, PADDING } from './constants';
 import useMusic from './use_music';
 import eventemitter, { EventType } from '../eventemitter';

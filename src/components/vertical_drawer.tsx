@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
-
 const Mask = styled(animated.div)`
   position: fixed;
   top: 0;
@@ -21,15 +19,10 @@ const Mask = styled(animated.div)`
 const Body = styled(animated.div)`
   border-radius: 4px 4px 0 0;
   width: 100%;
-  max-width: 500px;
-  max-height: 75%;
 
-  overflow: auto;
-  ${scrollbarAsNeeded}
-
-  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
-    0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
   background-color: #fff;
+
+  box-sizing: border-box;
 `;
 
 /**
