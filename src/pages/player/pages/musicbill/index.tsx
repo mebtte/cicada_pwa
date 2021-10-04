@@ -9,7 +9,7 @@ const Wrapper = () => {
   const { id } = useParams<{ id: string }>();
   const { musicbillList } = useContext(Context);
   const musicbill = useMemo(
-    () => musicbillList.find((m) => m.id === id),
+    () => musicbillList.value.find((m) => m.id === id),
     [musicbillList, id],
   );
 

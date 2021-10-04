@@ -47,7 +47,7 @@ const MusicbillOrderDrawer = () => {
   const onClose = () => {
     setOpen(false);
 
-    const originaMusicbillIds = musicbillList.map((m) => m.id).join(',');
+    const originaMusicbillIds = musicbillList.value.map((m) => m.id).join(',');
     const orderedMusicbillIdList = localMusicbillList.map((m) => m.id);
     const orderedMusicbillIds = orderedMusicbillIdList.join(',');
 
@@ -86,7 +86,7 @@ const MusicbillOrderDrawer = () => {
   useEffect(() => {
     const openListener = () => {
       setLocalMusicbillList(
-        musicbillList.map((m) => ({
+        musicbillList.value.map((m) => ({
           id: m.id,
           cover: m.cover,
           name: m.name,

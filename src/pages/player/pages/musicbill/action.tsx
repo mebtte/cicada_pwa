@@ -87,7 +87,7 @@ const Action = ({ musicbill }: { musicbill: Musicbill }) => {
           size={ACTION_SIZE}
           loading={status === RequestStatus.LOADING}
           onClick={() =>
-            playerEventemitter.emit(PlayerEventType.FETCH_MUSICBILL, {
+            playerEventemitter.emit(PlayerEventType.GET_MUSICBILL_DETAIL, {
               id: musicbill.id,
             })
           }

@@ -27,7 +27,7 @@ export enum EventType {
   ACTION_UPDATE_VOLUME = 'action_update_volume', // 调整音量
 
   RELOAD_MUSICBILL_LIST = 'update_musicbill_list', // 重新获取歌单列表, { }
-  FETCH_MUSICBILL = 'fetch_musicbill', // 获取歌单 { id: string }
+  GET_MUSICBILL_DETAIL = 'get_musicbill_detail', // 获取歌单详情 { id: string }
   ADD_MUSIC_TO_MUSICBILL = 'add_music_to_musicbill', // 添加音乐到歌单
   REMOVE_MUSIC_FROM_MUSICBILL = 'remove_music_from_musicbill', // 从歌单移除音乐
 

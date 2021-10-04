@@ -56,7 +56,7 @@ const Style = styled(PageContainer)`
 const Wrapper = () => {
   const smallView = useSmallView();
 
-  const { status: getMusicbillListStatus, musicbillList } = useMusicbillList();
+  const musicbillList = useMusicbillList();
   const playMode = usePlayMode();
   const {
     loading: audioLoading,
@@ -75,7 +75,6 @@ const Wrapper = () => {
       value={{
         smallView,
 
-        getMusicbillListStatus,
         musicbillList,
 
         audioLoading,

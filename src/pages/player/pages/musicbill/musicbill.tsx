@@ -27,7 +27,7 @@ const Style = styled.div`
 const Musicbill = ({ musicbill }: { musicbill: MusicbillType }) => {
   useEffect(() => {
     if (musicbill.status === RequestStatus.NOT_START) {
-      playerEventemitter.emit(PlayerEventType.FETCH_MUSICBILL, {
+      playerEventemitter.emit(PlayerEventType.GET_MUSICBILL_DETAIL, {
         id: musicbill.id,
       });
     }
