@@ -4,9 +4,10 @@ import styled, { css } from 'styled-components';
 import Empty from '@/components/empty';
 import Pagination from '@/components/pagination';
 import CircularLoader from '@/components/circular_loader';
+import Button from '@/components/button';
 import ErrorCard from '@/components/error_card';
 import useHistory from '@/utils/use_history';
-import Dialog, { Title, Content } from '@/components/dialog';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
 import { Query } from '../constants';
 import useRecordList from './use_record_list';
 import RecordList from './record_list';
@@ -82,9 +83,12 @@ const OperateRecordDialog = ({
     );
   }
   return (
-    <Dialog open={open} onClose={onClose} bodyProps={bodyProps}>
+    <Dialog open={open} bodyProps={bodyProps}>
       <Title>操作记录</Title>
       <Content>{content}</Content>
+      <Action>
+        <Button label="关闭" onClick={onClose} />
+      </Action>
     </Dialog>
   );
 };

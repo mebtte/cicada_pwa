@@ -2,10 +2,11 @@ import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 import CircularLoader from '@/components/circular_loader';
+import Button from '@/components/button';
 import Pagination from '@/components/pagination';
 import ErrorCard from '@/components/error_card';
 import Empty from '@/components/empty';
-import Dialog, { Title, Content } from '@/components/dialog';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
 import useHistory from '@/utils/use_history';
 import { Query } from '../constants';
 import useEmailNotificationList from './use_email_notification_list';
@@ -89,9 +90,12 @@ const EmailNotificationHistoryDialog = ({
     );
   }
   return (
-    <Dialog open={open} onClose={onClose} bodyProps={bodyProps}>
+    <Dialog open={open} bodyProps={bodyProps}>
       <Title>邮件通知记录</Title>
       <Content>{content}</Content>
+      <Action>
+        <Button label="关闭" onClick={onClose} />
+      </Action>
     </Dialog>
   );
 };

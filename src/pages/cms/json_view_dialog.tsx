@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import JSONView from 'react-json-view';
 
-import Dialog, { Content } from '@/components/dialog';
+import Button from '@/components/button';
+import Dialog, { Content, Action } from '@/components/dialog';
 import eventemitter, { EventType } from './eventemitter';
 
 const bodyProps = {
@@ -22,10 +23,13 @@ const JsonViewDialog = () => {
     return () => void eventemitter.off(EventType.VIEW_JSON, openListener);
   }, []);
   return (
-    <Dialog open={open} onClose={onClose} bodyProps={bodyProps}>
+    <Dialog open={open} bodyProps={bodyProps}>
       <Content>
         <JSONView src={json} enableClipboard={false} />
       </Content>
+      <Action>
+        <Button label="关闭" onClick={onClose} />
+      </Action>
     </Dialog>
   );
 };
