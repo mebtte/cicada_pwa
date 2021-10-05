@@ -5,10 +5,10 @@ import { useTransition, animated } from 'react-spring';
 import Empty from '@/components/empty';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import ErrorCard from '@/components/error_card';
-import LoadingCard from '@/components/loading_card';
 import Context from '../../../context';
 import eventemitter, { EventType } from '../../../eventemitter';
 import MusicbillList from './musicbill_list';
+import Loading from './loading';
 
 const Style = styled.div`
   > .label {
@@ -46,7 +46,6 @@ const CardContainer = styled(animated.div)`
     padding-bottom: 30px;
   }
 
-  > .loader,
   > .empty {
     padding: 30px 0;
   }
@@ -94,11 +93,7 @@ const Wrapper = () => {
       <div className="content">
         {transitions((style, loading) => {
           if (loading) {
-            return (
-              <CardContainer style={style}>
-                <LoadingCard className="loader" />
-              </CardContainer>
-            );
+            return <Loading style={style} />;
           }
           if (musicbillList.error) {
             return (

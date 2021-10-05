@@ -27,6 +27,7 @@ const MusicbillList = ({
         to={PLAYER_PATH.MUSICBILL.replace(':id', musicbill.id)}
         cover={musicbill.cover}
         label={musicbill.name}
+        publiz={musicbill.public}
       />
     ))}
   </Style>
