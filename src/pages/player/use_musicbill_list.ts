@@ -12,34 +12,23 @@ import eventemitter, { EventType } from './eventemitter';
 import { Music, Musicbill } from './constants';
 import { transformMusic } from './utils';
 
-export type MusicbillList =
-  | {
-      loading: true;
-      error: null;
-      value: Musicbill[];
-    }
-  | {
-      loading: false;
-      error: Error;
-      value: Musicbill[];
-    }
-  | {
-      loading: false;
-      error: null;
-      value: Musicbill[];
-    };
-
-export const loadingState = {
-  loading: true,
-  error: null,
-  value: [],
+export type MusicbillList = {
+  loading: boolean;
+  error: Error | null;
+  value: Musicbill[];
 };
 
 export default () => {
-  const [musicbillList, setMusicbillList] =
-    useState<MusicbillList>(loadingState);
+  const [musicbillList, setMusicbillList] = useState<MusicbillList>({
+    loading: true,
+    error: null,
+    value: [],
+  });
   const getMusicbillList = useCallback(async () => {
-    setMusicbillList(loadingState);
+    setMusicbillList((mbl) => ({
+      ...mbl,
+      loading: true,
+    }));
     try {
       const mbl = await getMusicbillListRequest();
       setMusicbillList({

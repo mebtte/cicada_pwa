@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
+import Empty from '@/components/empty';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import ErrorCard from '@/components/error_card';
 import LoadingCard from '@/components/loading_card';
@@ -12,10 +13,11 @@ import MusicbillList from './musicbill_list';
 const Style = styled.div`
   > .label {
     padding: 0 15px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 
     display: flex;
     align-items: center;
+    gap: 5px;
 
     > .text {
       flex: 1;
@@ -44,18 +46,21 @@ const CardContainer = styled(animated.div)`
     padding-bottom: 30px;
   }
 
-  > .loader {
+  > .loader,
+  > .empty {
     padding: 30px 0;
   }
 `;
 
+const openMusicbillCreateDialog = () =>
+  eventemitter.emit(EventType.OPEN_CREATE_MUSICBILL_DIALOG, {});
 const reloadMusicbillList = () =>
   eventemitter.emit(EventType.RELOAD_MUSICBILL_LIST, {});
 
 const Wrapper = () => {
   const { musicbillList } = useContext(Context);
 
-  const transitions = useTransition(musicbillList, {
+  const transitions = useTransition(musicbillList.loading, {
     initial: {
       opacity: 1,
     },
@@ -74,29 +79,42 @@ const Wrapper = () => {
       <div className="label">
         <div className="text">我的歌单</div>
         <IconButton
-          name={IconButtonName.REFRESH_OUTLINE}
+          name={IconButtonName.PLUS_OUTLINE}
+          size={16}
+          disabled={musicbillList.loading}
+          onClick={openMusicbillCreateDialog}
+        />
+        <IconButton
+          name={IconButtonName.MORE_OUTLINE}
           size={16}
           loading={musicbillList.loading}
           onClick={reloadMusicbillList}
         />
       </div>
       <div className="content">
-        {transitions((style, mbl) => {
-          if (mbl.error) {
+        {transitions((style, loading) => {
+          if (loading) {
+            return (
+              <CardContainer style={style}>
+                <LoadingCard className="loader" />
+              </CardContainer>
+            );
+          }
+          if (musicbillList.error) {
             return (
               <CardContainer style={style}>
                 <ErrorCard
                   className="error"
-                  errorMessage={mbl.error.message}
+                  errorMessage={musicbillList.error.message}
                   retry={reloadMusicbillList}
                 />
               </CardContainer>
             );
           }
-          if (mbl.loading) {
+          if (!musicbillList.value.length) {
             return (
               <CardContainer style={style}>
-                <LoadingCard className="loader" />
+                <Empty className="empty" description="空的歌单列表" />
               </CardContainer>
             );
           }

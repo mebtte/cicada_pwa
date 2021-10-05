@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 import { PlayMode, MusicWithIndex, QueueMusic } from './constants';
-import { loadingState, MusicbillList } from './use_musicbill_list';
+import { MusicbillList } from './use_musicbill_list';
 
 interface Context {
   smallView: boolean;
@@ -27,7 +27,11 @@ interface Context {
 const context = createContext<Context>({
   smallView: true,
 
-  musicbillList: loadingState,
+  musicbillList: {
+    loading: true,
+    error: null,
+    value: [],
+  },
 
   playMode: PlayMode.SQ,
 

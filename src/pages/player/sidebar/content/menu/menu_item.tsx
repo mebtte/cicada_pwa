@@ -13,7 +13,6 @@ const Style = styled(NavLink)`
 
   text-decoration: none;
   color: var(--text-color-primary);
-  transition: background 300ms, color 300ms;
 
   > .icon {
     color: inherit;

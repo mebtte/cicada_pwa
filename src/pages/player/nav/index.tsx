@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import eventemitter, { EventType } from '../eventemitter';
@@ -7,9 +7,8 @@ import Logo from './logo';
 import Context from '../context';
 import Search from './search';
 
-const Style = styled.div`
+const Style = styled.div<{ smallView: boolean }>`
   height: 45px;
-  padding: 5px 15px 0 15px;
 
   display: flex;
   align-items: center;
@@ -18,6 +17,10 @@ const Style = styled.div`
     flex: 1;
     min-width: 0;
   }
+
+  ${({ smallView }) => css`
+    padding: ${smallView ? '5px 15px 0 15px' : '5px 20px 0 20px'};
+  `}
 `;
 
 const openSidebar = () => eventemitter.emit(EventType.OPEN_SIDEBAR, {});
@@ -25,7 +28,7 @@ const openSidebar = () => eventemitter.emit(EventType.OPEN_SIDEBAR, {});
 const Nav = () => {
   const { smallView } = useContext(Context);
   return (
-    <Style>
+    <Style smallView={smallView}>
       {smallView ? (
         <IconButton name={IconButtonName.MENU_OUTLINE} onClick={openSidebar} />
       ) : (
