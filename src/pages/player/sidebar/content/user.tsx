@@ -17,6 +17,7 @@ const Style = styled.div`
 
   > .avatar {
     cursor: pointer;
+    border: 1px solid var(--color-primary);
   }
 
   > .nickname {

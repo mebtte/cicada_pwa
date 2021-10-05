@@ -1,14 +1,12 @@
 import React from 'react';
 import throttle from 'lodash/throttle';
 
-import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
 import createMusicPlayRecord from '@/server/create_music_play_record';
 import eventemitter, { EventType } from './eventemitter';
 import logger from '../../platform/logger';
 import dialog from '../../platform/dialog';
 import { QueueMusic, PlayMode, Music } from './constants';
 
-const JUMP_STEP = 5;
 const style = {
   display: 'none',
 };
@@ -51,7 +49,6 @@ class Audio extends React.PureComponent<Props, {}> {
     eventemitter.on(EventType.ACTION_PLAY, this.onActionPlay);
     eventemitter.on(EventType.ACTION_PAUSE, this.onActionPause);
 
-    document.addEventListener('keydown', this.onKeyDown);
     window.addEventListener('beforeunload', this.beforeUnload);
   }
 
@@ -87,7 +84,6 @@ class Audio extends React.PureComponent<Props, {}> {
     eventemitter.off(EventType.ACTION_PLAY, this.onActionPlay);
     eventemitter.off(EventType.ACTION_PAUSE, this.onActionPause);
 
-    document.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('beforeunload', this.beforeUnload);
 
     this.uploadPlayRecord(this.props.queueMusic.music);
@@ -105,26 +101,6 @@ class Audio extends React.PureComponent<Props, {}> {
       });
     }, 0);
   };
-
-  onKeyDown = keyboardHandlerWrapper((event: KeyboardEvent) => {
-    const { key } = event;
-    // eslint-disable-next-line default-case
-    switch (key) {
-      case ' ': {
-        event.preventDefault();
-        this.onActionTogglePlay();
-        break;
-      }
-      case 'ArrowLeft': {
-        this.audioRef.current.currentTime -= JUMP_STEP;
-        break;
-      }
-      case 'ArrowRight': {
-        this.audioRef.current.currentTime += JUMP_STEP;
-        break;
-      }
-    }
-  });
 
   onActionTogglePlay = () =>
     this.audioRef.current.paused
@@ -155,10 +131,10 @@ class Audio extends React.PureComponent<Props, {}> {
 
     switch (playMode) {
       case PlayMode.HQ: {
-        return music.hq;
+        return music.hq || music.sq;
       }
       case PlayMode.AC: {
-        return music.ac;
+        return music.ac || music.sq;
       }
       default: {
         return music.sq;
