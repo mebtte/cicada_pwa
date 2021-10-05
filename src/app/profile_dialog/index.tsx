@@ -28,7 +28,7 @@ const inputStyle = {
 };
 const textareaStyle = {
   ...inputStyle,
-  height: 100,
+  height: 80,
 };
 const onSignout = () =>
   dialog.confirm({

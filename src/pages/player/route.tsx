@@ -9,7 +9,6 @@ import Search from './pages/search';
 import Musicbill from './pages/musicbill';
 import PublicMusicbill from './pages/public_musicbill';
 import Setting from './pages/setting';
-import Profile from './pages/profile';
 
 const Style = styled.div`
   flex: 1;
@@ -45,7 +44,6 @@ const Wrapper = () => {
               component={PublicMusicbill}
             />
             <Route path={PLAYER_PATH.SETTING} component={Setting} />
-            <Route path={PLAYER_PATH.PROFILE} component={Profile} />
             <Redirect to={PLAYER_PATH.DISCOVER} />
           </Switch>
         </AnimatedDiv>

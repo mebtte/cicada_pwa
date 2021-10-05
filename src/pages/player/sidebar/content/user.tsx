@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 import Avatar, { Shape } from '@/components/avatar';
 import { User as UserType } from '@/constants/user';
-import useHistory from '@/utils/use_history';
-import { PLAYER_PATH } from '@/constants/route';
 import ellipsis from '@/style/ellipsis';
+import globalEventemitter, {
+  EventType as GlobalEventType,
+} from '@/platform/global_eventemitter';
 
 const Style = styled.div`
   display: flex;
@@ -33,15 +34,14 @@ const Style = styled.div`
     }
   }
 `;
+const openProfileDialog = () =>
+  globalEventemitter.emit(GlobalEventType.OPEN_PROFILE_DIALOG, {});
 
 const User = () => {
   const user = useSelector(
     ({ user: u }: { user: UserType }) => u,
     shallowEqual,
   );
-
-  const history = useHistory();
-  const toUserPage = () => history.push({ pathname: PLAYER_PATH.PROFILE });
 
   return (
     <Style>
@@ -51,9 +51,9 @@ const User = () => {
         src={user.avatar}
         size={88}
         shape={Shape.CIRCLE}
-        onClick={toUserPage}
+        onClick={openProfileDialog}
       />
-      <div className="nickname" onClick={toUserPage}>
+      <div className="nickname" onClick={openProfileDialog}>
         {user.nickname}
       </div>
     </Style>
