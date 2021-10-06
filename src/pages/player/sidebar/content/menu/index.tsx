@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import openLink from '@/utils/open_link';
-import { ELECTRON_GITHUB_REPOSITORY } from '@/constants';
+import { ELECTRON_GITHUB_REPOSITORY, IS_ELECTRON } from '@/constants';
 import { Name as IconName } from '@/components/icon';
 import { PLAYER_PATH } from '@/constants/route';
 import MenuItem from './menu_item';
@@ -24,7 +24,7 @@ const Menu = () => {
         label="设置"
         to={PLAYER_PATH.SETTING}
       />
-      {smallView ? null : (
+      {smallView || IS_ELECTRON ? null : (
         <MenuItem
           icon={IconName.PC_OUTLINE}
           label="桌面客户端"

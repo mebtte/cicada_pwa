@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { ROOT_PATH } from '@/constants/route';
-import { IS_ELECTRON } from '@/platform/electron_new';
+import { IS_ELECTRON } from '@/constants';
 import Home from './home';
 
 const Wrapper = () =>

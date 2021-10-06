@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 
+import { IS_ELECTRON } from '@/constants';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import eventemitter, { EventType } from '../eventemitter';
 import Logo from './logo';
@@ -13,13 +14,17 @@ const Style = styled.div<{ smallView: boolean }>`
   display: flex;
   align-items: center;
 
+  -webkit-app-region: drag;
+
   > .blank {
     flex: 1;
     min-width: 0;
   }
 
   ${({ smallView }) => css`
-    padding: ${smallView ? '5px 15px 0 15px' : '5px 20px 0 20px'};
+    padding: ${smallView
+      ? `${IS_ELECTRON ? 20 : 5}px 15px 0 15px`
+      : '5px 20px 0 20px'};
   `}
 `;
 

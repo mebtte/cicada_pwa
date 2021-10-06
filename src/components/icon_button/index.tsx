@@ -25,12 +25,17 @@ const Style = styled.button<{
   align-items: center;
   justify-content: center;
   padding: 0;
+
   border: none;
   outline: none;
   border-radius: 4px;
+
+  -webkit-app-region: no-drag;
   background-color: transparent;
   cursor: pointer;
+
   transition: all 300ms;
+
   &:focus,
   &:hover {
     background-color: rgb(0 0 0 / 0.04);
