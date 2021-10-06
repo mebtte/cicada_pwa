@@ -10,9 +10,11 @@ import eventemitter, { EventType } from '../../../eventemitter';
 import MusicbillList from './musicbill_list';
 import Loading from './loading';
 
+const ACTION_SIZE = 18;
+
 const Style = styled.div`
   > .label {
-    padding: 0 15px;
+    padding: 0 20px;
     margin-bottom: 6px;
 
     display: flex;
@@ -79,13 +81,13 @@ const Wrapper = () => {
         <div className="text">我的歌单</div>
         <IconButton
           name={IconButtonName.PLUS_OUTLINE}
-          size={16}
+          size={ACTION_SIZE}
           disabled={musicbillList.loading}
           onClick={openMusicbillCreateDialog}
         />
         <IconButton
           name={IconButtonName.MORE_OUTLINE}
-          size={16}
+          size={ACTION_SIZE}
           loading={musicbillList.loading}
           onClick={reloadMusicbillList}
         />

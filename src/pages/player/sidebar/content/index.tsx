@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 import User from './user';
-import Menu from './menu/index';
+import Menu from './menu';
 import MusicbillList from './musicbill_list';
 
 const Style = styled.div`

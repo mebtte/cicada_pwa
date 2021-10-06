@@ -5,7 +5,7 @@ export default styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 15px;
+  padding: 6px 20px;
 
   text-decoration: none;
 

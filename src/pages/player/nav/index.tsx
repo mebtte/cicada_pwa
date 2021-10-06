@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { IS_ELECTRON, IS_WINDOWS } from '@/constants';
 import {
@@ -12,12 +12,13 @@ import Logo from './logo';
 import Context from '../context';
 import Search from './search';
 
-const Style = styled.div<{ smallView: boolean }>`
+const Style = styled.div`
   height: 45px;
 
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: ${IS_ELECTRON ? 25 : 10}px 20px 0 20px;
 
   -webkit-app-region: drag;
 
@@ -25,12 +26,6 @@ const Style = styled.div<{ smallView: boolean }>`
     flex: 1;
     min-width: 0;
   }
-
-  ${({ smallView }) => css`
-    padding: ${smallView
-      ? `${IS_ELECTRON ? 25 : 10}px 15px 0 15px`
-      : '10px 20px 0 20px'};
-  `}
 `;
 
 const openSidebar = () => eventemitter.emit(EventType.OPEN_SIDEBAR, {});
@@ -38,7 +33,7 @@ const openSidebar = () => eventemitter.emit(EventType.OPEN_SIDEBAR, {});
 const Nav = () => {
   const { smallView } = useContext(Context);
   return (
-    <Style smallView={smallView}>
+    <Style>
       {smallView ? (
         <IconButton name={IconButtonName.MENU_OUTLINE} onClick={openSidebar} />
       ) : (

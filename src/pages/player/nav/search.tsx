@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { IS_MAC_OS, IS_WINDOWS } from '@/constants';
 import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
@@ -10,19 +10,21 @@ import { PLAYER_PATH } from '@/constants/route';
 import useHistory from '@/utils/use_history';
 import Context from '../context';
 
-const Style = styled.div`
+const Style = styled.div<{ smallView: boolean }>`
   display: flex;
   align-items: center;
   gap: 5px;
 
-  > .input {
-    width: 170px;
-  }
+  ${({ smallView }) => css`
+    > .input {
+      width: ${smallView ? 160 : 180}px;
+    }
+  `}
 `;
 
 const Search = () => {
   const history = useHistory();
-  const { searchWord } = useContext(Context);
+  const { smallView, searchWord } = useContext(Context);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -60,7 +62,7 @@ const Search = () => {
   }, []);
 
   return (
-    <Style>
+    <Style smallView={smallView}>
       <Input
         className="input"
         value={keyword}

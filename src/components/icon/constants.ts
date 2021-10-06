@@ -20,7 +20,7 @@ import QuestionFill from './question_fill';
 import RefreshOutline from './refresh_outline';
 import SettingOutline from './setting_outline';
 import ShieldFill from './shield_fill';
-import ExchangeOutline from './exchange_outline';
+import ExchangeOutline from './icons/exchange_outline';
 import WrongOutline from './wrong_outline';
 import SearchOutline from './search_outline';
 import VideoOutline from './video_outline';
@@ -41,8 +41,7 @@ import JumpFill from './jump_fill';
 import GotoOutline from './goto_outline';
 import CmsOutline from './icons/cms_outline';
 import LyricOutline from './lyric_outline';
-import GithubFill from './github_fill';
-import RecommendFill from './icons/recommend_fill';
+import GithubFill from './icons/github_fill';
 import CloudOutline from './icons/cloud_outline';
 import BrowserFill from './icons/browser_fill';
 import HouseOutline from './house_outline';
@@ -53,10 +52,10 @@ import HistoryOutline from './icons/history_outline';
 import LeftOutline from './icons/left_outline';
 import RightOutline from './icons/right_outline';
 import MenuOutline from './icons/menu_outline';
-import PcOutline from './icons/pc_outline';
+import DiscoverOutline from './icons/discover_outline';
 
 export enum Name {
-  PC_OUTLINE = 'PcOutline',
+  DISCOVER_OUTLINE = 'DiscoverOutline',
   MENU_OUTLINE = 'MenuOutline',
   LEFT_OUTLINE = 'LeftOutline',
   RIGHT_OUTLINE = 'RightOutline',
@@ -69,7 +68,6 @@ export enum Name {
   HOUSE_OUTLINE = 'HouseOutline',
   BROWSER_FILL = 'BrowserFill',
   CLOUD_OUTLINE = 'CloudOutline',
-  RECOMMEND_FILL = 'RecommendFill',
   GITHUB_FILL = 'GithubFill',
   LYRIC_OUTLINE = 'LyricOutline',
   CMS_OUTLINE = 'CmsOutline',
@@ -115,7 +113,7 @@ export enum Name {
 }
 
 export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
-  [Name.PC_OUTLINE]: PcOutline,
+  [Name.DISCOVER_OUTLINE]: DiscoverOutline,
   [Name.MENU_OUTLINE]: MenuOutline,
   [Name.LEFT_OUTLINE]: LeftOutline,
   [Name.RIGHT_OUTLINE]: RightOutline,
@@ -128,7 +126,6 @@ export const NAME_MAP_CONTENT: Record<Name, () => JSX.Element> = {
   [Name.HOUSE_OUTLINE]: HouseOutline,
   [Name.BROWSER_FILL]: BrowserFill,
   [Name.CLOUD_OUTLINE]: CloudOutline,
-  [Name.RECOMMEND_FILL]: RecommendFill,
   [Name.GITHUB_FILL]: GithubFill,
   [Name.LYRIC_OUTLINE]: LyricOutline,
   [Name.CMS_OUTLINE]: CmsOutline,
