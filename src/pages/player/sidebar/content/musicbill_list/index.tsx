@@ -44,13 +44,7 @@ const CardContainer = styled(animated.div)`
   align-items: center;
   justify-content: center;
 
-  > .error {
-    padding-bottom: 30px;
-  }
-
-  > .empty {
-    padding: 30px 0;
-  }
+  padding: 20px 0;
 `;
 
 const openMusicbillCreateDialog = () =>
@@ -101,7 +95,6 @@ const Wrapper = () => {
             return (
               <CardContainer style={style}>
                 <ErrorCard
-                  className="error"
                   errorMessage={musicbillList.error.message}
                   retry={reloadMusicbillList}
                 />
@@ -111,7 +104,7 @@ const Wrapper = () => {
           if (!musicbillList.value.length) {
             return (
               <CardContainer style={style}>
-                <Empty className="empty" description="空的歌单列表" />
+                <Empty description="空的歌单列表" />
               </CardContainer>
             );
           }
