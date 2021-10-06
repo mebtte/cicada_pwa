@@ -6,10 +6,7 @@ import Empty from '@/components/empty';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import ErrorCard from '@/components/error_card';
 import Context from '../../../context';
-import playerEventemitter, {
-  EventType as PlayerEventType,
-} from '../../../eventemitter';
-import eventemitter, { EventType } from '../eventemitter';
+import eventemitter, { EventType } from '../../../eventemitter';
 import MusicbillList from './musicbill_list';
 import Loading from './loading';
 
@@ -51,11 +48,11 @@ const CardContainer = styled(animated.div)`
 `;
 
 const openMusicbillCreateDialog = () =>
-  playerEventemitter.emit(PlayerEventType.OPEN_CREATE_MUSICBILL_DIALOG, {});
+  eventemitter.emit(EventType.OPEN_CREATE_MUSICBILL_DIALOG, {});
 const openMusicbillOperateDrawer = () =>
-  eventemitter.emit(EventType.OPEN_MUSICBILL_OPERATE_DRAWER, {});
+  eventemitter.emit(EventType.OPEN_MUSICBILL_LIST_OPERATE_DRAWER, {});
 const reloadMusicbillList = () =>
-  playerEventemitter.emit(PlayerEventType.RELOAD_MUSICBILL_LIST, {});
+  eventemitter.emit(EventType.RELOAD_MUSICBILL_LIST, {});
 
 const Wrapper = () => {
   const { musicbillList } = useContext(Context);

@@ -9,11 +9,11 @@ export default () => {
     const onOpen = () => setOpen(true);
     const onClose = () => setOpen(false);
 
-    eventemitter.on(EventType.OPEN_MUSICBILL_OPERATE_DRAWER, onOpen);
-    eventemitter.on(EventType.CLOSE_MUSICBILL_OPERATE_DRAWER, onClose);
+    eventemitter.on(EventType.OPEN_MUSICBILL_LIST_OPERATE_DRAWER, onOpen);
+    eventemitter.on(EventType.CLOSE_MUSICBILL_LIST_OPERATE_DRAWER, onClose);
     return () => {
-      eventemitter.off(EventType.OPEN_MUSICBILL_OPERATE_DRAWER, onOpen);
-      eventemitter.off(EventType.CLOSE_MUSICBILL_OPERATE_DRAWER, onClose);
+      eventemitter.off(EventType.OPEN_MUSICBILL_LIST_OPERATE_DRAWER, onOpen);
+      eventemitter.off(EventType.CLOSE_MUSICBILL_LIST_OPERATE_DRAWER, onClose);
     };
   }, []);
 

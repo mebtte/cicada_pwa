@@ -36,6 +36,9 @@ export enum EventType {
   TOGGEL_LYRIC = 'toggle_lyric', // 打开/关闭歌词, { }
   CLOSE_LYRIC = 'close_lyric', // 关闭歌词, { }
 
+  OPEN_MUSICBILL_LIST_OPERATE_DRAWER = 'open_musicbill_list_operate_drawer', // 打开歌单列表操作抽屉, { }
+  CLOSE_MUSICBILL_LIST_OPERATE_DRAWER = 'close_musicbill_list_operate_drawer', // 打开歌单列表操作抽屉, { }
+
   OPEN_CREATE_MUSICBILL_DIALOG = 'open_create_musicbill_dialog', // 打开创建歌单弹窗, { }
   OPEN_MUSIC_OPERATE_POPUP = 'open_music_operate_popup',
   OPEN_MUSICBILL_LIST_DRAWER = 'open_musicbill_list_drawer',

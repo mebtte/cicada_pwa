@@ -31,6 +31,7 @@ import { QueueMusic } from './constants';
 import Lyric from './lyric';
 import UserDrawer from './user_drawer';
 import useSmallView from './use_small_view';
+import MusicbillListOperateDrawer from './musicbill_list_operate_drawer';
 
 const Style = styled(PageContainer)`
   display: flex;
@@ -117,6 +118,7 @@ const Wrapper = () => {
       <CreateMusicbillDialog />
 
       <MusicOperatePopup />
+      <MusicbillListOperateDrawer />
 
       {queueMusic ? (
         <>

@@ -5,18 +5,15 @@ import MenuItem from '@/components/menu_item';
 import { Name as IconName } from '@/components/icon';
 import useOpen from './use_open';
 import eventemitter, { EventType } from '../eventemitter';
-import playerEventemitter, {
-  EventType as PlayerEventType,
-} from '../../../eventemitter';
 
 const onClose = () =>
-  eventemitter.emit(EventType.CLOSE_MUSICBILL_OPERATE_DRAWER, {});
+  eventemitter.emit(EventType.CLOSE_MUSICBILL_LIST_OPERATE_DRAWER, {});
 const openCreateMusicbillDialog = () =>
-  playerEventemitter.emit(PlayerEventType.OPEN_CREATE_MUSICBILL_DIALOG, {});
+  eventemitter.emit(EventType.OPEN_CREATE_MUSICBILL_DIALOG, {});
 const openSortMusicbillListDrawer = () =>
-  playerEventemitter.emit(PlayerEventType.OPEN_MUSICBILL_ORDER_DRAWER, {});
+  eventemitter.emit(EventType.OPEN_MUSICBILL_ORDER_DRAWER, {});
 const reloadMusicbillList = () =>
-  playerEventemitter.emit(PlayerEventType.RELOAD_MUSICBILL_LIST, {});
+  eventemitter.emit(EventType.RELOAD_MUSICBILL_LIST, {});
 
 const OperateDrawer = () => {
   const open = useOpen();
@@ -38,7 +35,7 @@ const OperateDrawer = () => {
       />
       <MenuItem
         icon={IconName.EXCHANGE_OUTLINE}
-        label="排序歌单"
+        label="排序歌单列表"
         onClick={openSortMusicbillListDrawer}
       />
       <MenuItem

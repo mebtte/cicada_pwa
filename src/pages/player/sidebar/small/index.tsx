@@ -7,11 +7,6 @@ import Content from '../content';
 import eventemitter, { EventType } from '../../eventemitter';
 import scrollbarNever from '@/style/scrollbar_never';
 
-const bodyProps = {
-  style: {
-    width: 240,
-  },
-};
 const StyledContent = styled(Content)`
   position: absolute;
   left: 0;
@@ -23,6 +18,12 @@ const StyledContent = styled(Content)`
   ${scrollbarNever}
 `;
 const onClose = () => eventemitter.emit(EventType.CLOSE_SIDEBAR, {});
+const bodyProps = {
+  style: {
+    width: 240,
+  },
+  onClick: onClose,
+};
 
 const Small = () => {
   const open = useOpen();

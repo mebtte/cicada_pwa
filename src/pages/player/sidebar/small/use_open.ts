@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import eventemitter, { EventType } from '../../eventemitter';
 
 export default () => {
-  const history = useHistory();
-
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -19,11 +16,6 @@ export default () => {
       eventemitter.off(EventType.CLOSE_SIDEBAR, onClose);
     };
   }, []);
-
-  useEffect(() => {
-    const unlisten = history.listen(() => setOpen(false));
-    return unlisten;
-  }, [history]);
 
   return open;
 };
