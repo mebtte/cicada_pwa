@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import User from './user';
 import Menu from './menu';
 import MusicbillList from './musicbill_list';
+import MusicbillOperateDrawer from './musicbill_operate_drawer';
 
 const Style = styled.div`
   padding: 30px 0 0 0;
@@ -19,6 +20,7 @@ const Content = (props: HTMLAttributes<HTMLDivElement>) => (
     <User />
     <Menu />
     <MusicbillList />
+    <MusicbillOperateDrawer />
   </Style>
 );
 

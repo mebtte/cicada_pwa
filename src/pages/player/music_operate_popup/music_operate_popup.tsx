@@ -14,7 +14,6 @@ const MusicInfoWrapper = styled.div`
 const bodyProps = {
   style: {
     padding: '10px 0 5px 0',
-    maxWidth: 375,
   },
 };
 

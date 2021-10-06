@@ -6,7 +6,10 @@ import Empty from '@/components/empty';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import ErrorCard from '@/components/error_card';
 import Context from '../../../context';
-import eventemitter, { EventType } from '../../../eventemitter';
+import playerEventemitter, {
+  EventType as PlayerEventType,
+} from '../../../eventemitter';
+import eventemitter, { EventType } from '../eventemitter';
 import MusicbillList from './musicbill_list';
 import Loading from './loading';
 
@@ -48,9 +51,11 @@ const CardContainer = styled(animated.div)`
 `;
 
 const openMusicbillCreateDialog = () =>
-  eventemitter.emit(EventType.OPEN_CREATE_MUSICBILL_DIALOG, {});
+  playerEventemitter.emit(PlayerEventType.OPEN_CREATE_MUSICBILL_DIALOG, {});
+const openMusicbillOperateDrawer = () =>
+  eventemitter.emit(EventType.OPEN_MUSICBILL_OPERATE_DRAWER, {});
 const reloadMusicbillList = () =>
-  eventemitter.emit(EventType.RELOAD_MUSICBILL_LIST, {});
+  playerEventemitter.emit(PlayerEventType.RELOAD_MUSICBILL_LIST, {});
 
 const Wrapper = () => {
   const { musicbillList } = useContext(Context);
@@ -69,6 +74,8 @@ const Wrapper = () => {
       opacity: 0,
     },
   });
+
+  const actionDisabled = musicbillList.loading || musicbillList.error;
   return (
     <Style>
       <div className="label">
@@ -76,14 +83,14 @@ const Wrapper = () => {
         <IconButton
           name={IconButtonName.PLUS_OUTLINE}
           size={ACTION_SIZE}
-          disabled={musicbillList.loading}
+          disabled={actionDisabled}
           onClick={openMusicbillCreateDialog}
         />
         <IconButton
           name={IconButtonName.MORE_OUTLINE}
           size={ACTION_SIZE}
-          loading={musicbillList.loading}
-          onClick={reloadMusicbillList}
+          disabled={actionDisabled}
+          onClick={openMusicbillOperateDrawer}
         />
       </div>
       <div className="content">

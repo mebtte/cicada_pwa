@@ -19,6 +19,7 @@ const Mask = styled(animated.div)`
 const Body = styled(animated.div)`
   border-radius: 4px 4px 0 0;
   width: 100%;
+  max-width: 375px;
 
   background-color: #fff;
 
