@@ -16,7 +16,7 @@ const Style = styled.div`
   gap: 5px;
 
   > .input {
-    width: 180px;
+    width: 170px;
   }
 `;
 
@@ -69,7 +69,7 @@ const Search = () => {
         placeholder={searchWord || '搜索'}
         ref={inputRef}
       />
-      <IconButton name={IconButtonName.SEARCH_OUTLINE} />
+      <IconButton name={IconButtonName.SEARCH_OUTLINE} onClick={onSearch} />
     </Style>
   );
 };

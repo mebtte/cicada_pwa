@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 
-import { IS_ELECTRON } from '@/constants';
+import { IS_ELECTRON, IS_WINDOWS } from '@/constants';
+import {
+  minimizePlayerWindow,
+  hidePlayerWindow,
+} from '@/platform/electron_new';
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
 import eventemitter, { EventType } from '../eventemitter';
 import Logo from './logo';
@@ -13,6 +17,7 @@ const Style = styled.div<{ smallView: boolean }>`
 
   display: flex;
   align-items: center;
+  gap: 10px;
 
   -webkit-app-region: drag;
 
@@ -23,8 +28,8 @@ const Style = styled.div<{ smallView: boolean }>`
 
   ${({ smallView }) => css`
     padding: ${smallView
-      ? `${IS_ELECTRON ? 20 : 5}px 15px 0 15px`
-      : '5px 20px 0 20px'};
+      ? `${IS_ELECTRON ? 25 : 10}px 15px 0 15px`
+      : '10px 20px 0 20px'};
   `}
 `;
 
@@ -41,6 +46,18 @@ const Nav = () => {
       )}
       <div className="blank" />
       <Search />
+      {IS_WINDOWS ? (
+        <>
+          <IconButton
+            name={IconButtonName.MINIMIZE_OUTLINE}
+            onClick={minimizePlayerWindow}
+          />
+          <IconButton
+            name={IconButtonName.WRONG_OUTLINE}
+            onClick={hidePlayerWindow}
+          />
+        </>
+      ) : null}
     </Style>
   );
 };
