@@ -32,6 +32,7 @@ import Lyric from './lyric';
 import UserDrawer from './user_drawer';
 import useSmallView from './use_small_view';
 import MusicbillListOperateDrawer from './musicbill_list_operate_drawer';
+import useMusicbillListShortcut from './use_musicbill_list_shortcut';
 
 const Style = styled(PageContainer)`
   display: flex;
@@ -70,6 +71,8 @@ const Wrapper = () => {
   const searchWord = useSearchWord();
   const queueMusic = playqueue[currentPlayqueuePosition] as QueueMusic | null;
   const volume = useVolume();
+
+  useMusicbillListShortcut(musicbillList.value);
 
   return (
     <Context.Provider
