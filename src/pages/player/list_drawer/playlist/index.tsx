@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 
 import Input from '@/components/input';
@@ -48,22 +48,25 @@ const Wrapper = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState('');
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<number>();
   const onKeywordChange = useCallback((event) => {
-    clearTimeout(timerRef.current);
+    if (timerRef.current) {
+      window.clearTimeout(timerRef.current);
+    }
+
     const { value } = event.target;
     setLoading(true);
-    timerRef.current = setTimeout(() => {
+    timerRef.current = window.setTimeout(() => {
       setKeyword(value ? value.toLowerCase() : value);
       setLoading(false);
     }, 1000);
   }, []);
 
   // auto focus
-  const inputRef = useRef<HTMLInputElement>();
-  useEffect(() => {
-    const timer = setTimeout(() => inputRef.current.focus(), 1000);
-    return () => clearTimeout(timer);
+  const inputRef = useRef<HTMLInputElement>(null);
+  useLayoutEffect(() => {
+    const timer = window.setTimeout(() => inputRef.current!.focus(), 1000);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const filteredPlaylist = filterPlaylist(playlist, keyword);

@@ -89,7 +89,7 @@ const SendEmailNotificationDialog = ({
       onConfirm: async () => {
         try {
           const { user } = store.getState();
-          await cmsSendEmailNotification({ toUserId: user.id, title, html });
+          await cmsSendEmailNotification({ toUserId: user!.id, title, html });
           toast.success('已发送到你的邮箱');
           setTimeout(() => {
             setTitle('');

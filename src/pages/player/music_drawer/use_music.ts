@@ -8,13 +8,11 @@ export default (id: string) => {
   const [data, setData] = useState<Data>({
     error: null,
     loading: true,
-    music: null,
   });
   const getMusic = useCallback(async () => {
     setData({
       error: null,
       loading: true,
-      music: null,
     });
     try {
       const music = await getMusicDetail(id);
@@ -33,7 +31,6 @@ export default (id: string) => {
       setData({
         error,
         loading: false,
-        music: null,
       });
     }
   }, [id]);

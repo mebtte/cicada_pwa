@@ -2,7 +2,7 @@ import React from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import Avatar, { Shape } from '@/components/avatar';
+import AnimateCover, { Shape } from '@/components/animate_cover';
 import { User as UserType } from '@/constants/user';
 import ellipsis from '@/style/ellipsis';
 import globalEventemitter, {
@@ -45,10 +45,10 @@ const User = () => {
 
   return (
     <Style>
-      <Avatar
+      <AnimateCover
         className="avatar"
-        animated
         src={user.avatar}
+        alt="avatar"
         size={88}
         shape={Shape.CIRCLE}
         onClick={openProfileDialog}

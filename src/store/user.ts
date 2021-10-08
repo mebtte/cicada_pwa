@@ -52,18 +52,20 @@ export const clearUser = () => (dispatch) => {
 
 const token = getToken();
 let user: User | null = null;
-if (token) {
+const userString = localStorage.getItem(USER);
+if (token && userString) {
   try {
-    user = JSON.parse(localStorage.getItem(USER));
-    user.joinTime = new Date(user.joinTime);
+    user = JSON.parse(userString);
+    user!.joinTime = new Date(user!.joinTime);
   } catch (error) {
     logger.error(error, {
       description: '解析本地用户信息失败',
+      report: true,
     });
   }
 }
 
-export default (state: User | null = user, { type, payload }): User | null => {
+export default (state = user, { type, payload }): User | null => {
   switch (type) {
     case TYPE.SET_USER:
       return payload;

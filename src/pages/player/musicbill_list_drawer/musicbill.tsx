@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 
 import { RequestStatus } from '@/constants';
@@ -36,7 +36,9 @@ const Musicbill = ({
         id: musicbill.id,
       });
     }
-    const checked = !!musicbill.musicList.find((m) => m.music.id === music.id);
+    const checked = Boolean(
+      music && !!musicbill.musicList.find((m) => m.music.id === music.id),
+    );
     if (checked) {
       return playerEventemitter.emit(
         PlayerEventType.REMOVE_MUSIC_FROM_MUSICBILL,
@@ -50,9 +52,11 @@ const Musicbill = ({
   }, [musicbill, music]);
   const { cover, name, musicList, status } = musicbill;
 
-  let icon = null;
+  let icon: ReactNode = null;
   if (status === RequestStatus.SUCCESS) {
-    const checked = music && !!musicList.find((m) => m.music.id === music.id);
+    const checked = Boolean(
+      music && !!musicList.find((m) => m.music.id === music.id),
+    );
     icon = <Checkbox checked={checked} size={ICON_SIZE} />;
   } else if (status === RequestStatus.LOADING) {
     icon = <CircularLoader size={ICON_SIZE} style={ICON_STYLE} />;

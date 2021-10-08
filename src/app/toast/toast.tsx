@@ -115,10 +115,10 @@ const Toast = ({
   updateToastHeight: (id: string, height: number) => void;
   onClose: () => void;
 }) => {
-  const box = useRef<HTMLDivElement>();
+  const box = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    updateToastHeight(toast.id, box.current.clientHeight);
+    updateToastHeight(toast.id, box.current!.clientHeight);
   }, [toast.id, updateToastHeight]);
 
   const { top, hidden, message, type, duration } = toast;

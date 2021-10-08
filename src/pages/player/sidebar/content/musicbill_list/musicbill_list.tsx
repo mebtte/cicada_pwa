@@ -18,7 +18,7 @@ const MusicbillList = ({
   style,
 }: {
   musicbillList: MusicbillType[];
-  style: unknown;
+  style: ReactSpringStyle;
 }) => (
   <Style style={style}>
     {musicbillList.map((musicbill) => (

@@ -32,7 +32,7 @@ const Img = styled(animated.div)`
 `;
 
 const AnimatedAvatar = React.forwardRef<HTMLDivElement, CommonProps>(
-  ({ src, size, shape, style, ...props }: CommonProps, ref) => {
+  ({ src, size, shape = Shape.CIRCLE, style, ...props }: CommonProps, ref) => {
     const transtion = useMemo(
       () => TRANSITION_LIST[getRandomInteger(0, TRANSITION_LIST.length)],
       [],

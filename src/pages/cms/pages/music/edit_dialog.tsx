@@ -30,7 +30,7 @@ const inputStyle = {
 };
 const musicTypeItemRenderer = (t: MusicType | null) => {
   if (!t) {
-    return null;
+    return '';
   }
   return MUSIC_TYPE_MAP_LABEL[t];
 };
@@ -73,6 +73,10 @@ const EditMusicDialog = () => {
 
   const [loading, setLoading] = useState(false);
   const onUpdate = async () => {
+    if (!music) {
+      return;
+    }
+
     const trimName = name.trim();
     if (!trimName) {
       return toast.error('请输入名字');

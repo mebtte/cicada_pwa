@@ -26,7 +26,7 @@ const ErrorDisplay = ({
 }: {
   id: string;
   error: Error;
-  style: unknown;
+  style: ReactSpringStyle;
 }) => (
   <Style style={style}>
     <ErrorCard

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 import useHistory from '@/utils/use_history';
@@ -25,12 +25,12 @@ const Style = styled.div`
 const Search = () => {
   const history = useHistory();
 
-  const musicRef = useRef<HTMLInputElement>();
+  const musicRef = useRef<HTMLInputElement>(null);
   const onMusicSearch = () =>
     history.push({
       pathname: CMS_PATH.MUSIC,
       query: {
-        [MusicQuery.SEARCH_VALUE]: musicRef.current.value,
+        [MusicQuery.SEARCH_VALUE]: musicRef.current!.value,
       },
     });
   const onMusicKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -39,12 +39,12 @@ const Search = () => {
     }
   };
 
-  const figureRef = useRef<HTMLInputElement>();
+  const figureRef = useRef<HTMLInputElement>(null);
   const onFigureSearch = () =>
     history.push({
       pathname: CMS_PATH.FIGURE,
       query: {
-        [FigureQuery.SEARCH_VALUE]: figureRef.current.value,
+        [FigureQuery.SEARCH_VALUE]: figureRef.current!.value,
       },
     });
   const onFigureKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -53,12 +53,12 @@ const Search = () => {
     }
   };
 
-  const userRef = useRef<HTMLInputElement>();
+  const userRef = useRef<HTMLInputElement>(null);
   const onUserSearch = () =>
     history.push({
       pathname: CMS_PATH.USER,
       query: {
-        [UserQuery.SEARCH_VALUE]: userRef.current.value,
+        [UserQuery.SEARCH_VALUE]: userRef.current!.value,
       },
     });
   const onUserKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -67,14 +67,15 @@ const Search = () => {
     }
   };
 
-  useLayoutEffect(() => {
-    musicRef.current.focus();
-  }, []);
-
   return (
     <Style>
       <Label label="搜索音乐" className="part">
-        <Input className="input" ref={musicRef} onKeyDown={onMusicKeyDown} />
+        <Input
+          className="input"
+          ref={musicRef}
+          onKeyDown={onMusicKeyDown}
+          autoFocus
+        />
       </Label>
       <Label label="搜索角色" className="part">
         <Input className="input" ref={figureRef} onKeyDown={onFigureKeyDown} />

@@ -16,7 +16,13 @@ const Style = styled(animated.div)`
   justify-content: center;
 `;
 
-const Wrapper = ({ keyword, style }: { keyword: string; style: unknown }) => (
+const Wrapper = ({
+  keyword,
+  style,
+}: {
+  keyword: string;
+  style: ReactSpringStyle;
+}) => (
   <Style style={style}>
     <Empty description={keyword ? '未匹配到音乐' : '空的歌单'} />
   </Style>

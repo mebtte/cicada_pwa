@@ -26,7 +26,9 @@ function cmsGetUserOperateRecordList({
     }[];
   }>('/api/cms/get_user_operate_record_list', {
     withToken: true,
-    params: { user_id: userId, page, page_size: pageSize },
+    params: userId
+      ? { user_id: userId, page, page_size: pageSize }
+      : { page, page_size: pageSize },
   });
 }
 

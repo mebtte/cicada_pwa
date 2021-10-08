@@ -8,7 +8,7 @@ import { Type } from './constants';
 
 const TYPE_MAP = {
   [Type.NORMAL]: {
-    color: 'rgb(55 55 55)',
+    color: 'var(--text-color-primary)',
   },
   [Type.PRIMARY]: {
     color: 'rgb(49 194 124)',

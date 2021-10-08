@@ -33,12 +33,12 @@ const UpdateDialog = () => {
 
   const [loading, setLoading] = useState(false);
   const onUpdate = async () => {
-    if (publicConfig.value === value) {
+    if (publicConfig!.value === value) {
       return onClose();
     }
     setLoading(true);
     try {
-      await cmsUpdatePublicConfig({ key: publicConfig.key, value });
+      await cmsUpdatePublicConfig({ key: publicConfig!.key, value });
       onClose();
       eventemitter.emit(EventType.PUBLIC_CONFIG_UPDATED);
     } catch (error) {

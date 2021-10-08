@@ -50,7 +50,7 @@ const MusicbillInfo = ({
   style,
 }: {
   musicbill: Musicbill;
-  style: unknown;
+  style: ReactSpringStyle;
 }) => (
   <Style style={style}>
     <Cover animated src={musicbill.cover} size={70} publiz={musicbill.public} />

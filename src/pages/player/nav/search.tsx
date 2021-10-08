@@ -54,7 +54,7 @@ const Search = () => {
         ((IS_MAC_OS && event.metaKey) || (IS_WINDOWS && event.ctrlKey))
       ) {
         event.preventDefault();
-        inputRef.current.focus();
+        inputRef.current!.focus();
       }
     });
     document.addEventListener('keydown', onKeydown);

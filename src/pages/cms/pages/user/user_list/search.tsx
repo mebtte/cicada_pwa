@@ -30,7 +30,7 @@ const Style = styled.div`
 `;
 const itemRenderer = (key: SearchKey | null) => {
   if (!key) {
-    return null;
+    return '';
   }
   return SEARCH_KEY_MAP[key].label;
 };
@@ -43,7 +43,7 @@ const Search = ({
   searchValue: string;
 }) => {
   const history = useHistory();
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [searchValue, setSearchValue] = useState(initialSearchValue);
   const onSearchValueChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -77,7 +77,7 @@ const Search = ({
         return;
       }
       event.preventDefault();
-      return inputRef.current.focus();
+      return inputRef.current!.focus();
     });
     document.addEventListener('keydown', onDocumentKeyDown);
     return () => document.removeEventListener('keydown', onDocumentKeyDown);

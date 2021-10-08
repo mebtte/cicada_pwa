@@ -104,15 +104,14 @@ const MusicDrawer = ({
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
       {transitions((style, d) => {
-        const { error, loading, music } = d;
-        if (error) {
+        if (d.error) {
           return (
             <CardContainer style={style}>
-              <ErrorCard errorMessage={error.message} retry={reload} />
+              <ErrorCard errorMessage={d.error.message} retry={reload} />
             </CardContainer>
           );
         }
-        if (loading) {
+        if (d.loading) {
           return (
             <Content style={style}>
               <div className="content">
@@ -137,14 +136,16 @@ const MusicDrawer = ({
               <Avatar
                 className="cover"
                 animated
-                src={music.cover}
+                src={d.music.cover}
                 size={COVER_SIZE}
               />
-              <div className="name">{music.name}</div>
-              {music.alias ? <div className="alias">{music.alias}</div> : null}
-              {music.singers.length ? (
+              <div className="name">{d.music.name}</div>
+              {d.music.alias ? (
+                <div className="alias">{d.music.alias}</div>
+              ) : null}
+              {d.music.singers.length ? (
                 <div className="singers">
-                  {music.singers.map((s) => (
+                  {d.music.singers.map((s) => (
                     <div
                       key={s.id}
                       className="singer"
@@ -159,10 +160,10 @@ const MusicDrawer = ({
                   ))}
                 </div>
               ) : null}
-              <Action music={music} onClose={onClose} />
-              <Fork music={music} />
-              {music.lrc && music.type === MusicType.NORMAL ? (
-                <Lyric lrc={music.lrc} />
+              <Action music={d.music} onClose={onClose} />
+              <Fork music={d.music} />
+              {d.music.lrc && d.music.type === MusicType.NORMAL ? (
+                <Lyric lrc={d.music.lrc} />
               ) : null}
             </div>
           </Content>

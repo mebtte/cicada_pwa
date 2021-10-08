@@ -38,7 +38,7 @@ const itemRenderer = (music: Music | null) =>
     ? `${music.name} - ${
         music.singers.map((s) => s.name).join(',') || '未知歌手'
       }`
-    : null;
+    : '';
 
 const MusicListSelector = ({
   musicList,

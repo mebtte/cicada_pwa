@@ -40,6 +40,12 @@ const Switch = ({
   size?: number;
   style?: React.CSSProperties;
 }) => {
+  const onChangeWrapper = () => {
+    if (onChange) {
+      onChange(!open);
+    }
+  };
+
   const thumbSize = size * THUMB_SIZE;
   const space = size * SPACE;
   return (
@@ -52,7 +58,7 @@ const Switch = ({
         borderRadius: size / 2,
         ...style,
       }}
-      onClick={() => onChange(!open)}
+      onClick={onChangeWrapper}
     >
       <Thumb
         open={open}

@@ -10,14 +10,9 @@ import Signin from './signin';
 const Wrapper = ({ user }: { user: User | null }) => {
   const location = useLocation();
   if (user) {
+    const { redirect } = parseSearch<'redirect'>(location.search);
     return (
-      <Redirect
-        to={decodeURIComponent(
-          decodeURIComponent(
-            parseSearch<'redirect'>(location.search).redirect,
-          ) || ROOT_PATH.HOME,
-        )}
-      />
+      <Redirect to={redirect ? decodeURIComponent(redirect) : ROOT_PATH.HOME} />
     );
   }
   return <Signin />;

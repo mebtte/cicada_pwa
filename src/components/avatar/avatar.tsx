@@ -18,7 +18,7 @@ const Style = styled.div<{
  * @author mebtte<hi@mebtte.com>
  */
 const Avatar = React.forwardRef<HTMLDivElement, CommonProps>(
-  ({ src, size, shape, style, ...props }: CommonProps, ref) => (
+  ({ src, size, shape = Shape.CIRCLE, style, ...props }: CommonProps, ref) => (
     <Style
       {...props}
       shape={shape}

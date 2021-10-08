@@ -8,7 +8,7 @@ import { Direction } from './constants';
 const DIRECTION_MAP: Record<
   Direction,
   {
-    transition: unknown;
+    transition: object;
     bodyCSS: ReturnType<typeof css>;
   }
 > = {
@@ -86,13 +86,13 @@ const Drawer = ({
 
   children,
 }: Props) => {
-  const bodyRef = useRef<HTMLDivElement>();
+  const bodyRef = useRef<HTMLDivElement>(null);
   const onRequestClose: React.MouseEventHandler<HTMLDivElement> = (event) => {
     if (maskProps.onClick) {
       maskProps.onClick(event);
     }
 
-    if (onClose && !bodyRef.current.contains(event.target as Node)) {
+    if (onClose && !bodyRef.current!.contains(event.target as Node)) {
       onClose();
     }
   };

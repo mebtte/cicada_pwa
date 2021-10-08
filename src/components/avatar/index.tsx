@@ -15,7 +15,7 @@ const Wrapper = React.forwardRef<HTMLDivElement, Props>(
     {
       src = JpegDefaultAvatar,
       size = 32,
-      shape = Shape.SQUARE,
+      shape,
       animated = false,
       ...props
     }: Props,

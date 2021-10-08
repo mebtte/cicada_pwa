@@ -25,7 +25,7 @@ const Style = styled.div`
 `;
 
 const Cover = ({ src, onClick }: { src: string; onClick: () => void }) => {
-  const abortRef = useRef<() => void | null>(null);
+  const abortRef = useRef<(() => void) | null>(null);
 
   const [currentSrc, setCurrentSrc] = useState('');
   const onEnter = () => {

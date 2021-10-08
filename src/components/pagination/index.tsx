@@ -54,7 +54,7 @@ const Pagination = ({
   /** 总页数 */
   pageCount: number;
   /** 切换页面回调 */
-  onPageChange?: (page: number) => void;
+  onPageChange: (page: number) => void;
   [key: string]: any;
 }) => {
   const [customPage, setCustomPage] = useState('');

@@ -130,7 +130,7 @@ const MusicList = ({
   searchValue: string;
 }) => {
   const history = useHistory();
-  const contentRef = useRef<HTMLDivElement>();
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const rowRenderer = (music: Music) => [
     <Small>{music.id}</Small>,

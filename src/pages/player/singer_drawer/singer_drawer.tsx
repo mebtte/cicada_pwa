@@ -55,15 +55,14 @@ const SingerDrawer = ({
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
       {transitions((style, d) => {
-        const { error, loading, singer } = d;
-        if (error) {
+        if (d.error) {
           return (
             <CardContainer style={style}>
-              <ErrorCard errorMessage={error.message} retry={reload} />
+              <ErrorCard errorMessage={d.error.message} retry={reload} />
             </CardContainer>
           );
         }
-        if (loading) {
+        if (d.loading) {
           return (
             <Content style={style}>
               <SingerInfoSkeleton />
@@ -75,10 +74,10 @@ const SingerDrawer = ({
         }
         return (
           <Content style={style}>
-            <SingerInfo singer={singer} />
+            <SingerInfo singer={d.singer} />
             <div className="bottom">
-              <MusicList musicList={singer.musicList} />
-              <Action singer={singer} reload={reload} />
+              <MusicList musicList={d.singer.musicList} />
+              <Action singer={d.singer} reload={reload} />
             </div>
           </Content>
         );

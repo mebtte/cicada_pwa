@@ -11,7 +11,7 @@ const User = ({
   onCloseDrawer,
 }: {
   user: UserType;
-  style: unknown;
+  style: ReactSpringStyle;
   onCloseDrawer: () => void;
 }) => (
   <Container style={style}>

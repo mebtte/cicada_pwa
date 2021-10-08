@@ -15,7 +15,7 @@ const Style = styled(animated.div)`
 `;
 const preventDefault = (event) => event.preventDefault();
 
-const Loading = ({ style }: { style: unknown }) => {
+const Loading = ({ style }: { style: ReactSpringStyle }) => {
   const musicbillList = useMemo(
     () =>
       new Array(5).fill(0).map(() => ({

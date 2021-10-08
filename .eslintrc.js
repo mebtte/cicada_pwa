@@ -63,5 +63,6 @@ module.exports = {
     AsyncReturnType: 'readonly',
     PromiseType: 'readonly',
     JSX: 'readonly',
+    ReactSpringStyle: 'readonly',
   },
 };

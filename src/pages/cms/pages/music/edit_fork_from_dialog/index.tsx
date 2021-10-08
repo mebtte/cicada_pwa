@@ -64,7 +64,7 @@ const EditForkFromDialog = () => {
     setUpdating(true);
     try {
       await cmsUpdateMusic({
-        id: music.id,
+        id: music!.id,
         key: Key.FORK_FROM,
         value: forkFromList.map((fk) => fk.id).join(','),
       });

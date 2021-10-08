@@ -26,7 +26,7 @@ const Lyric = ({
 }: {
   music: Music;
   onClose: () => void;
-  style: unknown;
+  style: ReactSpringStyle;
   turntable: boolean;
   toggleTurntable: () => void;
 }) => (
@@ -46,7 +46,7 @@ const Lyric = ({
   </Style>
 );
 
-const Wrapper = ({ music }: { music: Music }) => {
+const Wrapper = ({ music }: { music: Music | null }) => {
   const { open, onClose } = useOpen();
 
   const [turntable, setTurntable] = useState(false);
@@ -61,7 +61,7 @@ const Wrapper = ({ music }: { music: Music }) => {
   return transitions((style, o) =>
     o ? (
       <Lyric
-        music={music}
+        music={music!}
         onClose={onClose}
         style={style}
         turntable={turntable}

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { Figure } from '../../constants';
@@ -28,22 +28,21 @@ const Style = styled.span`
   }
 `;
 
-const Singer = ({ singer }: { singer?: Figure }) => {
-  const onViewSinger = useCallback(
-    () => eventemitter.emit(EventType.OPEN_SINGER_DRAWER, { id: singer.id }),
-    [singer],
-  );
-  return (
-    <Style>
-      {singer ? (
-        <span className="singer" onClick={onViewSinger}>
-          {singer.name}
-        </span>
-      ) : (
-        <span className="singer unknown">未知歌手</span>
-      )}
-    </Style>
-  );
-};
+const Singer = ({ singer }: { singer?: Figure }) => (
+  <Style>
+    {singer ? (
+      <span
+        className="singer"
+        onClick={() =>
+          eventemitter.emit(EventType.OPEN_SINGER_DRAWER, { id: singer.id })
+        }
+      >
+        {singer.name}
+      </span>
+    ) : (
+      <span className="singer unknown">未知歌手</span>
+    )}
+  </Style>
+);
 
 export default React.memo(Singer);

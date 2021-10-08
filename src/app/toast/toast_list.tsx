@@ -22,6 +22,7 @@ const ToastList = () => {
       () => setToastList((tl) => tl.filter((t) => t.id !== id)),
       TOAST_ANIMATION_DURATION * 2,
     );
+    // @ts-expect-error
     setToastList((tl) =>
       tl
         .map((toast) => {

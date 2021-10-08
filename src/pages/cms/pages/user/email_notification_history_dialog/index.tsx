@@ -46,7 +46,7 @@ const EmailNotificationHistoryDialog = ({
   toUserId,
 }: {
   open: boolean;
-  toUserId: string;
+  toUserId?: string;
 }) => {
   const history = useHistory();
   const onClose = () =>

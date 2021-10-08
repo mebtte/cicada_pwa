@@ -28,11 +28,11 @@ const MusicList = ({
   musicList: MusicWithIndex[];
   style: unknown;
 }) => {
-  const ref = useRef<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(null);
   const [topBoxShadow, setTopBoxShadow] = useState(0);
   const timer = useRef<number>(0);
   const onScroll = () => {
-    const { scrollTop } = ref.current;
+    const { scrollTop } = ref.current!;
     setTopBoxShadow(scrollTop === 0 ? 0 : 1);
 
     window.clearTimeout(timer.current);
@@ -51,7 +51,7 @@ const MusicList = ({
         MUSICBILL_SCROLL_TOP.replace('{{musicbill_id}}', id),
       );
       if (scrollTopString) {
-        ref.current.scrollTop = +scrollTopString || 0;
+        ref.current!.scrollTop = +scrollTopString || 0;
       }
     }, 0);
   }, [id]);

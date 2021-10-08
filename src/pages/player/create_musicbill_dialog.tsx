@@ -34,11 +34,11 @@ const CreateMusicbillDialog = () => {
   const [creating, setCreating] = useState(false);
   const [open, setOpen] = useState(false);
   const onClose = useCallback(() => {
-    inputRef.current.value = '';
+    inputRef.current!.value = '';
     setOpen(false);
   }, []);
   const onCreate = async () => {
-    const name = inputRef.current.value;
+    const name = inputRef.current!.value;
     if (name.length < NAME.MIN_LENGTH) {
       return toast.error(`"歌单名字"长度应大于等于${NAME.MIN_LENGTH}`);
     }

@@ -13,12 +13,10 @@ import Context from '../context';
 import Search from './search';
 
 const Style = styled.div`
-  height: 45px;
-
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: ${IS_ELECTRON ? 25 : 10}px 20px 0 20px;
+  padding: ${IS_ELECTRON ? 25 : 15}px 20px 10px 20px;
 
   -webkit-app-region: drag;
 

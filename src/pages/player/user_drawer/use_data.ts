@@ -9,13 +9,11 @@ export default ({ id }: { id: string }) => {
   const [data, setData] = useState<Data>({
     loading: true,
     error: null,
-    user: null,
   });
   const getUserDetail = useCallback(async () => {
     setData({
       loading: true,
       error: null,
-      user: null,
     });
     try {
       const user = await getUserDetailRequest(id);
@@ -38,7 +36,6 @@ export default ({ id }: { id: string }) => {
       setData({
         loading: false,
         error,
-        user: null,
       });
     }
   }, [id]);

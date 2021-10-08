@@ -48,15 +48,15 @@ const ImageCutterDialog = ({
   const [saving, setSaving] = useState(false);
   const onUpdateWrapper = useCallback(async () => {
     setSaving(true);
-    cropperRef.current.disable();
-    const { width, height, x, y } = cropperRef.current.getData();
+    cropperRef.current!.disable();
+    const { width, height, x, y } = cropperRef.current!.getData();
     const canvas = document.createElement('canvas');
     canvas.width = width > imageSize.width ? imageSize.width : width;
     canvas.height = height > imageSize.height ? imageSize.height : height;
     const context = canvas.getContext('2d');
     try {
       const imageNode = await loadImage(imageUrl);
-      context.drawImage(
+      context!.drawImage(
         imageNode,
         x,
         y,
@@ -90,20 +90,20 @@ const ImageCutterDialog = ({
         content: error.message,
       });
     }
-    cropperRef.current.enable();
+    cropperRef.current!.enable();
     setSaving(false);
   }, [imageUrl, onUpdate, imageSize, onClose]);
 
   useEffect(() => {
     if (imageUrl) {
       setTimeout(() => {
-        cropperRef.current = new Cropper(imageRef.current, {
+        cropperRef.current = new Cropper(imageRef.current!, {
           aspectRatio: imageSize.width / imageSize.height,
         });
       }, 0);
       return () => {
         URL.revokeObjectURL(imageUrl);
-        cropperRef.current.destroy();
+        cropperRef.current!.destroy();
       };
     }
   }, [imageUrl, imageSize]);

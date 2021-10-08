@@ -37,8 +37,8 @@ type Props = TextareaHTMLAttributes<HTMLTextAreaElement>;
  */
 const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(
   (props: Props, ref) => {
-    const innerRef = useRef<HTMLTextAreaElement>();
-    useImperativeHandle(ref, () => innerRef.current);
+    const innerRef = useRef<HTMLTextAreaElement>(null);
+    useImperativeHandle(ref, () => innerRef.current!);
 
     const { onKeyDown } = props;
     const onKeyDownWrapper = useCallback(
@@ -49,7 +49,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(
 
         const { key } = event;
         if (key.toLowerCase() === 'escape') {
-          innerRef.current.blur();
+          innerRef.current!.blur();
         }
       },
       [onKeyDown],
