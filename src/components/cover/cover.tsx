@@ -1,24 +1,23 @@
 import React, {
-  HTMLAttributes,
+  ImgHTMLAttributes,
   useImperativeHandle,
   useLayoutEffect,
   useRef,
   useState,
 } from 'react';
 import styled from 'styled-components';
-import { useTransition, animated } from 'react-spring';
 
 import loadImage from '@/utils/load_image';
 import { Shape } from './constants';
 import JpegDefaultCover from './default_cover.jpeg';
 import logger from '@/platform/logger';
 
-const SHAPE_MAP: Record<
-  Shape,
-  {
-    style: React.CSSProperties;
-  }
-> = {
+const Style = styled.img`
+  box-sizing: border-box;
+  aspect-ratio: 1;
+  object-fit: cover;
+`;
+const SHAPE_MAP: Record<Shape, { style: React.CSSProperties }> = {
   [Shape.CIRCLE]: {
     style: {
       borderRadius: '50%',
@@ -31,35 +30,17 @@ const SHAPE_MAP: Record<
   },
 };
 
-const Style = styled.div`
-  position: relative;
-
-  display: inline-block;
-  box-sizing: border-box;
-
-  overflow: hidden;
-  aspect-ratio: 1;
-
-  > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
 type Props = {
-  src: string;
-  alt: string;
-  size?: number | string;
+  src?: string;
   shape?: Shape;
-} & HTMLAttributes<HTMLDivElement>;
+  size?: number | string;
+  alt: string;
+} & ImgHTMLAttributes<HTMLImageElement>;
 
-const AnimateCover = React.forwardRef<HTMLDivElement, Props>(
-  ({ src, alt, size = 64, shape = Shape.SQUARE, ...props }: Props, ref) => {
-    const innerRef = useRef<HTMLDivElement>(null);
+const Cover = React.forwardRef<HTMLImageElement, Props>(
+  ({ src, shape = Shape.SQUARE, size = 64, alt, ...props }: Props, ref) => {
+    const innerRef = useRef<HTMLImageElement>(null);
+
     const [currentSrc, setCurrentSrc] = useState(JpegDefaultCover);
 
     useLayoutEffect(() => {
@@ -91,42 +72,21 @@ const AnimateCover = React.forwardRef<HTMLDivElement, Props>(
 
     useImperativeHandle(ref, () => innerRef.current!);
 
-    const transitions = useTransition(currentSrc, {
-      initial: {
-        transform: 'translateX(0%)',
-        opacity: 1,
-      },
-      from: {
-        transform: 'translateX(-100%)',
-        opacity: 0,
-      },
-      enter: {
-        transform: 'translateX(0%)',
-        opacity: 1,
-      },
-      leave: {
-        transform: 'translateX(100%)',
-        opacity: 0,
-      },
-    });
-    const { style } = SHAPE_MAP[shape];
     return (
       <Style
         {...props}
+        data-src={src}
+        src={currentSrc}
         style={{
           width: size,
-          ...style,
+          ...SHAPE_MAP[shape].style,
           ...props.style,
         }}
         ref={innerRef}
-        data-src={src}
-      >
-        {transitions((tStyle, s) => (
-          <animated.img src={s} alt={alt} style={tStyle} />
-        ))}
-      </Style>
+        alt={alt}
+      />
     );
   },
 );
 
-export default AnimateCover;
+export default Cover;

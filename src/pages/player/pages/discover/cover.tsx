@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import logger from '@/platform/logger';
 import loadImage from '@/utils/load_image';
 import AsyncQueue from '@/utils/async_queue';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import { COVER_SIZE } from './constants';
 
 class AbortError extends Error {}
@@ -64,12 +64,12 @@ const Cover = ({ src, onClick }: { src: string; onClick: () => void }) => {
   return (
     <Waypoint onEnter={onEnter} horizontal>
       <Style>
-        <Avatar
+        <AnimateCover
           className="cover"
           src={currentSrc}
           size={COVER_SIZE}
           onClick={onClick}
-          animated
+          alt="cover"
         />
       </Style>
     </Waypoint>

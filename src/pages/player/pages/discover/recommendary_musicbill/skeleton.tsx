@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import getRandomInteger from '@/utils/get_random_integer';
 import Skeleton from '@/components/skeleton';
 import Style from './musicbill_style';
@@ -11,7 +11,7 @@ const Wrapper = () => (
     {new Array(30).fill(0).map((_, index) => (
       // eslint-disable-next-line react/no-array-index-key
       <Style key={index}>
-        <Avatar size={COVER_SIZE} />
+        <Cover size={COVER_SIZE} alt="cover" />
         <div className="name">
           <Skeleton width={getRandomInteger(30, COVER_SIZE)} />
         </div>

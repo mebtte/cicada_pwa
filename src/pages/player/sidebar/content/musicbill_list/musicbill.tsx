@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import ellipsis from '@/style/ellipsis';
 import MusicbillContainer from './musicbill_container';
 import { COVER_SIZE } from './constants';
@@ -75,7 +75,7 @@ const Musicbill = ({
     {...props}
   >
     <div className="background" style={{ backgroundImage: `url(${cover})` }} />
-    <Avatar className="cover" src={cover} size={COVER_SIZE} />
+    <Cover className="cover" src={cover} size={COVER_SIZE} alt="cover" />
     <div className="label">{label}</div>
   </Style>
 );

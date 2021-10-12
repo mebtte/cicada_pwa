@@ -10,7 +10,7 @@ import { SearchKey as FigureSearchKey } from '@/server/cms_get_figure_list';
 import { SearchKey } from '@/server/cms_get_music_list';
 import { CMS_PATH } from '@/constants/route';
 import { MusicType, MUSIC_TYPE_MAP_LABEL } from '@/constants/music';
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import IconButton, { Name } from '@/components/icon_button';
 import CircularLoader from '@/components/circular_loader';
 import Empty from '@/components/empty';
@@ -136,7 +136,7 @@ const MusicList = ({
     <Small>{music.id}</Small>,
     music.name,
     <CoverBox>
-      {music.cover ? <Avatar src={music.cover} /> : '-'}
+      {music.cover ? <Cover src={music.cover} alt="cover" /> : '-'}
       <IconButton
         name={Name.EDIT_OUTLINE}
         size={ACTION_SIZE}

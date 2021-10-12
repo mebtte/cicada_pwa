@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
 
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import CircularLoader from '@/components/circular_loader';
 import Input from '@/components/input';
 import IconButton, { Name } from '@/components/icon_button';
@@ -74,7 +74,7 @@ const Search = ({
 
   return (
     <Style style={style}>
-      <Avatar animated src={cover} />
+      <AnimateCover src={cover} alt="cover" />
       <div className="input-box">
         <Input
           className="input"

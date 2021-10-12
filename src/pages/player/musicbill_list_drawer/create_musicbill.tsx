@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import getRandomCover from '@/utils/get_random_cover';
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import Icon, { Name } from '@/components/icon';
 import MusicbillContainer from './musicbill_container';
 import { COVER_SIZE, ICON_SIZE, ICON_STYLE } from './constants';
@@ -16,7 +16,7 @@ const CreateMusicbill = () => {
   return (
     <MusicbillContainer onClick={onCreateMusicbill}>
       <Icon name={Name.PLUS_OUTLINE} size={ICON_SIZE} style={ICON_STYLE} />
-      <Avatar src={cover} size={COVER_SIZE} />
+      <Cover src={cover} size={COVER_SIZE} alt="cover" />
       <div className="name">创建歌单</div>
     </MusicbillContainer>
   );

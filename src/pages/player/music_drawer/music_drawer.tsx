@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { MusicType } from '@/constants/music';
 import Skeleton from '@/components/skeleton';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import ErrorCard from '@/components/error_card';
 import Drawer from '@/components/horizontal_drawer';
@@ -133,11 +133,11 @@ const MusicDrawer = ({
         return (
           <Content style={style}>
             <div className="content">
-              <Avatar
+              <AnimateCover
                 className="cover"
-                animated
                 src={d.music.cover}
                 size={COVER_SIZE}
+                alt="cover"
               />
               <div className="name">{d.music.name}</div>
               {d.music.alias ? (

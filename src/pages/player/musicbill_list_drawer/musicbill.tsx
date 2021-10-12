@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { RequestStatus } from '@/constants';
 import toast from '@/platform/toast';
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import Checkbox from '@/components/checkbox';
 import CircularLoader from '@/components/circular_loader';
 import Icon, { Name } from '@/components/icon';
@@ -14,7 +14,7 @@ import MusicbillContainer from './musicbill_container';
 import { COVER_SIZE, ICON_SIZE, ICON_STYLE } from './constants';
 import { Music as MusicType, Musicbill as MusicbillType } from '../constants';
 
-const Cover = styled(Avatar)<{ publiz: boolean }>`
+const StyledCover = styled(Cover)<{ publiz: boolean }>`
   ${({ publiz }) => css`
     border: ${publiz ? '3px solid var(--color-primary)' : 'none'};
   `}
@@ -68,7 +68,12 @@ const Musicbill = ({
   return (
     <MusicbillContainer onClick={onToggleMusicbill}>
       {icon}
-      <Cover src={cover} size={COVER_SIZE} publiz={musicbill.public} />
+      <StyledCover
+        src={cover}
+        size={COVER_SIZE}
+        publiz={musicbill.public}
+        alt="cover"
+      />
       <div className="name">{name}</div>
     </MusicbillContainer>
   );

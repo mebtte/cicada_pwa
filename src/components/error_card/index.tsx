@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import config from '@/config';
 import getRandomInteger from '@/utils/get_random_integer';
-import Avatar from '../avatar';
+import AnimateCover from '../animate_cover';
 import IconButton, { Name } from '../icon_button';
 
 const PLACEHOLDER_SIZE = 150;
@@ -45,7 +45,12 @@ const ErrorCard = ({
   );
   return (
     <Style {...props}>
-      <Avatar animated src={errorImage} size={PLACEHOLDER_SIZE} />
+      <AnimateCover
+        src={errorImage}
+        size={PLACEHOLDER_SIZE}
+        alt="placeholder
+      "
+      />
       <div className="error-message">{errorMessage}</div>
       <IconButton name={Name.REFRESH_OUTLINE} onClick={retry} size={24} />
     </Style>

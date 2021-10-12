@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import getRandomInteger from '@/utils/get_random_integer';
 import Skeleton from '@/components/skeleton';
-import { COVER_SIZE, Container } from './constants';
+import { AVATAR_SIZE, Container } from './constants';
 
 const Wrapper = () => {
   const nameWidth = useMemo(() => getRandomInteger(120, 200), []);
@@ -13,7 +13,7 @@ const Wrapper = () => {
           <Skeleton width={nameWidth} />
         </div>
       </div>
-      <Skeleton width={COVER_SIZE} height={COVER_SIZE} />
+      <Skeleton width={AVATAR_SIZE} height={AVATAR_SIZE} />
     </Container>
   );
 };

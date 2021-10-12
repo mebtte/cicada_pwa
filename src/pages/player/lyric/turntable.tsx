@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
-import Avatar, { Shape } from '@/components/avatar';
+import AnimateCover, { Shape } from '@/components/animate_cover';
 
 const COVER_SIZE = 360;
 const rotate = keyframes`
@@ -43,13 +43,13 @@ const Turntable = ({
   toggleTurntable: () => void;
 }) => (
   <Style paused={paused}>
-    <Avatar
+    <AnimateCover
       className="cover"
-      animated
       src={cover}
       size={COVER_SIZE}
       shape={Shape.CIRCLE}
       onClick={toggleTurntable}
+      alt="cover"
     />
   </Style>
 );

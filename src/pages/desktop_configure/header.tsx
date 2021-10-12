@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import { HEADER_HEIGHT } from './constant';
 
 const Style = styled.div`
@@ -26,7 +26,7 @@ const Style = styled.div`
 
 const Header = () => (
   <Style>
-    <Avatar animated src="/logo.png" size={32} />
+    <Cover src="/logo.png" size={32} alt="logo" />
     <div className="title">配置</div>
   </Style>
 );

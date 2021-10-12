@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Avatar, { Shape } from '@/components/avatar';
+import AnimateCover, { Shape } from '@/components/animate_cover';
 import { MUSICBILL_COVER_SIZE, User as UserType } from './constants';
 import Container from './container';
 import MusicbillList from './musicbill_list';
@@ -16,11 +16,11 @@ const User = ({
 }) => (
   <Container style={style}>
     <div className="top">
-      <Avatar
-        animated
+      <AnimateCover
         src={user.avatar}
         size={MUSICBILL_COVER_SIZE}
         shape={Shape.CIRCLE}
+        alt="avatar"
       />
       <div className="info">
         <div className="name">{user.nickname}</div>

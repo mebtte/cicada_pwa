@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Switch from '@/components/switch';
 import Label from '@/components/label';
 import IconButton, { Name } from '@/components/icon_button';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import updateMusicbillRequest, { Key } from '@/server/update_musicbill';
 import toast from '@/platform/toast';
 import logger from '@/platform/logger';
@@ -124,7 +124,7 @@ const EditDialog = ({ musicbill }: { musicbill: Musicbill }) => {
       <StyledContent>
         <Label label="封面">
           <CoverBox>
-            <Avatar animated src={musicbill.cover} size={80} />
+            <AnimateCover src={musicbill.cover} size={80} alt="cover" />
             <IconButton
               name={Name.EDIT_OUTLINE}
               onClick={openCoverEditDialog}

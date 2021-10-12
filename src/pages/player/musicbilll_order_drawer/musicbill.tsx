@@ -4,7 +4,7 @@ import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 import { XYCoord } from 'dnd-core';
 
 import ellipsis from '@/style/ellipsis';
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import { Musicbill as MusicbillType } from './constant';
 
 const Style = styled.div`
@@ -85,7 +85,7 @@ const Musicbill = ({
         opacity: isDragging ? 0 : 1,
       }}
     >
-      <Avatar src={cover} size={24} />
+      <Cover src={cover} size={24} alt="cover" />
       <div className="name">{name}</div>
     </Style>
   );
