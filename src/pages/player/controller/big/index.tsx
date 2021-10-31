@@ -58,9 +58,9 @@ const Big = () => {
     <Style>
       <div className="left">
         <div className="bottom">
-          <Info />
+          <Info music={queueMusic ? queueMusic.music : null} />
           <Action
-            queueMusic={queueMusic}
+            music={queueMusic ? queueMusic.music : null}
             paused={audioPaused}
             loading={audioLoading}
           />

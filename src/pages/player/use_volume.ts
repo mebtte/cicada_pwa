@@ -5,12 +5,12 @@ import { PLAYER_VOLUME } from '@/constants/storage_key';
 import eventemitter, { EventType } from './eventemitter';
 
 const getInitialVolume = () => {
-  const localString = localStorage.getItem(PLAYER_VOLUME);
-  if (!localString) {
+  const volumeString = localStorage.getItem(PLAYER_VOLUME);
+  if (!volumeString) {
     return 1;
   }
-  const volume = +localString;
-  if (!volume || volume <= 0 || volume > 1) {
+  const volume = Number(volumeString);
+  if (volume < 0 || volume > 1) {
     return 1;
   }
   return volume;

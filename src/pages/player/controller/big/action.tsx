@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import IconButton, { Name as IconButtonName } from '@/components/icon_button';
-import { QueueMusic } from '../../constants';
+import { Music } from '../../constants';
 import eventemitter, { EventType } from '../../eventemitter';
 
 const ACTION_SIZE = 26;
@@ -27,36 +27,36 @@ const onPrevious = () => eventemitter.emit(EventType.ACTION_PREVIOUS, {});
 const onNext = () => eventemitter.emit(EventType.ACTION_NEXT, {});
 
 const Action = ({
-  queueMusic,
+  music,
   paused,
   loading,
 }: {
-  queueMusic: QueueMusic | null;
+  music: Music | null;
   paused: boolean;
   loading: boolean;
 }) => {
   const onAddToPlayqueue = () => {
-    if (!queueMusic) {
+    if (!music) {
       return;
     }
     return eventemitter.emit(EventType.ACTION_INSERT_MUSIC_TO_PLAYQUEUE, {
-      music: queueMusic.music,
+      music,
     });
   };
   const onAddToMusicbill = () => {
-    if (!queueMusic) {
+    if (!music) {
       return;
     }
     return eventemitter.emit(EventType.OPEN_MUSICBILL_LIST_DRAWER, {
-      music: queueMusic.music,
+      music,
     });
   };
   const onOperate = () => {
-    if (!queueMusic) {
+    if (!music) {
       return;
     }
     return eventemitter.emit(EventType.OPEN_MUSIC_OPERATE_POPUP, {
-      music: queueMusic.music,
+      music,
     });
   };
 

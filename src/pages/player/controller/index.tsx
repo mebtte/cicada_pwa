@@ -9,4 +9,4 @@ const Controller = () => {
   return smallView ? <Small /> : <Big />;
 };
 
-export default Controller;
+export default React.memo(Controller);
