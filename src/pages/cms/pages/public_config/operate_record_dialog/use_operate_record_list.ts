@@ -8,7 +8,7 @@ import { PAGE_SIZE, Record } from './constants';
 const INITIAL_PAGE = 1;
 const INITIAL_TOTAL = 0;
 
-export default ({ open, key }: { open: boolean; key: PublicConfigKey }) => {
+export default ({ open, key }: { open: boolean; key?: PublicConfigKey }) => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(INITIAL_TOTAL);

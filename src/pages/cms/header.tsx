@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Tooltip, { Placement } from '@/components/tooltip';
 import IconButton, { Name } from '@/components/icon_button';
 import { User } from '@/constants/user';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import globalEentemitter, { EventType } from '@/platform/global_eventemitter';
 import { ROOT_PATH } from '@/constants/route';
 
@@ -55,12 +55,12 @@ const Header = () => {
           <IconButton name={Name.MUSIC_FILL} size={ACTION_SIZE} />
         </Link>
       </Tooltip>
-      <Avatar
-        animated
+      <AnimateCover
         src={user.avatar}
         onClick={openProfileDialog}
         style={avatarStyle}
         size={28}
+        alt="avatar"
       />
     </Style>
   );

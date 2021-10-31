@@ -12,19 +12,19 @@ export default (music: MusicType, afterOperate?: (...params: any[]) => any) => {
     [music],
   );
   const onPlay = useCallback(() => {
-    eventemitter.emit(EventType.ACTION_PLAY_MUSIC, music);
+    eventemitter.emit(EventType.ACTION_PLAY_MUSIC, { music });
     if (afterOperate) {
       afterOperate();
     }
   }, [music, afterOperate]);
   const onAddToPlayqueue = useCallback(() => {
-    eventemitter.emit(EventType.ACTION_INSERT_MUSIC_TO_PLAYQUEUE, music);
+    eventemitter.emit(EventType.ACTION_INSERT_MUSIC_TO_PLAYQUEUE, { music });
     if (afterOperate) {
       afterOperate();
     }
   }, [music, afterOperate]);
   const onAddToMusicbill = useCallback(() => {
-    eventemitter.emit(EventType.OPEN_MUSICBILL_LIST_DRAWER, music);
+    eventemitter.emit(EventType.OPEN_MUSICBILL_LIST_DRAWER, { music });
     if (afterOperate) {
       afterOperate();
     }
@@ -45,7 +45,7 @@ export default (music: MusicType, afterOperate?: (...params: any[]) => any) => {
     }
   }, [music, afterOperate]);
   const onOperate = useCallback(
-    () => eventemitter.emit(EventType.OPEN_MUSIC_OPERATE_POPUP, music),
+    () => eventemitter.emit(EventType.OPEN_MUSIC_OPERATE_POPUP, { music }),
     [music],
   );
   const onCopyID = useCallback(() => {

@@ -12,12 +12,10 @@ export type Data =
   | {
       error: Error;
       loading: false;
-      singer: null;
     }
   | {
       error: null;
       loading: true;
-      singer: null;
     }
   | {
       error: null;

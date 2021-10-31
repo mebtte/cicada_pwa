@@ -9,7 +9,7 @@ export default () => {
 
   useEffect(() => {
     // 指定音乐播放
-    const onPlayMusicListener = (music: Music) =>
+    const onPlayMusicListener = ({ music }: { music: Music }) =>
       setPlaylist((pl) => {
         const musicIdList = pl.map((m) => m.music.id);
         if (musicIdList.includes(music.id)) {

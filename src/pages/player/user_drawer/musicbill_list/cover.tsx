@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import logger from '@/platform/logger';
 import loadImage from '@/utils/load_image';
 import AsyncQueue from '@/utils/async_queue';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import { MUSICBILL_COVER_SIZE } from '../constants';
 
 class AbortError extends Error {}
@@ -22,7 +22,7 @@ const Style = styled.div`
 `;
 
 const Cover = ({ src, onClick }: { src: string; onClick: () => void }) => {
-  const abortRef = useRef<() => void | null>(null);
+  const abortRef = useRef<(() => void) | null>(null);
 
   const [currentSrc, setCurrentSrc] = useState('');
   const onEnter = () => {
@@ -61,11 +61,11 @@ const Cover = ({ src, onClick }: { src: string; onClick: () => void }) => {
   return (
     <Waypoint onEnter={onEnter}>
       <Style>
-        <Avatar
+        <AnimateCover
           src={currentSrc}
           size={MUSICBILL_COVER_SIZE}
           onClick={onClick}
-          animated
+          alt="cover"
         />
       </Style>
     </Waypoint>

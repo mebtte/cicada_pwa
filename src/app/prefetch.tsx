@@ -1,11 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import JpegDefaultAvatar from '@/components/avatar/default_avatar.jpeg';
-
-const IMAGES: string[] = Array.from(
-  new Set(['/logo.png', '/text_logo.png', JpegDefaultAvatar]),
-);
+const IMAGES: string[] = Array.from(new Set(['/logo.png', '/text_logo.png']));
 
 const Prefetch = () => (
   <Helmet>

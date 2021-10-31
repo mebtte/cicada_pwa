@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Avatar, { Shape } from '@/components/avatar';
+import AnimateCover, { Shape } from '@/components/animate_cover';
 import { Musicbill } from '../constants';
 import Container from './container';
 import { COVER_SIZE, AVATAR_SIZE } from './constants';
@@ -26,7 +26,7 @@ const Top = ({ musicbill }: { musicbill: Musicbill }) => {
     playerEventemitter.emit(PlayerEventType.OPEN_USER_DRAWER, { id: user.id });
   return (
     <Container>
-      <Avatar animated src={cover} size={COVER_SIZE} />
+      <AnimateCover src={cover} size={COVER_SIZE} alt="cover" />
       <div className="info">
         <div className="name" title={name}>
           {name}
@@ -37,12 +37,13 @@ const Top = ({ musicbill }: { musicbill: Musicbill }) => {
           </div>
         ) : null}
         <div className="user">
-          <Avatar
+          <AnimateCover
             src={user.avatar}
             size={AVATAR_SIZE}
             shape={Shape.CIRCLE}
             onClick={onViewUser}
             style={pointer}
+            alt="avatar"
           />
           <div className="name" title={user.nickname}>
             <Nickname onClick={onViewUser}>{user.nickname}</Nickname>

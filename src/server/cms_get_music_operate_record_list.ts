@@ -26,7 +26,9 @@ function cmsGetMusicOperateRecordList({
     }[];
   }>('/api/cms/get_music_operate_record_list', {
     withToken: true,
-    params: { music_id: musicId, page, page_size: pageSize },
+    params: musicId
+      ? { music_id: musicId, page, page_size: pageSize }
+      : { page, page_size: pageSize },
   });
 }
 

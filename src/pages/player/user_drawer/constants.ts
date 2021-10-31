@@ -20,12 +20,10 @@ export type Data =
   | {
       loading: true;
       error: null;
-      user: null;
     }
   | {
       loading: false;
       error: Error;
-      user: null;
     }
   | {
       loading: false;

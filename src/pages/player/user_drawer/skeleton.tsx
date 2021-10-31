@@ -10,7 +10,7 @@ const coverStyle = {
   borderRadius: '50%',
 };
 
-const Wrapper = ({ style }: { style: unknown }) => {
+const Wrapper = ({ style }: { style: ReactSpringStyle }) => {
   const nameWidth = useMemo(() => getRandomInteger(100, 200), []);
   const joinTimeWidth = useMemo(() => getRandomInteger(100, 200), []);
   return (

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import globalEventemitter, { EventType } from '@/platform/global_eventemitter';
 import { PWA_GITHUB_REPOSITORY } from '@/constants';
 import { ROOT_PATH } from '@/constants/route';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import { User } from '@/constants/user';
 import Button from '@/components/button';
 import IconButton, { Name } from '@/components/icon_button';
@@ -84,12 +84,12 @@ const Header = ({ user }: { user: User | null }) => (
         )}
       </div>
       {user ? (
-        <Avatar
+        <AnimateCover
           src={user.avatar}
-          animated
           size={48}
           style={avatarStyle}
           onClick={openProfileDialog}
+          alt="cover"
         />
       ) : null}
     </div>

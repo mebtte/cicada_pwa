@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 import { MusicType } from '@/constants/music';
 import Skeleton from '@/components/skeleton';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import ErrorCard from '@/components/error_card';
-import Drawer from '@/components/drawer';
+import Drawer from '@/components/horizontal_drawer';
 import { COVER_SIZE, PADDING } from './constants';
 import useMusic from './use_music';
 import eventemitter, { EventType } from '../eventemitter';
@@ -104,15 +104,14 @@ const MusicDrawer = ({
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
       {transitions((style, d) => {
-        const { error, loading, music } = d;
-        if (error) {
+        if (d.error) {
           return (
             <CardContainer style={style}>
-              <ErrorCard errorMessage={error.message} retry={reload} />
+              <ErrorCard errorMessage={d.error.message} retry={reload} />
             </CardContainer>
           );
         }
-        if (loading) {
+        if (d.loading) {
           return (
             <Content style={style}>
               <div className="content">
@@ -134,17 +133,19 @@ const MusicDrawer = ({
         return (
           <Content style={style}>
             <div className="content">
-              <Avatar
+              <AnimateCover
                 className="cover"
-                animated
-                src={music.cover}
+                src={d.music.cover}
                 size={COVER_SIZE}
+                alt="cover"
               />
-              <div className="name">{music.name}</div>
-              {music.alias ? <div className="alias">{music.alias}</div> : null}
-              {music.singers.length ? (
+              <div className="name">{d.music.name}</div>
+              {d.music.alias ? (
+                <div className="alias">{d.music.alias}</div>
+              ) : null}
+              {d.music.singers.length ? (
                 <div className="singers">
-                  {music.singers.map((s) => (
+                  {d.music.singers.map((s) => (
                     <div
                       key={s.id}
                       className="singer"
@@ -159,10 +160,10 @@ const MusicDrawer = ({
                   ))}
                 </div>
               ) : null}
-              <Action music={music} onClose={onClose} />
-              <Fork music={music} />
-              {music.lrc && music.type === MusicType.NORMAL ? (
-                <Lyric lrc={music.lrc} />
+              <Action music={d.music} onClose={onClose} />
+              <Fork music={d.music} />
+              {d.music.lrc && d.music.type === MusicType.NORMAL ? (
+                <Lyric lrc={d.music.lrc} />
               ) : null}
             </div>
           </Content>

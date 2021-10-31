@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-import '@types/resize-observer-browser';
+import { ComponentProps } from 'react';
+import { animated } from 'react-spring';
 
 export {};
 
@@ -11,13 +12,14 @@ interface Config {
   coverList: string[];
 
   serverOrigin: string;
-  pwaOrigin: string;
 
   sentryDSN?: string;
 }
 
 declare global {
   const __CONFIG__: Config;
+
+  type ReactSpringStyle = ComponentProps<typeof animated.div>['style'];
 
   type ValueOf<T> = T[keyof T];
 

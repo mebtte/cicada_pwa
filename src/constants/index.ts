@@ -18,6 +18,5 @@ export const ORIGINAL_SCROLLBAR_WIDTH = getOriginalScrollbarWidth(); // 浏览�
 export const PWA_GITHUB_REPOSITORY = 'https://github.com/mebtte/cicada_pwa';
 export const ELECTRON_GITHUB_REPOSITORY =
   'https://github.com/mebtte/cicada_electron';
-export const EXPO_GITHUB_REPOSITORY = 'https://github.com/mebtte/cicada_expo';
 export const SERVER_GITHUB_REPOSITORY =
   'https://github.com/mebtte/cicada_server';

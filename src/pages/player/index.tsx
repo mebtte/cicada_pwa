@@ -2,12 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
-import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
 import withSignin from '@/platform/with_signin';
 import electron from '@/platform/electron';
 import PageContainer from '../page_container';
 import Sidebar from './sidebar';
-import Header from './header';
+import Nav from './nav';
 import Controller from './controller';
 import Route from './route';
 import useMusicbillList from './use_musicbill_list';
@@ -31,26 +30,25 @@ import CreateMusicbillDialog from './create_musicbill_dialog';
 import { QueueMusic } from './constants';
 import Lyric from './lyric';
 import UserDrawer from './user_drawer';
+import useSmallView from './use_small_view';
+import MusicbillListOperateDrawer from './musicbill_list_operate_drawer';
+import useMusicbillListShortcut from './use_musicbill_list_shortcut';
 
-const Scrollable = styled(PageContainer)`
-  overflow: auto;
-  ${scrollbarAsNeeded};
-`;
-const Style = styled.div`
-  min-width: 900px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+const Style = styled(PageContainer)`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
   > .container {
     flex: 1;
     min-height: 0;
+
     display: flex;
+
     > .content {
       flex: 1;
       min-width: 0;
+
       display: flex;
       flex-direction: column;
     }
@@ -58,7 +56,9 @@ const Style = styled.div`
 `;
 
 const Wrapper = () => {
-  const { status: getMusicbillListStatus, musicbillList } = useMusicbillList();
+  const smallView = useSmallView();
+
+  const musicbillList = useMusicbillList();
   const playMode = usePlayMode();
   const {
     loading: audioLoading,
@@ -72,10 +72,13 @@ const Wrapper = () => {
   const queueMusic = playqueue[currentPlayqueuePosition] as QueueMusic | null;
   const volume = useVolume();
 
+  useMusicbillListShortcut(musicbillList.value);
+
   return (
     <Context.Provider
       value={{
-        getMusicbillListStatus,
+        smallView,
+
         musicbillList,
 
         audioLoading,
@@ -95,20 +98,18 @@ const Wrapper = () => {
       <Helmet>
         <title>知了</title>
       </Helmet>
-      <Scrollable>
-        <Style>
-          <div className="container">
-            <Sidebar />
-            <div className="content">
-              <Header />
-              <Route />
-            </div>
+      <Style>
+        <div className="container">
+          <Sidebar />
+          <div className="content">
+            <Nav />
+            <Route />
           </div>
-          <Controller />
+        </div>
+        <Controller />
 
-          <Lyric music={queueMusic ? queueMusic.music : null} />
-        </Style>
-      </Scrollable>
+        <Lyric music={queueMusic ? queueMusic.music : null} />
+      </Style>
 
       <SingerDrawer />
       <MusicDrawer />
@@ -120,6 +121,7 @@ const Wrapper = () => {
       <CreateMusicbillDialog />
 
       <MusicOperatePopup />
+      <MusicbillListOperateDrawer />
 
       {queueMusic ? (
         <>

@@ -47,7 +47,7 @@ const ShortcutDialog = ({
   onClose: () => void;
   shortcut: string;
 }) => {
-  const [currentKeys, setCurrentKeys] = useState([]);
+  const [currentKeys, setCurrentKeys] = useState<string[]>([]);
   const onRemove = useCallback(() => {
     // @ts-ignore
     store.dispatch(setShortcutKeys(shortcut, []));

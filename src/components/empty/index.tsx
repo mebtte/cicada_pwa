@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import config from '@/config';
 import getRandomInteger from '@/utils/get_random_integer';
-import Avatar from '../avatar';
+import AnimateCover from '../animate_cover';
 
 const Style = styled.div`
   display: flex;
@@ -38,7 +38,12 @@ const Empty = ({
   );
   return (
     <Style {...props}>
-      <Avatar className="placeholder" animated src={emptyImage} size={180} />
+      <AnimateCover
+        className="placeholder"
+        src={emptyImage}
+        size={180}
+        alt="placeholder"
+      />
       <div className="description">{description}</div>
     </Style>
   );

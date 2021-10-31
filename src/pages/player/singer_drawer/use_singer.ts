@@ -10,14 +10,12 @@ export default ({ id }: { id: string }) => {
   const [data, setData] = useState<Data>({
     error: null,
     loading: true,
-    singer: null,
   });
 
   const getSinger = useCallback(async () => {
     setData({
       error: null,
       loading: true,
-      singer: null,
     });
     try {
       const detail = await getSingerDetail(id);
@@ -43,7 +41,6 @@ export default ({ id }: { id: string }) => {
       setData({
         error,
         loading: false,
-        singer: null,
       });
     }
   }, [id]);

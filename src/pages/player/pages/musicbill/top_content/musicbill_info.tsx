@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import day from '@/utils/day';
 import { RequestStatus } from '@/constants';
 import ellipsis from '@/style/ellipsis';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import { Musicbill } from '../../../constants';
 
 const Style = styled(animated.div)`
@@ -39,7 +39,7 @@ const Style = styled(animated.div)`
     }
   }
 `;
-const Cover = styled(Avatar)<{ publiz: boolean }>`
+const Cover = styled(AnimateCover)<{ publiz: boolean }>`
   ${({ publiz }) => css`
     border: ${publiz ? '3px solid var(--color-primary)' : 'none'};
   `}
@@ -50,10 +50,15 @@ const MusicbillInfo = ({
   style,
 }: {
   musicbill: Musicbill;
-  style: unknown;
+  style: ReactSpringStyle;
 }) => (
   <Style style={style}>
-    <Cover animated src={musicbill.cover} size={70} publiz={musicbill.public} />
+    <Cover
+      src={musicbill.cover}
+      size={70}
+      publiz={musicbill.public}
+      alt="cover"
+    />
     <div className="info">
       <div className="name">{musicbill.name}</div>
       {musicbill.description ? (

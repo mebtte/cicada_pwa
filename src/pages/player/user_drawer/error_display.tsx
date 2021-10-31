@@ -20,7 +20,7 @@ const ErrorDisplay = ({
 }: {
   error: Error;
   reload: () => void;
-  style: unknown;
+  style: ReactSpringStyle;
 }) => (
   <Style style={style}>
     <ErrorCard errorMessage={error.message} retry={reload} />

@@ -6,7 +6,7 @@ import { reloadUser } from '@/store/user';
 import updateUser, { Key } from '@/server/update_user';
 import ImageCutterDialog from '@/components/image_cutter_dialog';
 import IconButton, { Name } from '@/components/icon_button';
-import Avatar from '@/components/avatar';
+import AnimateCover, { Shape } from '@/components/animate_cover';
 import { User, AVATAR_MAX_SIZE } from '@/constants/user';
 import { PART_SPACE } from './constants';
 
@@ -33,7 +33,13 @@ const Wrapper = ({ user }: { user: User }) => {
   };
   return (
     <Style>
-      <Avatar className="avatar" src={user.avatar} size={100} animated />
+      <AnimateCover
+        className="avatar"
+        shape={Shape.CIRCLE}
+        src={user.avatar}
+        size={100}
+        alt="avatar"
+      />
       <IconButton
         name={Name.EDIT_OUTLINE}
         onClick={() => setEditDialogOpen(true)}

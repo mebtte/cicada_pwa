@@ -8,7 +8,7 @@ import PublicMusicbill from './public_musicbill';
 const Wrapper = () => {
   const { id } = useQuery<'id'>();
   if (!id) {
-    return <Redirect to={PLAYER_PATH.RECOMMENDATION} />;
+    return <Redirect to={PLAYER_PATH.DISCOVER} />;
   }
   return <PublicMusicbill id={id} />;
 };

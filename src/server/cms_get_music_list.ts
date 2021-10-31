@@ -53,7 +53,7 @@ function cmsGetMusicList({
       hq: string;
       ac: string;
       mv_link: string;
-      fork_from?: string[];
+      fork_from: string[];
       recommendable: 0 | 1;
     }[];
   }>('/api/cms/get_music_list', {

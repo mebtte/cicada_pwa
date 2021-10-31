@@ -6,7 +6,8 @@ import Pagination from '@/components/pagination';
 import Empty from '@/components/empty';
 import ErrorCard from '@/components/error_card';
 import useHistory from '@/utils/use_history';
-import Dialog, { Title, Content } from '@/components/dialog';
+import Dialog, { Title, Content, Action } from '@/components/dialog';
+import Button from '@/components/button';
 import { PublicConfigKey } from '@/constants/public_config';
 import { Query } from '../constants';
 import useOperateRecordList from './use_operate_record_list';
@@ -83,9 +84,12 @@ const OperateRecordDialog = ({
     );
   }
   return (
-    <Dialog open={open} onClose={onClose} bodyProps={bodyProps}>
+    <Dialog open={open} bodyProps={bodyProps}>
       <Title>操作记录</Title>
       <Content>{content}</Content>
+      <Action>
+        <Button label="关闭" onClick={onClose} />
+      </Action>
     </Dialog>
   );
 };

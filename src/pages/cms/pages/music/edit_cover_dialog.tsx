@@ -12,10 +12,10 @@ const COVER_SIZE = {
 };
 
 const EditFigureAvatarDialog = () => {
-  const [music, setMusic] = useState<Music>(null);
+  const [music, setMusic] = useState<Music | null>(null);
   const onClose = () => setMusic(null);
   const onUpdate = async (file: File) => {
-    await cmsUpdateMusic({ id: music.id, key: Key.COVER, value: file });
+    await cmsUpdateMusic({ id: music!.id, key: Key.COVER, value: file });
     eventemitter.emit(EventType.MUSIC_CREATED_OR_UPDATED_OR_DELETED);
   };
 

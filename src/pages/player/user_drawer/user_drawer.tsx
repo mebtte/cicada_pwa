@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
 
-import Drawer from '@/components/drawer';
+import Drawer from '@/components/horizontal_drawer';
 import useData from './use_data';
 import ErrorDisplay from './error_display';
 import Skeleton from './skeleton';
@@ -37,14 +37,14 @@ const UserDrawer = ({
   });
   return (
     <Drawer open={open} onClose={onClose} bodyProps={bodyProps}>
-      {transitions((style, { error, loading, user }) => {
-        if (error) {
-          return <ErrorDisplay error={error} reload={reload} style={style} />;
+      {transitions((style, d) => {
+        if (d.error) {
+          return <ErrorDisplay error={d.error} reload={reload} style={style} />;
         }
-        if (loading) {
+        if (d.loading) {
           return <Skeleton style={style} />;
         }
-        return <User user={user} style={style} onCloseDrawer={onClose} />;
+        return <User user={d.user} style={style} onCloseDrawer={onClose} />;
       })}
     </Drawer>
   );

@@ -26,13 +26,13 @@ const ErrorDisplay = ({
 }: {
   id: string;
   error: Error;
-  style: unknown;
+  style: ReactSpringStyle;
 }) => (
   <Style style={style}>
     <ErrorCard
       errorMessage={error.message}
       retry={() =>
-        playerEventemitter.emit(PlayerEventType.FETCH_MUSICBILL, { id })
+        playerEventemitter.emit(PlayerEventType.GET_MUSICBILL_DETAIL, { id })
       }
     />
   </Style>

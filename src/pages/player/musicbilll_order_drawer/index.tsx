@@ -3,7 +3,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styled, { css } from 'styled-components';
 
-import Drawer, { Title } from '@/components/drawer';
+import Drawer, { Title } from '@/components/horizontal_drawer';
 import updateMusicbillOrder from '@/server/update_musicbill_order';
 import logger from '@/platform/logger';
 import dialog from '@/platform/dialog';
@@ -47,7 +47,7 @@ const MusicbillOrderDrawer = () => {
   const onClose = () => {
     setOpen(false);
 
-    const originaMusicbillIds = musicbillList.map((m) => m.id).join(',');
+    const originaMusicbillIds = musicbillList.value.map((m) => m.id).join(',');
     const orderedMusicbillIdList = localMusicbillList.map((m) => m.id);
     const orderedMusicbillIds = orderedMusicbillIdList.join(',');
 
@@ -86,7 +86,7 @@ const MusicbillOrderDrawer = () => {
   useEffect(() => {
     const openListener = () => {
       setLocalMusicbillList(
-        musicbillList.map((m) => ({
+        musicbillList.value.map((m) => ({
           id: m.id,
           cover: m.cover,
           name: m.name,

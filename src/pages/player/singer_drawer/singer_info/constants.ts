@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const COVER_SIZE = 200;
+export const AVATAR_SIZE = 200;
 
 export const Container = styled.div`
   position: relative;
-  height: ${COVER_SIZE}px;
+  height: ${AVATAR_SIZE}px;
 
   margin: 20px;
 

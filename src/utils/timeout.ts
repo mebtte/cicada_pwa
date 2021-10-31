@@ -10,7 +10,7 @@ function timeout(
     window.setTimeout(
       () =>
         reject(
-          errorGenerator ? errorGenerator(ms) : new Error(`Timeouted ${ms}ms.`),
+          errorGenerator ? errorGenerator(ms) : new Error(`超时 ${ms}ms.`),
         ),
       ms,
     ),

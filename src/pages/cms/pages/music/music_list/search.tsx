@@ -30,7 +30,7 @@ const Style = styled.div`
 `;
 const itemRenderer = (key: SearchKey | null) => {
   if (!key) {
-    return null;
+    return '';
   }
   return SEARCH_KEY_MAP_LABEL[key];
 };
@@ -43,7 +43,7 @@ const Search = ({
   searchValue: string;
 }) => {
   const history = useHistory();
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onSearchKeyChange = (key: SearchKey) =>
     history.push({ query: { [Query.PAGE]: '1', [Query.SEARCH_KEY]: key } });
@@ -73,7 +73,7 @@ const Search = ({
         return;
       }
       event.preventDefault();
-      return inputRef.current.focus();
+      return inputRef.current!.focus();
     });
     document.addEventListener('keydown', onDocumentKeyDown);
     return () => document.removeEventListener('keydown', onDocumentKeyDown);

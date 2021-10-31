@@ -1,14 +1,12 @@
 import React from 'react';
 import throttle from 'lodash/throttle';
 
-import keyboardHandlerWrapper from '@/utils/keyboard_handler_wrapper';
 import createMusicPlayRecord from '@/server/create_music_play_record';
 import eventemitter, { EventType } from './eventemitter';
 import logger from '../../platform/logger';
 import dialog from '../../platform/dialog';
 import { QueueMusic, PlayMode, Music } from './constants';
 
-const JUMP_STEP = 5;
 const style = {
   display: 'none',
 };
@@ -44,14 +42,13 @@ class Audio extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
-    this.audioRef.current.volume = this.props.volume;
+    this.audioRef.current!.volume = this.props.volume;
 
     eventemitter.on(EventType.ACTION_SET_TIME, this.onActionSetTime);
     eventemitter.on(EventType.ACTION_TOGGLE_PLAY, this.onActionTogglePlay);
     eventemitter.on(EventType.ACTION_PLAY, this.onActionPlay);
     eventemitter.on(EventType.ACTION_PAUSE, this.onActionPause);
 
-    document.addEventListener('keydown', this.onKeyDown);
     window.addEventListener('beforeunload', this.beforeUnload);
   }
 
@@ -66,14 +63,14 @@ class Audio extends React.PureComponent<Props, {}> {
   componentDidUpdate(prevProps: Props) {
     const { volume, queueMusic } = this.props;
 
-    if (prevProps.volume !== volume) {
-      this.audioRef.current.volume = volume;
+    if (this.audioRef.current!.volume !== volume) {
+      this.audioRef.current!.volume = volume;
     }
 
     if (prevProps.queueMusic.pid !== queueMusic.pid) {
-      this.audioRef.current.currentTime = 0;
-      this.audioRef.current
-        .play()
+      this.audioRef.current!.currentTime = 0;
+      this.audioRef
+        .current!.play()
         .catch((error) => logger.error(error, { description: '音频播放失败' }));
       eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
         currentMillisecond: 0,
@@ -87,7 +84,6 @@ class Audio extends React.PureComponent<Props, {}> {
     eventemitter.off(EventType.ACTION_PLAY, this.onActionPlay);
     eventemitter.off(EventType.ACTION_PAUSE, this.onActionPause);
 
-    document.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('beforeunload', this.beforeUnload);
 
     this.uploadPlayRecord(this.props.queueMusic.music);
@@ -96,9 +92,9 @@ class Audio extends React.PureComponent<Props, {}> {
   onActionSetTime = ({ second }: { second: number }) => {
     onWaiting();
     return window.setTimeout(() => {
-      this.audioRef.current.currentTime = second;
-      this.audioRef.current
-        .play()
+      this.audioRef.current!.currentTime = second;
+      this.audioRef
+        .current!.play()
         .catch((error) => logger.error(error, { description: '音频播放失败' }));
       eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
         currentMillisecond: second * 1000,
@@ -106,44 +102,24 @@ class Audio extends React.PureComponent<Props, {}> {
     }, 0);
   };
 
-  onKeyDown = keyboardHandlerWrapper((event: KeyboardEvent) => {
-    const { key } = event;
-    // eslint-disable-next-line default-case
-    switch (key) {
-      case ' ': {
-        event.preventDefault();
-        this.onActionTogglePlay();
-        break;
-      }
-      case 'ArrowLeft': {
-        this.audioRef.current.currentTime -= JUMP_STEP;
-        break;
-      }
-      case 'ArrowRight': {
-        this.audioRef.current.currentTime += JUMP_STEP;
-        break;
-      }
-    }
-  });
-
   onActionTogglePlay = () =>
-    this.audioRef.current.paused
-      ? this.audioRef.current
-          .play()
+    this.audioRef.current!.paused
+      ? this.audioRef
+          .current!.play()
           .catch((error) =>
             logger.error(error, { description: '音频播放失败' }),
           )
-      : this.audioRef.current.pause();
+      : this.audioRef.current!.pause();
 
   onActionPlay = () =>
-    this.audioRef.current
-      .play()
+    this.audioRef
+      .current!.play()
       .catch((error) => logger.error(error, { description: '音频播放失败' }));
 
-  onActionPause = () => this.audioRef.current.pause();
+  onActionPause = () => this.audioRef.current!.pause();
 
   onTimeUpdate = throttle(() => {
-    const { currentTime } = this.audioRef.current;
+    const { currentTime } = this.audioRef.current!;
     return eventemitter.emit(EventType.AUDIO_TIME_UPDATED, {
       currentMillisecond: currentTime * 1000,
     });
@@ -155,10 +131,10 @@ class Audio extends React.PureComponent<Props, {}> {
 
     switch (playMode) {
       case PlayMode.HQ: {
-        return music.hq;
+        return music.hq || music.sq;
       }
       case PlayMode.AC: {
-        return music.ac;
+        return music.ac || music.sq;
       }
       default: {
         return music.sq;
@@ -167,7 +143,7 @@ class Audio extends React.PureComponent<Props, {}> {
   };
 
   getPlayedSeconeds = () => {
-    const { played } = this.audioRef.current;
+    const { played } = this.audioRef.current!;
     let playedSeconeds = 0;
     for (let i = 0, { length } = played; i < length; i += 1) {
       const start = played.start(i);
@@ -178,7 +154,7 @@ class Audio extends React.PureComponent<Props, {}> {
   };
 
   uploadPlayRecord = (music: Music) => {
-    const { duration } = this.audioRef.current;
+    const { duration } = this.audioRef.current!;
     const playedSeconds = this.getPlayedSeconeds();
     return createMusicPlayRecord({
       musicId: music.id,

@@ -10,7 +10,7 @@ const Wrapper = () => {
   const onClose = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
-    const openListener = (m: MusicType) => {
+    const openListener = ({ music: m }: { music: MusicType }) => {
       setMusic(m);
       setOpen(true);
     };

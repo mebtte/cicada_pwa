@@ -12,10 +12,10 @@ const AVATAR_SIZE = {
 };
 
 const EditFigureAvatarDialog = () => {
-  const [figure, setFigure] = useState<Figure>(null);
+  const [figure, setFigure] = useState<Figure | null>(null);
   const onClose = () => setFigure(null);
   const onUpdate = async (file: File) => {
-    await cmsUpdateFigure({ id: figure.id, key: Key.AVATAR, value: file });
+    await cmsUpdateFigure({ id: figure!.id, key: Key.AVATAR, value: file });
     eventemitter.emit(EventType.FIGURE_CREATED_OR_UPDATED_OR_DELETED);
   };
 

@@ -1,11 +1,12 @@
 import { createContext } from 'react';
 
-import { RequestStatus } from '@/constants';
-import { PlayMode, MusicWithIndex, QueueMusic, Musicbill } from './constants';
+import { PlayMode, MusicWithIndex, QueueMusic } from './constants';
+import { MusicbillList } from './use_musicbill_list';
 
 interface Context {
-  getMusicbillListStatus: RequestStatus;
-  musicbillList: Musicbill[];
+  smallView: boolean;
+
+  musicbillList: MusicbillList;
 
   playMode: PlayMode;
 
@@ -24,8 +25,13 @@ interface Context {
 }
 
 const context = createContext<Context>({
-  getMusicbillListStatus: RequestStatus.LOADING,
-  musicbillList: [],
+  smallView: true,
+
+  musicbillList: {
+    loading: true,
+    error: null,
+    value: [],
+  },
 
   playMode: PlayMode.SQ,
 

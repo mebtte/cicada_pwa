@@ -20,7 +20,7 @@ const inputStyle = {
 };
 
 const EditFigureDialog = () => {
-  const [figure, setFigure] = useState<Figure>(null);
+  const [figure, setFigure] = useState<Figure | null>(null);
   const onClose = () => setFigure(null);
 
   const [name, setName] = useState('');
@@ -41,20 +41,20 @@ const EditFigureDialog = () => {
     try {
       let needUpdate = false;
 
-      if (figure.name !== trimName) {
+      if (figure!.name !== trimName) {
         needUpdate = true;
         await cmsUpdateFigure({
-          id: figure.id,
+          id: figure!.id,
           key: Key.NAME,
           value: trimName,
         });
       }
 
       const trimAlias = alias.trim();
-      if (figure.alias !== trimAlias) {
+      if (figure!.alias !== trimAlias) {
         needUpdate = true;
         await cmsUpdateFigure({
-          id: figure.id,
+          id: figure!.id,
           key: Key.ALIAS,
           value: trimAlias,
         });

@@ -1,5 +1,3 @@
-export const IS_ELECTRON = !!window.require;
-
 enum Channel {
   RELAUNCH = 'relaunch', // 重启 APP
   OPEN_LINK = 'open_link', // 打开链接

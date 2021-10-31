@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import { Singer } from '../constants';
-import { COVER_SIZE, Container } from './constants';
+import { AVATAR_SIZE, Container } from './constants';
 
 const SingerInfo = ({ singer }: { singer: Singer }) => (
   <Container>
@@ -10,7 +10,7 @@ const SingerInfo = ({ singer }: { singer: Singer }) => (
       <div className="name">{singer.name}</div>
       {singer.alias ? <div className="alias">{singer.alias}</div> : null}
     </div>
-    <Avatar animated src={singer.avatar} size={COVER_SIZE} />
+    <AnimateCover src={singer.avatar} size={AVATAR_SIZE} alt="avatar" />
   </Container>
 );
 

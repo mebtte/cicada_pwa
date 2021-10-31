@@ -10,8 +10,8 @@ export type Music = Omit<BaseMusic, 'fork' | 'forkFrom'> & {
 };
 
 export type Data =
-  | { error: Error; loading: false; music: null }
-  | { error: null; loading: true; music: null }
+  | { error: Error; loading: false }
+  | { error: null; loading: true }
   | {
       error: null;
       loading: false;

@@ -136,7 +136,7 @@ export default (playlist: MusicWithIndex[]) => {
 
   useEffect(() => {
     // 指定播放音乐
-    const onPlayMusicListener = (music: Music) => {
+    const onPlayMusicListener = ({ music }: { music: Music }) => {
       setPlayqueue((pq) =>
         [
           ...pq.slice(0, currentPosition + 1),
@@ -150,9 +150,8 @@ export default (playlist: MusicWithIndex[]) => {
       setCurrentPosition((i) => i + 1);
     };
     eventemitter.on(EventType.ACTION_PLAY_MUSIC, onPlayMusicListener);
-    return () => {
-      eventemitter.off(EventType.ACTION_PLAY_MUSIC, onPlayMusicListener);
-    };
+    return () =>
+      void eventemitter.off(EventType.ACTION_PLAY_MUSIC, onPlayMusicListener);
   }, [currentPosition]);
 
   useEffect(() => {
@@ -187,7 +186,7 @@ export default (playlist: MusicWithIndex[]) => {
 
   useEffect(() => {
     // 插入队列
-    const onInsertMusicToPlayqueue = (music: Music) => {
+    const onInsertMusicToPlayqueue = ({ music }: { music: Music }) => {
       if (!playqueue.length) {
         setPlayqueue([
           {

@@ -32,6 +32,9 @@ const EditMusicSingerListDialog = () => {
 
   const [loading, setLoading] = useState(false);
   const onUpdate = async () => {
+    if (!music) {
+      return;
+    }
     if (singerList === music.singers) {
       return onClose();
     }

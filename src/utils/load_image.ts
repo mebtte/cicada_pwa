@@ -1,24 +1,21 @@
-const TIMEOUT = 30 * 1000;
+import timeoutFn from './timeout';
 
 export default (
   url: string,
   {
-    timeout = TIMEOUT,
+    timeout = 30 * 1000,
   }: {
     timeout?: number;
   } = {},
 ) =>
-  new Promise<HTMLImageElement>((resolve, reject) => {
-    let finished = false;
-    setTimeout(() => {
-      if (finished) {
-        return;
-      }
-      finished = true;
-      return reject(new Error(`加载图片超时"${url}"`));
-    }, timeout);
-    const image = document.createElement('img');
-    image.src = url;
-    image.onload = () => resolve(image);
-    image.onerror = () => reject(new Error(`加载图片失败"${url}"`));
-  });
+  Promise.race([
+    new Promise<HTMLImageElement>((resolve, reject) => {
+      const image = document.createElement('img');
+      image.src = url;
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error(`加载图片[${url}]失败.`));
+    }),
+    timeoutFn(timeout, {
+      errorGenerator: (ms) => new Error(`加载图片[${url}]超时 ${ms}ms.`),
+    }),
+  ]);

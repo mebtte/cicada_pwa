@@ -16,7 +16,7 @@ const Style = styled(animated.div)`
   ${scrollbarAsNeeded}
 `;
 
-const Wrapper = ({ style }: { style: unknown }) => {
+const Wrapper = ({ style }: { style: ReactSpringStyle }) => {
   const musicList = useMemo(
     () => new Array(getRandomInteger(5, 15)).fill(0),
     [],

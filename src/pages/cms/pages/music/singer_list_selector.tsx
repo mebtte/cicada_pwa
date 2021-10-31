@@ -46,7 +46,7 @@ const Style = styled.div`
   }
 `;
 const itemRenderer = (singer: Figure | null) =>
-  singer ? `${singer.name}${singer.alias ? `(${singer.alias})` : ''}` : null;
+  singer ? `${singer.name}${singer.alias ? `(${singer.alias})` : ''}` : '';
 
 const SingerListSelector = ({
   singerList,

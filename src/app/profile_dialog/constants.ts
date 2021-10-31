@@ -1,1 +1,1 @@
-export const PART_SPACE = 20;
+export const PART_SPACE = 15;

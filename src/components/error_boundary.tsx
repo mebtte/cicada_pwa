@@ -34,7 +34,7 @@ class ErrorBoundary extends React.PureComponent<
 
   componentDidCatch(error: Error) {
     this.setState({ error });
-    this.props.onError(error);
+    this.props.onError!(error);
   }
 
   render() {

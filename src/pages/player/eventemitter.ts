@@ -12,11 +12,11 @@ export enum EventType {
   ACTION_PLAY = 'action_play', // 播放, { }
   ACTION_PAUSE = 'action_pause', // 暂停, { }
   ACTION_SET_TIME = 'action_set_time', // 跳转时间, { second: number }
-  ACTION_PREVIOUS = 'action_previous', // 上一首
-  ACTION_NEXT = 'action_next', // 下一首
-  ACTION_PLAY_MUSIC = 'action_play_music', // 播放指定音乐
+  ACTION_PREVIOUS = 'action_previous', // 上一首, { }
+  ACTION_NEXT = 'action_next', // 下一首, { }
+  ACTION_PLAY_MUSIC = 'action_play_music', // 播放指定音乐, { music: Music }
   ACTION_ADD_MUSIC_LIST_TO_PLAYLIST = 'action_add_music_list_to_playlist', // 添加音乐列表到播放列表, { musicList: Music[] }
-  ACTION_INSERT_MUSIC_TO_PLAYQUEUE = 'action_insert_music_to_playqueue',
+  ACTION_INSERT_MUSIC_TO_PLAYQUEUE = 'action_insert_music_to_playqueue', // 插入到播放队列, { music: Music }
   ACTION_PLAY_PLAYQUEUE_INDEX = 'action_playqueue_index',
   ACTION_CLEAR_PLAYLIST = 'action_clear_playlist',
   ACTION_REMOVE_PLAYLIST_MUSIC = 'action_remove_playlist_music',
@@ -27,7 +27,7 @@ export enum EventType {
   ACTION_UPDATE_VOLUME = 'action_update_volume', // 调整音量
 
   RELOAD_MUSICBILL_LIST = 'update_musicbill_list', // 重新获取歌单列表, { }
-  FETCH_MUSICBILL = 'fetch_musicbill', // 获取歌单 { id: string }
+  GET_MUSICBILL_DETAIL = 'get_musicbill_detail', // 获取歌单详情 { id: string }
   ADD_MUSIC_TO_MUSICBILL = 'add_music_to_musicbill', // 添加音乐到歌单
   REMOVE_MUSIC_FROM_MUSICBILL = 'remove_music_from_musicbill', // 从歌单移除音乐
 
@@ -36,9 +36,12 @@ export enum EventType {
   TOGGEL_LYRIC = 'toggle_lyric', // 打开/关闭歌词, { }
   CLOSE_LYRIC = 'close_lyric', // 关闭歌词, { }
 
-  OPEN_CREATE_MUSICBILL_DIALOG = 'open_create_musicbill_dialog',
-  OPEN_MUSIC_OPERATE_POPUP = 'open_music_operate_popup',
-  OPEN_MUSICBILL_LIST_DRAWER = 'open_musicbill_list_drawer',
+  OPEN_MUSICBILL_LIST_OPERATE_DRAWER = 'open_musicbill_list_operate_drawer', // 打开歌单列表操作抽屉, { }
+  CLOSE_MUSICBILL_LIST_OPERATE_DRAWER = 'close_musicbill_list_operate_drawer', // 打开歌单列表操作抽屉, { }
+
+  OPEN_CREATE_MUSICBILL_DIALOG = 'open_create_musicbill_dialog', // 打开创建歌单弹窗, { }
+  OPEN_MUSIC_OPERATE_POPUP = 'open_music_operate_popup', // 打开音乐操作弹窗, { music: Music }
+  OPEN_MUSICBILL_LIST_DRAWER = 'open_musicbill_list_drawer', // 打开歌单列表弹窗, { music: Music }
   OPEN_SINGER_DRAWER = 'open_singer_drawer', // 打开歌手面板, { id: string }
   OPEN_MUSIC_DRAWER = 'open_music_drawer', // 打开音乐面板, { id: string }
   OPEN_USER_DRAWER = 'open_user_drawer', // 打开用户面板, { id: string }
@@ -50,6 +53,9 @@ export enum EventType {
   MUSICBILL_CREATED = 'musicbill_created', // 歌单已创建, { id: string }
   MUSICBILL_UPDATED = 'musicbill_updated', // 歌单已更新, { id: string }
   MUSICBILL_DELETED = 'musicbill_deleted', // 歌单已删除, { id: string }
+
+  OPEN_SIDEBAR = 'open_sidebar', // 打开侧边栏, { }
+  CLOSE_SIDEBAR = 'close_sidebar', // 关闭侧边栏, { }
 }
 
 export default new Eventemitter();

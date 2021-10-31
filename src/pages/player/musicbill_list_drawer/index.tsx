@@ -6,11 +6,11 @@ import MusicbillListDrawer from './musicbill_list_drawer';
 
 const Wrapper = () => {
   const [open, setOpen] = useState(false);
-  const [music, setMusic] = useState<MusicType>(null);
+  const [music, setMusic] = useState<MusicType | null>(null);
   const onClose = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
-    const openListener = (m: MusicType) => {
+    const openListener = ({ music: m }: { music: MusicType }) => {
       setOpen(true);
       setMusic(m);
     };

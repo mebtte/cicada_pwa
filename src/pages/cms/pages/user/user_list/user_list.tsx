@@ -12,7 +12,7 @@ import Empty from '@/components/empty';
 import CircularLoader from '@/components/circular_loader';
 import Table from '@/components/table';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import { Query, User } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 import CMSEventemitter, {
@@ -115,7 +115,7 @@ const UserList = ({
     <Small>{u.id}</Small>,
     <Small>{u.email}</Small>,
     u.nickname,
-    u.avatar ? <Avatar src={u.avatar} /> : '-',
+    u.avatar ? <Cover src={u.avatar} alt="avatar" /> : '-',
     <Small>{day(u.join_time).format('YYYY-MM-DD HH:mm')}</Small>,
     <Icon
       name={u.cms ? IconName.CORRECT_OUTLINE : IconName.WRONG_OUTLINE}

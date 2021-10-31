@@ -9,7 +9,7 @@ import Empty from '@/components/empty';
 import CircularLoader from '@/components/circular_loader';
 import Table from '@/components/table';
 import scrollbarAsNeeded from '@/style/scrollbar_as_needed';
-import Avatar from '@/components/avatar';
+import Cover from '@/components/cover';
 import { Figure, Query } from '../constants';
 import eventemitter, { EventType } from '../eventemitter';
 
@@ -86,7 +86,7 @@ const FigureList = ({
     figure.id,
     figure.name,
     <AvatarBox>
-      {figure.avatar ? <Avatar src={figure.avatar} /> : '-'}
+      {figure.avatar ? <Cover src={figure.avatar} alt="avatar" /> : '-'}
       <IconButton
         name={Name.EDIT_OUTLINE}
         size={ACTION_SIZE}

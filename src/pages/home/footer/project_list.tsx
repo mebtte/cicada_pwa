@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Name } from '@/components/icon';
 import {
   ELECTRON_GITHUB_REPOSITORY,
-  EXPO_GITHUB_REPOSITORY,
   PWA_GITHUB_REPOSITORY,
   SERVER_GITHUB_REPOSITORY,
 } from '@/constants';
@@ -39,12 +38,6 @@ const PROJECTS: ProjectType[] = [
     name: 'Cicada Electron',
     link: ELECTRON_GITHUB_REPOSITORY,
     description: '知了桌面客户端',
-  },
-  {
-    icon: Name.MOBILEPHONE_FILL,
-    name: 'Cicada Expo',
-    link: EXPO_GITHUB_REPOSITORY,
-    description: '知了移动客户端',
   },
 ];
 

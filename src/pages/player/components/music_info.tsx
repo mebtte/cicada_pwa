@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 import ellipsis from '@/style/ellipsis';
-import Avatar from '@/components/avatar';
+import AnimateCover from '@/components/animate_cover';
 import eventemitter, { EventType } from '../eventemitter';
 import Singer from './singer';
 import MusicTagList from './music_tag_list';
@@ -56,12 +56,12 @@ const MusicInfo = ({
   const { cover, name, singers } = music;
   return (
     <Style {...props}>
-      <Avatar
+      <AnimateCover
         style={COVER_STYLE}
-        animated
         src={cover}
         size={COVER_SIZE}
         onClick={onViewMusic}
+        alt="cover"
       />
       <div className="info">
         <div className="top">

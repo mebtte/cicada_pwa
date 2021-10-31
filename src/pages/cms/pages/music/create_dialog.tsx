@@ -26,7 +26,7 @@ import eventemitter, { EventType } from './eventemitter';
 
 const musicTypeItemRenderer = (musicType: MusicType | null) => {
   if (!musicType) {
-    return null;
+    return '';
   }
   return MUSIC_TYPE_MAP_LABEL[musicType];
 };
@@ -165,7 +165,11 @@ const CreateMusicDialog = ({ open }: { open: boolean }) => {
           />
         </Label>
         <Label label="是否可推荐" style={labelStyle}>
-          <Checkbox checked={recommendable} onChange={onRecommendableChange} />
+          <Checkbox
+            checked={recommendable}
+            onChange={onRecommendableChange}
+            disabled={loading}
+          />
         </Label>
         <Label label="标准音质" style={labelStyle}>
           <FileBox>

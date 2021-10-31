@@ -25,16 +25,21 @@ import eventemitter, { EventType } from './eventemitter';
 const ICON_SIZE = 18;
 const Style = styled.div`
   position: relative;
-  border-radius: 4px;
-  backdrop-filter: blur(5px);
+
+  backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.8);
-  width: 300px;
-  padding: 40px;
+
+  border-radius: 4px;
+  width: 350px;
+  padding: 40px 30px;
+  box-sizing: border-box;
+
   > .setting {
     position: absolute;
     top: 10px;
     right: 10px;
   }
+
   > .input-box {
     display: flex;
     align-items: center;

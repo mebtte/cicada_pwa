@@ -12,41 +12,52 @@ import eventemitter, { EventType } from './eventemitter';
 import { Music, Musicbill } from './constants';
 import { transformMusic } from './utils';
 
+export type MusicbillList = {
+  loading: boolean;
+  error: Error | null;
+  value: Musicbill[];
+};
+
 export default () => {
-  const [status, setStatus] = useState(RequestStatus.LOADING);
-  const [musicbillList, setMusicbillList] = useState<Musicbill[]>([]);
+  const [musicbillList, setMusicbillList] = useState<MusicbillList>({
+    loading: true,
+    error: null,
+    value: [],
+  });
   const getMusicbillList = useCallback(async () => {
-    setStatus(RequestStatus.LOADING);
+    setMusicbillList((mbl) => ({
+      ...mbl,
+      loading: true,
+    }));
     try {
       const mbl = await getMusicbillListRequest();
-      setMusicbillList(
-        mbl
-          .map((mb) => ({
-            id: mb.id,
-            name: mb.name,
-            cover: mb.cover || getRandomCover(),
-            order: mb.order,
-            description: mb.description,
-            createTime: new Date(mb.create_time),
-            musicList: [],
-            public: !!mb.public,
+      setMusicbillList({
+        loading: false,
+        error: null,
+        value: mbl.map((mb) => ({
+          id: mb.id,
+          name: mb.name,
+          cover: mb.cover || getRandomCover(),
+          order: mb.order,
+          description: mb.description,
+          createTime: new Date(mb.create_time),
+          musicList: [],
+          public: !!mb.public,
 
-            status: RequestStatus.NOT_START,
-            error: null,
-          }))
-          .sort((a, b) => a.order - b.order),
-      );
-      setStatus(RequestStatus.SUCCESS);
+          status: RequestStatus.NOT_START,
+          error: null,
+        })),
+      });
     } catch (error) {
       logger.error(error, {
         description: '获取歌单列表失败',
         report: true,
       });
-      dialog.alert({
-        title: '获取歌单列表失败',
-        content: error.message,
+      setMusicbillList({
+        loading: false,
+        error,
+        value: [],
       });
-      setStatus(RequestStatus.ERROR);
     }
   }, []);
 
@@ -60,8 +71,9 @@ export default () => {
 
   useEffect(() => {
     const getMusicbillDetail = async ({ id }: { id: string }) => {
-      setMusicbillList((mbl) =>
-        mbl.map((mb) => {
+      setMusicbillList((mbl) => ({
+        ...mbl,
+        value: mbl.value.map((mb) => {
           if (mb.id === id) {
             return {
               ...mb,
@@ -71,11 +83,12 @@ export default () => {
           }
           return mb;
         }),
-      );
+      }));
       try {
         const data = await getMusicbillDetailRequest(id);
-        setMusicbillList((mbl) =>
-          mbl.map((mb) => {
+        setMusicbillList((mbl) => ({
+          ...mbl,
+          value: mbl.value.map((mb) => {
             if (mb.id === id) {
               return {
                 ...mb,
@@ -89,21 +102,20 @@ export default () => {
                 public: !!data.public,
 
                 status: RequestStatus.SUCCESS,
+                error: null,
               };
             }
             return mb;
           }),
-        );
+        }));
       } catch (error) {
         logger.error(error, {
+          description: '获取歌单详情失败',
           report: true,
         });
-        dialog.alert({
-          title: '获取歌单详情失败',
-          content: error.message,
-        });
-        setMusicbillList((mbl) =>
-          mbl.map((mb) => {
+        setMusicbillList((mbl) => ({
+          ...mbl,
+          value: mbl.value.map((mb) => {
             if (mb.id === id) {
               return {
                 ...mb,
@@ -113,7 +125,7 @@ export default () => {
             }
             return mb;
           }),
-        );
+        }));
       }
     };
     const musicbillCreatedListener = ({
@@ -121,11 +133,15 @@ export default () => {
     }: {
       musicbill: Musicbill;
     }) =>
-      setMusicbillList((mbl) =>
-        [...mbl, musicbill].sort((a, b) => a.order - b.order),
-      );
+      setMusicbillList((mbl) => ({
+        ...mbl,
+        value: [...mbl.value, musicbill].sort((a, b) => a.order - b.order),
+      }));
     const onMusicbillRemoved = ({ id }: { id: string }) =>
-      setMusicbillList((mbl) => mbl.filter((mb) => mb.id !== id));
+      setMusicbillList((mbl) => ({
+        ...mbl,
+        value: mbl.value.filter((mb) => mb.id !== id),
+      }));
     const addMusicToMusicbillListener = async ({
       musicbill,
       music,
@@ -135,8 +151,9 @@ export default () => {
     }) => {
       const { id: musicbillId, name: musicbillName } = musicbill;
       const { id: musicId, name: musicName } = music;
-      setMusicbillList((mbl) =>
-        mbl.map((mb) => {
+      setMusicbillList((mbl) => ({
+        ...mbl,
+        value: mbl.value.map((mb) => {
           if (mb.id === musicbillId) {
             const musicList = [{ index: 0, music }, ...mb.musicList];
             const { length } = musicList;
@@ -150,7 +167,7 @@ export default () => {
           }
           return mb;
         }),
-      );
+      }));
       try {
         await addMusicToMusicbill({
           musicId,
@@ -166,8 +183,9 @@ export default () => {
           title: description,
           content: error.message,
         });
-        setMusicbillList((mbl) =>
-          mbl.map((mb) => {
+        setMusicbillList((mbl) => ({
+          ...mbl,
+          value: mbl.value.map((mb) => {
             if (mb.id === musicbillId) {
               const musicList = mb.musicList.filter(
                 (m) => m.music.id !== musicId,
@@ -183,7 +201,7 @@ export default () => {
             }
             return mb;
           }),
-        );
+        }));
       }
     };
     const removeMusicFromMusicbillListener = async ({
@@ -195,8 +213,9 @@ export default () => {
     }) => {
       const { id: musicbillId, name: musicbillName } = musicbill;
       const { id: musicId, name: musicName } = music;
-      setMusicbillList((mbl) =>
-        mbl.map((mb) => {
+      setMusicbillList((mbl) => ({
+        ...mbl,
+        value: mbl.value.map((mb) => {
           if (mb.id === musicbillId) {
             const musicList = mb.musicList.filter(
               (m) => m.music.id !== musicId,
@@ -212,7 +231,7 @@ export default () => {
           }
           return mb;
         }),
-      );
+      }));
       try {
         await removeMusicFromMusicbill({
           musicId,
@@ -228,8 +247,9 @@ export default () => {
           title: description,
           content: error.message,
         });
-        setMusicbillList((mbl) =>
-          mbl.map((mb) => {
+        setMusicbillList((mbl) => ({
+          ...mbl,
+          value: mbl.value.map((mb) => {
             if (mb.id === musicbillId) {
               const musicList = [{ index: 0, music }, ...mb.musicList];
               const { length } = musicList;
@@ -243,11 +263,11 @@ export default () => {
             }
             return mb;
           }),
-        );
+        }));
       }
     };
 
-    eventemitter.on(EventType.FETCH_MUSICBILL, getMusicbillDetail);
+    eventemitter.on(EventType.GET_MUSICBILL_DETAIL, getMusicbillDetail);
     eventemitter.on(EventType.MUSICBILL_UPDATED, getMusicbillDetail);
     eventemitter.on(EventType.MUSICBILL_CREATED, musicbillCreatedListener);
     eventemitter.on(EventType.MUSICBILL_DELETED, onMusicbillRemoved);
@@ -260,7 +280,7 @@ export default () => {
       removeMusicFromMusicbillListener,
     );
     return () => {
-      eventemitter.off(EventType.FETCH_MUSICBILL, getMusicbillDetail);
+      eventemitter.off(EventType.GET_MUSICBILL_DETAIL, getMusicbillDetail);
       eventemitter.off(EventType.MUSICBILL_UPDATED, getMusicbillDetail);
       eventemitter.off(EventType.MUSICBILL_CREATED, musicbillCreatedListener);
       eventemitter.off(EventType.MUSICBILL_DELETED, onMusicbillRemoved);
@@ -275,8 +295,5 @@ export default () => {
     };
   }, []);
 
-  return {
-    status,
-    musicbillList,
-  };
+  return musicbillList;
 };

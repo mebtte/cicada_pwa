@@ -26,7 +26,7 @@ const CheckboxWithLabel = ({
   label,
   checked,
   onChange,
-  disabled,
+  disabled = false,
   onClick,
   ...props
 }: {
