@@ -1,23 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { Music } from '../../constants';
+import ellipsis from '@/style/ellipsis';
+import Tag, { Type as TagType } from '@/components/tag';
+import { Music, PlayMode } from '../../constants';
 import Singer from '../../components/singer';
+import eventemitter, { EventType } from '../../eventemitter';
+import Context from '../../context';
 
 const Style = styled.div`
   flex: 1;
+  min-width: 0;
 
   display: flex;
   align-items: center;
+  gap: 5px;
 
   > .left {
+    min-width: 0;
+    ${ellipsis}
+
+    color: var(--text-color-secondary);
+
     > .name {
       font-size: 14px;
       color: var(--text-color-primary);
-      cursor: pointer;
 
-      &.empty {
-        cursor: unset;
+      &.active {
+        cursor: pointer;
+
+        &:hover {
+          color: var(--color-primary);
+        }
       }
     }
 
@@ -30,13 +44,43 @@ const Style = styled.div`
 `;
 
 const Info = ({ music }: { music: Music | null }) => {
-  const onViewMusic = () => {};
+  const { playMode } = useContext(Context);
+
+  const onViewMusic = () => {
+    if (!music) {
+      return;
+    }
+    return eventemitter.emit(EventType.OPEN_MUSIC_DRAWER, { id: music.id });
+  };
+
+  let tagType: TagType | null = null;
+  if (music) {
+    // eslint-disable-next-line default-case
+    switch (playMode) {
+      case PlayMode.HQ: {
+        if (music.hq) {
+          tagType = TagType.HQ;
+        }
+        break;
+      }
+      case PlayMode.AC: {
+        if (music.ac) {
+          tagType = TagType.AC;
+        }
+        break;
+      }
+    }
+    tagType = tagType || TagType.SQ;
+  }
+
   return (
     <Style>
       <div className="left">
         {music ? (
           <>
-            <span className="name">{music.name}</span>
+            <span className="name active" onClick={onViewMusic}>
+              {music.name}
+            </span>
             <span className="singer-list">
               {music.singers.length ? (
                 music.singers.map((s) => <Singer key={s.id} singer={s} />)
@@ -46,9 +90,10 @@ const Info = ({ music }: { music: Music | null }) => {
             </span>
           </>
         ) : (
-          <span className="name empty">知了</span>
+          <span className="name">知了</span>
         )}
       </div>
+      {tagType ? <Tag className="tag" type={tagType} /> : null}
     </Style>
   );
 };

@@ -39,7 +39,7 @@ const TYPE_MAP: Record<
   },
   [Type.FORK_FROM]: {
     label: 'ff',
-    color: 'rgb(102 65 235)',
+    color: 'rgb(102, 65, 235)',
   },
 };
 
