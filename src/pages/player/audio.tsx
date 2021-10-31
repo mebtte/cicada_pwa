@@ -63,7 +63,7 @@ class Audio extends React.PureComponent<Props, {}> {
   componentDidUpdate(prevProps: Props) {
     const { volume, queueMusic } = this.props;
 
-    if (prevProps.volume !== volume) {
+    if (this.audioRef.current!.volume !== volume) {
       this.audioRef.current!.volume = volume;
     }
 
