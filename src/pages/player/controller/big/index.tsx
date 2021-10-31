@@ -8,6 +8,7 @@ import { QueueMusic } from '../../constants';
 import eventemitter, { EventType } from '../../eventemitter';
 import Info from './info';
 import Action from './action';
+import Progress from './progress';
 
 const COVER_SIZE = 64;
 
@@ -57,6 +58,7 @@ const Big = () => {
   return (
     <Style>
       <div className="left">
+        <Progress />
         <div className="bottom">
           <Info music={queueMusic ? queueMusic.music : null} />
           <Action
