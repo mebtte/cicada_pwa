@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { animated, useTransition } from 'react-spring';
 
 import ellipsis from '@/style/ellipsis';
 import Tag, { Type as TagType } from '@/components/tag';
@@ -11,10 +12,19 @@ import Context from '../../context';
 const Style = styled.div`
   flex: 1;
   min-width: 0;
+  position: relative;
+`;
+const InfoStyle = styled(animated.div)`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+
+  transform: translateY(-50%);
 
   > .left {
     min-width: 0;
@@ -43,7 +53,13 @@ const Style = styled.div`
   }
 `;
 
-const Info = ({ music }: { music: Music | null }) => {
+const Info = ({
+  music,
+  style,
+}: {
+  music: Music | null;
+  style: ReactSpringStyle;
+}) => {
   const { playMode } = useContext(Context);
 
   const onViewMusic = () => {
@@ -74,7 +90,7 @@ const Info = ({ music }: { music: Music | null }) => {
   }
 
   return (
-    <Style>
+    <InfoStyle style={style}>
       <div className="left">
         {music ? (
           <>
@@ -94,8 +110,32 @@ const Info = ({ music }: { music: Music | null }) => {
         )}
       </div>
       {tagType ? <Tag className="tag" type={tagType} /> : null}
+    </InfoStyle>
+  );
+};
+
+const SpringWrapper = ({ music }: { music: Music | null }) => {
+  const transitions = useTransition(music, {
+    initial: {
+      opacity: 1,
+    },
+    from: {
+      opacity: 0,
+    },
+    enter: {
+      opacity: 1,
+    },
+    leave: {
+      opacity: 0,
+    },
+  });
+  return (
+    <Style>
+      {transitions((style, m) => (
+        <Info music={m} style={style} />
+      ))}
     </Style>
   );
 };
 
-export default Info;
+export default SpringWrapper;
